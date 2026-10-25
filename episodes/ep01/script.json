@@ -1,0 +1,29 @@
+{
+  "n": 1,
+  "slug": "ss-copy-seek",
+  "title": "Where does -c copy really start?",
+  "fullTitle": "You Asked FFmpeg for 3 Seconds. You Got Half a Second.",
+  "scenes": [
+    {"id": "ask", "sim": null,
+      "narration": "You want three seconds of a video, starting at seven and a half. You add dash c copy so it is instant. It is instant. But is it the clip you asked for?",
+      "captions": ["Three seconds, starting at 7.5.", "Add -c copy so it is instant."]},
+    {"id": "fixture", "sim": null,
+      "narration": "Here is a synthetic test video. Twenty seconds, twenty five frames a second, and a keyframe every five seconds. Every frame is lossless, so every frame has its own fingerprint. That lets us ask a precise question: which source frame does the clip begin on?",
+      "captions": ["Synthetic video. Keyframes at 0, 5, 10, 15 seconds.", "Lossless, so every frame is fingerprinted."]},
+    {"id": "inputSeek", "sim": null,
+      "narration": "First, seek before the input. The clip starts on frame one eighty eight, which is seven point five two seconds. Seventy five frames. Correct. But look inside the file. It holds one hundred thirty eight packets, not seventy five. Sixty three frames of hidden pre-roll, kept so the first frame can decode.",
+      "captions": ["-ss before -i: starts at 7.52 s. 75 frames.", "But the file holds 138 packets. 63 are hidden pre-roll."]},
+    {"id": "outputSeek", "sim": null,
+      "narration": "Now move the same flag after the input. Same numbers, same copy. The clip starts on frame two fifty, which is ten seconds. And it holds thirteen frames. Half a second, not three.",
+      "captions": ["-ss after -i: starts at 10.00 s.", "13 frames. Half a second, not three."]},
+    {"id": "why", "sim": null,
+      "narration": "Why? A copy does not decode anything. Most frames only store what changed since an earlier frame, so a clip can only begin on a keyframe. Seeking before the input goes back to the keyframe at five seconds and hides the extra with an edit list. Seeking after the input discards packets until the next keyframe, at ten.",
+      "captions": ["Copying can only start on a keyframe.", "Before -i: back to 5 s, hide the extra. After -i: forward to 10 s."]},
+    {"id": "fix", "sim": null,
+      "narration": "If you need the exact start, re-encode. It begins on frame one eighty eight and gives you seventy four frames. If you must copy, know which flag you chose, and check the result with ffprobe instead of trusting the command line.",
+      "captions": ["Need exact? Re-encode.", "Must copy? Check with ffprobe."]},
+    {"id": "close", "sim": null,
+      "narration": "Same command line, one flag moved. Seventy five frames from seven point five, or thirteen frames from ten. This is the first FFmpeg Reality Check.",
+      "captions": ["One flag moved. 75 frames or 13.", "FFmpeg Reality Checks, episode 1."]}
+  ]
+}
