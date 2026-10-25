@@ -2,9 +2,10 @@
 
 Short narrated technical explainers about what FFmpeg commands actually do, each backed by a runnable synthetic fixture and regression tests.
 
-- Requires Node 22+, `ffmpeg` and `ffprobe` on PATH. No dependencies, no network.
+- Fixtures and tests need Node 22+, `ffmpeg` and `ffprobe` on PATH. No dependencies, no network.
+- Films are built by the shared render engine ([web-reality-checks](https://github.com/mizcausevic-dev/web-reality-checks), `tools/ship.mjs`): `node tools/ship.mjs --series ../ffmpeg-reality-checks ff01` (add `--upload` for a private YouTube upload).
 - Series plan and measured results: [SERIES_OUTLINE.md](SERIES_OUTLINE.md)
-- Episode 01 (`-c copy` seeking): `node episodes/ep01/fixture/run.mjs` then `node --test episodes/ep01/test/ep01.test.mjs`
+- Episode 01 (`-c copy` seeking): `node episodes/ff01/fixture/run.mjs` then `node --test episodes/ff01/test/ff01.test.mjs`
 
 ## Episode 01 result (ffmpeg 6.1.1)
 

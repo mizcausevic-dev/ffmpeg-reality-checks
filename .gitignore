@@ -1,0 +1,9 @@
+node_modules/
+out/
+*.mp4
+episodes/*/frames/
+episodes/*/qa/
+episodes/*/render-evidence.json
+youtube-uploads.json
+youtube-uploads.json.tmp
+.env

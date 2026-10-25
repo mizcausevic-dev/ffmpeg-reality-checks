@@ -6,7 +6,7 @@ Format: one claim, one runnable synthetic fixture, one measured result, regressi
 
 | # | Claim under test | Measured result (ffmpeg 6.1.1, synthetic fixtures) | Status |
 |---|---|---|---|
-| 01 | Where does `-c copy` really start? | Ask for 3 s from 7.5 s, keyframes every 5 s. `-ss` before `-i`: starts at 7.52 s, 75 frames, but the file holds 138 packets (63 hidden pre-roll). `-ss` after `-i`: starts at 10.00 s, 13 frames (0.52 s). Re-encode: starts 7.52 s, 74 frames | Measured, 5 tests pass (`episodes/ep01`) |
+| 01 | Where does `-c copy` really start? | Ask for 3 s from 7.5 s, keyframes every 5 s. `-ss` before `-i`: starts at 7.52 s, 75 frames, but the file holds 138 packets (63 hidden pre-roll). `-ss` after `-i`: starts at 10.00 s, 13 frames (0.52 s). Re-encode: starts 7.52 s, 74 frames | Measured, 5 tests pass (`episodes/ff01`) |
 | 02 | Why does my MP4 not play in QuickTime or the browser? | RGB input encoded with `libx264` and no `-pix_fmt` gives `High 4:4:4 Predictive`, `yuv444p`. With `-pix_fmt yuv420p`: `High`, `yuv420p` | Measured (playback in specific players not tested) |
 | 03 | Why does my video wait to download before playing? | Atom order without `+faststart`: `ftyp, free, mdat, moov`. With it: `ftyp, moov, free, mdat` | Measured (browser streaming behaviour not tested) |
 | 04 | Does a slower preset make better video at the same CRF? | 10 s 640x360 test pattern, CRF 23. ultrafast 2,425,546 B / SSIM 0.9700 / 0.66 s. veryfast 909,133 B / 0.9679 / 1.04 s. medium 979,254 B / 0.9690 / 1.92 s. slow 942,161 B / 0.9691 / 2.62 s. Quality barely moves. Size is not monotonic with preset on this clip | Measured on one synthetic clip, so size ordering is content dependent |

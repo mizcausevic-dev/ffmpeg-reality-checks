@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// Usage: node episodes/ep01/fixture/run.mjs [outdir]   (default: ./out/ep01)
+// Usage: node episodes/ff01/fixture/run.mjs [outdir]   (default: ./out/ff01)
 import fs from 'node:fs';
 import path from 'node:path';
 import {have} from '../../../tools/ff.mjs';
 import {runExperiment} from './experiment.mjs';
 
 if (!have('ffmpeg') || !have('ffprobe')) { console.error('BLOCKED: ffmpeg and ffprobe must be on PATH'); process.exit(2); }
-const dir = path.resolve(process.argv[2] ?? 'out/ep01');
+const dir = path.resolve(process.argv[2] ?? 'out/ff01');
 const {frameLookup, srcMd5, ...ev} = runExperiment(dir);
 fs.writeFileSync(path.join(dir, 'evidence.json'), JSON.stringify(ev, null, 2));
 console.log(ev.ffmpeg);

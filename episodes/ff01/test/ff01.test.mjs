@@ -8,7 +8,7 @@ import {runExperiment} from '../fixture/experiment.mjs';
 
 const ok = have('ffmpeg') && have('ffprobe');
 let ev;
-before(() => { if (ok) ev = runExperiment(fs.mkdtempSync(path.join(os.tmpdir(), 'frc-ep01-'))); });
+before(() => { if (ok) ev = runExperiment(fs.mkdtempSync(path.join(os.tmpdir(), 'frc-ff01-'))); });
 const t = (name, fn) => test(name, {skip: ok ? false : 'ffmpeg/ffprobe not on PATH'}, fn);
 
 t('fixture: 500 unique frames, keyframes exactly every 5 s', () => {
