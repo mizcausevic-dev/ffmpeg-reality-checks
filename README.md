@@ -7,7 +7,7 @@ Short narrated technical explainers about what FFmpeg commands actually do, each
 - Series plan and measured results: [SERIES_OUTLINE.md](SERIES_OUTLINE.md)
 - Episode 01 (`-c copy` seeking): `node episodes/ff01/fixture/run.mjs` then `node --test episodes/ff01/test/ff01.test.mjs`
 
-## Episode 01 result (ffmpeg 6.1.1)
+## Episode 01 result (ffmpeg 6.1.1 on Linux; the same table on 8.1.2 on Windows)
 
 ```
 You asked for 3 s starting at 7.5 s. Source keyframes at 0, 5, 10, 15 s.
@@ -18,6 +18,6 @@ output_seek_copy       250          10s        13      0.52     13
 input_seek_reencode    188          7.52s      74      2.96     74
 ```
 
-Limits: results are for one ffmpeg build and one synthetic H.264 source. Players that ignore MP4 edit lists were not tested.
+Limits: results are for two ffmpeg builds and one synthetic H.264 source. Players that ignore MP4 edit lists were not tested.
 
 License for code: MIT (to be added). Narration and film assets are not covered by the code license.

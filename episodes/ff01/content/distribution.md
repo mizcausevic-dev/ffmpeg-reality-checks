@@ -1,6 +1,6 @@
 # FF01 distribution kit: You Asked FFmpeg for 3 Seconds. You Got Half a Second.
 
-All numbers below come from the synthetic fixture in `episodes/ff01/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
+All numbers below come from the synthetic fixture in `episodes/ff01/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (Linux) and 8.1.2 (Windows), with identical results.
 
 ## YouTube
 
@@ -31,7 +31,7 @@ Chapters
 01:17 The fix
 <!-- chapters:end -->
 
-Limits: one ffmpeg build (6.1.1) and one synthetic H.264 source. Players that ignore MP4 edit lists were not tested.
+Limits: two ffmpeg builds (6.1.1 and 8.1.2) and one synthetic H.264 source. Players that ignore MP4 edit lists were not tested.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 
@@ -45,4 +45,4 @@ ffmpeg, ffmpeg tutorial, ffmpeg trim video, ffmpeg cut video, ffmpeg -ss, ffmpeg
 
 ### Pinned comment (≤ 300 chars)
 
-Everything here runs on a synthetic test video (ffmpeg's testsrc2), measured on ffmpeg 6.1.1, one source. Frame numbers come from per-frame md5 matching. Fixture and 5 tests: github.com/mizcausevic-dev/ffmpeg-reality-checks. Different build or source? Run it and tell me what you get.
+Everything runs on a synthetic test video (ffmpeg testsrc2). Same results on ffmpeg 6.1.1 and 8.1.2; frame numbers come from per-frame md5 matching. Fixture and 6 tests: github.com/mizcausevic-dev/ffmpeg-reality-checks. Different build? Run it and tell me what you get.
