@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import {have} from '../../../tools/ff.mjs';
+import {have, lines} from '../../../tools/ff.mjs';
 import {runExperiment} from '../fixture/experiment.mjs';
 
 const ok = have('ffmpeg') && have('ffprobe');
@@ -42,4 +42,9 @@ t('-ss AFTER -i with -c copy: starts at the NEXT keyframe and the clip is far sh
   assert.equal(v.firstSourceTime, 10, 'first keyframe after 7.5 s');
   assert.ok(v.decodedSeconds < 1, `asked for ${ev.request.clipSeconds} s, got ${v.decodedSeconds} s`);
   assert.ok(v.firstSourceTime > ev.request.seekSeconds, 'starts later than requested');
+});
+
+test('output parsing tolerates Windows CRLF line endings and the trailing comma ffprobe 8 prints', () => {
+  assert.deepEqual(lines('0.000000,\r\n5.000000\r\n10.000000\r\n'), ['0.000000', '5.000000', '10.000000']);
+  assert.deepEqual(lines('0.000000,\n5.000000\n').map(Number), [0, 5]);
 });
