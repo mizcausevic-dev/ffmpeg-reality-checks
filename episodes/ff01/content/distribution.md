@@ -24,12 +24,11 @@ The reason: a stream copy decodes nothing, and most frames store only what chang
 Chapters
 <!-- chapters:start -->
 00:00 The command
-00:14 The test video
-00:31 -ss before -i
-00:52 -ss after -i
-01:05 Why a copy needs a keyframe
-01:27 The fix
-01:43 Same command, one flag moved
+00:13 The test video
+00:28 -ss before -i
+00:45 -ss after -i
+00:57 Why a copy needs a keyframe
+01:17 The fix
 <!-- chapters:end -->
 
 Limits: one ffmpeg build (6.1.1) and one synthetic H.264 source. Players that ignore MP4 edit lists were not tested.

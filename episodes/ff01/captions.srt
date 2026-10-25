@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:05,600
+Three seconds, starting at 7.5.
+
+2
+00:00:05,600 --> 00:00:12,590
+Add -c copy so it is instant.
+
+3
+00:00:12,590 --> 00:00:22,120
+Synthetic video. Keyframes at 0, 5, 10, 15 seconds.
+
+4
+00:00:22,120 --> 00:00:28,470
+Lossless, so every frame is fingerprinted.
+
+5
+00:00:28,470 --> 00:00:36,450
+-ss before -i: starts at 7.52 s. 75 frames.
+
+6
+00:00:36,450 --> 00:00:45,320
+But the file holds 138 packets. 63 are hidden pre-roll.
+
+7
+00:00:45,320 --> 00:00:51,200
+-ss after -i: starts at 10.00 s.
+
+8
+00:00:51,200 --> 00:00:57,080
+13 frames. Half a second, not three.
+
+9
+00:00:57,080 --> 00:01:03,360
+Copying can only start on a keyframe.
+
+10
+00:01:03,360 --> 00:01:16,830
+Before -i: back to 5 s, hide the extra. After -i: forward to 10 s.
+
+11
+00:01:16,830 --> 00:01:22,770
+Need exact? Re-encode.
+
+12
+00:01:22,770 --> 00:01:32,660
+Must copy? Check with ffprobe.
+
+13
+00:01:32,660 --> 00:01:37,340
+One flag moved. 75 frames or 13.
+
+14
+00:01:37,340 --> 00:01:40,680
+FFmpeg Reality Checks, episode 1.
