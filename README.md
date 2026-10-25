@@ -20,4 +20,4 @@ input_seek_reencode    188          7.52s      74      2.96     74
 
 Limits: results are for two ffmpeg builds and one synthetic H.264 source. Players that ignore MP4 edit lists were not tested.
 
-License for code: MIT (to be added). Narration and film assets are not covered by the code license.
+License for code: MIT (see LICENSE). Narration audio, thumbnails and film assets are not covered by the code license.
