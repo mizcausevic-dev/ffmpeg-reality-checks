@@ -25,7 +25,7 @@ Readers: ffprobe packet sizes in a sliding 1 s window, and ffmpeg -c copy to a r
 
 Control: -bufsize 200k puts the busiest second at 2077 kbps, so the window readers can see a cap. Average mode -b:v 2M gives 2024 kbps average, but the busiest second is 2531 kbps and PSNR is 31.73 dB.
 
-x264 core 164 r3108 31e19f9 (libx264 in ffmpeg 6.1.1). The tests assert relations with margins, not exact bitrates. The thirteen tests pass on ffmpeg 6.1.1.
+x264 core 164 r3108 (libx264 in ffmpeg 6.1.1) and x264 core 165 r3223 (ffmpeg 8.1.2). The kilobit numbers above are from 6.1.1; the relations hold on both. The tests assert relations with margins, not exact bitrates. The thirteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
