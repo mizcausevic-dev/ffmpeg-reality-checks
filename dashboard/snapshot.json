@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-26T15:20:00-04:00",
+ "asOf": "2026-10-26T16:05:00-04:00",
  "source": "YouTube Data API videos.list (statistics, contentDetails, status), read-only",
  "films": {
   "ff01": {
@@ -273,79 +273,99 @@
    "seconds": 134,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff40": {
    "videoId": "gb9oSzZG0_o",
    "seconds": 124,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff41": {
    "videoId": "tnyA3nTqBeU",
    "seconds": 129,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff42": {
    "videoId": "aS0i19D8mAo",
    "seconds": 128,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff43": {
    "videoId": "nzNQlsSsxIY",
    "seconds": 120,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff44": {
    "videoId": "tLvn_j4zWww",
    "seconds": 125,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff45": {
    "videoId": "GDc_76bWs1E",
    "seconds": 151,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   }
  },
  "channelTraffic": {
-  "note": "YouTube Studio traffic-source export, earlier snapshot, whole channel (includes other series)",
+  "note": "YouTube Analytics API, whole channel (includes other series), 2026-01-01 to 2026-10-26",
   "subscribers": 4,
   "sources": [
    {
-    "source": "YouTube advertising",
-    "views": 202
+    "source": "SHORTS",
+    "views": 1806
    },
    {
-    "source": "External",
-    "views": 34
+    "source": "YT_SEARCH",
+    "views": 181
    },
    {
-    "source": "YouTube search",
-    "views": 29
+    "source": "EXT_URL",
+    "views": 128
    },
    {
-    "source": "Direct or unknown",
-    "views": 22
+    "source": "ADVERTISING",
+    "views": 50
    },
    {
-    "source": "Browse features",
-    "views": 3
+    "source": "NO_LINK_OTHER",
+    "views": 31
+   },
+   {
+    "source": "YT_CHANNEL",
+    "views": 9
+   },
+   {
+    "source": "YT_OTHER_PAGE",
+    "views": 9
+   },
+   {
+    "source": "SHORTS_CONTENT_LINKS",
+    "views": 9
+   },
+   {
+    "source": "SUBSCRIBER",
+    "views": 8
+   },
+   {
+    "source": "RELATED_VIDEO",
+    "views": 2
+   },
+   {
+    "source": "PLAYLIST",
+    "views": 1
    }
-  ],
-  "search": {
-   "impressions": 268,
-   "ctrPercent": 4.85
-  }
+  ]
  }
 }

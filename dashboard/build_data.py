@@ -18,10 +18,14 @@ dash = root / 'dashboard'
 out = dash / 'out'
 out.mkdir(exist_ok=True)
 
+LABEL = {'SHORTS':'Shorts feed','YT_SEARCH':'YouTube search','ADVERTISING':'YouTube advertising','EXT_URL':'External sites','NO_LINK_OTHER':'Direct or unknown','YT_CHANNEL':'Channel pages','RELATED_VIDEO':'Suggested videos','YT_OTHER_PAGE':'Other YouTube pages','PLAYLIST':'Playlists','NOTIFICATION':'Notifications','SUBSCRIBER':'Browse features','END_SCREEN':'End screens','HASHTAGS':'Hashtag pages','NO_LINK_EMBEDDED':'Embedded players','CAMPAIGN_CARD':'Cards'}
 snap = json.loads((dash / 'snapshot.json').read_text())
 tests = json.loads((dash / 'tests.json').read_text()) if (dash / 'tests.json').exists() else {}
 queue = json.loads((dash / 'queue.json').read_text())
+series = json.loads((root / 'series.json').read_text())
+rel = series['footer']['related']
 limits = json.loads((dash / 'limits.json').read_text())
+endscreens = json.loads((dash / 'endscreens.json').read_text()) if (dash / 'endscreens.json').exists() else {}
 
 # Films where the same command gave different results on 6.1.1 and 8.1.2 (found in the tests).
 differs = {
@@ -44,6 +48,10 @@ for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
     s = json.loads(sp.read_text())
     words = sum(len(sc.get('narration', '').split()) for sc in s.get('scenes', []))
     st = snap['films'].get(code)
+    dist = d / 'content' / 'distribution.md'
+    pm = re.search(r'### Pinned comment[^\n]*\n+(.+?)(?:\n\n|\n#|\Z)', dist.read_text(), re.S) if dist.exists() else None
+    pinned = pm.group(1).strip() if pm else ''
+    es = endscreens.get(code, {})
     t = tests.get(code, {})
     row = {
         'code': code,
@@ -63,12 +71,21 @@ for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
         'seconds': st['seconds'] if st else None,
         'views': st['views'] if st else None,
         'likes': st['likes'] if st else None,
+        'related': ' · '.join(rel.get(code, [])),
+        'pinned': pinned,
+        'pinned_chars': len(pinned),
+        'endscreen': es.get('status', 'not set'),
+        'end_note': es.get('note', ''),
         'video_id': st['videoId'] if st else '',
         'url': ('https://youtu.be/' + st['videoId']) if st else '',
     }
     films.append(row)
 
-traffic = snap['channelTraffic']['sources']
+ana = json.loads((dash / 'analytics.json').read_text()) if (dash / 'analytics.json').exists() else None
+if ana:
+    traffic = [{'source': LABEL.get(r['insightTrafficSourceType'], r['insightTrafficSourceType']), 'views': r['views'], 'minutes': r['estimatedMinutesWatched']} for r in sorted(ana['traffic'], key=lambda r: -r['views'])]
+else:
+    traffic = snap['channelTraffic']['sources']
 (out / 'films.json').write_text(json.dumps(films, indent=1))
 (out / 'traffic.json').write_text(json.dumps(traffic, indent=1))
 (out / 'queue.json').write_text(json.dumps(queue, indent=1))

@@ -1,0 +1,298 @@
+{
+  "start": "2026-01-01",
+  "end": "2026-10-26",
+  "fetched": "2026-10-26T20:02:31.487Z",
+  "note": "YouTube Analytics API; no impressions or CTR (Studio only)",
+  "totals": {
+    "views": 2234,
+    "estimatedMinutesWatched": 304,
+    "averageViewDuration": 32,
+    "averageViewPercentage": 39.72,
+    "likes": 11,
+    "subscribersGained": 2
+  },
+  "videos": [
+    {
+      "video": "_nbOSh3FFiI",
+      "views": 816,
+      "estimatedMinutesWatched": 31,
+      "averageViewDuration": 8,
+      "averageViewPercentage": 79.79,
+      "likes": 3,
+      "subscribersGained": 1
+    },
+    {
+      "video": "OpwSttUclic",
+      "views": 529,
+      "estimatedMinutesWatched": 22,
+      "averageViewDuration": 11,
+      "averageViewPercentage": 107.85,
+      "likes": 1,
+      "subscribersGained": 0
+    },
+    {
+      "video": "MNq9rz696nE",
+      "views": 352,
+      "estimatedMinutesWatched": 17,
+      "averageViewDuration": 10,
+      "averageViewPercentage": 96.1,
+      "likes": 1,
+      "subscribersGained": 0
+    },
+    {
+      "video": "7Cu2sM9n9GM",
+      "views": 251,
+      "estimatedMinutesWatched": 9,
+      "averageViewDuration": 9,
+      "averageViewPercentage": 88.1,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "wEyVdLs734w",
+      "views": 64,
+      "estimatedMinutesWatched": 34,
+      "averageViewDuration": 32,
+      "averageViewPercentage": 59.5,
+      "likes": 2,
+      "subscribersGained": 0
+    },
+    {
+      "video": "pfmApIeowVc",
+      "views": 62,
+      "estimatedMinutesWatched": 148,
+      "averageViewDuration": 206,
+      "averageViewPercentage": 28.190000000000005,
+      "likes": 4,
+      "subscribersGained": 1
+    },
+    {
+      "video": "U-Ffew7e04E",
+      "views": 38,
+      "estimatedMinutesWatched": 1,
+      "averageViewDuration": 6,
+      "averageViewPercentage": 60.95,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "OxW-oL3Qn8I",
+      "views": 30,
+      "estimatedMinutesWatched": 2,
+      "averageViewDuration": 13,
+      "averageViewPercentage": 45,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "Cp9Y-TIoNxU",
+      "views": 20,
+      "estimatedMinutesWatched": 6,
+      "averageViewDuration": 28,
+      "averageViewPercentage": 28.58,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "bE1K2E1yg8k",
+      "views": 15,
+      "estimatedMinutesWatched": 1,
+      "averageViewDuration": 11,
+      "averageViewPercentage": 108.69,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "1oXsFRu2Rag",
+      "views": 14,
+      "estimatedMinutesWatched": 6,
+      "averageViewDuration": 26,
+      "averageViewPercentage": 84.16,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "pZ0ZAGQJqCM",
+      "views": 10,
+      "estimatedMinutesWatched": 4,
+      "averageViewDuration": 29,
+      "averageViewPercentage": 95.44,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "QtY60YW7UmQ",
+      "views": 9,
+      "estimatedMinutesWatched": 12,
+      "averageViewDuration": 181,
+      "averageViewPercentage": 1648.6000000000001,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "jcjHVe_ixWs",
+      "views": 3,
+      "estimatedMinutesWatched": 1,
+      "averageViewDuration": 32,
+      "averageViewPercentage": 156.73,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "wVAI45ZL_dI",
+      "views": 3,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 4,
+      "averageViewPercentage": 71.54,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "X_YqmDlznTQ",
+      "views": 3,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 8,
+      "averageViewPercentage": 78.67,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "uXPiFtLEHSU",
+      "views": 2,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 6,
+      "averageViewPercentage": 58.06,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "lpa-Rk74eE8",
+      "views": 2,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 27,
+      "averageViewPercentage": 89.39,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "8K9F4imiWPE",
+      "views": 2,
+      "estimatedMinutesWatched": 1,
+      "averageViewDuration": 34,
+      "averageViewPercentage": 48.53,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "eVZiBF45trQ",
+      "views": 2,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 8,
+      "averageViewPercentage": 89.79,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "1MAy1lVRmPw",
+      "views": 2,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 6,
+      "averageViewPercentage": 76.76,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "LiZ_u7HCwU0",
+      "views": 2,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 7,
+      "averageViewPercentage": 71.67,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "-WkOYbcR7Bs",
+      "views": 1,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 10,
+      "averageViewPercentage": 91.46,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "jA68eeV8BqI",
+      "views": 1,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 8,
+      "averageViewPercentage": 89.79,
+      "likes": 0,
+      "subscribersGained": 0
+    },
+    {
+      "video": "P5BbO2E9QaE",
+      "views": 1,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 8,
+      "averageViewPercentage": 89.79,
+      "likes": 0,
+      "subscribersGained": 0
+    }
+  ],
+  "traffic": [
+    {
+      "insightTrafficSourceType": "SHORTS",
+      "views": 1806,
+      "estimatedMinutesWatched": 64
+    },
+    {
+      "insightTrafficSourceType": "YT_SEARCH",
+      "views": 181,
+      "estimatedMinutesWatched": 31
+    },
+    {
+      "insightTrafficSourceType": "EXT_URL",
+      "views": 128,
+      "estimatedMinutesWatched": 43
+    },
+    {
+      "insightTrafficSourceType": "ADVERTISING",
+      "views": 50,
+      "estimatedMinutesWatched": 105
+    },
+    {
+      "insightTrafficSourceType": "NO_LINK_OTHER",
+      "views": 31,
+      "estimatedMinutesWatched": 23
+    },
+    {
+      "insightTrafficSourceType": "YT_CHANNEL",
+      "views": 9,
+      "estimatedMinutesWatched": 1
+    },
+    {
+      "insightTrafficSourceType": "YT_OTHER_PAGE",
+      "views": 9,
+      "estimatedMinutesWatched": 14
+    },
+    {
+      "insightTrafficSourceType": "SHORTS_CONTENT_LINKS",
+      "views": 9,
+      "estimatedMinutesWatched": 1
+    },
+    {
+      "insightTrafficSourceType": "SUBSCRIBER",
+      "views": 8,
+      "estimatedMinutesWatched": 10
+    },
+    {
+      "insightTrafficSourceType": "RELATED_VIDEO",
+      "views": 2,
+      "estimatedMinutesWatched": 0
+    },
+    {
+      "insightTrafficSourceType": "PLAYLIST",
+      "views": 1,
+      "estimatedMinutesWatched": 7
+    }
+  ]
+}
