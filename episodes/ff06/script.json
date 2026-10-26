@@ -1,0 +1,54 @@
+{
+  "n": 6,
+  "slug": "concat-copy-mixed-sizes",
+  "title": "Can concat with -c copy join clips of different sizes?",
+  "fullTitle": "FFmpeg Concat -c copy Hides Mixed Frame Sizes",
+  "kicker": "Episode 06",
+  "hero": {"scene": "inside", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You have two clips and you want one file. You use the concat demuxer and copy the streams, so nothing is re-encoded. It is fast. But the clips are not the same size. Does FFmpeg stop you? Does it warn you? We build the clips, and we look inside the result.",
+      "captions": ["Two clips, different sizes. Join with -c copy.", "Does FFmpeg stop you? Warn you?"]
+    },
+    {
+      "id": "fixture",
+      "chapter": "Two clips",
+      "narration": "Two synthetic clips from the test pattern generator. Clip A is three hundred twenty by one eighty. Clip B is six hundred forty by three sixty. Each lasts two seconds at twenty five frames per second, so fifty frames each. The FFmpeg docs say all files must have the same streams: same codecs, same time base, and so on. We break that rule on purpose, and see what happens.",
+      "captions": ["A: 320x180, 50 frames. B: 640x360, 50 frames.", "Docs: all files must have the same streams."]
+    },
+    {
+      "id": "join",
+      "chapter": "The join succeeds",
+      "narration": "Now join them, with dash c copy. The exit code is zero. We asked ffmpeg to print every warning, and there are zero warning lines. A file came out. At the command line, every sign says it worked.",
+      "captions": ["Exit code 0. Zero warning lines.", "A file came out."]
+    },
+    {
+      "id": "header",
+      "chapter": "What the header says",
+      "narration": "Ask ffprobe what the file is. The header says three hundred twenty by one eighty. One hundred frames. Four seconds. That reads like clip A, twice as long. Nothing in the header mentions six hundred forty.",
+      "captions": ["Header: 320x180, 100 frames, 4 s.", "Nothing mentions 640x360."]
+    },
+    {
+      "id": "inside",
+      "chapter": "What is inside",
+      "narration": "Now decode every frame and read its size. Fifty frames are three twenty by one eighty. Fifty frames are six forty by three sixty. The header describes only the first kind. Decoding with ffmpeg reports no errors: zero problems. So whether a player copes is a separate question, and we did not test any player.",
+      "captions": ["Inside: 50 at 320x180, 50 at 640x360.", "Decode problems: 0. Players: not tested."]
+    },
+    {
+      "id": "control",
+      "chapter": "Controls and the fix",
+      "narration": "Two more runs. Same size clips, joined with dash c copy: one hundred frames, all three twenty by one eighty. So copy is fine when the clips match. And for mixed sizes, re-encode: scale each clip to fit, pad to six forty by three sixty. All one hundred frames come out at six forty by three sixty, and the header agrees.",
+      "captions": ["Same-size control: 100 frames, all 320x180.", "Re-encode with scale and pad: all 100 at 640x360."]
+    },
+    {
+      "id": "close",
+      "chapter": "Check before you copy",
+      "sim": null,
+      "narration": "So the command succeeds quietly, and the file is not what its header says. Check frame sizes before you copy. If they differ, re-encode to one size. We saw the same result on ffmpeg six point one and eight point one. Not tested: players, editors, other codecs, and other kinds of mismatch.",
+      "captions": ["Silent success is not proof.", "Not tested: players, editors, other codecs."]
+    }
+  ]
+}

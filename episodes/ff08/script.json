@@ -1,0 +1,78 @@
+{
+  "n": 8,
+  "slug": "aac-join-extra-samples",
+  "title": "Does joining AAC files with -c copy keep the exact length?",
+  "fullTitle": "FFmpeg AAC Join Adds Extra Samples at the Seam",
+  "kicker": "Episode 08",
+  "hero": {
+    "scene": "join",
+    "t": 5
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Two AAC files, each two seconds long. Join them with dash c copy and you expect four seconds. Is it exactly four seconds of sound? We count samples, instead of trusting a duration label.",
+      "captions": [
+        "Two 2-second AAC files, joined with -c copy.",
+        "Exactly 4 seconds of sound? Count samples."
+      ]
+    },
+    {
+      "id": "single",
+      "chapter": "One file, counted",
+      "narration": "First, one file alone. A two second sine tone at forty four point one kilohertz is eighty eight thousand two hundred samples. The encoder wrote eighty eight packets. The first packet carries a skip of one thousand twenty four samples. Decoding yields eighty nine thousand eighty eight samples, which is two point zero two zero one seconds. The container says two seconds.",
+      "captions": [
+        "Asked for 88,200 samples.",
+        "Decoded: 89,088 samples (2.0201 s)."
+      ]
+    },
+    {
+      "id": "join",
+      "chapter": "The join",
+      "narration": "Now join the two files with dash c copy. The result holds one hundred seventy six packets. The skip marker is gone. The container says four point zero two three two two seconds, which is four seconds plus one thousand twenty four samples. Decoding yields one hundred eighty thousand two hundred twenty four samples, which is four point zero eight six seven seconds.",
+      "captions": [
+        "176 packets. Container: 4.02322 s.",
+        "Decoded: 180,224 samples (4.0867 s)."
+      ]
+    },
+    {
+      "id": "sum",
+      "chapter": "Where the extra goes",
+      "narration": "Compare. Two separate decodes give one hundred seventy eight thousand one hundred seventy six samples. The join decodes two thousand forty eight more. Against the audio we asked for, one hundred seventy six thousand four hundred, it decodes three thousand eight hundred twenty four extra. That equals two files times one thousand twenty four priming samples plus eight hundred eighty eight padding samples.",
+      "captions": [
+        "Join decodes 2,048 more than two separate decodes.",
+        "3,824 more than asked: 2 x (1,024 + 888)."
+      ]
+    },
+    {
+      "id": "why",
+      "chapter": "Why it happens",
+      "narration": "AAC encoders add priming samples at the start and padding at the end. In a single file, the first packet carries a skip of one thousand twenty four samples. In the join, that skip marker is gone, and the padding of the first file sits in the middle of the stream. The numbers fit that account. We saw them on ffmpeg six point one and eight point one, identical.",
+      "captions": [
+        "Single file: first packet skips 1,024 samples.",
+        "Join: no skip marker. Same on 6.1.1 and 8.1.2."
+      ]
+    },
+    {
+      "id": "size",
+      "chapter": "How big is it",
+      "narration": "Is it audible? We did not listen, and we did not test a player. In numbers, three thousand eight hundred twenty four samples at forty four point one kilohertz is about eighty seven milliseconds. Whether a player trims it, we cannot say from this test.",
+      "captions": [
+        "3,824 samples at 44.1 kHz is about 87 ms.",
+        "Audibility and players: not tested."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "Count, do not trust",
+      "sim": null,
+      "narration": "A copy join can be longer than the sum of its parts. Count decoded samples when length matters. We offer no remedy here, because we did not test one. Not tested: other codecs, other sample rates, and real recordings.",
+      "captions": [
+        "Count decoded samples when length matters.",
+        "Not tested: remedies, other codecs, players."
+      ]
+    }
+  ]
+}

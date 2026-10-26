@@ -1,0 +1,78 @@
+{
+  "n": 7,
+  "slug": "loudnorm-one-vs-two-pass",
+  "title": "How close does one-pass loudnorm get to its target?",
+  "fullTitle": "FFmpeg loudnorm One Pass Missed Its Target",
+  "kicker": "Episode 07",
+  "hero": {
+    "scene": "onepass",
+    "t": 5
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You want a file at minus fourteen LUFS, so you run the loudnorm filter once. Does the output land on minus fourteen? And does a second, measured pass do better? We make a test tone, run both ways, and measure the files with a separate tool.",
+      "captions": [
+        "Target: -14 LUFS. One pass. Does it land?",
+        "Does a measured second pass do better?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "A quiet tone",
+      "narration": "The source is synthetic: a four hundred forty hertz tone. It plays at minus ten decibels for eight seconds, then at minus two for eight more. We measure it with the ebur128 filter. Integrated loudness is minus twenty six point one LUFS. Loudness range, eight LU. Peak, minus twenty point one dBFS.",
+      "captions": [
+        "Source: -26.1 LUFS, range 8 LU, peak -20.1.",
+        "440 Hz tone, two levels, 16 seconds."
+      ]
+    },
+    {
+      "id": "onepass",
+      "chapter": "One pass",
+      "narration": "One pass: loudnorm with I minus fourteen, true peak minus one point five, range eleven. We measure the written file. Integrated loudness: minus eleven point seven LUFS. That is two point three LU louder than asked. The range shrank from eight to four point five. Loudnorm's own report says minus eleven point eight. The two tools agree.",
+      "captions": [
+        "One pass: -11.7 LUFS, target was -14.",
+        "Range 8 to 4.5 LU. Loudnorm's report: -11.8."
+      ]
+    },
+    {
+      "id": "twopass",
+      "chapter": "Two passes",
+      "narration": "Two passes: first measure, then feed those numbers back with linear equals true. Now the output is minus fourteen point five LUFS. That is half a LU from the target, better than one pass. And the range is unchanged at eight. The report says the mode was linear.",
+      "captions": [
+        "Two pass: -14.5 LUFS, 0.5 from target.",
+        "Range unchanged at 8 LU. Mode: linear."
+      ]
+    },
+    {
+      "id": "peak",
+      "chapter": "What changed in the sound",
+      "narration": "Look at the shape. Our source has a quiet half and a loud half, eight LU apart. One pass squeezed that gap to four point five. Two pass kept it at eight. Peaks differ too: minus three point nine for one pass, minus eight point four for two pass. Neither touches the minus one point five ceiling here.",
+      "captions": [
+        "One pass squeezed the range: 8 to 4.5 LU.",
+        "Peaks: -3.9 (one pass), -8.4 (two pass)."
+      ]
+    },
+    {
+      "id": "both",
+      "chapter": "Same on two builds",
+      "narration": "We ran the whole thing on ffmpeg six point one and eight point one. The numbers matched. The choice is a trade. One pass is simple, and it changes the dynamics. Two passes land closer here, and keep the dynamics, but need the extra run.",
+      "captions": [
+        "ffmpeg 6.1.1 and 8.1.2: same numbers.",
+        "One pass: simpler. Two pass: closer, dynamics kept."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "Measure the output",
+      "sim": null,
+      "narration": "Do not assume the target was met. Measure the file you wrote. On this tone, one pass missed by two point three LU, and two passes missed by half. Not tested: music, speech, other targets, and other builds.",
+      "captions": [
+        "Measure the file, not the setting.",
+        "Not tested: music, speech, other targets."
+      ]
+    }
+  ]
+}
