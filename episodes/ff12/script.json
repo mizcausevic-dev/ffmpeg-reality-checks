@@ -1,0 +1,55 @@
+{
+  "n": 12,
+  "slug": "ffmpeg-metadata-kept",
+  "palette": "ember",
+  "title": "Does FFmpeg keep my video's metadata?",
+  "fullTitle": "FFmpeg Keeps Your Video's Location Tag by Default",
+  "kicker": "Episode 12",
+  "hero": {"scene": "plain", "t": 6.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You edit a video with FFmpeg, and then you share it. Does the file still carry the title, the author, a comment, and the place where it was filmed? We build a test file with made-up tags, run four commands, and look inside the results two ways.",
+      "captions": ["Edited with FFmpeg, then shared.", "What tags are still inside?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Five made-up tags",
+      "narration": "The source has five made-up tags: a title, an artist, a comment, a location in the open Atlantic, and a custom name on the video stream. We read each file two ways. ffprobe shows the tags. And we search the raw bytes of the file. The MP4 muxer stores a location as a binary atom called loci, so for that one we search for the atom's name.",
+      "captions": ["Title, artist, comment, location, handler name.", "Two readers: ffprobe, and a raw byte search."]
+    },
+    {
+      "id": "plain",
+      "chapter": "A plain command",
+      "narration": "A plain re-encode keeps all five. The title, the artist, the comment, the location, and the stream name. Both readers agree. Copying the streams with dash c copy keeps them as well.",
+      "captions": ["Plain re-encode: all five kept.", "-c copy: all five kept."]
+    },
+    {
+      "id": "strip",
+      "chapter": "Remove it on purpose",
+      "narration": "Add dash map metadata minus one, and all five are gone. Both readers agree, with a re-encode and with dash c copy. That is the option for removing the tags.",
+      "captions": ["-map_metadata -1: all five gone.", "Re-encode and -c copy agree."]
+    },
+    {
+      "id": "encoder",
+      "chapter": "The tool's own name",
+      "narration": "One thing remains. The file still names the tool that wrote it: an encoder tag that starts with Lavf. Add dash fflags plus bitexact, and that tag is dropped from the format tags as well.",
+      "captions": ["Left behind: an encoder tag, Lavf.", "-fflags +bitexact drops it."]
+    },
+    {
+      "id": "limits",
+      "chapter": "What we did not test",
+      "narration": "We tested only the tags we made. Real phone files carry more: location tracks, thumbnails, vendor specific atoms. We did not test them. If privacy matters, check the output yourself, with ffprobe and a byte search, before you share it.",
+      "captions": ["Not tested: real phone files, GPS tracks.", "Check the output before you share it."]
+    },
+    {
+      "id": "close",
+      "chapter": "Metadata survives by default",
+      "sim": null,
+      "narration": "Metadata survives by default, in re-encodes and in copies. Remove it on purpose. We saw the same results on ffmpeg six point one and eight point one. Not tested: real phone files, and other containers.",
+      "captions": ["Kept by default. Removed on purpose.", "Not tested: real phone files, other containers."]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "n": 11,
+  "slug": "x264-crf0-lossless",
+  "palette": "ember",
+  "title": "Is x264 -crf 0 really lossless?",
+  "fullTitle": "FFmpeg -crf 0 Is Not Lossless for RGB Sources",
+  "kicker": "Episode 11",
+  "hero": {"scene": "default", "t": 6.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "x264 has a lossless mode: crf zero. You feed it RGB frames, and you expect them back, bit for bit. Do you get them? We encode a test pattern four ways, decode every result, and compare with the source.",
+      "captions": ["x264 -crf 0: lossless?", "RGB in. Is it RGB out, bit for bit?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Two ways to compare",
+      "narration": "The source is synthetic: twenty five frames of a test pattern, three twenty by one eighty, in planar RGB. We compare two independent ways. First, a fingerprint, an md5, of every decoded frame. Second, the PSNR filter, where infinity means no difference at all.",
+      "captions": ["25 frames, 320x180, RGB.", "Two readers: frame md5, and PSNR."]
+    },
+    {
+      "id": "control",
+      "chapter": "Two controls",
+      "narration": "First, the controls. FFV one is a lossless codec. All twenty five frames come back identical, and PSNR is infinite. libx264rgb with crf zero does the same: twenty five of twenty five identical, infinite PSNR, stored as RGB.",
+      "captions": ["FFV1: 25 of 25 identical, psnr inf.", "libx264rgb -crf 0: same, stored as RGB."]
+    },
+    {
+      "id": "default",
+      "chapter": "Plain libx264",
+      "narration": "Now plain libx264 with crf zero. Given RGB, it quietly stores yuv four four four. Back in RGB: zero of twenty five frames are identical. PSNR is fifty four point six decibels, a finite number. Against the RGB source, it is not lossless.",
+      "captions": ["Stored as yuv444p, chosen quietly.", "Back in RGB: 0 of 25 identical. psnr 54.6 dB."]
+    },
+    {
+      "id": "inown",
+      "chapter": "Lossless in its own format",
+      "narration": "But look at the encoder's own format. Convert the source to yuv four four four, decode the output as yuv four four four, and compare. Twenty five of twenty five are identical. So crf zero is lossless for what the encoder was given. The difference comes in the conversion between RGB and YUV.",
+      "captions": ["Compared in yuv444p: 25 of 25 identical.", "The gap is the RGB to YUV conversion."]
+    },
+    {
+      "id": "four2zero",
+      "chapter": "Add 4:2:0",
+      "narration": "Add pix fmt yuv four two zero, and the gap grows. PSNR against the RGB source drops to twenty four point zero decibels on ffmpeg six point one, and twenty two point eight on eight point one. Still exact in its own format: twenty five of twenty five. But RGB cannot come back from it.",
+      "captions": ["yuv420p: psnr 24.0 dB (6.1.1), 22.8 dB (8.1.2).", "Exact in yuv420p, not in RGB."]
+    },
+    {
+      "id": "close",
+      "chapter": "If you need RGB back",
+      "sim": null,
+      "narration": "If you need RGB back exactly, use libx264rgb, or a lossless codec like FFV one. Crf zero alone is lossless only in the format you gave the encoder. Not tested: other lossless codecs, real footage, and hardware encoders.",
+      "captions": ["Need RGB back? libx264rgb or FFV1.", "Not tested: other codecs, real footage, hardware."]
+    }
+  ]
+}
