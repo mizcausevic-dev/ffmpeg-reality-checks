@@ -1,0 +1,80 @@
+{
+  "n": 43,
+  "slug": "ffmpeg-libopus-48khz",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Does libopus really resample everything to 48 kHz?",
+  "fullTitle": "FFmpeg libopus Says 48000 but Cuts a 32 kHz Source at 12 kHz",
+  "kicker": "Episode 43",
+  "thumb": {
+    "number": "-80 dB",
+    "label": "ABOVE 12 KHZ, 32 KHZ SOURCE",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "loss",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Does libopus really resample everything to forty eight kilohertz? F f probe says forty eight thousand on every Opus file. But did the encoder run at forty eight thousand? We encode a one kilohertz sine at ten input rates, and measure the sample rate, the samples, the pitch and the bandwidth.",
+      "captions": [
+        "Does libopus resample everything to 48 kHz?",
+        "Sample rate, samples, pitch, bandwidth. Ten rates, three containers."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Ten rates, two readers",
+      "narration": "Ten input rates, eight thousand to ninety six thousand, in Ogg, Matroska and WebM: thirty libopus files. The control is P C M and flac, which keep the rate. Reader one is f f probe. Reader two is Node: decoded samples, pitch by zero crossings and by F F T, and the OpusHead bytes.",
+      "captions": [
+        "30 libopus files. Control: pcm and flac, 20 files.",
+        "Readers: ffprobe, and Node on the decoded samples and the header."
+      ]
+    },
+    {
+      "id": "label",
+      "chapter": "The label says 48000",
+      "sim": null,
+      "narration": "At the label level, yes. All thirty files say forty eight thousand, and decode to ninety six thousand samples, two seconds. The pitch is one thousand hertz in both ways. The controls keep their own rate: twenty of twenty. So far, yes.",
+      "captions": [
+        "30 of 30: 48000 Hz, 96000 samples, 1000 Hz.",
+        "Control pcm and flac: 20 of 20 keep their rate."
+      ]
+    },
+    {
+      "id": "header",
+      "chapter": "The header remembers",
+      "sim": null,
+      "narration": "But the OpusHead field, which f f probe does not show, holds the rate the encoder used. Eight thousand in, eight thousand recorded. Thirty two thousand is recorded as twenty four thousand. Forty four one hundred and ninety six thousand become forty eight thousand. Ffmpeg picks the nearest of five rates.",
+      "captions": [
+        "Header: 8000 in, 8000 recorded. 32000 in, 24000 recorded.",
+        "Nearest of 8000, 12000, 16000, 24000, 48000."
+      ]
+    },
+    {
+      "id": "loss",
+      "chapter": "A 32 kHz source loses its top",
+      "sim": null,
+      "narration": "That has a cost. White noise at thirty two kilohertz is encoded at twenty four. The band from thirteen to fifteen and a half kilohertz is eighty decibels down, and f f probe still says forty eight thousand. With dash a r forty eight thousand, the loss is zero point seven. A forty four one hundred source loses nothing.",
+      "captions": [
+        "32000 Hz source: 13 to 15.5 kHz is 80 dB down.",
+        "-ar 48000: 0.7 dB. 44100 Hz source: 0 dB."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "And dash a r forty four one hundred is refused: no file, though the same source encodes without it. The label says forty eight thousand; the header says what the encoder did. For a thirty two kilohertz source, set dash a r forty eight thousand. Not tested: real music, other builds, players.",
+      "captions": [
+        "-ar 44100 fails. The same source without -ar encodes.",
+        "Not tested: real music, other encoders, players."
+      ]
+    }
+  ]
+}
