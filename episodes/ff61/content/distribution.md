@@ -1,6 +1,6 @@
 # FF61 distribution kit: FFmpeg cropdetect round: 1078 Rows Become 1072, round=1 Is Not Exact
 
-All numbers below come from the synthetic fixture in `episodes/ff61/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff61/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 (Windows full build). Exact numbers are asserted on 6.1.1 only where the film says so; on other builds the tests assert relations.
 
 ## YouTube
 

@@ -74,10 +74,10 @@
     {
       "id": "close",
       "chapter": "What to write",
-      "narration": "To loop frames ten to fourteen on six point one point one, write start equals eleven. Loop counts extra plays, size counts frames. Guard minus one. Not tested: eight point one point two, audio loops, real footage.",
+      "narration": "To loop frames ten to fourteen on six point one point one, write start equals eleven. Loop counts extra plays, size counts frames. Guard minus one. Not tested: other builds, audio loops, real footage.",
       "captions": [
         "Loop = extra plays. Size = frames.",
-        "Not tested: 8.1.2, aloop, real footage."
+        "Not tested: other builds, aloop, real footage."
       ],
       "sim": null
     }

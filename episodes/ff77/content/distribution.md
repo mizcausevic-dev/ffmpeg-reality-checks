@@ -1,6 +1,6 @@
 # FF77 distribution kit: FFmpeg Fragmented MP4: Header Duration 0, ffprobe Says 3 of 10 s on a Pipe, sseof Lands on the Wrong Frame
 
-All numbers below come from the synthetic fixture in `episodes/ff77/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff77/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 (Windows full build). Exact numbers are asserted on 6.1.1 only where the film says so; on other builds the tests assert relations.
 
 ## YouTube
 
@@ -42,7 +42,7 @@ Chapters
 01:33 What to do
 <!-- chapters:end -->
 
-Limits: one 10 s clip, video only, lossless, one keyframe every 10 frames, ffmpeg 6.1.1. The pipe duration estimates (3.0, 4.0, 1.0 s), the -sseof landing frames on a pipe, the stale base offsets of global_sidx without default_base_moof, and the absence of mehd are the parts most likely to differ on another build. Not tested: ffmpeg 8.1.2, audio tracks, browsers and players, HTTP range requests, real footage.
+Limits: one 10 s clip, video only, lossless, one keyframe every 10 frames, ffmpeg 6.1.1. The pipe duration estimates (3.0, 4.0, 1.0 s), the -sseof landing frames on a pipe, the stale base offsets of global_sidx without default_base_moof, and the absence of mehd are the parts most likely to differ on another build. Not tested: other builds, audio tracks, browsers and players, HTTP range requests, real footage.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

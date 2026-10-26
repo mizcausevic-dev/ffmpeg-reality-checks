@@ -478,7 +478,7 @@ const Close: React.FC<SceneProps> = ({t, dur}) => {
         <Panel y={250} h={560}>
           <Lines lt={s.lt} lines={[
             {segs: [['not tested', C.bg, C.red]], at: 0.1, size: 56, y: 40},
-            {segs: [['ffmpeg 8.1.2, the PC build']], at: 0.9, size: 52, y: 160},
+            {segs: [['other ffmpeg builds']], at: 0.9, size: 52, y: 160},
             {segs: [['aloop, the audio filter']], at: 1.5, size: 52, y: 250},
             {segs: [['real footage, variable frame rate']], at: 2.1, size: 52, y: 340},
             {segs: [['sizes above 100 frames']], at: 2.7, size: 52, y: 430},

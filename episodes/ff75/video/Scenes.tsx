@@ -574,7 +574,7 @@ const Close: React.FC<SceneProps> = ({t}) => {
       </H>
       <H t={t} a={9.4}>
         <Big x={150} y={628} size={84} color={C.amber}>Not tested</Big>
-        <Tx x={150} y={756} size={40}>ffmpeg 8.1.2, the PC build</Tx>
+        <Tx x={150} y={756} size={40}>other ffmpeg builds</Tx>
         <Tx x={780} y={756} size={40}>real footage</Tx>
         <Tx x={1150} y={756} size={40}>variable frame rate</Tx>
       </H>

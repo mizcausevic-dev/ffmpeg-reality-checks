@@ -74,10 +74,10 @@
     {
       "id": "close",
       "chapter": "What to do",
-      "narration": "A header of zero is not broken, only unfinished. To keep the file, remux with c copy. To stream it, add global sidx and default base moof. Not tested: eight point one point two, audio, browsers.",
+      "narration": "A header of zero is not broken, only unfinished. To keep the file, remux with c copy. To stream it, add global sidx and default base moof. Not tested: other builds, audio, browsers.",
       "captions": [
         "Keep it: -c copy. Stream it: global_sidx and default_base_moof.",
-        "Not tested: 8.1.2, audio, browsers."
+        "Not tested: other builds, audio, browsers."
       ]
     }
   ]

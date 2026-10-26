@@ -1,6 +1,6 @@
 # FF58 distribution kit: FFmpeg -ss With -c copy: 13 Extra Frames Before -i, a 0.48 s Gap After
 
-All numbers below come from the synthetic fixture in `episodes/ff58/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff58/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 (Windows full build). Exact numbers are asserted on 6.1.1 only where the film says so; on other builds the tests assert relations.
 
 ## YouTube
 
@@ -42,7 +42,7 @@ Chapters
 01:45 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic lossless clip, x264 without B-frames, a keyframe every 25 frames, stream copy into mp4 and mkv, ffmpeg 6.1.1. The mp4 edit list handling and the decode timing are the parts most likely to differ between builds. Not tested: audio, B-frames, players (whether they show the empty start as black or ignore the edit list), real footage, other codecs, builds other than 6.1.1.
+Limits: one synthetic lossless clip, x264 without B-frames, a keyframe every 25 frames, stream copy into mp4 and mkv, ffmpeg 6.1.1. The mp4 edit list handling and the decode timing are the parts most likely to differ between builds. Not tested: audio, B-frames, players (whether they show the empty start as black or ignore the edit list), real footage, other codecs, other builds.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

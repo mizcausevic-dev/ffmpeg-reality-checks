@@ -74,10 +74,10 @@
     {
       "id": "close",
       "chapter": "What to write",
-      "narration": "To hold the last frame for one second: t pad, stop mode equals clone, stop duration equals one. Pad the audio if you use dash shortest. Not tested: eight point one point two, real footage, variable frame rate.",
+      "narration": "To hold the last frame for one second: t pad, stop mode equals clone, stop duration equals one. Pad the audio if you use dash shortest. Not tested: other builds, real footage, variable frame rate.",
       "captions": [
         "tpad=stop_mode=clone:stop_duration=1",
-        "Not tested: 8.1.2, real footage, variable fps."
+        "Not tested: other builds, real footage, variable fps."
       ]
     }
   ]

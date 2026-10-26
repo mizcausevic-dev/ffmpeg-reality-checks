@@ -1,6 +1,6 @@
 # FF75 distribution kit: FFmpeg tpad: The Default Pads With Black (Y 16), stop_mode=clone Freezes the Last Frame
 
-All numbers below come from the synthetic fixture in `episodes/ff75/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff75/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 (Windows full build). Exact numbers are asserted on 6.1.1 only where the film says so; on other builds the tests assert relations.
 
 ## YouTube
 
@@ -46,7 +46,7 @@ Chapters
 01:30 What to write
 <!-- chapters:end -->
 
-Limits: one clip, 64x48, 25 fps, a lossless counter, one mono tone for the audio, ffmpeg 6.1.1. The rounding of stop_duration (halves up) and the black level of full-range and gray formats are the parts most likely to differ on another build. Not tested: ffmpeg 8.1.2, real footage, variable frame rate input, interlaced input, sizes above a few hundred frames.
+Limits: one clip, 64x48, 25 fps, a lossless counter, one mono tone for the audio, ffmpeg 6.1.1. The rounding of stop_duration (halves up) and the black level of full-range and gray formats are the parts most likely to differ on another build. Not tested: other builds, real footage, variable frame rate input, interlaced input, sizes above a few hundred frames.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

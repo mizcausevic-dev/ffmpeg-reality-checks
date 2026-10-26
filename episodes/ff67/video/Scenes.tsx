@@ -314,7 +314,7 @@ const Close: React.FC<SceneProps> = ({t, dur: full}) => {
   const dur = Math.min(full, 15); // the last 10 s of this scene are the end card
   const a = (f: number, w = 0.6) => ep(t, f * dur, f * dur + w);
   const bx0 = 150, bw = 80, gap = 34, base = 770, scale = 150; // 1.00 = 150 px
-  const todo = ['other presets', 'real footage', 'ffmpeg 8.1.2 and other builds', 'x265', 'the latency saved', 'players'];
+  const todo = ['other presets', 'real footage', 'other builds', 'x265', 'the latency saved', 'players'];
   return (
     <>
       <Title text="What to check" color={C.amber} />

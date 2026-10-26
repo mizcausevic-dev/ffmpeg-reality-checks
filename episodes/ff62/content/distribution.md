@@ -1,6 +1,6 @@
 # FF62 distribution kit: FFmpeg zoompan Jitter: 1.2 px Wobble, Scale 8x Leaves 0.18
 
-All numbers below come from the synthetic fixture in `episodes/ff62/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff62/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 (Windows full build). Exact numbers are asserted on 6.1.1 only where the film says so; on other builds the tests assert relations.
 
 ## YouTube
 

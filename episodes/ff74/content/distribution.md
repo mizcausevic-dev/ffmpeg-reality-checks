@@ -1,6 +1,6 @@
 # FF74 distribution kit: FFmpeg loop Filter: loop=2 Plays 3 Times, start=10 Begins at Frame 9
 
-All numbers below come from the synthetic fixture in `episodes/ff74/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff74/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 (Windows full build). Exact numbers are asserted on 6.1.1 only where the film says so; on other builds the tests assert relations.
 
 ## YouTube
 
@@ -42,7 +42,7 @@ Chapters
 01:33 What to write
 <!-- chapters:end -->
 
-Limits: one clip, 64x48, 25 fps, a lossless counter, ffmpeg 6.1.1. The start rule (start N repeats frame N minus 1) comes from how this build counts frames and is the part most likely to differ on another build. Not tested: ffmpeg 8.1.2, the aloop audio filter, real footage, variable frame rate input, sizes above 100 frames or the 32767 maximum.
+Limits: one clip, 64x48, 25 fps, a lossless counter, ffmpeg 6.1.1. The start rule (start N repeats frame N minus 1) comes from how this build counts frames and is the part most likely to differ on another build. Not tested: other builds, the aloop audio filter, real footage, variable frame rate input, sizes above 100 frames or the 32767 maximum.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

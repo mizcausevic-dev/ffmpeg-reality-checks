@@ -467,7 +467,7 @@ const Close: React.FC<SceneProps> = ({t, dur}) => (
     <H t={t} a={8.0}>
       <Svg><rect x={108} y={720} width={1704} height={130} fill="none" stroke={C.amber} strokeWidth={2} strokeDasharray="10 8" /></Svg>
       <Mono x={136} y={736} size={22} color={C.amber}>NOT TESTED</Mono>
-      <Tx x={136} y={776} size={30}>ffmpeg 8.1.2, audio tracks, browsers and players, real footage</Tx>
+      <Tx x={136} y={776} size={30}>other ffmpeg builds, audio tracks, browsers and players, real footage</Tx>
     </H>
   </Stage>
 );
