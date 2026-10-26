@@ -1,0 +1,79 @@
+{
+  "n": 9,
+  "slug": "scale-odd-size-crash",
+  "palette": "ember",
+  "title": "Why does scale=-1:720 sometimes crash?",
+  "fullTitle": "FFmpeg scale=-1 Fails When the Size Is Odd",
+  "kicker": "Episode 09",
+  "hero": {
+    "scene": "crash",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You ask FFmpeg to scale a video to a height, and let it work out the width. Most of the time it works. Sometimes it crashes. Not on every video. Why? We build test clips, and we make it fail on purpose.",
+      "captions": [
+        "scale=-1:H works on some videos.",
+        "On others it crashes. Why?"
+      ]
+    },
+    {
+      "id": "control",
+      "chapter": "A clean case",
+      "narration": "First, a control. A clip that is nineteen twenty by ten eighty, scaled to a height of seven twenty. Minus one means: work out the width, and keep the shape. The result is twelve eighty by seven twenty. libx264 encodes it. Exit code zero, and ten frames on disk.",
+      "captions": [
+        "1920x1080 to height 720: 1280x720.",
+        "Exit code 0. 10 frames on disk."
+      ]
+    },
+    {
+      "id": "crash",
+      "chapter": "The crash",
+      "narration": "Now a clip that is one thousand by five sixty two, scaled to a height of three thirty three. The width works out to five ninety three. Both numbers are odd. libx264 refuses: width not divisible by two. The exit code is not zero, and nothing usable is written. The scale filter and the encoder name the same size.",
+      "captions": [
+        "1000x562 to height 333: 593x333. Both odd.",
+        "libx264: width not divisible by 2."
+      ]
+    },
+    {
+      "id": "which",
+      "chapter": "Which number breaks it",
+      "narration": "Which number breaks it? Either one. A clip that is six forty by three sixty, scaled to height two forty, gives width four twenty seven. Odd width, even height. It fails, and the message says width. Now use minus two instead of minus one. FFmpeg rounds the width to an even number. But a height of three thirty three is still odd, so it still fails, and this time the message says height.",
+      "captions": [
+        "Odd width alone fails: 427x240.",
+        "-2 evens the width. Odd height alone still fails."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "The fix",
+      "narration": "The fix: make both even. Use minus two for the width, and pick an even height. Scale to minus two by three thirty four. The size is five ninety four by three thirty four. Exit code zero, ten frames on disk.",
+      "captions": [
+        "scale=-2:334 gives 594x334.",
+        "Exit code 0. 10 frames on disk."
+      ]
+    },
+    {
+      "id": "why",
+      "chapter": "Why the encoder cares",
+      "narration": "Why does the encoder care? Take the same odd frame, five ninety three by three thirty three, and ask for four four four chroma instead. It encodes fine. The odd size was never the whole problem. Four two zero stores color at half the width and half the height, which fits the error. We tested only this encoder.",
+      "captions": [
+        "Same 593x333 frame, yuv444p: exit 0.",
+        "yuv420p halves the color size. Only libx264 tested."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "Pick an even height",
+      "sim": null,
+      "narration": "So the crash is not random. Use minus two for the width, and choose an even height. We saw the same behavior on ffmpeg six point one and eight point one. The exit code number differs by system, but it is never zero. Not tested: other encoders, hardware encoders, and other builds in between.",
+      "captions": [
+        "Use -2 for width. Choose an even height.",
+        "Not tested: other encoders, hardware encoders."
+      ]
+    }
+  ]
+}

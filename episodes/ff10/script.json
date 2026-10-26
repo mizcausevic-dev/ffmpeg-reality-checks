@@ -1,0 +1,55 @@
+{
+  "n": 10,
+  "slug": "ffmpeg-audio-track-map",
+  "palette": "ember",
+  "title": "Where did my second audio track go?",
+  "fullTitle": "FFmpeg Keeps One Audio Track Unless You -map It",
+  "kicker": "Episode 10",
+  "hero": {"scene": "nomap", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You have a video with two audio tracks: the main mix, and a commentary. You convert it with a plain command. The output plays, but one track is missing. Where did it go? We build a test video with two tones, and we measure what comes out.",
+      "captions": ["Two audio tracks in. How many come out?", "No error. One track just vanishes."]
+    },
+    {
+      "id": "source",
+      "chapter": "A two track source",
+      "narration": "The source is synthetic. One video stream, and two audio streams. Track one is a four forty hertz tone. Track two is eight eighty. We read the result two ways. ffprobe lists the streams. And we decode each audio track and count zero crossings, which gives its pitch.",
+      "captions": ["Track 1: 440 Hz. Track 2: 880 Hz.", "Two readers: ffprobe, and measured pitch."]
+    },
+    {
+      "id": "nomap",
+      "chapter": "No map option",
+      "narration": "Convert with no map option. The output has exactly one audio track. Its pitch is four forty, so it is track one. The eight eighty commentary is gone. FFmpeg printed no error. Copying the streams with dash c copy gives the same result.",
+      "captions": ["No -map: 1 audio track, 440 Hz.", "The 880 Hz track is gone. -c copy: same."]
+    },
+    {
+      "id": "map",
+      "chapter": "Say what you want",
+      "narration": "Say what you want. Dash map zero keeps every stream: one video and two audio tracks, both tones present. Or choose one on purpose. Map zero colon v, then map zero colon a colon one, keeps only the second audio track. Its pitch is eight eighty.",
+      "captions": ["-map 0: both tones present.", "-map 0:v -map 0:a:1: only the 880 Hz track."]
+    },
+    {
+      "id": "rule",
+      "chapter": "The documented rule",
+      "narration": "But what does FFmpeg choose by itself? The documentation says: for audio, the stream with the most channels. We made track two stereo, and track one mono. The output still kept track one. The rule in the docs did not decide it.",
+      "captions": ["Docs: audio, the stream with the most channels.", "Track 2 is stereo. Track 1 was still kept."]
+    },
+    {
+      "id": "flag",
+      "chapter": "The default flag",
+      "narration": "What did decide it? Track one carried the default flag. When we moved the default flag to the stereo track, the output kept that one instead: two channels, eight eighty hertz. So on both builds we tried, the default flag won over channel count. The sentence in the docs does not mention it.",
+      "captions": ["Flag on track 2: output keeps 880 Hz, stereo.", "Same on ffmpeg 6.1.1 and 8.1.2."]
+    },
+    {
+      "id": "close",
+      "chapter": "Name the track",
+      "sim": null,
+      "narration": "If you want every track, use dash map zero. If you want one, name it. Do not rely on the default. Not tested: subtitles, other containers, and builds in between.",
+      "captions": ["Every track: -map 0. One track: name it.", "Not tested: subtitles, other containers."]
+    }
+  ]
+}
