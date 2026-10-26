@@ -1,0 +1,70 @@
+{
+  "n": 22,
+  "slug": "ffmpeg-yuv420p-thin-lines",
+  "palette": "ember",
+  "title": "Why does thin red text look purple in FFmpeg yuv420p?",
+  "fullTitle": "FFmpeg yuv420p Turns a 1-Pixel Red Line Purple",
+  "kicker": "Episode 22",
+  "hero": {
+    "scene": "vline",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You encode a screen recording with FFmpeg, and thin red text looks fuzzy, and a little purple. Is it the encoder? We draw one red line, one pixel wide, on blue. We encode it three ways, with no loss, and read it back.",
+      "captions": [
+        "Thin red text looks fuzzy and purple.",
+        "One red line. Three pixel formats."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Source and readers",
+      "narration": "The picture is three twenty by one eighty, pure blue, with one red line, one pixel wide: a vertical one, and a horizontal one. We encode with crf zero, which loses nothing in Y U V, so only the chroma sampling can change a pixel. Reader one decodes to R G B. Reader two reads the chroma of the line pixel, with signalstats.",
+      "captions": [
+        "1-pixel red line on blue. crf 0.",
+        "Readers: decoded RGB, and chroma U and V."
+      ]
+    },
+    {
+      "id": "vline",
+      "chapter": "A vertical line",
+      "narration": "In yuv four four four, the line stays pure red, and the neighbors stay pure blue. In yuv four two two, and in yuv four two zero, the line becomes one fifty, twenty one, one forty nine: purple. The pixel beside it becomes one oh four, zero, one oh three. The chroma of the line moves from U ninety, V two forty, to U one seventy five, V one sixty seven.",
+      "captions": [
+        "444: pure red. 422 and 420: purple.",
+        "Neighbor pixel: 104, 0, 103."
+      ]
+    },
+    {
+      "id": "hline",
+      "chapter": "A horizontal line",
+      "narration": "A horizontal line is different. Four two two only halves the chroma across, so the line stays red. Four two zero also halves it down, and the line becomes one thirty seven, twenty four, one sixty nine. The rows above and below are tinted too.",
+      "captions": [
+        "422: horizontal line stays red.",
+        "420: smeared up and down."
+      ]
+    },
+    {
+      "id": "light",
+      "chapter": "Color, not light",
+      "narration": "The brightness at the line does not change. Y stays near eighty one in all six files. What is lost is color, not light.",
+      "captions": [
+        "Brightness at the line: unchanged.",
+        "Color is lost, not light."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Four two zero shares chroma between neighboring pixels. For thin colored lines, use four four four, or accept the bleed. Players often want four two zero. Not tested: other encoders, chroma resampling options, and real screen recordings.",
+      "captions": [
+        "420 shares color between pixels.",
+        "Thin colored lines: 444, or accept it."
+      ]
+    }
+  ]
+}
