@@ -28,11 +28,11 @@ The twelve tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 Coded cards, two readers, control
-00:43 Odd offset rounds to even
-01:05 The exact option
-01:27 A centered crop
-01:48 What to check
+00:17 Coded cards, two readers, control
+00:38 Odd offset rounds to even
+00:57 The exact option
+01:18 A centered crop
+01:37 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 192x108 coded card, one frame, FFV1 in Matroska, ffmpeg 6.1.1 and 8.1.2. Not tested: other builds, real footage, other crop options (keep_aspect), other pixel formats, any player or encoder.

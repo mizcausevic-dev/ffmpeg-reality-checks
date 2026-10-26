@@ -34,11 +34,11 @@ The sixteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:25 Lower is better
-00:51 The size curve
-01:11 One is not one
-01:42 Bytes, not pixels
-01:53 What to use
+00:23 Lower is better
+00:48 The size curve
+01:06 One is not one
+01:36 Bytes, not pixels
+01:46 What to use
 <!-- chapters:end -->
 
 Limits: one synthetic noisy test frame, the native mjpeg encoder, -pix_fmt yuvj444p, ffmpeg 6.1.1 and 8.1.2. PSNR measures pixel error, not how a picture looks. Not tested: other builds, libjpeg-based encoders, real photos, chroma subsampling (yuvj420p), settings above 31, -pred, any player.

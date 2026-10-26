@@ -31,10 +31,10 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:17 Test card, two readers
-00:44 neighbor keeps or drops
-01:06 Everything else keeps it, faint
-01:29 Halos and the default
-01:49 What to check
+00:43 neighbor keeps or drops
+01:05 Everything else keeps it, faint
+01:27 Halos and the default
+01:48 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic luma card, 3x down (2x for the stripes), raw yuv420p, ffmpeg 6.1.1 and 8.1.2. Not tested: color planes, real footage, other scale factors, other builds, any player or encoder, upscaling.

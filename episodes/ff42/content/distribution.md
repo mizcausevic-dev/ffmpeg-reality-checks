@@ -31,10 +31,10 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:17 Three clips, two readers
-00:41 yadif on progressive
-01:06 deint=interlaced reads the flag
-01:26 Control and frame rate
-01:43 What to check
+00:40 yadif on progressive
+01:04 deint=interlaced reads the flag
+01:25 Control and frame rate
+01:41 What to check
 <!-- chapters:end -->
 
 Limits: three synthetic lossless clips, mp4 with x264, ffmpeg 6.1.1 and 8.1.2. Not tested: real footage, other deinterlacers (bwdif, w3fdif, nnedi), other yadif parity settings, other builds, hardware deinterlacers, players, other encoders.
