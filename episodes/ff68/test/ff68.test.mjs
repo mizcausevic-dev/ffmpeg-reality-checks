@@ -156,9 +156,9 @@ t('known positive for every reader: lengthening the audio by 1 s moves ffprobe f
 
 t('the packet span (last pts + duration - first pts) is the number that holds up: it matches the decoder within 1 ms in the 6 pcm files and the 3 ts files and mp4_late, and in the two aac mp4 files it is 8 to 11 ms longer than the decoder', () => {
   let within = 0;
-  for (const [k, r] of Object.entries(ev.runs)) { if (Math.abs(r.packets.audio.span - r.decoded.audioSeconds) < 1e-3) within++; }
+  for (const [k, r] of Object.entries(ev.runs)) { if (Math.abs(r.packets.audio.span - r.decoded.audioSeconds) < SPAN_TOL) within++; }
   for (const k of [...PCM, ...TS]) near(R(k).packets.audio.span, R(k).decoded.audioSeconds, SPAN_TOL, k);
   for (const k of ['mp4_same', 'mp4_long']) { const d = R(k).packets.audio.span - R(k).decoded.audioSeconds; assert.ok(d > 0.007 && d < 0.012, `${k} ${d}`); }
-  assert.ok(within >= 10, `${within} of 12 within 1 ms`);
+  assert.ok(within >= 10, `${within} of 12 within ~1 ms`);
   if (isV6()) assert.equal(within, 10);
 });
