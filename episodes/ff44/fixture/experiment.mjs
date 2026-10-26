@@ -48,7 +48,8 @@ function rawClip(codes10) {
   return Buffer.concat(all);
 }
 
-const tagArgs = (t) => ['-color_primaries', t.color_primaries, '-color_trc', t.color_transfer, '-colorspace', t.color_space, '-color_range', t.color_range];
+// setparams, not the output options -color_primaries and -color_trc: on 8.1.2 those output options tag the matrix and range but leave primaries and transfer unknown.
+const tagArgs = (t) => ['-vf', `setparams=color_primaries=${t.color_primaries}:color_trc=${t.color_transfer}:colorspace=${t.color_space}:range=${t.color_range}`];
 function makeClip(dir, file, codes10, tags) {
   const r = spawnSync('ffmpeg', ['-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'yuv420p10le', '-s', `${W}x${H}`, '-r', '25', '-i', '-', '-c:v', 'ffv1', ...tagArgs(tags), file], {cwd: dir, input: rawClip(codes10), maxBuffer: 1 << 26, encoding: 'utf8'});
   if (r.status !== 0) throw new Error(`ffmpeg failed: ${r.stderr}`);
