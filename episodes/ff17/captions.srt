@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:09,610
+Image to video. Colors look off.
+
+2
+00:00:09,610 --> 00:00:15,620
+Four encodes, three readings.
+
+3
+00:00:15,620 --> 00:00:22,450
+Source: red, green, blue, gray.
+
+4
+00:00:22,450 --> 00:00:32,020
+Two readers: ffprobe tag, and decoded RGB.
+
+5
+00:00:32,020 --> 00:00:40,470
+No tag. Pixels made with BT.601.
+
+6
+00:00:40,470 --> 00:00:50,330
+Read as BT.709: green 255 becomes 215.
+
+7
+00:00:50,330 --> 00:00:56,190
+BT.709 pixels plus a BT.709 tag: right.
+
+8
+00:00:56,190 --> 00:01:02,890
+Read as BT.601: off by up to 23.
+
+9
+00:01:02,890 --> 00:01:14,490
+6.1.1: no tag, read as 601, off by 23.
+
+10
+00:01:14,490 --> 00:01:23,520
+8.1.2: FFmpeg writes the tag. Reads right.
+
+11
+00:01:23,520 --> 00:01:33,100
+6.1.1: -colorspace only labels. Off by 40.
+
+12
+00:01:33,100 --> 00:01:41,310
+8.1.2: it also converts. Reads right.
+
+13
+00:01:41,310 --> 00:01:44,750
+Gray never moved. Colors do.
+
+14
+00:01:44,750 --> 00:01:49,560
+Check the tag and the matrix together.

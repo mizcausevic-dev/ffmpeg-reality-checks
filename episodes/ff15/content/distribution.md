@@ -30,11 +30,11 @@ Same results on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Two readers
-00:36 Without -shortest
-00:52 -shortest with -c copy
-01:09 -shortest with a re-encode
-01:35 What to remember
+00:15 Two readers
+00:32 Without -shortest
+00:44 -shortest with -c copy
+01:00 -shortest with a re-encode
+01:24 What to remember
 <!-- chapters:end -->
 
 Limits: synthetic video and tones, MP4 with AAC, two ffmpeg builds. Not tested: other containers, other codecs, three or more streams.

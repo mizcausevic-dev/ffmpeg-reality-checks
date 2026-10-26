@@ -30,11 +30,11 @@ Same results on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Two readers
-00:38 -r after the input
-00:52 -r before the input
-01:10 With -c copy
-01:35 What to remember
+00:18 Two readers
+00:35 -r after the input
+00:48 -r before the input
+01:03 With -c copy
+01:26 What to remember
 <!-- chapters:end -->
 
 Limits: one synthetic 30 fps clip, libx264, two ffmpeg builds. Not tested: variable frame rate sources, other containers, audio.

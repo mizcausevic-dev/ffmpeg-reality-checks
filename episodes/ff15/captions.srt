@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:08,040
+Video and sound, different lengths.
+
+2
+00:00:08,040 --> 00:00:15,470
+What exactly does -shortest cut?
+
+3
+00:00:15,470 --> 00:00:25,330
+Video 5 s (125 frames). Tones 3 s and 8 s.
+
+4
+00:00:25,330 --> 00:00:31,600
+Two readers: ffprobe, and a full decode.
+
+5
+00:00:31,600 --> 00:00:38,810
+No -shortest: file 5 s, sound 3 s.
+
+6
+00:00:38,810 --> 00:00:44,220
+Last 2 seconds silent. 125 frames.
+
+7
+00:00:44,220 --> 00:00:51,040
+-shortest -c copy: file 3 s.
+
+8
+00:00:51,040 --> 00:01:00,140
+Video 73 frames, 2.92 s. Sound 3 s.
+
+9
+00:01:00,140 --> 00:01:04,500
+Re-encode + -shortest: 75 frames, 3 s.
+
+10
+00:01:04,500 --> 00:01:07,610
+Picture and sound end together.
+
+11
+00:01:07,610 --> 00:01:16,530
+No -shortest: file 8 s, picture ends at 5 s.
+
+12
+00:01:16,530 --> 00:01:23,660
+-shortest: sound trimmed to 5 s. 125 frames.
+
+13
+00:01:23,660 --> 00:01:30,920
+-shortest follows the shortest stream.
+
+14
+00:01:30,920 --> 00:01:39,640
+Not tested: other containers, 3+ streams.

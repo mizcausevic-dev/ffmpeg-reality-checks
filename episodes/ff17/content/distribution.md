@@ -30,12 +30,12 @@ scale=out_color_matrix=bt709 with no -colorspace: on ffmpeg 6.1.1 the file stays
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Two readers
-00:36 The default output
-00:57 Converted and tagged
-01:13 Converted, no tag
-01:36 Only the label
-01:55 What to check
+00:16 Two readers
+00:32 The default output
+00:50 Converted and tagged
+01:03 Converted, no tag
+01:24 Only the label
+01:41 What to check
 <!-- chapters:end -->
 
 Limits: four solid patches at 1280x720, 8-bit 4:2:0 H.264 (libx264), two ffmpeg builds. Not tested: real players, other color ranges, HDR, 10-bit video.

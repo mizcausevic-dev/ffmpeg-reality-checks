@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:08,010
+-r sets a frame rate.
+
+2
+00:00:08,010 --> 00:00:18,380
+Before -i or after -i: same thing?
+
+3
+00:00:18,380 --> 00:00:26,910
+Source: 60 frames, 30 fps, 2.0 s.
+
+4
+00:00:26,910 --> 00:00:35,440
+Two readers: ffprobe, and what is inside.
+
+5
+00:00:35,440 --> 00:00:42,460
+-r 10 after -i: 22 frames, 2.2 s.
+
+6
+00:00:42,460 --> 00:00:47,730
+fps=10 filter: 20 frames, 2.0 s.
+
+7
+00:00:47,730 --> 00:00:56,130
+-r 10 before -i: all 60 frames kept.
+
+8
+00:00:56,130 --> 00:01:03,480
+Plays 6 s, at one third speed.
+
+9
+00:01:03,480 --> 00:01:08,220
+-r 10 before -i, with -c copy:
+
+10
+00:01:08,220 --> 00:01:12,290
+no effect. 30 fps, 2.0 s.
+
+11
+00:01:12,290 --> 00:01:18,890
+Raw H.264: default 30 fps, 2 s.
+
+12
+00:01:18,890 --> 00:01:26,430
+-r 10 before -i: 10 fps, 6 s.
+
+13
+00:01:26,430 --> 00:01:35,230
+After -i: changes the frames.
+
+14
+00:01:35,230 --> 00:01:44,040
+Before -i: changes the clock.
