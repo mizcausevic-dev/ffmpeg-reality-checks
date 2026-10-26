@@ -55,4 +55,4 @@ ffmpeg, ffmpeg tutorial, ffmpeg jpeg quality, q:v, qscale, mjpeg, jpeg quality, 
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic 640x360 frame, native mjpeg. -q:v 2: 149832 bytes, 36.38 dB. -q:v 5: 44436 bytes, 31.78 dB, so 2 costs 3.4x the bytes. The number is a quantizer step (4, 10, 20, 62). -q:v 1 is the same file as 2 unless -qmin 1. github.com/mizcausevic-dev/ffmpeg-reality-checks. Which setting do you use?
+Synthetic 640x360 frame, mjpeg, 6.1.1. -q:v 2: 149832 bytes, 36.38 dB. -q:v 5: 44436 bytes, 31.78 dB, so 2 costs 3.4x the bytes. The number is a quantizer step (4, 10, 20, 62). -q:v 1 is the same file as 2 unless -qmin 1. github.com/mizcausevic-dev/ffmpeg-reality-checks. Which setting do you use?
