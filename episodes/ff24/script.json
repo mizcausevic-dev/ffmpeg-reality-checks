@@ -1,0 +1,61 @@
+{
+  "n": 24,
+  "slug": "ffmpeg-map-metadata-chapters",
+  "palette": "ember",
+  "title": "Does FFmpeg -map_metadata -1 remove chapters?",
+  "fullTitle": "FFmpeg -map_metadata -1 Keeps Your Chapters",
+  "kicker": "Episode 24",
+  "hero": {
+    "scene": "meta",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You strip a file with dash map underscore metadata minus one, so it carries no personal tags. Are the chapters gone too? We make a video with a title and two chapters, and strip it five ways, with one untouched copy as a control.",
+      "captions": [
+        "-map_metadata -1: are chapters gone too?",
+        "Five strips, one control."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Source and readers",
+      "narration": "A four second synthetic video, with a made up global title, and two made up chapter titles. Reader one is ffprobe, listing the chapters. Reader two is FFmpeg's own metadata export, with its chapter blocks. Reader three scans the raw bytes for the title strings.",
+      "captions": [
+        "Made-up title and two chapters.",
+        "Three readers: ffprobe, ffmetadata, raw bytes."
+      ]
+    },
+    {
+      "id": "meta",
+      "chapter": "Metadata off",
+      "narration": "With map metadata minus one, every title string is gone, the global title and both chapter titles. But both chapters are still there. Same start times, zero and two seconds, with blank titles. Both readers see two chapters. A re-encode does the same.",
+      "captions": [
+        "-map_metadata -1: titles gone.",
+        "Chapters stay: 2 markers, blank titles."
+      ]
+    },
+    {
+      "id": "chapters",
+      "chapter": "Chapters off",
+      "narration": "With map chapters minus one, the chapters are gone, and the global title stays. Both flags together remove both. Matroska output with map metadata minus one also keeps two chapters, with no titles.",
+      "captions": [
+        "-map_chapters -1: chapters gone, title stays.",
+        "Both flags: nothing left."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Map metadata minus one is not a chapter remover. If chapters matter, add map chapters minus one. Not tested: other tags, cover art, other containers, and real files.",
+      "captions": [
+        "-map_metadata -1 is not a chapter remover.",
+        "Add -map_chapters -1."
+      ]
+    }
+  ]
+}
