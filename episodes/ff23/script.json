@@ -1,0 +1,49 @@
+{
+  "n": 23,
+  "slug": "ffmpeg-ss-to-placement",
+  "palette": "ember",
+  "title": "FFmpeg -ss 5 -to 10: how long is the clip?",
+  "fullTitle": "FFmpeg -ss 5 -i -to 10 Makes a 10-Second Clip, Not 5",
+  "kicker": "Episode 23",
+  "hero": {"scene": "after", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You want five seconds of a video, from second five to second ten. You write dash s s five, and dash t o ten. How long is the clip? It depends on where the options go. We cut one source five ways, and check exactly which frames came out.",
+      "captions": ["-ss 5 and -to 10: how long is the clip?", "One source, five cuts."]
+    },
+    {
+      "id": "source",
+      "chapter": "Source and readers",
+      "narration": "The source is twenty seconds, five hundred frames, all different, kept lossless. Every cut is lossless too. Reader one is ffprobe, counting frames and duration. Reader two matches each frame's md five back to the source, so it knows exactly which seconds of the source are in the clip.",
+      "captions": ["500 unique frames, lossless.", "Readers: ffprobe, and frame md5 match."]
+    },
+    {
+      "id": "before",
+      "chapter": "Both before the input",
+      "narration": "With dash s s five and dash t o ten, both before the input, the clip is five seconds, one hundred twenty five frames, and it holds source seconds five to ten. Both after the input is the same.",
+      "captions": ["-ss 5 -to 10 -i: 5 s, source 5 to 10.", "Both after -i: the same."]
+    },
+    {
+      "id": "after",
+      "chapter": "To after the input",
+      "narration": "Put dash s s five before the input, and dash t o ten after it, and the clip is ten seconds. Two hundred fifty frames, source seconds five to fifteen. After a seek, the output clock starts at zero, and dash t o ten means ten seconds on that new clock.",
+      "captions": ["-ss 5 -i ... -to 10: 10 s, source 5 to 15.", "-to counts on the new clock."]
+    },
+    {
+      "id": "length",
+      "chapter": "A length",
+      "narration": "Use dash t five after the seek instead, and you get five seconds, source five to ten. And dash t o ten alone, before the input, gives the first ten seconds of the source. Both readers agree on every cut.",
+      "captions": ["-ss 5 -i ... -t 5: 5 s, source 5 to 10.", "-to 10 -i alone: the first 10 s."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Keep dash s s and dash t o together, or use dash t for a length. Check the duration before you trust a cut. Not tested: dash c copy, other containers, and other builds beyond the two named.",
+      "captions": ["Keep -ss and -to together, or use -t.", "Check the duration of every cut."]
+    }
+  ]
+}
