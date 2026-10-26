@@ -1,6 +1,6 @@
 # FF29 distribution kit: FFmpeg setpts=0.5*PTS Speeds Up the Picture, Not the Audio
 
-All numbers below come from the synthetic fixture in `episodes/ff29/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (8.1.2 check pending).
+All numbers below come from the synthetic fixture in `episodes/ff29/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
 
 ## YouTube
 
@@ -25,7 +25,7 @@ At the default 30 fps output only 152 of the 300 frames survive: source frames 0
 
 Adding -af atempo=2: audio 5.0 s, picture 5.07 s, container 5.07 s, pitch still 440 Hz. -af asetrate=88200,aresample=44100 also gives 5.0 s of audio, but the pitch moves to 880 Hz.
 
-The ten tests pass on ffmpeg 6.1.1.
+The ten tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -37,7 +37,7 @@ Chapters
 01:39 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic lossless clip, mkv container, ffmpeg 6.1.1. Not tested: other speeds, chained atempo, variable frame rate input, other containers and encoders, real footage, players.
+Limits: one synthetic lossless clip, mkv container, ffmpeg 6.1.1 and 8.1.2. Not tested: other speeds, chained atempo, variable frame rate input, other containers and encoders, real footage, players.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

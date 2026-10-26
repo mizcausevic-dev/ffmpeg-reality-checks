@@ -1,6 +1,6 @@
 # FF28 distribution kit: FFmpeg amix Drops Each Input 6 dB, Then Jumps Up When One Ends
 
-All numbers below come from the synthetic fixture in `episodes/ff28/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (ffmpeg version 6.1.1-3ubuntu5). Not yet checked on 8.1.2.
+All numbers below come from the synthetic fixture in `episodes/ff28/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
 
 ## YouTube
 
@@ -27,7 +27,7 @@ normalize=0: nothing is scaled. Each tone stays at -6.00 dBFS, tone A does not m
 
 weights='2 1' with the default normalize: -9.52 and -15.54 dBFS, and tone A is back at -6.00 at 4.3 s. weights='1 0.5' with normalize=0: -6.00 and -12.02 dBFS. duration=shortest, or first when the short input is first, ends at 3 s; longest (default) and first with the long input first end at 6 s.
 
-The twelve tests pass three times in a row on ffmpeg 6.1.1.
+The twelve tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -39,7 +39,7 @@ Chapters
 01:48 What to check
 <!-- chapters:end -->
 
-Limits: synthetic sine tones, amix only, ffmpeg 6.1.1 only (8.1.2 not yet checked). Not tested: other ffmpeg builds, real music, speech, a limiter or compressor after the mix, other mixing filters (amerge, join), more than three inputs.
+Limits: synthetic sine tones, amix only, ffmpeg 6.1.1 and 8.1.2. Not tested: other ffmpeg builds, real music, speech, a limiter or compressor after the mix, other mixing filters (amerge, join), more than three inputs.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

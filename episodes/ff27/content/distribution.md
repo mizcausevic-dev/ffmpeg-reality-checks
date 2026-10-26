@@ -1,6 +1,6 @@
 # FF27 distribution kit: FFmpeg -ac 2 Puts 5.1 Dialogue 10.67 dB Down and Drops the LFE
 
-All numbers below come from the synthetic fixture in `episodes/ff27/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (8.1.2 not yet run).
+All numbers below come from the synthetic fixture in `episodes/ff27/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
 
 ## YouTube
 
@@ -27,7 +27,7 @@ Why: with 0.8 in FL, FC and BL, -ac 2 peaks at -1.94 dB with 0 clipped samples. 
 
 pan=stereo|FL=FL+0.707*FC+0.707*BL|FR=FR+0.707*FC+0.707*BR gives FL and FR 0.00 dB and FC, BL, BR -3.01 dB (7.66 dB louder than -ac 2), LFE still dropped. aresample=out_chlayout=stereo:rematrix_maxval=3 gives the same levels. aresample=out_chlayout=stereo:lfe_mix_level=1 brings the LFE back at -12.90 dB and pushes FL and FR to -9.89 dB. A custom pan with 0.5 / 0.7 / 0.3 lands on -6.02 / -3.10 / -10.46 dB.
 
-The 17 tests pass on ffmpeg 6.1.1.
+The 17 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->

@@ -27,7 +27,7 @@ Real full range, both builds: -pix_fmt yuvj420p and -vf scale=out_range=full giv
 
 The encode -vf scale=out_range=full -color_range tv also differs. 6.1.1: full pixels (0, 255, 8, 247) with no label, so a player shows 8 as 0 and 247 as 255. 8.1.2: the pixels are converted back to limited (16, 235, 23, 228), identical to the default.
 
-Controls that rewrite only the label, a stream copy with -bsf:v h264_metadata=video_full_range_flag=1 or 0 (measured on 6.1.1): flag 1 on the default file keeps the same bytes and a player shows black 16 and white 235. Flag 0 on the full range file keeps the bytes (8, 247) and a player shows 0 and 255.
+Controls that rewrite only the label, a stream copy with -bsf:v h264_metadata=video_full_range_flag=1 or 0 (measured on both builds): flag 1 on the default file keeps the same bytes and a player shows black 16 and white 235. Flag 0 on the full range file keeps the bytes (8, 247) and a player shows 0 and 255.
 
 The thirteen tests pass three times in a row on ffmpeg 6.1.1. They branch on the build for -color_range pc and the -color_range tv ending.
 
