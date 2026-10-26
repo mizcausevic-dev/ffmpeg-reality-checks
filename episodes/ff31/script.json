@@ -1,0 +1,77 @@
+{
+  "n": 31,
+  "slug": "ffmpeg-hevc-mp4-hvc1-hev1",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "HEVC in MP4: why won't it play on my iPhone / Safari? (hvc1 vs hev1)",
+  "fullTitle": "FFmpeg HEVC in MP4: -tag:v hvc1 Changes 2 Bytes, Not the Video",
+  "kicker": "Episode 31",
+  "thumb": {
+    "number": "2 bytes",
+    "label": "THE WHOLE HVC1 FIX",
+    "color": "amber"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "retag",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Your H E V C file in M P4 will not play on an iPhone or in Safari. The advice: ffmpeg writes h e v one, Apple wants h v c one, so add dash tag colon v, h v c one. We measure what ffmpeg writes and what the flag changes. We cannot test an Apple player.",
+      "captions": [
+        "libx265 to MP4: hev1 or hvc1?",
+        "Does -tag:v hvc1 touch the video?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Three readers, one control",
+      "narration": "The source is a synthetic test pattern: fifty frames, encoded with lib x two six five. Reader one is f f probe, reading the codec tag. Reader two is a raw M P4 box parse: the sample entry in s t s d, and the h v c C box. Reader three is the stream: packet and frame hashes. The control: a file written with each tag.",
+      "captions": [
+        "50 frames. ffprobe tag, raw stsd, stream hashes.",
+        "Control: files written with hev1 and hvc1."
+      ]
+    },
+    {
+      "id": "writes",
+      "chapter": "What ffmpeg writes",
+      "narration": "With no tag, ffmpeg writes h e v one. F f probe says h e v one. The raw box says h e v one, with an h v c C box inside. A copy to mov, and from Matroska to M P4, give h e v one too. Asking for h e v one explicitly gives byte for byte the same file.",
+      "captions": [
+        "Default: hev1 on both readers.",
+        "mp4, mov, mkv to mp4: all hev1."
+      ]
+    },
+    {
+      "id": "retag",
+      "chapter": "Retag without re-encoding",
+      "narration": "Now dash c copy, dash tag colon v, h v c one. Both readers say h v c one. Packets, raw samples and decoded frames hash the same. Of twenty nine thousand five hundred thirty two bytes, two change: e v becomes v c. Retag back, and two bytes change again.",
+      "captions": [
+        "-c copy -tag:v hvc1: 2 of 29532 bytes.",
+        "Packets, samples, frames: identical."
+      ]
+    },
+    {
+      "id": "extra",
+      "chapter": "Two details",
+      "narration": "Two details. Encoding as h v c one changes three more bytes than the copy: flags marking the V P S, S P S and P P S arrays complete. The copy leaves them at zero. And parameter sets inside the samples stay there under the new label. The retag renames. It checks nothing.",
+      "captions": [
+        "Encoded as hvc1: 5 bytes. Retag: 2 bytes.",
+        "Retag does not check the stream."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "To check a file, read the sample entry, not the extension. Matroska has no such tag, only a codec I D. Not tested: any Apple player, other ffmpeg builds, other encoders, hardware encoders, real footage.",
+      "captions": [
+        "Check the stsd FourCC, not the extension.",
+        "Not tested: Apple players, real footage."
+      ]
+    }
+  ]
+}

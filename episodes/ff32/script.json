@@ -1,0 +1,52 @@
+{
+  "n": 32,
+  "slug": "ffmpeg-sseof-last-seconds",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "How do I grab the last N seconds of a video in FFmpeg?",
+  "fullTitle": "FFmpeg -sseof -3 With -c copy Returns 100 Frames, Not 90",
+  "kicker": "Episode 32",
+  "thumb": {"number": "3.33 s", "label": "ASKED FOR 3 S, GOT 3.33 S", "color": "red"},
+  "endCard": {},
+  "hero": {"scene": "copy", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You want the last three seconds of a clip. So you put dash s s e o f, minus three, before dash i. What exactly comes out? Is it three seconds, and is it the frames you expect? We count the frames.",
+      "captions": ["-sseof -3 before -i: the last 3 s.", "What exactly do you get?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Marked frames, two readers",
+      "narration": "The source is ten seconds at thirty frames a second: three hundred frames, each with its own code. It is stored three ways: F F V one, where every frame is a keyframe, and lossless x two six four with a keyframe every one hundred frames, or every ten. Reader one is f f probe packets. Reader two decodes: frame hashes and pixel codes.",
+      "captions": ["300 frames, 10 s, each frame has a code.", "Stored as FFV1, -g 100 and -g 10."]
+    },
+    {
+      "id": "exact",
+      "chapter": "Re-encode",
+      "narration": "Re-encoded, it is exact. Ninety frames, source frames two hundred ten to two hundred ninety nine, three seconds, on all three files. The control is dash s s, seven, which is ten minus three. It gives the same ninety frames.",
+      "captions": ["Re-encode: 90 frames, 210 to 299, 3 s.", "Control -ss 7: the same 90 frames."]
+    },
+    {
+      "id": "copy",
+      "chapter": "Stream copy",
+      "narration": "Add dash c copy, and with a keyframe every one hundred frames you get one hundred frames. Three point three three three seconds, starting at keyframe two hundred. Ten more than you asked for. With a keyframe every ten frames, it is exactly ninety. At minus two point nine, the re-encode gives eighty seven frames, and copy gives ninety.",
+      "captions": ["-c copy, -g 100: 100 frames, 3.333 s.", "It starts at keyframe 200, not 210."]
+    },
+    {
+      "id": "ends",
+      "chapter": "From the container end",
+      "narration": "The offset counts back from the container duration, not from the picture. A ten second picture with twelve seconds of audio: minus three keeps three seconds of audio, but only one second of picture, thirty frames. And minus thirty on a ten second file is not an error. You get all three hundred frames.",
+      "captions": ["10 s picture, 12 s audio: 1 s of picture.", "-sseof -30 on 10 s: all 300 frames."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "To get exactly the last N seconds, re-encode. With dash c copy, expect the start to move back to a keyframe. Not tested: other containers and encoders, real footage, and any player.",
+      "captions": ["Exact last N seconds: re-encode.", "Not tested: other containers, real footage."]
+    }
+  ]
+}

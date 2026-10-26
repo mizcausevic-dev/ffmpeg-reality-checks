@@ -1,0 +1,76 @@
+{
+  "n": 30,
+  "slug": "ffmpeg-vp9-crf-b-v-0",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does my VP9 -crf look bad? It needs -b:v 0.",
+  "fullTitle": "FFmpeg 6.1.1 VP9: -b:v 0 Changes Nothing, an Explicit -b:v Caps It",
+  "kicker": "Episode 30",
+  "thumb": {
+    "number": "0 bytes",
+    "label": "THE FIX CHANGED NOTHING",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "cap",
+    "t": 8.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "The advice: dash c r f needs dash b colon v zero, or ffmpeg caps the bitrate and the video turns blocky. True on this build? We encode a noisy synthetic clip with lib v p x dash v p nine, change only those flags, and measure.",
+      "captions": [
+        "VP9: -crf needs -b:v 0?",
+        "We encode ten ways and measure."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Noisy clip, four readers",
+      "narration": "The clip is two seconds of noisy test pattern, lossless. Bitrate: reader one is ffprobe packet sizes, reader two adds up I V F frame sizes in Node. Quality: reader one is the ffmpeg p s n r filter, reader two is our own p s n r from decoded raw frames. They agree on every encode.",
+      "captions": [
+        "Bitrate: ffprobe, and IVF frames in Node.",
+        "Quality: ffmpeg psnr, and PSNR in Node."
+      ]
+    },
+    {
+      "id": "same",
+      "chapter": "The fix that does nothing",
+      "narration": "Dash c r f thirty alone gives two thousand eight hundred twenty nine kilobits per second. Add dash b colon v zero: the same. The packets are byte for byte identical, and so are the decoded frames. C r f twenty and forty match their zero twins too. No hidden cap on this build.",
+      "captions": [
+        "-crf 30: 2829 kbps. With -b:v 0: 2829.",
+        "Same packets, same decoded frames."
+      ]
+    },
+    {
+      "id": "cap",
+      "chapter": "The cap you write",
+      "narration": "A cap shows up when you write one. Dash b colon v five hundred k at crf thirty gives six ninety seven kilobits per second, and p s n r falls from thirty five point three to twenty eight point seven decibels. That is the blocky file. At crf twenty: forty point two to twenty eight point eight.",
+      "captions": [
+        "-b:v 500k at crf 30: 697 kbps.",
+        "crf 20: PSNR 40.2 down to 28.8 dB."
+      ]
+    },
+    {
+      "id": "crf",
+      "chapter": "Under the cap",
+      "narration": "Under the cap, crf barely matters. With five hundred k, crf twenty and forty give seven twenty six and six sixty five kilobits per second, twenty eight point eight and twenty eight point seven decibels. The control, dash b colon v zero: four thousand one hundred ninety four against nine hundred sixty.",
+      "captions": [
+        "-b:v 500k: crf 20 and 40 within 0.1 dB.",
+        "Control, -b:v 0: 4194 vs 960 kbps."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "narration": "So look for a stray dash b colon v in your command or wrapper. Not tested: ffmpeg eight point one point two, older builds, other libvpx versions, two pass, real footage.",
+      "captions": [
+        "Look for a stray -b:v.",
+        "Not tested: 8.1.2, older builds, real footage."
+      ]
+    }
+  ]
+}

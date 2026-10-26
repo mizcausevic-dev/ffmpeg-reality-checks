@@ -87,7 +87,13 @@ export function runExperiment(dir) {
   const srcMd5 = framemd5Rows(['-framerate', '25', '-i', path.join(dir, SEQ)]).rows.map((r) => r[5]);
   const out = {ffmpeg: ffmpegVersion(), source: {pngs: fs.readdirSync(path.join(dir, 'png')).length, unique: new Set(srcMd5).size, frames: srcMd5.length}, runs: {}};
   for (const [name, c] of Object.entries(CASES)) {
-    ff([...c.in, '-i', c.input, ...c.out, '-c:v', 'ffv1', `${name}.mkv`], dir);
+    try {
+      ff([...c.in, '-i', c.input, ...c.out, '-c:v', 'ffv1', `${name}.mkv`], dir);
+    } catch (e) {
+      // Some builds (the Windows full build) have no glob support in image2: record it, do not fail.
+      if (c.in.includes('glob') && /globbing is not supported/i.test(String(e.message || e))) { out.runs[name] = {command: c.command, unsupported: true}; continue; }
+      throw e;
+    }
     out.runs[name] = {command: c.command, ...readOutput(path.join(dir, `${name}.mkv`), srcMd5)};
   }
   // start_number: a sequence that begins at img051.png. Without -start_number the image2 demuxer only looks at numbers 0 to 4 for the first file.
