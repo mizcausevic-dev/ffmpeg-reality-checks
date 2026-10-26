@@ -27,7 +27,13 @@ export const CASES = {
   scale_full:   {command: 'ffmpeg -i src.mkv -vf scale=out_range=full -c:v libx264 -pix_fmt yuv420p out.mp4',      args: ['-vf', 'scale=out_range=full', '-pix_fmt', 'yuv420p']},
   scale_limited:{command: 'ffmpeg -i src.mkv -vf scale=out_range=limited -c:v libx264 -pix_fmt yuv420p out.mp4',   args: ['-vf', 'scale=out_range=limited', '-pix_fmt', 'yuv420p']},
   wrong_tv:     {command: 'ffmpeg -i src.mkv -vf scale=out_range=full -c:v libx264 -color_range tv -pix_fmt yuv420p out.mp4', args: ['-vf', 'scale=out_range=full', '-color_range', 'tv', '-pix_fmt', 'yuv420p']},
+  // Build-independent relabels: stream copy, only the VUI full_range flag is rewritten, the coded pixels are not touched.
+  relabel_pc:   {command: 'ffmpeg -i default.mp4 -c copy -bsf:v h264_metadata=video_full_range_flag=1 out.mp4', from: 'default', bsf: 'h264_metadata=video_full_range_flag=1'},
+  relabel_tv:   {command: 'ffmpeg -i yuvj.mp4 -c copy -bsf:v h264_metadata=video_full_range_flag=0 out.mp4',    from: 'yuvj',    bsf: 'h264_metadata=video_full_range_flag=0'},
 };
+
+// 'v6' (6.x), 'v8' (8.x) or 'other': the encodes of -color_range differ between these builds (episode 26)
+export const buildOf = (versionLine) => (/version 6\./.test(versionLine) ? 'v6' : /version 8\./.test(versionLine) ? 'v8' : 'other');
 
 const ff = (args, cwd) => { const r = spawnSync('ffmpeg', ['-v', 'error', '-y', ...args], {encoding: 'utf8', cwd, maxBuffer: 1 << 26}); if (r.status !== 0) throw new Error(`ffmpeg failed: ${r.stderr}`); };
 
@@ -71,12 +77,13 @@ export function runExperiment(dir) {
   fs.mkdirSync(dir, {recursive: true});
   ff(['-f', 'lavfi', '-i', `color=c=black:s=${W}x${H}:r=1:d=2,format=gbrp,geq=r='if(lt(Y,16),X,if(lt(Y,32),0,if(lt(Y,48),255,if(lt(Y,64),8,247))))':g='if(lt(Y,16),X,if(lt(Y,32),0,if(lt(Y,48),255,if(lt(Y,64),8,247))))':b='if(lt(Y,16),X,if(lt(Y,32),0,if(lt(Y,48),255,if(lt(Y,64),8,247))))'`, '-pix_fmt', 'bgr0', '-c:v', 'ffv1', 'src.mkv'], dir);
   const src = path.join(dir, 'src.mkv');
-  const out = {ffmpeg: ffmpegVersion(), source: {file: 'src.mkv', ...probeTag(src), size: `${W}x${H}`, patches: PATCHES}, cases: {}};
+  const out = {ffmpeg: ffmpegVersion(), build: buildOf(ffmpegVersion()), source: {file: 'src.mkv', ...probeTag(src), size: `${W}x${H}`, patches: PATCHES}, cases: {}};
   for (const [name, c] of Object.entries(CASES)) {
     const file = path.join(dir, `${name}.mp4`);
-    const vf = c.args.includes('-vf') ? ['-vf', c.args[c.args.indexOf('-vf') + 1]] : [];
-    const rest = c.args.filter((a, i) => a !== '-vf' && c.args[i - 1] !== '-vf');
-    ff(['-i', 'src.mkv', ...vf, '-c:v', 'libx264', ...rest, `${name}.mp4`], dir);
+    if (c.bsf) ff(['-i', `${c.from}.mp4`, '-c', 'copy', '-bsf:v', c.bsf, `${name}.mp4`], dir);
+    const vf = c.bsf ? [] : c.args.includes('-vf') ? ['-vf', c.args[c.args.indexOf('-vf') + 1]] : [];
+    const rest = c.bsf ? [] : c.args.filter((a, i) => a !== '-vf' && c.args[i - 1] !== '-vf');
+    if (!c.bsf) ff(['-i', 'src.mkv', ...vf, '-c:v', 'libx264', ...rest, `${name}.mp4`], dir);
     const tag = probeTag(file), raw = rawFrame(file), gray = ffmpegGray(file);
     const res = {command: c.command, ...tag, patches: {}, rawMd5: md5Of(raw)};
     for (const p of Object.keys(PATCHES)) {

@@ -14,7 +14,7 @@ const Ask: React.FC<SceneProps> = ({t}) => (
     <Cmd y={320} text="ffmpeg -i card.mkv -c:v libx264 -pix_fmt yuv420p out.mp4" hi="-pix_fmt yuv420p" size={32} o={ep(t, 1.0, 1.6)} />
     <Duel y={470} h={290}
       left={{label: 'You expect', value: 'black = 0', sub: 'pure black stays black', color: C.amber, o: ep(t, 2.4, 3.1), valueSize: 72}}
-      right={{label: 'Test', value: '7 encodes', sub: 'one test card, libx264', color: C.cyan, o: ep(t, 3.4, 4.1), valueSize: 72}}
+      right={{label: 'Test', value: '9 cases', sub: 'one card, two builds', color: C.cyan, o: ep(t, 3.4, 4.1), valueSize: 72}}
       mid="?" midO={ep(t, 3.0, 3.6)} />
   </>
 );
@@ -44,33 +44,34 @@ const Default: React.FC<SceneProps> = ({t}) => (
       left={{label: 'In the file', value: 'Y 16 · 235', sub: 'black and white, no range tag', color: C.cyan, o: ep(t, 0.9, 1.6), valueSize: 80}}
       right={{label: 'A player shows', value: '0 · 255', sub: 'no tag means limited: stretched', color: C.green, o: ep(t, 2.8, 3.5), valueSize: 96}}
       mid="→" midO={ep(t, 2.4, 3.0)} />
-    <Mid y={650} size={28} color={C.mute} o={ep(t, 4.8, 5.4)}>-color_range tv: identical raw frame, still no tag.</Mid>
+    <Mid y={650} size={28} color={C.mute} o={ep(t, 4.8, 5.4)}>-color_range tv: identical raw frame, still no tag. Same on 6.1.1 and 8.1.2.</Mid>
   </>
 );
 
-/* 4. The label */
+/* 4. The label: same command, two builds */
 const Label: React.FC<SceneProps> = ({t}) => (
   <>
     <Halo y={520} color={C.red} o={ep(t, 0.2, 1.4)} />
-    <Head over="One flag" title="Same bytes. New label." color={C.red} o={ep(t, 0.2, 0.8)} />
-    <Figure y={270} value="16" caption="black, as shown by a player that trusts the pc label" size={220} color={C.red} o={ep(t, 0.9, 1.7)} />
+    <Head over="-color_range pc" title="Same command. Two builds." color={C.red} o={ep(t, 0.2, 0.8)} />
+    <Figure y={265} value="16 vs 0" caption="black after -color_range pc: ffmpeg 6.1.1 vs 8.1.2" size={200} color={C.red} o={ep(t, 0.9, 1.7)} />
     <Duel y={655} h={215}
-      left={{label: 'Default · no tag', value: 'Y 16 · 235', sub: '-pix_fmt yuv420p', color: C.cyan, o: ep(t, 3.0, 3.7), valueSize: 56}}
-      right={{label: 'Label: full', value: 'Y 16 · 235', sub: '-color_range pc', color: C.red, o: ep(t, 3.8, 4.5), valueSize: 56}}
-      mid="=" midO={ep(t, 3.4, 4.0)} />
+      left={{label: 'ffmpeg 6.1.1', value: 'relabels', sub: 'same bytes as the default', color: C.red, o: ep(t, 3.0, 3.7), valueSize: 60}}
+      right={{label: 'ffmpeg 8.1.2', value: 'converts', sub: 'same bytes as yuvj420p', color: C.green, o: ep(t, 3.8, 4.5), valueSize: 60}}
+      mid="vs" midO={ep(t, 3.4, 4.0)} />
   </>
 );
 
-/* 5. Real full range and the control */
+/* 5. Real full range and the controls */
 const Full: React.FC<SceneProps> = ({t}) => (
   <>
-    <Head over="Convert, then label" title="Real full range." color={C.green} o={ep(t, 0.2, 0.8)} />
-    <Row y={280} h={280} cw={500} gap={32} valueSize={64} items={[
-      {label: 'Route 1', value: 'Y 0 · 255', sub: '-pix_fmt yuvj420p\ntag pc, shown 0 · 255', color: C.green, o: ep(t, 0.9, 1.5)},
-      {label: 'Route 2', value: 'Y 0 · 255', sub: 'scale=out_range=full\nfile says yuvj420p', color: C.green, o: ep(t, 2.4, 3.0)},
-      {label: 'Control · no label', value: '8 → 0', sub: 'full pixels, no full tag\n247 → 255, clipped', color: C.red, o: ep(t, 4.6, 5.2)},
+    <Head over="Convert, then label" title="Real full range, and a control." color={C.green} o={ep(t, 0.2, 0.8)} />
+    <Row y={280} h={300} cw={400} gap={32} valueSize={56} items={[
+      {label: 'Route 1', value: 'Y 0 · 255', sub: '-pix_fmt yuvj420p\ntag pc, shown right', color: C.green, o: ep(t, 0.9, 1.5)},
+      {label: 'Route 2', value: 'Y 0 · 255', sub: 'scale=out_range=full\nfile says yuvj420p', color: C.green, o: ep(t, 2.2, 2.8)},
+      {label: 'Control · flag 1', value: 'black 16', sub: 'copy, flag set to 1\nlimited bytes, pc label', color: C.red, o: ep(t, 4.4, 5.0)},
+      {label: 'Control · flag 0', value: '8 → 0', sub: 'copy, flag set to 0\n247 → 255, clipped', color: C.red, o: ep(t, 6.2, 6.8)},
     ]} />
-    <Verdict y={660} text="Full pixels without the label lose the ends" color={C.red} o={ep(t, 6.2, 7.0)} size={32} />
+    <Verdict y={660} text="Only the flag changed. The picture did not." color={C.red} o={ep(t, 7.6, 8.4)} size={32} />
   </>
 );
 
@@ -78,12 +79,12 @@ const Full: React.FC<SceneProps> = ({t}) => (
 const Close: React.FC<SceneProps> = ({t}) => (
   <>
     <Halo y={470} color={C.cyan} o={ep(t, 0, 1.2)} />
-    <Head over="What to check" title="The label must match." color={C.cyan} o={ep(t, 0.2, 0.9)} />
+    <Head over="What to check" title="Label and pixels must match." color={C.cyan} o={ep(t, 0.2, 0.9)} />
     <Duel y={290} h={260}
       left={{label: 'ffprobe', value: 'color_range', sub: 'what the file claims', color: C.cyan, o: ep(t, 1.4, 2.1), valueSize: 64}}
       right={{label: 'signalstats', value: 'YMIN · YMAX', sub: 'what the pixels hold', color: C.cyan, o: ep(t, 2.0, 2.7), valueSize: 64}}
       mid="vs" midO={ep(t, 2.4, 3.0)} />
-    <Mid y={610} size={28} color={C.mute} o={ep(t, 3.4, 4.0)}>Not tested: other ffmpeg builds, real players, real footage, other encoders, 10-bit.</Mid>
+    <Mid y={610} size={28} color={C.mute} o={ep(t, 3.4, 4.0)}>Not tested: builds other than 6.1.1 and 8.1.2, real players, real footage, other encoders, 10-bit.</Mid>
     <Mid y={700} size={30} color={C.dim} o={ep(t, 4.0, 4.6)}>FFmpeg Reality Checks · episode 26 · fixture and tests in the description</Mid>
   </>
 );

@@ -1,45 +1,47 @@
-# FF26 distribution kit: FFmpeg -color_range pc Only Relabels: Black Shows as Gray 16
+# FF26 distribution kit: FFmpeg -color_range pc: 6.1.1 Relabels Black as 16, 8.1.2 Converts
 
-All numbers below come from the synthetic fixture in `episodes/ff26/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (ffmpeg version 6.1.1-3ubuntu5). Not yet checked on 8.1.2.
+All numbers below come from the synthetic fixture in `episodes/ff26/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
 
 ## YouTube
 
 ### Title options (≤ 60 chars), ranked
 
-1. `FFmpeg -color_range pc Only Relabels: Black Shows as 16` : the measured finding.
+1. `FFmpeg -color_range pc: 6.1.1 Relabels, 8.1.2 Converts` : the measured finding.
 2. `Why Does My FFmpeg Video Look Washed Out?` : the question people ask.
 3. `FFmpeg Limited vs Full Range: yuvj420p or out_range=full` : the fix.
-4. `FFmpeg -color_range pc Does Not Convert Pixels` : the niche detail.
+4. `Same FFmpeg Command, Two Builds: Black Is 16 or 0` : the niche detail.
 
 ### Description
 
-Your encode looks washed out: black looks gray. Is the video wrong, or only the label on it? We build a synthetic test card, encode it seven ways with libx264, and read what is really in the file.
+Your encode looks washed out: black looks gray. Is the video wrong, or only the label on it? We build a synthetic test card, encode it with libx264 and read what is really in the file, on ffmpeg 6.1.1 and ffmpeg 8.1.2.
 
 Test card (lavfi geq, 256x80, lossless RGB, full range): pure black (0), pure white (255), a shadow patch (8) and a highlight patch (247).
 
 Readers: ffprobe (pix_fmt and color_range tag) with ffmpeg signalstats YMIN and YMAX on each patch, and the raw luma byte from a native plane dump read in Node. They agree on every case and patch. A tag-following player is checked two ways: ffmpeg converting to gray, and the same rule in Node (tag pc: show the byte as is; no tag: stretch 16..235 to 0..255).
 
-Default, -pix_fmt yuv420p: black is Y 16, white Y 235, ffprobe color_range unknown (no tag). A player stretches 16 to 0 and shows black 0, white 255. That is correct. -color_range tv gives the identical raw frame and still no tag.
+Default, -pix_fmt yuv420p, both builds: black is Y 16, white Y 235 (shadow 23, highlight 228), ffprobe color_range unknown (no tag). A player stretches 16 to 0 and shows black 0, white 255. That is correct. -color_range tv gives the identical raw frame and still no tag.
 
--color_range pc: the raw frame is identical to the default (black 16, white 235) and only the label changes, to pc (the file is reported as yuvj420p). A tag-following player shows black as 16 and white as 235. That is the washed out look.
+-color_range pc, the same command on two builds. 6.1.1: the raw frame is identical to the default (black 16, white 235) and only the tag changes, to pc (reported as yuvj420p). A tag-following player shows black as 16 and white as 235: washed out. 8.1.2: the pixels are converted, Y 0, 255, 8 and 247, identical to -pix_fmt yuvj420p, and the player shows black 0.
 
-Real full range: -pix_fmt yuvj420p and -vf scale=out_range=full both give Y 0 and 255 (8 and 247 for the shadow and highlight patches), tag pc, identical raw frame, shown correctly. scale=out_range=full was asked for yuv420p and the file says yuvj420p. scale=out_range=limited matches the default.
+Real full range, both builds: -pix_fmt yuvj420p and -vf scale=out_range=full give Y 0, 255, 8 and 247, tag pc, identical raw frame. scale=out_range=full was asked for yuv420p and the file says yuvj420p. scale=out_range=limited matches the default.
 
-Control, full range pixels with no full label (-vf scale=out_range=full -color_range tv): the file holds Y 0, 255, 8 and 247, tag unknown. A player shows 0, 255, 0 and 255: the shadow patch is crushed and the highlight clipped. A player that assumes the other range: limited bytes read as full show black 16 and white 235 (above); full bytes read as limited lose the ends (8 becomes 0, 247 becomes 255).
+The encode -vf scale=out_range=full -color_range tv also differs. 6.1.1: full pixels (0, 255, 8, 247) with no label, so a player shows 8 as 0 and 247 as 255. 8.1.2: the pixels are converted back to limited (16, 235, 23, 228), identical to the default.
 
-The eleven tests pass three times in a row on ffmpeg 6.1.1.
+Controls that rewrite only the label, a stream copy with -bsf:v h264_metadata=video_full_range_flag=1 or 0 (measured on 6.1.1): flag 1 on the default file keeps the same bytes and a player shows black 16 and white 235. Flag 0 on the full range file keeps the bytes (8, 247) and a player shows 0 and 255.
+
+The thirteen tests pass three times in a row on ffmpeg 6.1.1. They branch on the build for -color_range pc and the -color_range tv ending.
 
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Test card, two readers
-00:39 The default
-00:57 Color range pc
-01:14 Real full range
-01:43 What to check
+00:21 Test card, two readers
+00:41 The default
+00:58 Same command, two builds
+01:19 Real full range, and a control
+01:44 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic lossless RGB card, libx264, ffmpeg 6.1.1 only (8.1.2 not yet checked). Not tested: other ffmpeg builds, real players, real footage, YUV sources, other encoders, 10-bit, HDR.
+Limits: one synthetic lossless RGB card, libx264, two ffmpeg builds (6.1.1 and 8.1.2). Not tested: other builds, real players, real footage, YUV sources, other encoders, 10-bit, HDR.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 
@@ -49,8 +51,8 @@ Miz Causevic, Kinetic Gain LLC
 
 ### Tags (15)
 
-ffmpeg, ffmpeg tutorial, washed out video, limited range, full range, color_range, yuvj420p, pix_fmt, signalstats, ffprobe, libx264, black levels, video engineering, command line, ffmpeg reality checks
+ffmpeg, ffmpeg tutorial, washed out video, limited range, full range, color_range, yuvj420p, pix_fmt, signalstats, ffprobe, libx264, black levels, ffmpeg 8, video engineering, ffmpeg reality checks
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic RGB card, libx264. Default encode: black Y 16, white 235, no tag, shown 0 and 255. -color_range pc: the SAME raw frame, tag flips to full, black shows as 16. yuvj420p or out_range=full really give 0 and 255. github.com/mizcausevic-dev/ffmpeg-reality-checks. What looked washed out for you?
+Same command, two builds. ffmpeg -color_range pc on RGB: 6.1.1 keeps the limited bytes (black Y 16) and only flips the tag, so black shows 16. 8.1.2 converts (black Y 0). Check ffprobe color_range and signalstats YMIN on YOUR build. github.com/mizcausevic-dev/ffmpeg-reality-checks

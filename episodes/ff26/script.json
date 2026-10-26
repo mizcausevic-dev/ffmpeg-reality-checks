@@ -1,52 +1,77 @@
 {
   "n": 26,
-  "slug": "ffmpeg-limited-vs-full-range",
+  "slug": "ffmpeg-color-range-pc-two-builds",
   "palette": "lab",
   "series": "FFmpeg Reality Checks",
-  "title": "Why does my FFmpeg video look washed out?",
-  "fullTitle": "FFmpeg -color_range pc Only Relabels: Black Shows as Gray 16",
+  "title": "Does FFmpeg -color_range pc convert or only relabel?",
+  "fullTitle": "FFmpeg -color_range pc: 6.1.1 Relabels Black as 16, 8.1.2 Converts",
   "kicker": "Episode 26",
-  "thumb": {"number": "gray 16", "label": "BLACK IS NOT 0 ANY MORE", "color": "red"},
+  "thumb": {
+    "number": "16 vs 0",
+    "label": "SAME COMMAND, TWO BUILDS",
+    "color": "red"
+  },
   "endCard": {},
-  "hero": {"scene": "label", "t": 5.0},
+  "hero": {
+    "scene": "label",
+    "t": 5.0
+  },
   "scenes": [
     {
       "id": "ask",
       "chapter": "The question",
       "sim": null,
-      "narration": "Your encode looks washed out: black is gray. Is the video wrong, or only the label on it? We build a test card of pure black, pure white and two patches near the ends, encode it seven ways with libx264, and read the file.",
-      "captions": ["Black looks gray after an encode.", "The pixels, or only the label?"]
+      "narration": "Your encode looks washed out: black is gray. Is the video wrong, or only the label? We encode a test card of pure black, pure white and two patches near the ends nine ways with libx264, and read the file on ffmpeg six point one point one and eight point one point two.",
+      "captions": [
+        "Black looks gray after an encode.",
+        "The pixels, or only the label? Two builds."
+      ]
     },
     {
       "id": "source",
       "chapter": "Test card, two readers",
-      "narration": "The card is lossless RGB: black zero, white two fifty five, patches at eight and two forty seven. Reader one is ffprobe for the range tag, plus signalstats. Reader two reads the raw luma byte. A player shows it as is if the tag says full, otherwise it stretches sixteen to two thirty five.",
-      "captions": ["Patches: 0, 255, 8, 247.", "Readers: ffprobe + signalstats, raw luma."]
+      "narration": "The card is lossless RGB: black zero, white two fifty five, patches at eight and two forty seven. Reader one is ffprobe plus signalstats. Reader two reads the raw luma byte. A player shows it as is if the tag says full, otherwise it stretches sixteen to two thirty five.",
+      "captions": [
+        "Patches: 0, 255, 8, 247.",
+        "Readers: ffprobe + signalstats, raw luma."
+      ]
     },
     {
       "id": "default",
       "chapter": "The default",
-      "narration": "The default, dash pix fmt y u v four twenty p, writes black as luma sixteen and white as two thirty five, with no range tag. That is fine: players stretch sixteen to zero. Dash color range t v changes nothing. Same raw frame, still no tag.",
-      "captions": ["Default: black 16, white 235, no tag.", "-color_range tv: same raw frame."]
+      "narration": "The default, dash pix fmt y u v four twenty p, writes black as luma sixteen and white as two thirty five, with no range tag. That is fine: players stretch sixteen to zero. Dash color range t v changes nothing. Both builds agree.",
+      "captions": [
+        "Default: black 16, white 235, no tag.",
+        "-color_range tv: same, on both builds."
+      ]
     },
     {
       "id": "label",
-      "chapter": "Color range pc",
-      "narration": "Now dash color range p c. The raw frame is byte for byte the default: black still sixteen, white still two thirty five. Only the label changed, to full. A player that trusts it shows black as gray sixteen. That is washed out.",
-      "captions": ["-color_range pc: identical pixels.", "Only the label changed: black shows 16."]
+      "chapter": "Same command, two builds",
+      "narration": "Now dash color range p c, the same command on two builds. On six point one point one, the raw frame is byte for byte the default: black still sixteen. Only the label changed, so a player shows gray sixteen. On eight point one point two, the pixels are converted: black is zero.",
+      "captions": [
+        "6.1.1: same bytes, black shows 16.",
+        "8.1.2: pixels converted, black is 0."
+      ]
     },
     {
       "id": "full",
-      "chapter": "Real full range",
-      "narration": "Real full range needs a conversion. Dash pix fmt y u v j four twenty p, or scale equals out range equals full, gives luma zero and two fifty five, tagged p c. Scale asked for y u v four twenty p and the file says y u v j. The control: full pixels with no label. Patches eight and two forty seven are crushed to zero and clipped to two fifty five.",
-      "captions": ["yuvj420p or out_range=full: 0 and 255.", "Control: no label, 8 and 247 are lost."]
+      "chapter": "Real full range, and a control",
+      "narration": "Dash pix fmt y u v j four twenty p, or scale equals out range equals full, gives zero and two fifty five, tagged p c. Control: a stream copy that rewrites only the full range flag. Flag one on limited bytes: black shows sixteen. Flag zero on full bytes: eight and two forty seven are crushed to zero and two fifty five.",
+      "captions": [
+        "yuvj420p or out_range=full: 0 and 255.",
+        "Control: rewrite only the flag."
+      ]
     },
     {
       "id": "close",
       "chapter": "What to check",
       "sim": null,
-      "narration": "Make the label match the pixels, and check with ffprobe and signalstats. Not tested: other ffmpeg builds, real players, real footage, other encoders, ten bit.",
-      "captions": ["Label must match the pixels.", "Not tested: other builds, real players."]
+      "narration": "Check your build, not your memory: the label and the pixels must match. Use ffprobe and signalstats. Not tested: other builds, real players, real footage, other encoders, ten bit.",
+      "captions": [
+        "Label must match the pixels.",
+        "Not tested: other builds, real players."
+      ]
     }
   ]
 }
