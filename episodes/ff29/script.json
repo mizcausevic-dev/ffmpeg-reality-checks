@@ -1,0 +1,52 @@
+{
+  "n": 29,
+  "slug": "ffmpeg-setpts-audio-sync",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "I sped the video up 2x. Why is the audio out of sync?",
+  "fullTitle": "FFmpeg setpts=0.5*PTS Speeds Up the Picture, Not the Audio",
+  "kicker": "Episode 29",
+  "thumb": {"number": "10 vs 5 s", "label": "AUDIO VS PICTURE LENGTH", "color": "red"},
+  "endCard": {},
+  "hero": {"scene": "video", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You speed a video up two times with dash v f, set P T S equals zero point five times P T S. The picture is fast. But now the audio is out of sync. Why? Set P T S changes the picture only. We measure how long each stream runs.",
+      "captions": ["setpts=0.5*PTS: video at 2x.", "Why is the audio out of sync?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Marked frames, two readers",
+      "narration": "The source is ten seconds at thirty frames a second: three hundred frames, each with its own code, and a sine wave at four hundred forty hertz. Reader one is f f probe, reading packets. Reader two decodes: frame hashes, pixel values, sample counts. A Goertzel read gives the pitch.",
+      "captions": ["300 frames, 10 s. Sine at 440 Hz, 10 s.", "Readers: ffprobe packets, and a decode."]
+    },
+    {
+      "id": "video",
+      "chapter": "setpts alone",
+      "narration": "With set P T S alone, the picture lasts five point zero seven seconds. The audio is still ten seconds, and so is the container. The audio plays on for almost five seconds after the picture ends. At two and a half seconds, the picture is already at source second four point nine.",
+      "captions": ["Picture 5.07 s. Audio 10.0 s.", "Container: 10.0 s."]
+    },
+    {
+      "id": "frames",
+      "chapter": "Frames that survive",
+      "narration": "A second effect. At the default thirty frames a second output, only one hundred fifty two of the three hundred frames survive: zero to three, then every second frame, five, seven, nine. With dash fps mode passthrough, all three hundred are kept, in five seconds.",
+      "captions": ["30 fps out: 152 of 300 frames kept.", "Kept: 0, 1, 2, 3, 5, 7, 9..."]
+    },
+    {
+      "id": "fix",
+      "chapter": "atempo and asetrate",
+      "narration": "Add dash a f, a tempo equals two. Now the audio is five seconds, the picture five point zero seven, and the pitch is still four hundred forty hertz. A set rate with a resample also shortens the audio to five seconds, but the pitch moves to eight hundred eighty hertz.",
+      "captions": ["atempo=2: audio 5.0 s, still 440 Hz.", "asetrate: 5.0 s, but 880 Hz."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "To speed both up, change both: set P T S and a tempo. Use a set rate only if you want the pitch to rise. Not tested: other speeds, chained a tempo, variable frame rate, real footage, and any player.",
+      "captions": ["Speed up both: setpts and atempo.", "Not tested: other speeds, real footage."]
+    }
+  ]
+}

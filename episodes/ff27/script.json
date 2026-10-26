@@ -1,0 +1,77 @@
+{
+  "n": 27,
+  "slug": "ffmpeg-51-to-stereo-downmix",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "5.1 to stereo: where did the dialogue go?",
+  "fullTitle": "FFmpeg -ac 2 Puts 5.1 Dialogue 10.67 dB Down and Drops the LFE",
+  "kicker": "Episode 27",
+  "thumb": {
+    "number": "-10.67 dB",
+    "label": "CENTER AFTER -AC 2",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "default",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You mix a five point one movie down to stereo with dash a c two. The speech is quiet, or the bass has vanished. Where did they go? We build one file where every channel is its own tone, and measure what comes out.",
+      "captions": [
+        "5.1 to stereo with -ac 2.",
+        "Quiet speech, missing bass: why?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Six tones, two readers",
+      "narration": "Six channels, six sine tones, all at the same level. The center is a thousand hertz, the L F E fifty. Reader one: narrow band pass filters and astats. Reader two: a Goertzel sum over the raw samples. Controls: a stereo file stays identical, and a pan at point five reads minus six point oh two.",
+      "captions": [
+        "Six channels, six tones, equal level.",
+        "Readers: bandpass + astats, and Goertzel."
+      ]
+    },
+    {
+      "id": "default",
+      "chapter": "The default matrix",
+      "narration": "With plain dash a c two, the fronts land at minus seven point six six d B. The center, where dialogue lives, lands in both outputs at minus ten point six seven: three d B under the fronts. The surrounds match it, each on its own side. And the L F E tone is gone: nothing in either output.",
+      "captions": [
+        "Center: -10.67 dB in both outputs.",
+        "Fronts -7.66 dB. LFE: gone."
+      ]
+    },
+    {
+      "id": "why",
+      "chapter": "Why it is quieter",
+      "narration": "Why so quiet? The matrix is divided by two point four one four, the sum of its front row, so nothing can clip. With point eight in front left, center and back left, dash a c two peaks at minus one point nine four. The same weights without the division clip sixty two thousand eight hundred eighty samples.",
+      "captions": [
+        "The matrix is divided by 2.414.",
+        "Same input, unscaled: 62,880 clipped samples."
+      ]
+    },
+    {
+      "id": "pan",
+      "chapter": "Writing the matrix",
+      "narration": "Write the matrix with pan, and the center sits at minus three point oh one: seven point six six louder. Aresample with rematrix max val equals three matches it. L F E mix level equals one brings the L F E back at minus twelve point nine, and pushes the fronts down to minus nine point eight nine.",
+      "captions": [
+        "pan: center -3.01 dB, 7.66 dB louder.",
+        "lfe_mix_level=1: LFE at -12.90 dB."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Dash a c two puts the center at minus ten point six seven, and drops the L F E. Write the matrix you want, and watch the peaks. Not tested: seven point one, real mixes, other decoders, and other builds.",
+      "captions": [
+        "-ac 2 drops the LFE, scales the rest.",
+        "Not tested: 7.1, real mixes, other builds."
+      ]
+    }
+  ]
+}

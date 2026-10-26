@@ -1,0 +1,77 @@
+{
+  "n": 28,
+  "slug": "ffmpeg-amix-level-drop-and-jump",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does amix make my audio quieter, and why does the level jump?",
+  "fullTitle": "FFmpeg amix Drops Each Input 6 dB, Then Jumps Up When One Ends",
+  "kicker": "Episode 28",
+  "thumb": {
+    "number": "+6 dB",
+    "label": "WHEN ONE TRACK ENDS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "jump",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You mix two tracks with amix. The mix is quieter than either track alone. Then, when the shorter track ends, the level jumps. We make sine tones at minus six d b full scale, one of them half as long, and measure each tone in the output.",
+      "captions": [
+        "Two tracks in, quieter out.",
+        "Then the level jumps."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Tones, two readers",
+      "narration": "Tone A is four forty hertz, six seconds. Tone B is six sixty hertz, three seconds. Reader one is a narrow band pass around each tone, then astats, in half second windows. Reader two is a Goertzel on the raw samples, in Node. Both read each source, and one input through amix, at minus six point zero zero.",
+      "captions": [
+        "A: 440 Hz, 6 s. B: 660 Hz, 3 s. -6 dBFS.",
+        "Readers: bandpass + astats, Goertzel."
+      ]
+    },
+    {
+      "id": "quieter",
+      "chapter": "The default",
+      "narration": "With default amix, each tone comes out at minus twelve point zero two, six d b down. With three inputs, minus fifteen point five four each. That matches one over the number of inputs. The control: the same tone twice comes back as exactly one input, with error zero.",
+      "captions": [
+        "Two inputs: -12.02 dB each.",
+        "Three inputs: -15.54 dB each."
+      ]
+    },
+    {
+      "id": "jump",
+      "chapter": "The jump",
+      "narration": "At three seconds, tone B ends. Tone A rises from minus twelve point zero two to minus six point zero zero: plus six point zero two d b. It takes the two second dropout transition, so it is back at five seconds. Set it to zero and it jumps at three. One second: back at four.",
+      "captions": [
+        "B ends at 3 s: A rises 6.02 dB.",
+        "dropout_transition sets how long it takes."
+      ]
+    },
+    {
+      "id": "clip",
+      "chapter": "normalize equals zero",
+      "narration": "Add normalize equals zero and nothing is scaled. Each tone stays at minus six, and there is no jump. But amix now just sums. Two tones at minus three d b peak at plus two point six d b, and in sixteen bit, eighteen point four percent of the samples sit at full scale. The default peaks at minus three point four two.",
+      "captions": [
+        "normalize=0: -6.00 dB each, no jump.",
+        "But the sum clips: 18.4% at full scale."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Weights two one give minus nine point five two and minus fifteen point five four. Duration shortest stops at three seconds, so there is no jump. Pick your trade: quieter, a level change, or headroom. Not tested: other ffmpeg builds, real music, a limiter.",
+      "captions": [
+        "Quieter, a jump, or headroom: pick.",
+        "Not tested: real music, other builds."
+      ]
+    }
+  ]
+}
