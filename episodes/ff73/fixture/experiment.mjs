@@ -23,6 +23,7 @@ import {ffmpegVersion} from '../../../tools/ff.mjs';
 
 export const W = 768, H = 64, FONT_SIZE = 40, BASE_Y = 44;
 export const FONTS = [
+  ...(process.env.FRC_FONT ? [process.env.FRC_FONT] : []),
   '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf', '/usr/share/fonts/dejavu/DejaVuSansMono.ttf', '/usr/share/fonts/TTF/DejaVuSansMono.ttf',
   '/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf', '/usr/share/fonts/liberation-mono/LiberationMono-Regular.ttf',
   '/System/Library/Fonts/Menlo.ttc', 'C:/Windows/Fonts/consola.ttf', 'C:/Windows/Fonts/cour.ttf',
