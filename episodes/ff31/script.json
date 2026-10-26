@@ -57,7 +57,7 @@
     {
       "id": "size",
       "chapter": "Size depends on the build",
-      "narration": "How big is the label change? It depends on the build. On ffmpeg six point one point one, the retag rewrites two bytes. On eight point one point two, it also sets the parameter set flags: five bytes. A plain copy changes none on six, and three bytes elsewhere on eight.",
+      "narration": "How big is the label change? It depends on the build. On ffmpeg six point one point one, the retag rewrites two bytes. On eight point one point two, it also sets the parameter set flags: five bytes. A plain copy changes none on six. On eight it fills in the average bitrate: three bytes in the bitrate box, also in the sample entry.",
       "captions": [
         "6.1.1: 2 bytes. 8.1.2: 5 bytes.",
         "Plain copy vs encode: 0 and 3 bytes."

@@ -23,13 +23,13 @@ On both builds, default, no tag: hev1 on both tag readers, with an hvcC box. A s
 
 On both builds, -c copy -tag:v hvc1: both readers say hvc1. The 50 packets, the raw samples and the 50 decoded frames hash the same as the default file: 0 of 50 frames change. Compared with a plain stream copy, every byte that differs is inside the sample entry.
 
-How many bytes change depends on the build. ffmpeg 6.1.1 (file 29532 bytes): the retag rewrites 2 bytes (the FourCC, hev1 to hvc1), a plain copy differs from the encode in 0 bytes, an encode with -tag:v hvc1 differs from the default in 5 bytes (the 2 FourCC bytes and the 3 completeness flags on the VPS, SPS and PPS arrays in hvcC). ffmpeg 8.1.2 (file 30541 bytes): the retag also sets those 3 flags, so 5 bytes against a plain copy; a plain copy already differs from the encode in 3 bytes outside the sample entry, so 8 bytes against the encode. File sizes depend on the libx265 build.
+How many bytes change depends on the build. ffmpeg 6.1.1 (file 29532 bytes): the retag rewrites 2 bytes (the FourCC, hev1 to hvc1), a plain copy differs from the encode in 0 bytes, an encode with -tag:v hvc1 differs from the default in 5 bytes (the 2 FourCC bytes and the 3 completeness flags on the VPS, SPS and PPS arrays in hvcC). ffmpeg 8.1.2 (file 30541 bytes): the retag also sets those 3 flags, so 5 bytes against a plain copy; a plain copy already differs from the encode in 3 bytes, all in the btrt bitrate box inside the sample entry: the low bytes of its average bitrate field, 0 in the encode and 106340 bit/s (0x019f64) in the copy, which is the sample bytes times 8 over 2 s. On 6.1.1 that field already holds 102400 bit/s (25600 sample bytes) in the encode, and the copy repeats it. So on 8.1.2 the retag is 8 bytes against the encode, all inside the sample entry. File sizes depend on the libx265 build.
 
 A stream encoded with repeat-headers=1 holds VPS, SPS and PPS in its first sample; after -c copy -tag:v hvc1 they are still there, and the label says hvc1. The retag renames, it does not check.
 
 Matroska has no such tag: ffprobe shows no hev1 or hvc1, and the header holds the CodecID V_MPEGH/ISO/HEVC.
 
-The 15 tests pass on ffmpeg 6.1.1.
+The 16 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -38,7 +38,7 @@ Chapters
 00:50 What ffmpeg writes
 01:14 Retag without re-encoding
 01:34 Size depends on the build
-01:54 What to check
+01:59 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 50 frame clip, libx265 ultrafast, ffmpeg 6.1.1. Not tested: any Apple player (iPhone, Safari, QuickTime), other ffmpeg builds, other encoders, hardware encoders, fragmented MP4, HLS, real footage.

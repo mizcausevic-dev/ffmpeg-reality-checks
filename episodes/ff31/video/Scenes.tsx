@@ -69,7 +69,7 @@ const Size: React.FC<SceneProps> = ({t}) => (
     <Head over="Bytes that change · by build" title="The label's size is the build's." color={C.amber} o={ep(t, 0.2, 0.8)} />
     <Duel y={290} h={320}
       left={{label: 'ffmpeg 6.1.1', value: '2 bytes', sub: 'retag vs plain copy: the FourCC\nplain copy vs encode: 0 bytes', color: C.cyan, o: ep(t, 0.9, 1.6), valueSize: 100}}
-      right={{label: 'ffmpeg 8.1.2', value: '5 bytes', sub: 'retag vs plain copy: FourCC + 3 flags\nplain copy vs encode: 3 bytes', color: C.amber, o: ep(t, 2.4, 3.1), valueSize: 100}}
+      right={{label: 'ffmpeg 8.1.2', value: '5 bytes', sub: 'retag vs plain copy: FourCC + 3 flags\nplain copy vs encode: 3 bytes (bitrate box)', color: C.amber, o: ep(t, 2.4, 3.1), valueSize: 100}}
       mid="vs" midO={ep(t, 2.0, 2.6)} />
     <Mid y={670} size={30} color={C.dim} o={ep(t, 4.4, 5.0)}>Both builds: packets, samples and frames hash the same.</Mid>
     <Verdict y={760} text="The picture never changes. The label size does." color={C.red} o={ep(t, 5.6, 6.4)} size={34} />

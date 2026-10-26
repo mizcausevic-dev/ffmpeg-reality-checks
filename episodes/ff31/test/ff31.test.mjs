@@ -81,16 +81,25 @@ t('the locator is itself proven by the known bytes: the FourCC offsets resolve t
   assert.equal(b.from.path, 'moov/trak/mdia/minf/stbl/stsd/hvc1');
 });
 
-t('how many bytes the retag rewrites depends on the build. 6.x: 2 (the FourCC), plain copy 0. 8.x: plain copy already differs from the encode in 3 bytes outside the sample entry, the retag adds 5 (FourCC and 3 flags) on top, 8 in all. Other builds: only that some bytes differ', () => {
+t('how many bytes the retag rewrites depends on the build. 6.x: 2 (the FourCC), plain copy 0. 8.x: a plain copy already differs from the encode in 3 bytes, the retag adds 5 (FourCC and 3 flags) on top, 8 in all. Other builds: only that some bytes differ. On every build all of them are inside the sample entry', () => {
   const d = ev.diffs;
   assert.ok(d['def:remux'].count > 0);
+  for (const k of ['def:remux', 'def:copy', 'copy:remux', 'hvc:back']) assert.ok(d[k].insideSampleEntry, k);
   if (B() === 'v6') {
     assert.equal(d['def:remux'].count, 2); assert.equal(d['hvc:back'].count, 2); assert.equal(d['def:copy'].count, 0); assert.equal(d['copy:remux'].count, 2);
-    assert.ok(d['def:remux'].insideSampleEntry);
     const [a, b] = d['def:remux'].offsets; assert.equal(b - a, 1);
   } else if (B() === 'v8') {
     assert.equal(d['def:copy'].count, 3); assert.equal(d['def:remux'].count, 8); assert.equal(d['hvc:back'].count, 8); assert.equal(d['copy:remux'].count, 5);
-    assert.equal(d['def:copy'].insideSampleEntry, false);
+  }
+});
+
+t('on 8.x the 3 bytes of a plain copy are the low bytes of avgBitrate in the btrt (bitrate) box of the sample entry: the encode wrote 0 there, the copy fills in the average bitrate (samples x 8 / 2 s, within 2 percent). On 6.x the encode already holds that value and the copy repeats it', () => {
+  const e = F('def').box.btrt, c = F('copy').box.btrt, calc = F('def').box.sampleBytes * 8 / 2;
+  assert.ok(e && c);
+  if (B() === 'v6') { assert.deepEqual(c, e); assert.ok(Math.abs(e.avgBitrate - calc) / calc < 0.02); }
+  else if (B() === 'v8') {
+    assert.notEqual(c.avgBitrate, e.avgBitrate); assert.ok(Math.abs(c.avgBitrate - calc) / calc < 0.02, `${c.avgBitrate} vs ${calc}`);
+    for (const w of ev.diffs['def:copy'].where) { assert.match(w.from.path, /stsd\/hev1\/btrt$/); assert.match(w.from.field, /avgBitrate/); }
   }
 });
 

@@ -107,6 +107,9 @@ export function parseMp4(buf) {
     for (const t of types) hist[t] = (hist[t] ?? 0) + 1;
   }
   out.samples = samples.length;
+  out.sampleBytes = samples.reduce((a, x) => a + x[1], 0);
+  const bt = kids.find((k) => k.type === 'btrt');
+  if (bt) { const q = bt.start + bt.hdr; out.btrt = {bufferSizeDB: buf.readUInt32BE(q), maxBitrate: buf.readUInt32BE(q + 4), avgBitrate: buf.readUInt32BE(q + 8)}; }
   out.sampleSha = hash.digest('hex');
   out.firstSampleNals = perSample[0];
   out.samplesWithParamSets = perSample.filter((t) => t.some((x) => x >= 32 && x <= 34)).length;
@@ -151,6 +154,7 @@ export function locate(buf, off) {
   }
   else if (t === 'mvhd' || t === 'mdhd') field = ver === 0 ? ({12: 'creation_time', 16: 'modification_time', 20: 'timescale', 24: 'duration'}[rel - (rel % 4)] ?? field) + ` (version 0, byte ${rel % 4})` : field;
   else if (t === 'tkhd') field = ver === 0 ? ({12: 'creation_time', 16: 'modification_time', 20: 'track_id', 28: 'duration'}[rel - (rel % 4)] ?? field) + ` (version 0, byte ${rel % 4})` : field;
+  else if (t === 'btrt') field = rel >= 8 && rel < 20 ? `${['bufferSizeDB', 'maxBitrate', 'avgBitrate'][Math.floor((rel - 8) / 4)]}, byte ${rel % 4} of 4 (0 is the high byte)` : field;
   else if (t === 'data' && trail.includes('ilst')) field = 'metadata value text';
   const a = Math.max(0, off - 8), z = Math.min(buf.length, off + 9);
   const ctx = (b) => [...b.subarray(a, z)].map((c) => (c >= 32 && c < 127 ? String.fromCharCode(c) : '.')).join('');
