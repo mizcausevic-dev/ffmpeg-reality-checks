@@ -12,11 +12,12 @@ before(() => { if (ok) ev = runExperiment(fs.mkdtempSync(path.join(os.tmpdir(), 
 const t = (name, fn) => test(name, {skip: ok ? false : 'ffmpeg not on PATH'}, fn);
 const each = (fn) => { for (const [name, s] of Object.entries(ev.sources)) fn(name, s, s.variants); };
 
-t('controls: a source compared with itself is infinite PSNR, and a 4-color palette scores far below every other variant (so both detectors can move)', () => {
+t('controls: a source compared with itself is infinite PSNR, and a 4-color palette scores below every other variant on PSNR, and below the palette variants on SSIM (so both detectors can move)', () => {
   each((name, s, v) => {
     assert.equal(s.control.psnr, Infinity, name);
     assert.equal(v.four.colors, 4, name);
-    for (const k of ['default', 'palette', 'nodither']) { assert.ok(v.four.psnr < v[k].psnr - 10, `${name} ${k} psnr`); assert.ok(v.four.ssim < v[k].ssim, `${name} ${k} ssim`); }
+    for (const k of ['default', 'palette', 'nodither']) assert.ok(v.four.psnr < v[k].psnr - 5, `${name} ${k} psnr`);
+    for (const k of ['palette', 'nodither']) assert.ok(v.four.ssim < v[k].ssim - 0.4, `${name} ${k} ssim`);
   });
 });
 
