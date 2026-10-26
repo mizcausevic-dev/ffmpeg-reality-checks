@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:07,120
+The simplest command, PNG frames to MP4.
+
+2
+00:00:07,120 --> 00:00:13,640
+What did FFmpeg put in the file?
+
+3
+00:00:13,640 --> 00:00:19,550
+50 synthetic PNG frames. RGB.
+
+4
+00:00:19,550 --> 00:00:27,830
+libx264, quality 18, no pixel format flag.
+
+5
+00:00:27,830 --> 00:00:36,280
+Profile: High 4:4:4 Predictive.
+
+6
+00:00:36,280 --> 00:00:42,620
+Pixel format: yuv444p.
+
+7
+00:00:42,620 --> 00:00:53,670
+4:2:0 shares color between neighbours.
+
+8
+00:00:53,670 --> 00:01:06,930
+4:4:4 keeps color for every pixel.
+
+9
+00:01:06,930 --> 00:01:15,390
+-pix_fmt yuv420p: profile High.
+
+10
+00:01:15,390 --> 00:01:28,080
+A yuv420p source needs no flag.
+
+11
+00:01:28,080 --> 00:01:39,570
+PSNR vs the PNG frames, two ffmpeg builds.
+
+12
+00:01:39,570 --> 00:01:53,930
+The numbers move with the build. The order does not.
+
+13
+00:01:53,930 --> 00:01:58,140
+One missing flag. A different profile.
+
+14
+00:01:58,140 --> 00:02:01,640
+Not tested: any specific player.

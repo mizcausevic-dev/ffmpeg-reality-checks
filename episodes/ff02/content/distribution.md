@@ -26,11 +26,11 @@ The profile and pixel format results are identical on both builds.
 Chapters
 <!-- chapters:start -->
 00:00 The command
-00:16 The test frames
-00:30 What ffprobe says
-00:47 4:4:4 versus 4:2:0
-01:13 The fix
-01:35 What it costs
+00:14 The test frames
+00:28 What ffprobe says
+00:43 4:4:4 versus 4:2:0
+01:07 The fix
+01:28 What it costs
 <!-- chapters:end -->
 
 Limits: two ffmpeg builds (6.1.1 and 8.1.2), one synthetic test pattern, and no player was tested.
