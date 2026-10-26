@@ -30,11 +30,11 @@ t('a plain re-encode turns the pixels for you: stored 180x320, no tag left, stil
   assert.equal(r.shown.orientation, 'upright');
 });
 
-t('-noautorotate keeps the pixels as recorded and carries the tag along, shown upright', () => {
+t('-noautorotate keeps the pixels as recorded (320x180). Whether the tag is carried along depends on the build: 6.1.1 keeps it, 8.1.2 drops it', () => {
   const r = ev.runs.noautorot;
   assert.equal(r.stored.size, '320x180');
-  assert.equal(r.stored.rotation, 90);
-  assert.equal(r.shown.orientation, 'upright');
+  if (r.stored.rotation === 90) assert.equal(r.shown.orientation, 'upright');       // tag carried: players still turn it
+  else { assert.equal(r.stored.rotation, null); assert.equal(r.shown.orientation, 'recorded'); }  // tag dropped: it plays sideways
 });
 
 t('-c copy changes nothing: same stored size, same tag, shown upright', () => {
@@ -51,11 +51,15 @@ t('adding -vf transpose=1 on top of the automatic fix undoes it: no tag, stored 
   assert.equal(r.shown.orientation, 'recorded');
 });
 
-t('turning the pixels by hand with -noautorotate still carries the old tag, so players turn it again: shown upside down', () => {
+t('turning the pixels by hand with -noautorotate: the result depends on whether the build carries the old tag. Carried (6.1.1): shown upside down. Dropped (8.1.2): shown upright', () => {
   const r = ev.runs.manual;
   assert.equal(r.stored.size, '180x320');
-  assert.equal(r.stored.rotation, 90);
-  assert.equal(r.shown.orientation, 'upsidedown');
+  if (r.stored.rotation === 90) assert.equal(r.shown.orientation, 'upsidedown');
+  else { assert.equal(r.stored.rotation, null); assert.equal(r.shown.orientation, 'upright'); }
+});
+
+t('both runs that use -noautorotate behave the same way about the tag in one build (carried in both or dropped in both)', () => {
+  assert.equal(ev.runs.noautorot.stored.rotation === 90, ev.runs.manual.stored.rotation === 90);
 });
 
 t('the two readers agree on every run: a stored 320x180 with no tag is shown 320x180, and a tag of 90 swaps the shown size', () => {
