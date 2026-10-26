@@ -1,0 +1,77 @@
+{
+  "n": 60,
+  "slug": "ffmpeg-subtitles-filter-path-escaping",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why won't subtitles open my file?",
+  "fullTitle": "FFmpeg subtitles Filter Path Escaping: 3 of 12 Open the Wrong File",
+  "kicker": "Episode 60",
+  "thumb": {
+    "number": "3 of 12",
+    "label": "OPEN THE WRONG FILE",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "raw",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You write subtitles equals and a file name, and the filter cannot open it, or opens another file and says nothing. Which characters in a path break it? Twelve paths, six ways to write each, every frame read twice, on f f m peg six point one point one.",
+      "captions": [
+        "subtitles=NAME: cannot open it, or opens another.",
+        "12 paths, 6 ways to write each."
+      ],
+      "sim": null
+    },
+    {
+      "id": "setup",
+      "chapter": "The test, two readers",
+      "narration": "A gray frame and twelve subtitle files, each with its own text, so the pixels name the file that was opened. Reader one: the decoded frame in Node. Reader two: the frame md five from f f m peg. Controls: no subtitles, and a safe name. No shell.",
+      "captions": [
+        "12 files, one text each, so pixels name the file.",
+        "Controls: no subtitles; safe name."
+      ]
+    },
+    {
+      "id": "raw",
+      "chapter": "Written as is",
+      "narration": "Written as is, three paths work: a plain name, a space, a space in a folder. Six stop with an error: colon, brackets, comma, semicolon, equals sign, and a folder named C colon. Three open the wrong file with no error: an apostrophe, a backslash, an apostrophe in a folder.",
+      "captions": [
+        "As is: 3 work, 6 error, 3 open the wrong file.",
+        "Apostrophe and backslash: no error."
+      ]
+    },
+    {
+      "id": "why",
+      "chapter": "Why it breaks",
+      "narration": "Why: the string is read twice. First as a filter graph, where a comma, semicolon or bracket ends the arguments. Then as options, where a colon starts the next option and an apostrophe is a quote. The error names the leftover. The apostrophe is simply eaten, so another file opens.",
+      "captions": [
+        "Read twice: filter graph, then options.",
+        "The error names the leftover piece."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "What fixes it",
+      "narration": "One level of backslashes fixes nothing: thirty six rows, same as raw. Quotes fix brackets, comma and semicolon only. Two levels, backslash backslash before a colon, fix all but the equals sign, which needs its own. A relative name with a colon also needs dot slash: the text before the colon reads as a protocol.",
+      "captions": [
+        "One level: same as raw in 36 of 36 rows.",
+        "Two levels, = escaped, ./ in front: 12 of 12."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "The shell is a third layer. Bare or in double quotes, backslash backslash colon loses a level and fails; in single quotes it works. So: two levels, dot slash, single quotes, or a safe name. Not tested: Windows paths, other builds, other libass versions, non ASCII names.",
+      "captions": [
+        "Single quotes. Two levels. ./ for a colon.",
+        "Not tested: Windows, other builds."
+      ],
+      "sim": null
+    }
+  ]
+}

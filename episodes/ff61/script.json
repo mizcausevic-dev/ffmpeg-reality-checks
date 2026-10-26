@@ -1,0 +1,77 @@
+{
+  "n": 61,
+  "slug": "ffmpeg-cropdetect-round",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does cropdetect cut 6 rows of picture?",
+  "fullTitle": "FFmpeg cropdetect round: 1078 Rows Become 1072, round=1 Is Not Exact",
+  "kicker": "Episode 61",
+  "thumb": {
+    "number": "-6 rows",
+    "label": "CROPDETECT LOSES PICTURE",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "ask",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "Your picture is one thousand seventy eight rows high. Cropdetect says crop one thousand seventy two. Six rows of picture, gone. What does round do? Synthetic frames with known black bars, ninety runs, two readers, on f f m peg six point one point one.",
+      "captions": [
+        "Picture 1078 rows; cropdetect says 1072.",
+        "What does round do?"
+      ],
+      "sim": null
+    },
+    {
+      "id": "setup",
+      "chapter": "Frames, two readers",
+      "narration": "Frames of nineteen twenty by ten eighty, a gray picture in black bars. Ten layouts: odd, even, none, sides. Reader one: the crop line the filter prints. Reader two: Node finds the picture in the pixels, applies the crop, and counts what is thrown away. Control: bars of one forty, an exact crop.",
+      "captions": [
+        "10 layouts x 9 values of round = 90 runs.",
+        "Reader 1: crop line. Reader 2: pixels."
+      ]
+    },
+    {
+      "id": "default",
+      "chapter": "The default",
+      "narration": "At the default, round sixteen, the height is rounded down to a multiple of sixteen: one thousand seventy eight becomes one thousand seventy two. Bars of five: fourteen rows lost. No bars at all: eight rows lost. Nine layouts of ten lose picture, and none ever keeps a black row.",
+      "captions": [
+        "Default: 9 of 10 layouts lose picture.",
+        "0 black pixels kept in 90 runs."
+      ]
+    },
+    {
+      "id": "values",
+      "chapter": "Other values of round",
+      "narration": "Round two is the exact one, on even bars. Round zero and round one are not exact: in all ten layouts they give the same crop as sixteen. Round three gives multiples of six. Round thirty two on the same frame: one thousand fifty six, twenty two rows lost.",
+      "captions": [
+        "round=0 and round=1 give the same crop as 16.",
+        "round=32: 1056, 22 rows lost."
+      ]
+    },
+    {
+      "id": "even",
+      "chapter": "The even offset",
+      "narration": "One more rule: the offset is always even. A one row bar pushes the crop to row two, so even at round two an odd bar costs a row of picture. Bars of one and one: two rows lost. Three and ten: one. It is not the pixel format: gray, four four four and four two zero agree.",
+      "captions": [
+        "x and y are even: an odd bar costs a row.",
+        "gray, yuv444p, yuv420p: same crop."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "So: use round equals two, expect to lose a row for each odd bar, and do not trust round equals one. To keep every row, find the box in the pixels yourself. Not tested: other builds, interlaced video, real footage, the limit and skip options.",
+      "captions": [
+        "Use round=2; an odd bar costs a row.",
+        "Not tested: other builds, real footage."
+      ],
+      "sim": null
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "n": 58,
+  "slug": "ffmpeg-ss-copy-start",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where does a copy cut really start?",
+  "fullTitle": "FFmpeg -ss With -c copy: 13 Extra Frames Before -i, a 0.48 s Gap After",
+  "kicker": "Episode 58",
+  "thumb": {
+    "number": "0.48 s",
+    "label": "EMPTY START IN A COPY CUT",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "after",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You cut with dash s s and dash c copy, and the cut starts wrong: extra video, or an empty start. Where does it really start? One synthetic four second clip, a keyframe every second, every frame measured, on f f m peg six point one point one.",
+      "captions": [
+        "A copy cut that starts in the wrong place.",
+        "We measure every frame."
+      ]
+    },
+    {
+      "id": "map",
+      "chapter": "The clip, two readers",
+      "narration": "A hundred frames, keyframes at zero, twenty five, fifty and seventy five. Each frame has its own gray level. Reader one: ffprobe and frame md five. Reader two: raw pixels and container bytes. Control: dash s s one, on a keyframe, is exact in all four copies.",
+      "captions": [
+        "100 frames, a keyframe every 25.",
+        "Control: -ss 1 is exact in 4 of 4 copies."
+      ]
+    },
+    {
+      "id": "before",
+      "chapter": "-ss before -i",
+      "narration": "Put dash s s before dash i, and ask for one point five two seconds, frame thirty eight. A copy cannot start between keyframes, so it starts at frame twenty five. In M K V that is thirteen extra frames, point five two seconds.",
+      "captions": [
+        "-ss 1.52 before -i: starts at frame 25.",
+        "13 extra frames in mkv (24 at -ss 1.96)."
+      ]
+    },
+    {
+      "id": "mp4",
+      "chapter": "The mp4 edit list",
+      "narration": "Into M P four, the same command plays from frame thirty eight: sixty two frames. The file still stores seventy five packets. An edit list skips the first point five two seconds, and ffmpeg obeys it. Players: not tested.",
+      "captions": [
+        "mp4: 75 packets stored, 62 frames play.",
+        "An edit list skips 0.52 s."
+      ]
+    },
+    {
+      "id": "after",
+      "chapter": "-ss after -i",
+      "narration": "Put dash s s after dash i. The cut starts at the next keyframe, frame fifty. Its first frame is at point four eight seconds, nothing before it, and twelve frames you asked for are gone. A player may show that empty start as black.",
+      "captions": [
+        "-ss 1.52 after -i: starts at frame 50.",
+        "First frame at 0.48 s. 12 frames lost."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "The rule",
+      "narration": "The rule. Before dash i: the keyframe before, up to a second of extra frames. After dash i: the keyframe after, a late start. Between keyframes, extra plus missing is always twenty five frames. A re encode is exact: sixty two frames, no gap.",
+      "captions": [
+        "Extra + missing = 25 frames.",
+        "Re-encode: 62 frames, no gap."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Check the first frame time and number of every cut. To land exactly, cut on a keyframe or re encode. Not tested: audio, players, real footage, and builds other than six point one point one.",
+      "captions": [
+        "Check the first frame time and number.",
+        "Not tested: audio, players, real footage."
+      ]
+    }
+  ]
+}

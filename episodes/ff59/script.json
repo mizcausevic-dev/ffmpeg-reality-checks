@@ -1,0 +1,86 @@
+{
+  "n": 59,
+  "slug": "ffmpeg-select-keyframes-duplicates",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does select give 99 files, not 4?",
+  "fullTitle": "FFmpeg select Keyframes: 99 Files, 4 Different, Fixed by -fps_mode vfr",
+  "kicker": "Episode 59",
+  "thumb": {
+    "number": "99 vs 4",
+    "label": "FILES VS KEYFRAMES",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "default",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You select the keyframes of a clip with select equals e q, pict type, I. You expect four files. You get ninety nine. Is select broken? A synthetic clip, a keyframe every second, every output file hashed, on f f m peg six point one point one.",
+      "captions": [
+        "select keyframes: 4 expected, 99 written.",
+        "Is select broken?"
+      ]
+    },
+    {
+      "id": "clip",
+      "chapter": "The clip, two readers",
+      "narration": "The clip: a hundred frames, each with its own gray level. Keyframes at zero, twenty five, fifty and seventy five. Reader one hashes every file written. Reader two is f f m peg's own frame md five and its dup counter. Control: no select gives a hundred files, a hundred different hashes.",
+      "captions": [
+        "100 frames, keyframes at 0, 25, 50, 75.",
+        "Control: no select, 100 files, 100 hashes."
+      ]
+    },
+    {
+      "id": "default",
+      "chapter": "The default output",
+      "narration": "Default output: ninety nine files. Four different hashes. Ninety five duplicates. The runs: twenty four, twenty five, twenty five, twenty five. Select did its job. Only keyframes come out. The duplicates come after it.",
+      "captions": [
+        "99 files, 4 different, 95 duplicates.",
+        "Select kept only keyframes."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "What fixes it",
+      "narration": "Add dash fps mode vfr: four files, no duplicates. Dash fps mode passthrough: four. Dash vsync zero: four. Dash vsync vfr: four. Explicit dash fps mode cfr: ninety nine again. Dash skip frame nokey on the input: ninety nine. Resetting timestamps with set p t s: four.",
+      "captions": [
+        "-fps_mode vfr: 4 files, 0 duplicates.",
+        "-fps_mode cfr and -skip_frame nokey: 99."
+      ]
+    },
+    {
+      "id": "why",
+      "chapter": "Why it repeats",
+      "narration": "Why: an image sequence is written at a constant frame rate, and select leaves holes in the timeline. Each hole is filled by repeating the previous frame. Keyframes at zero, ten, forty, forty one: fifty files, runs of nine, thirty, two, nine. The output stops after the last repeat, not at the end of the clip.",
+      "captions": [
+        "Holes in the timeline are filled by repeats.",
+        "Keyframes 0, 10, 40, 41: 50 files."
+      ]
+    },
+    {
+      "id": "mp4",
+      "chapter": "Same in a video",
+      "narration": "Same story in a video. M P four, default: ninety nine frames, three point nine six seconds. With dash fps mode vfr: four frames, three point zero four seconds. The rule: select, then dash fps mode vfr.",
+      "captions": [
+        "mp4 default: 99 frames, 3.96 s.",
+        "-fps_mode vfr: 4 frames, 3.04 s."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Select keyframes, add dash fps mode vfr, count the files. Not tested: other muxers, variable frame rate input, real footage, and builds other than six point one point one.",
+      "captions": [
+        "Select keyframes, add -fps_mode vfr.",
+        "Not tested: other builds, real footage."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "n": 62,
+  "slug": "ffmpeg-zoompan-jitter",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does zoompan shake on a slow zoom?",
+  "fullTitle": "FFmpeg zoompan Jitter: 1.2 px Wobble, Scale 8x Leaves 0.18",
+  "kicker": "Episode 62",
+  "thumb": {
+    "number": "1.2 px",
+    "label": "ZOOMPAN SHAKES",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "ask",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "A slow zoom with zoom pan should be smooth, and the center of the picture should not move at all. It shakes. How much, and why? Fifteen runs on a synthetic grid card, two readers, f f m peg six point one point one.",
+      "captions": [
+        "A centered zoom should not shake it.",
+        "15 runs, 2 readers, ffmpeg 6.1.1."
+      ],
+      "sim": null
+    },
+    {
+      "id": "setup",
+      "chapter": "The card, two readers",
+      "narration": "A nine sixty by five forty card: a fine eight pixel grid and six white markers. The common recipe: zoom plus zero point zero zero one five, capped at one point five, one hundred twenty frames. Reader one finds each marker's center. Reader two finds its edges. Controls: a known sub pixel pan, a known one pixel jitter, a zoom that does not zoom.",
+      "captions": [
+        "960x540 card, 8 px grid, 6 markers.",
+        "z=min(zoom+0.0015,1.5), 120 frames."
+      ]
+    },
+    {
+      "id": "wobble",
+      "chapter": "The wobble",
+      "narration": "As is, in y u v four two zero, the markers miss the ideal step by one point two three pixels rms. Three hundred forty six of three hundred fifty seven steps move by more than half a pixel. They stray up to three and a half pixels from a perfect zoom. A faster zoom is worse: one point six at zero point zero zero four.",
+      "captions": [
+        "Step error 1.23 px rms as is.",
+        "346 of 357 steps over half a pixel."
+      ]
+    },
+    {
+      "id": "lens",
+      "chapter": "The integer lens",
+      "narration": "The lens is a whole number rectangle. The crop origin is rounded down, in four two zero to an even number, and so is the width. The ideal origin glides: zero point seven two, one point four four, two point one five. The real one waits, then jumps: zero, zero, two. That model matches every measured track within zero point two pixels.",
+      "captions": [
+        "The crop origin is rounded down to even.",
+        "The model matches within 0.2 px."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "What helps",
+      "narration": "Fixes, at the recipe speed. Y u v four four four first: zero point six nine. Scale two times first: zero point seven two, no better. Four times: zero point three two. Eight times: zero point one eight, no step over half a pixel, but never zero, and sixty four times the pixels.",
+      "captions": [
+        "444: 0.69. 2x: 0.72. 4x: 0.32. 8x: 0.18.",
+        "8x: 64 times the pixels, never zero."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "So convert to four four four at least, and scale four to eight times for a smooth result. Expect a floor, not zero. Not tested: other builds, real photos, pans, other scalers, the encoder.",
+      "captions": [
+        "Use 444, or scale 4x to 8x first.",
+        "Not tested: other builds, real photos."
+      ],
+      "sim": null
+    }
+  ]
+}
