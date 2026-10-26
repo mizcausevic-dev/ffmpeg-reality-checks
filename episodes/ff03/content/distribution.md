@@ -24,12 +24,11 @@ The FFmpeg documentation says faststart runs a second pass, can take a while, an
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 Two files
-00:32 The plain file
-00:54 With faststart
-01:10 A client reads it
-01:37 What it costs
-01:57 Check the order
+00:14 Two files
+00:30 The plain file
+00:50 With faststart
+01:06 A client reads it
+01:31 What it costs
 <!-- chapters:end -->
 
 Limits: ffprobe was the client; no browser or other player was tested. Two ffmpeg builds (6.1.1 and 8.1.2) gave the same box order. Synthetic clip, not fragmented MP4.

@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:08,630
+An MP4 that seems to wait before it plays.
+
+2
+00:00:08,630 --> 00:00:13,990
+Read the order of the boxes.
+
+3
+00:00:13,990 --> 00:00:23,020
+One synthetic clip, encoded twice.
+
+4
+00:00:23,020 --> 00:00:30,240
+250 frames both times.
+
+5
+00:00:30,240 --> 00:00:38,620
+Plain: ftyp, free, mdat, moov.
+
+6
+00:00:38,620 --> 00:00:50,360
+The index (moov) is the last box.
+
+7
+00:00:50,360 --> 00:00:56,950
++faststart: ftyp, moov, free, mdat.
+
+8
+00:00:56,950 --> 00:01:06,180
+Same size, same frames. The index moved.
+
+9
+00:01:06,180 --> 00:01:20,210
+No seeking: whole file vs under 50 KB.
+
+10
+00:01:20,210 --> 00:01:30,730
+Range requests: 3 requests vs 1.
+
+11
+00:01:30,730 --> 00:01:42,180
+FFmpeg docs: a second pass, can take a while.
+
+12
+00:01:42,180 --> 00:01:51,090
+Tested with ffprobe. Not tested: a browser.
+
+13
+00:01:51,090 --> 00:01:54,920
+Check the box order before you upload.
+
+14
+00:01:54,920 --> 00:01:58,760
+Not tested: browsers, other players, fragmented MP4.
