@@ -1,0 +1,78 @@
+{
+  "n": 2,
+  "slug": "pix-fmt-yuv444p",
+  "title": "Why does my MP4 not play everywhere?",
+  "fullTitle": "FFmpeg Silently Made Your MP4 4:4:4. Players May Refuse It.",
+  "kicker": "Episode 02",
+  "hero": {
+    "scene": "default",
+    "t": 4.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The command",
+      "sim": null,
+      "narration": "You turned a folder of PNG frames into an MP4 with the simplest command. On some players, a file like that will not play. So what did FFmpeg put inside it? We will not guess. We will ask ffprobe.",
+      "captions": [
+        "The simplest command, PNG frames to MP4.",
+        "What did FFmpeg put in the file?"
+      ]
+    },
+    {
+      "id": "fixture",
+      "chapter": "The test frames",
+      "narration": "Here is a synthetic source: fifty PNG frames. PNG is RGB, so every pixel stores its own red, green and blue. We encode them with libx264 at constant quality eighteen, and nothing else. No pixel format flag.",
+      "captions": [
+        "50 synthetic PNG frames. RGB.",
+        "libx264, quality 18, no pixel format flag."
+      ]
+    },
+    {
+      "id": "default",
+      "chapter": "What ffprobe says",
+      "narration": "ffprobe says the profile is High four four four Predictive, and the pixel format is Y U V four four four P. FFmpeg kept full color for every pixel, because the input had it. Nobody asked for that. The default follows the input.",
+      "captions": [
+        "Profile: High 4:4:4 Predictive.",
+        "Pixel format: yuv444p."
+      ]
+    },
+    {
+      "id": "why",
+      "chapter": "4:4:4 versus 4:2:0",
+      "narration": "Video usually keeps brightness for every pixel, but color for fewer of them. Four two zero keeps one color sample for each two by two block. Four four four keeps one for every pixel. The FFmpeg wiki says some players only support four two zero for H.264. We did not test any player. The profile in the file tells you what a player must support.",
+      "captions": [
+        "4:2:0 shares color between neighbours.",
+        "4:4:4 keeps color for every pixel."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "The fix",
+      "narration": "Add dash pix underscore fmt, Y U V four two zero P. Same frames, same quality setting. Now ffprobe says High profile, pixel format Y U V four two zero P. As a control, a source that is already four two zero comes out four two zero with no flag. So the surprise belongs to RGB input.",
+      "captions": [
+        "-pix_fmt yuv420p: profile High.",
+        "A yuv420p source needs no flag."
+      ]
+    },
+    {
+      "id": "cost",
+      "chapter": "What it costs",
+      "narration": "There is a price. Measured against the original PNG frames, the four four four file scores thirty seven point oh four decibels. The four two zero file scores thirty five point four. Color detail is shared between neighbouring pixels. How visible that is depends on your picture.",
+      "captions": [
+        "PSNR vs the PNG frames: 37.04 dB and 35.40 dB.",
+        "How visible it is depends on the picture."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "Check before you send",
+      "sim": null,
+      "narration": "One missing flag. A different profile. Check with ffprobe before you send the file. Not tested here: any specific player.",
+      "captions": [
+        "One missing flag. A different profile.",
+        "Not tested: any specific player."
+      ]
+    }
+  ]
+}
