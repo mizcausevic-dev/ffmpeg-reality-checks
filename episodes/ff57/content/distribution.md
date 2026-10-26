@@ -1,6 +1,6 @@
 # FF57 distribution kit: FFmpeg xfade: Offset 4 Makes 9 s, Offset 3 Cuts 1 s of Clip A (8 s)
 
-All numbers below come from the synthetic fixture in `episodes/ff57/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff57/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; on 8.1.2 only the checks that do not depend on the build were run.
 
 ## YouTube
 
@@ -27,7 +27,7 @@ Offset 5, equal to the length of clip A, is the other failure: 126 frames (5.04 
 
 The rule: offset = the first clip's length minus the fade (here 5 - 1 = 4).
 
-The 13 tests pass on ffmpeg 6.1.1; 8.1.2 pending.
+The 13 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-dependent claims (exact counts, bytes, error text) are not asserted, so the film's numbers are 6.1.1 numbers.
 
 Chapters
 <!-- chapters:start -->
@@ -40,7 +40,7 @@ Chapters
 01:42 What to check
 <!-- chapters:end -->
 
-Limits: two synthetic flat-card clips, lossless x264 in mkv, one transition (fade) of one second, 25 fps, ffmpeg 6.1.1. Not tested: other xfade transitions, audio (acrossfade), clips of different lengths, frame rates or sizes, real footage, other containers and codecs, builds other than 6.1.1 (8.1.2 pending). The offset 5 result (one frame of clip B) is the build specific part.
+Limits: two synthetic flat-card clips, lossless x264 in mkv, one transition (fade) of one second, 25 fps, ffmpeg 6.1.1. Not tested: other xfade transitions, audio (acrossfade), clips of different lengths, frame rates or sizes, real footage, other containers and codecs, builds other than 6.1.1. The offset 5 result (one frame of clip B) is the build specific part.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

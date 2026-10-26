@@ -1,6 +1,6 @@
 # FF48 distribution kit: FFmpeg thumbnail Picks Frame 54 of 100, Not the Most Detailed Frame 80
 
-All numbers below come from the synthetic fixture in `episodes/ff48/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (8.1.2 pending).
+All numbers below come from the synthetic fixture in `episodes/ff48/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
 
 ## YouTube
 
@@ -23,7 +23,7 @@ Controls: a ramp of 99 frames (a white bar one pixel wider each frame) has the a
 
 Results: thumbnail with no options is thumbnail=n=100, and it picks frame 54, the last frame of the title card: mean luma 39, luma entropy 0.44 bits. The most detailed frame is 80: mean luma 114, entropy 4.55 bits, ten times more. Frame 54 ranks 46 of 100 by entropy: every scene frame beats it. It picks one frame per batch of n: n=50 gives frames 24 (title card) and 93 (scene), n=25 gives 12, 37, 67, 86, n=10 gives ten frames, n=30 gives 14, 54, 74, 96 (the last batch is a partial 10), and a 60 frame clip with the default n still gets one frame, at the end. Making the batch the scene (trim=start_frame=55,thumbnail=n=45) picks frame 74: mean luma 114, entropy 4.45 bits (98 percent of the best), rank 32 of 100. The algorithm in Node, using colour histograms only, predicted the pick in all 10 cases.
 
-The 13 tests pass on ffmpeg 6.1.1 (8.1.2 pending).
+The 13 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -36,7 +36,7 @@ Chapters
 01:34 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic clip, 160x120, lossless, rgb24 histograms, ffmpeg 6.1.1. "Best" here is the frame with the highest luma entropy, one measure among many. Not tested: real footage and real scene changes, other pixel formats, other resolutions, hardware thumbnail filters, players, ffmpeg builds other than 6.1.1 (8.1.2 pending).
+Limits: one synthetic clip, 160x120, lossless, rgb24 histograms, ffmpeg 6.1.1. "Best" here is the frame with the highest luma entropy, one measure among many. Not tested: real footage and real scene changes, other pixel formats, other resolutions, hardware thumbnail filters, players, ffmpeg builds other than 6.1.1.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

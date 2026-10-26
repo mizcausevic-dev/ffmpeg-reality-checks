@@ -1,6 +1,6 @@
 # FF53 distribution kit: FFmpeg x265 vs x264 at Same CRF: 40% Fewer Bytes at 18, 3% More at 23
 
-All numbers below come from the synthetic fixture in `episodes/ff53/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff53/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; on 8.1.2 only the checks that do not depend on the build were run.
 
 ## YouTube
 
@@ -25,7 +25,7 @@ Results: at CRF 18, x265 is 494944 bytes against 819510 for x264 (39.6% smaller)
 
 Defaults: with no -crf, libx264 writes exactly the CRF 23 file and libx265 exactly the CRF 28 file (same hashes). So out of the box x265 is 49.2% smaller and 1.40 dB lower in PSNR Y (35.41 against 36.81).
 
-Measured on ffmpeg 6.1.1; 8.1.2 pending (libx264 core and libx265 version may differ in that build, so the byte counts may too). The 13 tests pass on ffmpeg 6.1.1.
+Measured on ffmpeg 6.1.1. The 13 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but the exact byte counts, ratios and PSNR values are asserted on 6.1.1 only (the x264 and x265 versions differ in the 8.1.2 build).
 
 Chapters
 <!-- chapters:start -->
@@ -52,4 +52,4 @@ ffmpeg, ffmpeg tutorial, x264, x265, hevc, h264, crf, ffmpeg crf, libx265, libx2
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic clip, ffmpeg 6.1.1 (8.1.2 pending). Same CRF, different result: x265 is 40% smaller but 0.59 dB lower at CRF 18, 3% bigger and 0.33 dB higher at 23. No -crf: x265 default is 49% smaller, 1.4 dB lower. github.com/mizcausevic-dev/ffmpeg-reality-checks What do you encode with?
+Synthetic clip, ffmpeg 6.1.1. Same CRF, different result: x265 is 40% smaller but 0.59 dB lower at CRF 18, 3% bigger and 0.33 dB higher at 23. No -crf: x265 default is 49% smaller, 1.4 dB lower. github.com/mizcausevic-dev/ffmpeg-reality-checks What do you encode with?

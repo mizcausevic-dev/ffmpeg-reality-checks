@@ -1,6 +1,6 @@
 # FF49 distribution kit: FFmpeg libmp3lame Quality 2: 32 to 182 kbit/s, Depending on the Signal
 
-All numbers below come from the synthetic fixture in `episodes/ff49/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (8.1.2 pending).
+All numbers below come from the synthetic fixture in `episodes/ff49/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
 
 ## YouTube
 
@@ -25,7 +25,7 @@ At -q:a 2 the same encoder and the same ten seconds give 32 kbit/s for silence, 
 
 Inside one file the frames differ too: at -q:a 2 the noise uses frames of 160 to 320 kbit/s, the sine 48 to 320. The 5 s silence plus 5 s noise file averages 107.4 kbit/s at quality 2, about the mean of its halves (32.7 and 182.5 read separately), and none of its 384 frames is within 25 kbit/s of that average.
 
-The 12 tests pass on ffmpeg 6.1.1 (8.1.2 pending).
+The 12 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -38,7 +38,7 @@ Chapters
 01:39 What to check
 <!-- chapters:end -->
 
-Limits: synthetic stereo signals at 44100 Hz, ten seconds each, libmp3lame in ffmpeg 6.1.1. Not tested: real music, mono and other sample rates, joint stereo options and -compression_level, other mp3 encoders, players, ffmpeg builds other than 6.1.1 (8.1.2 pending).
+Limits: synthetic stereo signals at 44100 Hz, ten seconds each, libmp3lame in ffmpeg 6.1.1. Not tested: real music, mono and other sample rates, joint stereo options and -compression_level, other mp3 encoders, players, ffmpeg builds other than 6.1.1.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

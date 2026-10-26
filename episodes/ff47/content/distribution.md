@@ -1,6 +1,6 @@
 # FF47 distribution kit: FFmpeg silenceremove Cuts 1 of 3 Silences: Only the Leading One
 
-All numbers below come from the synthetic fixture in `episodes/ff47/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (8.1.2 pending).
+All numbers below come from the synthetic fixture in `episodes/ff47/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
 
 ## YouTube
 
@@ -23,7 +23,7 @@ Controls with known answers: atrim=start=0.5 removes exactly 24000 samples (1680
 
 Results: silenceremove with no options does nothing: 192000 samples in and out, byte for byte the source, 3 of 3 silences still there. start_periods=1 with a -50dB threshold removes 24003 samples, the leading silence only: the 48001 and 24000 sample silences are untouched, the rest is the source tail byte for byte, 1 of 3 cut. stop_periods=1 (stop_duration=0.3) cuts at the first silence after the first tone and drops everything after it: 87357 samples left, 47999 of 95998 tone samples, the second tone is gone. stop_periods=-1 alone shortens the middle and end silences but leaves the leading one. start_periods=1 with stop_periods=-1 and stop_duration=0.3 keeps both tones and removes the leading silence, but 126708 samples are left: each of the two gaps keeps 15357 samples, which is stop_duration plus about 20 ms (one detection window). stop_duration=0.1 keeps 5757 per gap, 0.02 leaves 99828 samples in all. No setting reached the hand cut's 96000.
 
-The 13 tests pass on ffmpeg 6.1.1 (8.1.2 pending).
+The 13 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -36,7 +36,7 @@ Chapters
 01:31 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic clip with digital silence (exact zeros), 48000 Hz mono 16 bit, ffmpeg 6.1.1. Not tested: noisy silence and real recordings, the detection options (rms or peak, window), start_silence and stop_silence, other thresholds, multichannel, players, ffmpeg builds other than 6.1.1 (8.1.2 pending).
+Limits: one synthetic clip with digital silence (exact zeros), 48000 Hz mono 16 bit, ffmpeg 6.1.1. Not tested: noisy silence and real recordings, the detection options (rms or peak, window), start_silence and stop_silence, other thresholds, multichannel, players, ffmpeg builds other than 6.1.1.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

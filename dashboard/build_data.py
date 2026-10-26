@@ -34,9 +34,13 @@ differs = {
     'ff33': '-stream_loop with a short audio track: 355 frames on 6.1.1, 359 on 8.1.2.',
     'ff44': 'Matrix tag after scale=out_color_matrix=bt709: bt2020nc kept on 6.1.1, bt709 on 8.1.2 (pixels identical).',
     'ff45': 'Plain .mov trim: 50 frames with 25 repeats on 6.1.1, 25 frames with a 1 s gap on 8.1.2.',
+    'ff46': 'mp4 audio -1 s: the edit list is the same, but the decoder returns 138752 samples on 8.1.2, so the decoded reader says -1.024 s (6.1.1: -1.000 s).',
+    'ff49': 'Printed bit_rate sits up to 1.9 kbit/s above the packet average on 8.1.2 (under 1 on 6.1.1).',
 }
 # Films measured on 6.1.1 only (the first 25 films were not re-run on 8.1.2).
 BOTH_FROM = 26
+# Films whose build-dependent claims are asserted on 6.1.1 only; 8.1.2 ran the build-independent checks.
+PARTIAL = {'ff51','ff52','ff53','ff54','ff55','ff56','ff57'}
 
 films = []
 for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
@@ -64,7 +68,7 @@ for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
         'words': words,
         'tests': t.get('tests'),
         'tests_failed': t.get('fail'),
-        'builds': '6.1.1 and 8.1.2' if n >= BOTH_FROM else '6.1.1',
+        'builds': '6.1.1 (8.1.2 partly)' if code in PARTIAL else ('6.1.1 and 8.1.2' if n >= BOTH_FROM else '6.1.1'),
         'build_difference': 'yes' if code in differs else 'no',
         'build_note': differs.get(code, ''),
         'status': 'public' if st and st['privacy'] == 'public' else ('private' if st else 'in production'),

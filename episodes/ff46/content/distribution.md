@@ -1,6 +1,6 @@
 # FF46 distribution kit: FFmpeg itsoffset Moves Audio 1.000 s: MP4 Keeps It in an Edit List
 
-All numbers below come from the synthetic fixture in `episodes/ff46/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (8.1.2 pending).
+All numbers below come from the synthetic fixture in `episodes/ff46/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
 
 ## YouTube
 
@@ -23,7 +23,7 @@ Controls with known answers: with no offset, picture and audio start at 0.000 s 
 
 Results: -itsoffset 1 on the audio moves it by exactly 1.000 s in both containers: audio start 1.000 s, tone 2.500 s, picture 0.000 s, all 192000 samples equal to the source. In the mp4 that second is an empty edit of 1000 ms in the audio edit list; in the mkv it is the first audio block at 1.000 s. With -ignore_editlist 1 the mp4 audio starts at 0.000 s again, tone at 1.500 s, same hash as the file with no offset. -itsoffset -1 on the audio is -1.000 s against the picture in both, but built differently: the mp4 keeps the picture at 0.000 s and its edit list skips the first 48000 samples (144000 decode, equal to the source tail, tone at 0.500 s); the mkv keeps all 192000 samples and starts the picture at 1.000 s. -itsoffset 1 on the video input gives the same -1.000 s the other way: picture 1.000 s, audio 0.000 s. In all 10 files the 100 frames are the source frames and no audio sample was changed by copy.
 
-The 12 tests pass on ffmpeg 6.1.1 (8.1.2 pending).
+The 12 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->

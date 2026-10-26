@@ -1,6 +1,6 @@
 # FF56 distribution kit: FFmpeg -map 0 Into MP4: 4 of 10 Stream Types Fail, 6 Copy
 
-All numbers below come from the synthetic fixture in `episodes/ff56/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff56/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; on 8.1.2 only the checks that do not depend on the build were run.
 
 ## YouTube
 
@@ -29,7 +29,7 @@ Both together work: -map 0 -map -0:t -c copy -c:s mov_text gives 7 streams (vide
 
 Without -c copy: subrip fails differently ("Automatic encoder selection failed", no output file), ttf fails the same way, and aac re-encodes, so its video frame hashes differ from the source.
 
-The 13 tests pass on ffmpeg 6.1.1; 8.1.2 pending.
+The 13 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-dependent claims (exact counts, bytes, error text) are not asserted, so the film's numbers are 6.1.1 numbers.
 
 Chapters
 <!-- chapters:start -->
@@ -42,7 +42,7 @@ Chapters
 01:43 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic 2 second clip, h264 in mkv, one extra stream per source, stream copy into MP4, ffmpeg 6.1.1. Not tested: other containers (mov, webm, mkv, ts), data and timecode streams, bitmap subtitles (dvd, pgs), real fonts, real files, multiple video streams, re-encoding beyond those three runs without -c copy, builds other than 6.1.1 (8.1.2 pending).
+Limits: one synthetic 2 second clip, h264 in mkv, one extra stream per source, stream copy into MP4, ffmpeg 6.1.1. Not tested: other containers (mov, webm, mkv, ts), data and timecode streams, bitmap subtitles (dvd, pgs), real fonts, real files, multiple video streams, re-encoding beyond those three runs without -c copy, builds other than 6.1.1.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

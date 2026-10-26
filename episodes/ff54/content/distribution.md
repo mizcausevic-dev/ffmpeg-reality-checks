@@ -1,6 +1,6 @@
 # FF54 distribution kit: FFmpeg fade: -ss Before -i Fades 25 Frames, After -i Fades 0
 
-All numbers below come from the synthetic fixture in `episodes/ff54/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff54/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; on 8.1.2 only the checks that do not depend on the build were run.
 
 ## YouTube
 
@@ -25,7 +25,7 @@ The same filter with -ss after -i fades 0 frames: 75 frames at luma 200 with the
 
 Fade out follows the same rule. fade=t=out:st=4:d=1 after -i has exactly the same 75 frame hashes as fade=t=out:st=2:d=1 before -i: full for 51 frames, then a 24 frame ramp down to luma 23 at the end. But fade=t=out:st=2:d=1 after -i fades within the first second and the clip stays black for 50 of its 75 frames, 2 of its 3 seconds.
 
-The 13 tests pass on ffmpeg 6.1.1; 8.1.2 pending.
+The 13 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-dependent claims (exact counts, bytes, error text) are not asserted, so the film's numbers are 6.1.1 numbers.
 
 Chapters
 <!-- chapters:start -->
@@ -38,7 +38,7 @@ Chapters
 01:40 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic flat-luma clip, lossless x264 in mkv, fade in and fade out of one second, 25 fps, ffmpeg 6.1.1. Not tested: audio fades (afade), stream copy, keyframe seeking (-noaccurate_seek), real footage, other containers and codecs, other fade options (frame based start, alpha, color), builds other than 6.1.1 (8.1.2 pending).
+Limits: one synthetic flat-luma clip, lossless x264 in mkv, fade in and fade out of one second, 25 fps, ffmpeg 6.1.1. Not tested: audio fades (afade), stream copy, keyframe seeking (-noaccurate_seek), real footage, other containers and codecs, other fade options (frame based start, alpha, color), builds other than 6.1.1.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

@@ -1,6 +1,6 @@
 # FF50 distribution kit: FFmpeg aresample: 20 kHz Alias at -106 dB, but 12.1 kHz Alias at -12 dB
 
-All numbers below come from the synthetic fixture in `episodes/ff50/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff50/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2.
 
 ## YouTube
 
@@ -25,7 +25,7 @@ Results with the default aresample=24000: the 20000 Hz tone leaves an alias at 4
 
 The filter does the work: aresample=24000:filter_size=N on the 20000 Hz tone gives an alias of -7.0 dB (N=1), -15.5 (2), -30.7 (4), -88.3 (8), -91.2 (16) and -106.1 dB (32, the default). -ar 24000, aresample=24000 and aformat=sample_rates=24000 give the same samples (same hash).
 
-Measured on ffmpeg 6.1.1; 8.1.2 pending. The 14 tests pass on ffmpeg 6.1.1.
+Measured on ffmpeg 6.1.1. The 14 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -52,4 +52,4 @@ ffmpeg, ffmpeg tutorial, ffmpeg aresample, resample audio, downsampling, aliasin
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic tones, 48000 to 24000 Hz, aresample defaults, ffmpeg 6.1.1 (8.1.2 pending). 20 kHz tone: alias at 4 kHz is -106 dB. 12.1 kHz tone: alias at 11.9 kHz is -12 dB. No filter: 0 dB. github.com/mizcausevic-dev/ffmpeg-reality-checks Which build are you on?
+Synthetic tones, 48000 to 24000 Hz, aresample defaults, ffmpeg 6.1.1. 20 kHz tone: alias at 4 kHz is -106 dB. 12.1 kHz tone: alias at 11.9 kHz is -12 dB. No filter: 0 dB. github.com/mizcausevic-dev/ffmpeg-reality-checks Which build are you on?

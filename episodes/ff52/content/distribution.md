@@ -1,6 +1,6 @@
 # FF52 distribution kit: FFmpeg GIF -loop: -1 Drops 19 Bytes, 0 Is the Default, 3 Is a Count of 3
 
-All numbers below come from the synthetic fixture in `episodes/ff52/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff52/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; on 8.1.2 only the checks that do not depend on the build were run.
 
 ## YouTube
 
@@ -25,7 +25,7 @@ Results: -loop 0 writes the NETSCAPE2.0 block with count 0, and leaving -loop ou
 
 -loop before -i is a different option: on a still png it is the image demuxer's loop, a boolean. -loop 1 there repeats the picture for the 1 s clip and the gif still gets count 0; -loop 3 is not a boolean and ffmpeg refuses.
 
-Measured on ffmpeg 6.1.1; 8.1.2 pending. The 12 tests pass on ffmpeg 6.1.1.
+Measured on ffmpeg 6.1.1. The 12 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-dependent claims (exact counts, bytes, error text) are not asserted, so the film's numbers are 6.1.1 numbers.
 
 Chapters
 <!-- chapters:start -->
@@ -52,4 +52,4 @@ ffmpeg, ffmpeg tutorial, ffmpeg gif, gif loop, ffmpeg loop, netscape extension, 
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic gif, ffmpeg 6.1.1 (8.1.2 pending). -loop -1: no loop block, 19 bytes smaller. -loop 0 = default: count 0. -loop 3: count 3, ffmpeg plays it 3 times. -loop before -i is another option. Browsers not tested. github.com/mizcausevic-dev/ffmpeg-reality-checks Which build are you on?
+Synthetic gif, ffmpeg 6.1.1. -loop -1: no loop block, 19 bytes smaller. -loop 0 = default: count 0. -loop 3: count 3, ffmpeg plays it 3 times. -loop before -i is another option. Browsers not tested. github.com/mizcausevic-dev/ffmpeg-reality-checks Which build are you on?

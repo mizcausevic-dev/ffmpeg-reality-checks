@@ -1,6 +1,6 @@
 # FF55 distribution kit: FFmpeg 29.97 fps, -video_track_timescale 1000: Frames Are 33 or 34 ms
 
-All numbers below come from the synthetic fixture in `episodes/ff55/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff55/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; on 8.1.2 only the checks that do not depend on the build were run.
 
 ## YouTube
 
@@ -25,7 +25,7 @@ Timescale 1000: frames are 33 or 34 ms long, never 33.37. 190 frames are 33 ms a
 
 29.97 typed as a decimal is not 30000/1001. A lavfi source made with r=29.97 is read by ffprobe as 2997/100, gets timescale 11988 by default with 400 ticks per frame, lasts 10.01001 s, and is 0.010 ms behind the 30000/1001 grid at its last frame.
 
-The 14 tests pass on ffmpeg 6.1.1; 8.1.2 pending.
+The 14 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-dependent claims (exact counts, bytes, error text) are not asserted, so the film's numbers are 6.1.1 numbers.
 
 Chapters
 <!-- chapters:start -->
@@ -38,7 +38,7 @@ Chapters
 01:44 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic gray clip, lossless x264 with no B-frames, mp4 only, 29.97 fps and a 25 fps control, six timescales, ffmpeg 6.1.1. Not tested: other containers (mov, mkv), other frame rates, B-frames and composition offsets, edit lists, real footage, other muxer options, builds other than 6.1.1 (8.1.2 pending).
+Limits: one synthetic gray clip, lossless x264 with no B-frames, mp4 only, 29.97 fps and a 25 fps control, six timescales, ffmpeg 6.1.1. Not tested: other containers (mov, mkv), other frame rates, B-frames and composition offsets, edit lists, real footage, other muxer options, builds other than 6.1.1.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

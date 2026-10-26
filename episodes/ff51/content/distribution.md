@@ -1,6 +1,6 @@
 # FF51 distribution kit: FFmpeg -c copy of mov_text to MKV Writes 0 of 3 Streams; -c:s srt Works
 
-All numbers below come from the synthetic fixture in `episodes/ff51/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff51/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; on 8.1.2 only the checks that do not depend on the build were run.
 
 ## YouTube
 
@@ -25,7 +25,7 @@ Controls: mov_text copied into .mov stays mov_text, and subrip remuxed into .mkv
 
 The other direction: subrip from the mkv into .mp4 with -c copy fails and writes 0 bytes; -c copy -c:s mov_text works, with 3 cues and the same times. mov_text stores 6 packets for 3 cues (3 are empty gap packets), subrip and ass in matroska store 3.
 
-Measured on ffmpeg 6.1.1; 8.1.2 pending. The 13 tests pass on ffmpeg 6.1.1.
+Measured on ffmpeg 6.1.1. The 13 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-dependent claims (exact counts, bytes, error text) are not asserted, so the film's numbers are 6.1.1 numbers.
 
 Chapters
 <!-- chapters:start -->
@@ -52,4 +52,4 @@ ffmpeg, ffmpeg tutorial, mov_text, ffmpeg subtitles, mkv subtitles, mp4 subtitle
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic clip, ffmpeg 6.1.1 (8.1.2 pending). mp4 with mov_text, -c copy into .mkv: 0 of 3 streams, 293 byte stub. -c:s srt or ass: 3 streams, 3 cues, same times. No options: ass + vorbis. github.com/mizcausevic-dev/ffmpeg-reality-checks Which build are you on?
+Synthetic clip, ffmpeg 6.1.1. mp4 with mov_text, -c copy into .mkv: 0 of 3 streams, 293 byte stub. -c:s srt or ass: 3 streams, 3 cues, same times. No options: ass + vorbis. github.com/mizcausevic-dev/ffmpeg-reality-checks Which build are you on?
