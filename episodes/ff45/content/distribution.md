@@ -1,4 +1,4 @@
-# FF45 distribution kit: FFmpeg trim Without setpts: 25 Frozen Frames in .mov, a 1 s Gap in .mkv
+# FF45 distribution kit: FFmpeg trim Without setpts: 50 Frames on 6.1.1, 25 on 8.1.2 (.mov)
 
 All numbers below come from the synthetic fixture in `episodes/ff45/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
 
@@ -6,14 +6,14 @@ All numbers below come from the synthetic fixture in `episodes/ff45/fixture/` (e
 
 ### Title options (≤ 60 chars), ranked
 
-1. `FFmpeg trim Frozen Start: 25 Repeated Frames in .mov` : the measured finding.
+1. `FFmpeg trim: 50 Frames on 6.1.1, 25 on 8.1.2 (.mov)` : the measured finding.
 2. `Why Is My Trimmed Clip Frozen at the Start? FFmpeg` : the question people ask.
 3. `FFmpeg setpts on Video Only: Audio Is 1.00 s Late` : the audio symptom.
 4. `FFmpeg trim, atrim and setpts, Measured Frame by Frame` : the filters compared.
 
 ### Description
 
-You cut a clip with the trim filter and the start is frozen, or the audio is a second off. Is trim broken? We cut the second second out of a four second synthetic clip, with and without setpts=PTS-STARTPTS and asetpts=PTS-STARTPTS, compare it with input -ss 1 -t 1, and measure the first frame time, the frame count, repeated frames and where the audio starts.
+You cut a clip with the trim filter and the start is frozen, or the audio is a second off. Is trim broken? We cut the second second out of a four second synthetic clip, with and without setpts=PTS-STARTPTS and asetpts=PTS-STARTPTS, on ffmpeg 6.1.1 and 8.1.2, compare it with input -ss 1 -t 1, and measure the first frame time, the frame count, repeated frames and where the audio starts.
 
 Clip (lavfi, lossless x264 with pcm audio, mkv, 96x72, 25 fps): 100 frames where frame N has luma 16 + 2 N, so a decoded frame names its own source index, and a 480 Hz tone whose amplitude is 0.05 + 0.2 t, so a run of samples names its own source time. The cut is source frames 25 to 49 and audio 1.0 s to 2.0 s. Every cut is written to .mov and to .mkv.
 
@@ -21,11 +21,11 @@ Readers: ffmpeg framemd5 read with -copyts (one hash and one timestamp per decod
 
 Control: -ss 1 -t 1 (before or after -i) gives 25 frames, source frames 25 to 49, first frame at 0.00 s, and 48000 samples (1.000 s) starting at source 1.0 s. Known positive: trim and atrim with setpts and asetpts give exactly the same 25 frame hashes and the same samples.
 
-trim and atrim alone, written to .mov: 50 frames instead of 25. 25 of them are repeats of source frame 25, one run of 26 equal frames, and the clip ends at 2.00 s instead of 1.00 s. The same command written to .mkv: 25 frames, 0 repeats, the same hashes as the control, but the first frame is at 1.00 s. Pixels cannot see that gap, only timestamps can. With -fps_mode cfr written out, both files give 50 frames with 25 repeats; with -fps_mode passthrough, both give 25 frames with the first at 1.00 s. So the default frame rate mode of the output decides whether the gap is filled with repeats or left as a gap.
+trim and atrim alone, written to .mov on ffmpeg 6.1.1: 50 frames instead of 25. 25 of them are repeats of source frame 25, one run of 26 equal frames, and the clip ends at 2.00 s instead of 1.00 s. The same command written to .mkv on 6.1.1, and to both .mov and .mkv on ffmpeg 8.1.2: 25 frames, 0 repeats, the same hashes as the control, but the first frame is at 1.00 s. Pixels cannot see that gap, only timestamps can. So the same command gives 50 frames or 25 depending on the build and the container. Written out, the mode removes the difference: -fps_mode cfr gives 50 frames with 25 repeats and -fps_mode passthrough gives 25 frames with the first at 1.00 s, in both containers on both builds.
 
-Audio keeps its source timestamps: with atrim alone it starts at 1.00 s in both files, with samples identical to the control. With neither stream reset, picture and sound stay in sync, one second late. With setpts on the video only, the audio is 1.00 s late; with asetpts on the audio only, it is 1.00 s early.
+Audio keeps its source timestamps: with atrim alone it starts at 1.00 s in both files, with samples identical to the control. With neither stream reset, picture and sound stay in sync, one second late. With setpts on the video only, the audio is 1.00 s late; with asetpts on the audio only, it is 1.00 s early. Same on both builds.
 
-The 12 tests pass on ffmpeg 6.1.1.
+The 13 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -37,7 +37,7 @@ Chapters
 01:53 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic lossless clip, x264 with pcm audio, .mov and .mkv outputs, ffmpeg 6.1.1. The default frame rate mode behavior is the part most likely to differ between builds. Not tested: players (whether a gap shows as black), other containers and codecs, variable frame rate or real footage, other trim options (duration, start_frame), other builds.
+Limits: one synthetic lossless clip, x264 with pcm audio, .mov and .mkv outputs, ffmpeg 6.1.1 and 8.1.2. The default frame rate mode is the part that differs between them (.mov only). Not tested: players (whether a gap shows as black), other containers and codecs, variable frame rate or real footage, other trim options (duration, start_frame), builds other than 6.1.1 and 8.1.2.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 
@@ -51,4 +51,4 @@ ffmpeg, ffmpeg tutorial, ffmpeg trim, setpts, asetpts, atrim, ffmpeg cut video, 
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic clip. trim without setpts: .mov gets 50 frames, 25 repeats (frozen start); .mkv gets 25 frames, first at 1.00 s. Reset only video: audio 1.00 s late; only audio: 1.00 s early. Reset both: equals -ss/-t. github.com/mizcausevic-dev/ffmpeg-reality-checks Which container do you cut to?
+Synthetic clip. trim without setpts, .mov: 50 frames with 25 repeats on ffmpeg 6.1.1, 25 frames with a 1.00 s gap on 8.1.2. .mkv: 25 frames, first at 1.00 s on both. Reset only video: audio 1.00 s late; only audio: 1.00 s early. Reset both: equals -ss/-t. github.com/mizcausevic-dev/ffmpeg-reality-checks Which build are you on?

@@ -4,11 +4,11 @@
   "palette": "lab",
   "series": "FFmpeg Reality Checks",
   "title": "Why is my trimmed clip frozen at the start?",
-  "fullTitle": "FFmpeg trim Without setpts: 25 Frozen Frames in .mov, a 1 s Gap in .mkv",
+  "fullTitle": "FFmpeg trim Without setpts: 50 Frames on 6.1.1, 25 on 8.1.2 (.mov)",
   "kicker": "Episode 45",
   "thumb": {
-    "number": "25 vs 0",
-    "label": "FROZEN FRAMES MOV VS MKV",
+    "number": "50 vs 25",
+    "label": "MOV FRAMES, 6.1.1 VS 8.1.2",
     "color": "red"
   },
   "endCard": {},
@@ -21,16 +21,16 @@
       "id": "ask",
       "chapter": "The question",
       "sim": null,
-      "narration": "You cut a clip with the trim filter, and the start is frozen, or the audio is a second off. Is trim broken? We cut one second out of a four second synthetic clip, with and without set p t s, and measure first frame time, frame count, repeats, and audio start.",
+      "narration": "You cut a clip with the trim filter, and the start is frozen, or the audio is a second off. Is trim broken? We cut one second out of a four second synthetic clip, with and without set p t s, on two f f m peg builds, and measure first frame time, frame count, repeats, and audio start.",
       "captions": [
         "Why is the trimmed start frozen?",
-        "We measure first frame time, frame count, repeats, audio start."
+        "We measure first frame time, frame count, repeats, audio start, on 6.1.1 and 8.1.2."
       ]
     },
     {
       "id": "source",
       "chapter": "A clip that names its frames",
-      "narration": "One hundred frames, and each frame's brightness names its own index. The tone's loudness names its own time. The cut is frames twenty five to forty nine. The control is dash s s one dash t one: twenty five frames, the first at zero, forty eight thousand samples. Trim with set p t s matches it exactly. Readers: frame md5, raw luma and samples in Node, f f probe.",
+      "narration": "One hundred frames, and each frame's brightness names its own index. The tone's loudness names its own time. The cut is frames twenty five to forty nine. The control is dash s s one dash t one: twenty five frames, the first at zero, forty eight thousand samples. Trim with set p t s matches it exactly, on both builds. Readers: frame md5, raw luma and samples in Node, f f probe.",
       "captions": [
         "Control: 25 frames, first at 0.00 s, 48000 samples.",
         "trim + setpts equals the control, frame for frame."
@@ -38,26 +38,35 @@
     },
     {
       "id": "freeze",
-      "chapter": "Without setpts, in a mov file",
-      "narration": "Now trim alone, written to a dot mov file. Fifty frames, not twenty five. Twenty five of them are repeats of frame twenty five: a frozen start. Frame md5 and raw luma agree, and the clip now ends at two seconds, not one.",
+      "chapter": "Without setpts, in a mov file, 6.1.1",
+      "narration": "Now trim alone, written to a dot mov file, on f f m peg six point one point one. Fifty frames, not twenty five. Twenty five of them are repeats of frame twenty five: a frozen start. Frame md5 and raw luma agree, and the clip now ends at two seconds, not one.",
       "captions": [
-        "mov: 50 frames, 25 repeats, ends at 2.00 s.",
+        "ffmpeg 6.1.1, mov: 50 frames, 25 repeats, ends at 2.00 s.",
         "Frame md5 and raw luma agree: 25 repeats."
       ]
     },
     {
       "id": "gap",
       "chapter": "Same command, an mkv file",
-      "narration": "The same command written to a dot m k v file gives twenty five frames, zero repeats, and the control's hashes. But the first frame sits at one second. Pixels cannot see that gap; only timestamps can. The cause is the default frame rate mode. Dash f p s underscore mode c f r fills the gap in both files. Passthrough leaves it in both.",
+      "narration": "The same command written to a dot m k v file gives twenty five frames, zero repeats, and the control's hashes, on both builds. But the first frame sits at one second. Pixels cannot see that gap; only timestamps can.",
       "captions": [
-        "mkv: 25 frames, 0 repeats, first frame at 1.00 s.",
-        "fps_mode cfr: 50 frames in both. passthrough: 25."
+        "mkv, both builds: 25 frames, 0 repeats, first frame at 1.00 s.",
+        "Pixels match the control. Only timestamps show the gap."
+      ]
+    },
+    {
+      "id": "builds",
+      "chapter": "Same command, two builds",
+      "narration": "Now the same mov command on f f m peg eight point one point two. Twenty five frames, no repeats, and the first frame at one second. The default changed between builds: six point one fills the gap, eight point one leaves it. Write dash f p s underscore mode yourself and it is the same on both. C f r gives fifty frames with twenty five repeats. Passthrough gives twenty five with the gap.",
+      "captions": [
+        "8.1.2, mov: 25 frames, first frame at 1.00 s.",
+        "-fps_mode cfr: 50 frames. passthrough: 25. Same on both builds."
       ]
     },
     {
       "id": "sync",
       "chapter": "Audio and the half fix",
-      "narration": "Audio keeps its source stamps too: it starts at one second in both files, samples identical to the control. So with no set p t s anywhere, picture and sound stay in sync, one second late. Stamp only the video, and the audio is one second late. Stamp only the audio, and it is one second early.",
+      "narration": "Audio keeps its source stamps too: it starts at one second in both files and on both builds, samples identical to the control. So with no set p t s anywhere, picture and sound stay in sync, one second late. Stamp only the video, and the audio is one second late. Stamp only the audio, and it is one second early.",
       "captions": [
         "Neither stamped: in sync, 1.00 s late.",
         "Video only: audio +1.00 s. Audio only: -1.00 s."
@@ -67,7 +76,7 @@
       "id": "close",
       "chapter": "What to check",
       "sim": null,
-      "narration": "Stamp both streams from zero, or cut with dash s s and dash t. Check the first frame time with f f probe, not by eye. Not tested: players, black frames, other containers, real footage, other builds.",
+      "narration": "Stamp both streams from zero, or cut with dash s s and dash t, and write the frame rate mode yourself. Check the first frame time with f f probe, not by eye. Not tested: players, black frames, other containers, real footage, other builds than these two.",
       "captions": [
         "Stamp both from zero, or use -ss and -t.",
         "Not tested: players, black frames, real footage, other builds."

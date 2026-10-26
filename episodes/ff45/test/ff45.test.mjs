@@ -83,12 +83,25 @@ t('pixels alone cannot see the gap: the .mkv trim without setpts has exactly the
   near(r.video.firstPtsProbe, 1, 0.001); near(r.video.firstPtsMd5, 1, 0.001); near(k.video.firstPtsProbe, 0, 0.001);
 });
 
-t('the surprise: the same trim command gives two symptoms by default. .mov: 50 frames, 25 repeats of frame 25, clip ends at 2.000 s; .mkv: 25 frames, no repeats, first frame at 1.000 s. The default equals the explicit -fps_mode cfr (mov) and passthrough (mkv) results (this one may differ on another build)', () => {
+t('the default frame rate mode is not the same on both builds. mkv, both builds: 25 frames, no repeats, first frame at 1.000 s. mov on 6.1.1: 50 frames, 25 repeats of frame 25, ends at 2.000 s; mov on 8.1.2: 25 frames, first frame at 1.000 s, same as mkv. Each default equals the explicit mode it behaves like', () => {
   const m = R('mov', 'raw'), k = R('mkv', 'raw');
-  assert.equal(m.video.framesMd5, 50); assert.equal(m.video.repeatsMd5, 25); assert.equal(m.video.repeatsRaw, 25); near(m.video.endTime, 2, 0.001); near(m.video.firstPtsProbe, 0, 0.001);
   assert.equal(k.video.framesMd5, 25); assert.equal(k.video.repeatsMd5, 0); near(k.video.firstPtsProbe, 1, 0.001); near(k.video.endTime, 2, 0.001);
-  seq(m.video.md5, R('mov', 'rawCfr').video.md5); seq(k.video.md5, R('mkv', 'rawPass').video.md5);
-  near(m.video.firstPtsProbe, R('mov', 'rawCfr').video.firstPtsProbe, 0.001); near(k.video.firstPtsProbe, R('mkv', 'rawPass').video.firstPtsProbe, 0.001);
+  seq(k.video.md5, R('mkv', 'rawPass').video.md5); near(k.video.firstPtsProbe, R('mkv', 'rawPass').video.firstPtsProbe, 0.001);
+  const build = buildOf(ev.ffmpeg);
+  if (build === 'v6') {
+    assert.equal(m.video.framesMd5, 50); assert.equal(m.video.repeatsMd5, 25); assert.equal(m.video.repeatsRaw, 25); near(m.video.endTime, 2, 0.001); near(m.video.firstPtsProbe, 0, 0.001);
+    seq(m.video.md5, R('mov', 'rawCfr').video.md5);
+  } else if (build === 'v8') {
+    assert.equal(m.video.framesMd5, 25); assert.equal(m.video.repeatsMd5, 0); near(m.video.firstPtsProbe, 1, 0.001); near(m.video.endTime, 2, 0.001);
+    seq(m.video.md5, R('mov', 'rawPass').video.md5);
+  }
+});
+
+t('writing the mode out removes the build difference: -fps_mode cfr gives 50 frames with 25 repeats and -fps_mode passthrough gives 25 frames starting at 1.000 s, in both containers, on whichever build ran', () => {
+  for (const c of CONT) {
+    assert.equal(R(c, 'rawCfr').video.framesMd5, 50, c); assert.equal(R(c, 'rawCfr').video.repeatsMd5, 25, c);
+    assert.equal(R(c, 'rawPass').video.framesMd5, 25, c); near(R(c, 'rawPass').video.firstPtsProbe, 1, 0.001, c);
+  }
 });
 
 t('audio: atrim without asetpts keeps the source timestamps, so the 48000 samples (1.000 s, identical to the control samples) start at 1.000 s in both containers; with asetpts they start at 0', () => {
@@ -108,12 +121,15 @@ t('out of sync needs a half fix: both stamped or both left alone is in sync (aud
   }
 });
 
-t('the half fixes keep the right pictures: vonly has exactly the control frame hashes; aonly has the control frames too, plus 25 repeats in .mov (the default fills the gap) and none in .mkv', () => {
+t('the half fixes keep the right pictures: vonly has exactly the control frame hashes; aonly keeps the video stamps of a plain trim, so it has the same frames as the plain trim of that container and build (25 repeats in .mov on 6.1.1, a 1.000 s gap everywhere else)', () => {
   for (const c of CONT) {
     seq(R(c, 'vonly').video.md5, R(c, 'ctl').video.md5); near(R(c, 'vonly').video.firstPtsProbe, 0, 0.001);
+    seq(R(c, 'aonly').video.md5, R(c, 'raw').video.md5); assert.equal(R(c, 'aonly').video.framesMd5, R(c, 'raw').video.framesMd5, c);
+    near(R(c, 'aonly').video.firstPtsProbe, R(c, 'raw').video.firstPtsProbe, 0.001, c);
   }
-  assert.equal(R('mov', 'aonly').video.framesMd5, 50); assert.equal(R('mov', 'aonly').video.repeatsMd5, 25);
   assert.equal(R('mkv', 'aonly').video.framesMd5, 25); assert.equal(R('mkv', 'aonly').video.repeatsMd5, 0); near(R('mkv', 'aonly').video.firstPtsProbe, 1, 0.001);
+  if (buildOf(ev.ffmpeg) === 'v6') { assert.equal(R('mov', 'aonly').video.framesMd5, 50); assert.equal(R('mov', 'aonly').video.repeatsMd5, 25); }
+  if (buildOf(ev.ffmpeg) === 'v8') { assert.equal(R('mov', 'aonly').video.framesMd5, 25); near(R('mov', 'aonly').video.firstPtsProbe, 1, 0.001); }
 });
 
 t('reader agreement on every one of the 16 outputs: frame count by framemd5, raw luma and ffprobe packets agree; first and last frame time by ffprobe and framemd5 with -copyts agree within 1 ms; audio packet span matches the sample count within 30 ms', () => {
