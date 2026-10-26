@@ -4,7 +4,7 @@ import {ep} from '../../kit/anim';
 import {Cmd, Duel, FrameStrip, Figure, Halo, Head, Mid, Row, Verdict} from '../../kit/Sym';
 import type {SceneProps} from '../../kit/Episode';
 
-/* Every number below is measured by episodes/ff43/fixture/experiment.mjs (see evidence.json from fixture/run.mjs). ffmpeg 6.1.1. */
+/* Every number below is measured by episodes/ff43/fixture/experiment.mjs (see evidence.json from fixture/run.mjs). ffmpeg 6.1.1 and 8.1.2. */
 
 const IN_RATES = ['8000', '11025', '12000', '16000', '22050', '24000', '32000', '44100', '48000', '96000'];
 const HEAD_RATES = ['8000', '12000', '12000', '16000', '24000', '24000', '24000', '48000', '48000', '48000'];

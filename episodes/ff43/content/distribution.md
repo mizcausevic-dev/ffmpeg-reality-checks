@@ -27,7 +27,7 @@ That costs bandwidth. White noise at 32000 Hz, encoded at 128k: the 13 to 15.5 k
 
 -ar on a 48000 Hz noise source keeps the stream at 48000 and 96000 samples but band-limits it: with -ar 8000, 12000, 16000 and 24000 the level above 1.25 times the encoder band edge is 86.6, 92.5, 97.1 and 100.4 dB under the level below 0.75 times it (the 5 to 20 kHz band is -65.5 dB at -ar 8000 against 21.1 dB with no -ar). -ar 22050, 32000, 44100 and 96000 are refused: non-zero exit, no output file, although the same 32000, 44100 and 96000 inputs encode without -ar.
 
-The sixteen tests pass on ffmpeg 6.1.1.
+The sixteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->

@@ -21,13 +21,13 @@ Readers: the decoded raw yuv420p planes, mean Y, Cb and Cr of each patch, read i
 
 -pix_fmt yuv420p only rescales the 10-bit PQ codes to 8 bit. The 100 nit patch lands at Y 127.3 where an SDR white is 235; the 10 nit patch at 81.8 (expected 100), the 50 nit patch at 112.5 (expected 180). Mean error 64.5 codes over the 10, 50 and 100 nit patches. On a 100 nit gamma 2.4 screen the 100 nit white would show about 19.7 nits. Highlights are not clipped: the 10000 nit patch reaches 235 and the five patches from 203 to 10000 nits stay five distinct values (143.3 to 235). They are just in the wrong place.
 
-The tags survive: ffprobe still says bt2020, smpte2084, bt2020nc, tv. A reader that trusts them recovers the picture: running the naive output through zscale brings the 0 to 100 nit patches within 0.5 code of the expected values. scale=out_color_matrix=bt709 does not help: 100 nit white at Y 126 (mean mid-tone error 66.3) and the tags unchanged. The colorspace filter alone refuses PQ (Unsupported input transfer characteristics 16). Forced with colorspace=all=bt709:iall=bt2020 it runs, leaves the pixels exactly as the naive path did (white still 127.3) and rewrites the tags to bt709, bt709, bt709, so the file now lies and zscale on it recovers nothing (mid-tone error 64.5).
+The tags survive: ffprobe still says bt2020, smpte2084, bt2020nc, tv. A reader that trusts them recovers the picture: running the naive output through zscale brings the 0 to 100 nit patches within 0.5 code of the expected values. scale=out_color_matrix=bt709 does not help: 100 nit white at Y 126 (mean mid-tone error 66.3) on both builds. The matrix tag differs: ffmpeg 6.1.1 leaves bt2020nc, ffmpeg 8.1.2 rewrites it to bt709 while primaries and transfer stay bt2020 and smpte2084, so the tags no longer describe the pixels. The colorspace filter alone refuses PQ (Unsupported input transfer characteristics 16). Forced with colorspace=all=bt709:iall=bt2020 it runs, leaves the pixels exactly as the naive path did (white still 127.3) and rewrites the tags to bt709, bt709, bt709, so the file now lies and zscale on it recovers nothing (mid-tone error 64.5).
 
 zscale alone (zscale=t=bt709:m=bt709:p=bt709:r=tv) is exact from 0 to 100 nits (16, 48, 100, 180, 235) with bt709 tags, but every patch from 203 to 10000 nits lands on 255: five highlights, one value. With zscale=t=linear:npl=100, format=gbrpf32le, zscale=p=bt709, tonemap=tonemap=hable:desat=0, zscale=t=bt709:m=bt709:r=tv the highlights stay apart: 203 nits at 182, 600 at 222, 1000 at 235, 4000 at 254, 10000 at 255 (100 nits drops to 151: tone mapping trades mid-tones for highlights).
 
 Control: the SDR clip through the same -pix_fmt, scale and zscale commands stays on its values, 10 of 10 patches, bt709 tags kept.
 
-The 15 tests pass on ffmpeg 6.1.1.
+The 15 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -39,7 +39,7 @@ Chapters
 01:46 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic grey-patch clip, lossless x264 output, ffmpeg 6.1.1 (zscale and tonemap are optional filters; where a build lacks them the evidence records unsupported). Not tested: real footage, HLG, Dolby Vision, saturated colors and the BT.2020 to BT.709 gamut, other tone-mapping curves (reinhard, mobius), tonemap_opencl or hardware paths, players and how they treat the tags, other builds.
+Limits: one synthetic grey-patch clip, lossless x264 output, ffmpeg 6.1.1 and 8.1.2 (zscale and tonemap are optional filters; where a build lacks them the evidence records unsupported). Not tested: real footage, HLG, Dolby Vision, saturated colors and the BT.2020 to BT.709 gamut, other tone-mapping curves (reinhard, mobius), tonemap_opencl or hardware paths, players and how they treat the tags, other builds.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

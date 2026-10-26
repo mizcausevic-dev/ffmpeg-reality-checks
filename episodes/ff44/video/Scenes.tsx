@@ -4,7 +4,7 @@ import {ep} from '../../kit/anim';
 import {Cells, Cmd, Duel, Figure, Halo, Head, Mid, Row, Verdict} from '../../kit/Sym';
 import type {SceneProps} from '../../kit/Episode';
 
-/* Every number below is measured by episodes/ff44/fixture/experiment.mjs (see evidence.json from fixture/run.mjs). ffmpeg 6.1.1. */
+/* Every number below is measured by episodes/ff44/fixture/experiment.mjs (see evidence.json from fixture/run.mjs). ffmpeg 6.1.1 and 8.1.2. */
 
 /* 1. The ask */
 const Ask: React.FC<SceneProps> = ({t}) => (
@@ -64,10 +64,10 @@ const Tags: React.FC<SceneProps> = ({t}) => (
       right={{label: 'Colorspace forced', value: 'bt709', sub: 'iall=bt2020 · same pixels, white 127\ntags now lie, nothing to recover', color: C.red, o: ep(t, 3.4, 4.1), valueSize: 90}}
       mid="vs" midO={ep(t, 3.0, 3.6)} />
     <Row y={650} h={150} cw={520} gap={40} valueSize={44} items={[
-      {label: 'Scale, output matrix', value: '126', sub: 'white · tags unchanged', color: C.amber, o: ep(t, 5.2, 5.8)},
+      {label: 'Scale, output matrix', value: '126', sub: 'white · matrix tag: bt2020nc kept\non 6.1.1, bt709 on 8.1.2', color: C.amber, o: ep(t, 5.2, 5.8)},
       {label: 'colorspace alone', value: 'refused', sub: 'unsupported transfer 16', color: C.amber, o: ep(t, 6.0, 6.6)},
     ]} />
-    <Mid y={830} size={26} color={C.mute} o={ep(t, 7.4, 8.0)}>Measured on ffmpeg 6.1.1. Raw luma and signalstats agree on every patch.</Mid>
+    <Mid y={830} size={26} color={C.mute} o={ep(t, 7.4, 8.0)}>Measured on ffmpeg 6.1.1 and 8.1.2. Raw luma and signalstats agree on every patch.</Mid>
   </>
 );
 
