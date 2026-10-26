@@ -25,6 +25,8 @@ Boost 12 dB then cut 12 dB: in ONE command the source comes back exactly (error 
 
 alimiter=limit=0.89:level=disabled holds the peak at -1 dB with nothing at full scale. With the default level setting, this signal still puts 801 samples at full scale.
 
+The nine tests pass on ffmpeg 6.1.1 and 8.1.2.
+
 Chapters
 <!-- chapters:start -->
 00:00 The question
