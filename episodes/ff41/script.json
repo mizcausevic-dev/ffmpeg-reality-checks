@@ -1,0 +1,77 @@
+{
+  "n": 41,
+  "slug": "ffmpeg-qv-jpeg-quality-scale",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Is a lower JPEG quality number better in FFmpeg, 2 or 5?",
+  "fullTitle": "FFmpeg mjpeg -q:v 2 Costs 3.4x the Bytes of -q:v 5; -q:v 1 Is 2",
+  "kicker": "Episode 41",
+  "thumb": {
+    "number": "3.4x",
+    "label": "MORE BYTES FOR 2 THAN 5",
+    "color": "amber"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "curve",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You write dash q colon v two for JPEG frames. Is that better than five? And is two quality two? We encode one detailed synthetic card with ffmpeg's own mjpeg encoder at every setting. Readers: file size from disk and f f probe, P S N R from the ffmpeg filter and from Node, and the quantizer table in the file.",
+      "captions": [
+        "-q:v 2 or -q:v 5 for JPEG frames?",
+        "Is 2 quality 2? Measured at every setting."
+      ]
+    },
+    {
+      "id": "scale",
+      "chapter": "Lower is better",
+      "narration": "Lower is better, and bigger. Two: one hundred forty nine thousand eight hundred thirty two bytes, thirty six point three eight dB. Thirty one: eleven thousand six hundred eighty one bytes, twenty six point nine seven. The control, two against thirty one, differs in both readers. The first quantizer step in the file is four, ten, twenty, sixty two for two, five, ten, thirty one: twice the setting.",
+      "captions": [
+        "2: 149832 bytes, 36.38 dB. 31: 11681 bytes, 26.97 dB.",
+        "Quantizer step 4, 10, 20, 62: twice the setting."
+      ]
+    },
+    {
+      "id": "curve",
+      "chapter": "The size curve",
+      "narration": "The curve is steep at the low end. Two costs three point four times the bytes of five, for four point six dB. Five to ten costs one point nine five times. Ten to thirty one costs the same again, for three dB. The first dB are the expensive ones.",
+      "captions": [
+        "-q:v 2 costs 3.4x the bytes of -q:v 5.",
+        "5 to 10 and 10 to 31: 1.95x each."
+      ]
+    },
+    {
+      "id": "clamp",
+      "chapter": "One is not one",
+      "narration": "Dash q colon v one is not finer than two. It is the same file, same bytes, same pixels, because the default minimum is two. Add dash q min one, and it gives two hundred fifty four thousand eight hundred sixty four bytes, forty one point five nine dB. Q min wins over dash q colon v: five with q min ten is the ten file. Dash q scale colon v is the same as dash q colon v.",
+      "captions": [
+        "-q:v 1 is the -q:v 2 file. -qmin 1 changes it.",
+        "-q:v 5 -qmin 10 is the -q:v 10 file."
+      ]
+    },
+    {
+      "id": "huff",
+      "chapter": "Bytes, not pixels",
+      "narration": "Dash huffman default is not a quality setting. At five it makes the file twelve percent bigger, with identical decoded pixels in both readers. Optimal is already the default.",
+      "captions": [
+        "-huffman default: +12% bytes, same pixels.",
+        "Optimal is already the default."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to use",
+      "sim": null,
+      "narration": "So a lower number is higher quality, and it is a quantizer step, not a score. One is clamped to two. Not tested: other builds, libjpeg based encoders, real photos, chroma subsampling, any player.",
+      "captions": [
+        "Lower -q:v is better and bigger. 1 is clamped to 2.",
+        "Not tested: other builds, libjpeg, real photos."
+      ]
+    }
+  ]
+}

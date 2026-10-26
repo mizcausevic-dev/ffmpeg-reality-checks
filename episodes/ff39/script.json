@@ -1,0 +1,77 @@
+{
+  "n": 39,
+  "slug": "ffmpeg-scale-flags-thin-lines",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why do thin lines look jagged or vanish when I scale down?",
+  "fullTitle": "FFmpeg scale: neighbor Drops 8 of 12 Thin Lines, area Keeps All 12",
+  "kicker": "Episode 39",
+  "thumb": {
+    "number": "8 of 12",
+    "label": "THIN LINES THAT VANISH",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "neighbor",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You scale a picture down and the thin lines look jagged, or vanish. Which scale flag is to blame? Neighbor, bilinear, bicubic, lanczos, or area. We draw lines one pixel wide, scale them down by three, and measure what is left.",
+      "captions": [
+        "Thin lines jagged or gone after scaling down?",
+        "Five scale flags, lines one pixel wide, 3x down."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Test card, two readers",
+      "narration": "The card is three twelve by twenty four, background luma sixty. Twelve lines, one pixel wide, luma two hundred, one every twenty five columns, so each sits at a different phase of the three to one scale. Reader one: the raw luma bytes, read in Node. Reader two: F F mpeg signal stats and P S N R. Control: flags equals area gives the block averages, computed in Node.",
+      "captions": [
+        "312x24, luma 60, twelve lines of luma 200.",
+        "Control: area equals the Node block mean."
+      ]
+    },
+    {
+      "id": "neighbor",
+      "chapter": "neighbor keeps or drops",
+      "narration": "Neighbor keeps a pixel or throws it away. Of twelve lines, four survive at full two hundred, and eight are gone: the peak is the background, sixty. Shift a line by one pixel and it appears or disappears. Stripes do the same: black and white columns become all black, and shifted by one pixel, all white.",
+      "captions": [
+        "8 of 12 lines gone: peak 60, the background.",
+        "Stripes: all 0, shifted one pixel: all 255."
+      ]
+    },
+    {
+      "id": "faint",
+      "chapter": "Everything else keeps it, faint",
+      "narration": "Every other flag keeps all twelve lines, but faint. Area gives one hundred seven at every phase: a third of the contrast, the exact block average. Bilinear, bicubic and lanczos give one hundred seven at one phase, and ninety one, ninety seven, ninety nine at the other two, where the line spreads over two pixels. That is the jagged look.",
+      "captions": [
+        "area: 107 at every phase.",
+        "Other flags: weaker, two pixels wide, at two phases."
+      ]
+    },
+    {
+      "id": "halo",
+      "chapter": "Halos and the default",
+      "narration": "Lanczos and bicubic also ring. Next to a line the values fall below the background: fifty three for lanczos, fifty six for bicubic. Bilinear and area stay at sixty. The scale default is bicubic: same bytes as flags equals bicubic. And lanczos adds a little line luma, up to five percent.",
+      "captions": [
+        "Lowest value: lanczos 53, bicubic 56, area 60.",
+        "Default scale equals flags=bicubic, same bytes."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "For thin lines, read the peak after the scale. Neighbor loses lines by phase. Area gives the same line at every phase. Bicubic and lanczos add halos. Not tested: color, real footage, other builds, other scale factors, any player.",
+      "captions": [
+        "Read the peak luma after a scale.",
+        "Not tested: color, real footage, other factors, players."
+      ]
+    }
+  ]
+}

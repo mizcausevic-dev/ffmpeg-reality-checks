@@ -1,0 +1,77 @@
+{
+  "n": 42,
+  "slug": "ffmpeg-yadif-progressive",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Should I deinterlace every video with yadif?",
+  "fullTitle": "FFmpeg yadif Changes All 50 Progressive Frames and Wipes One-Pixel Rows",
+  "kicker": "Episode 42",
+  "thumb": {
+    "number": "50 of 50",
+    "label": "PROGRESSIVE FRAMES CHANGED",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "wipe",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Should you add dash v f yadif to every video, just in case? On interlaced footage it removes combing. But what does it do to a clip that is already progressive? We measure frames changed, detail kept, and the frame count.",
+      "captions": [
+        "Add yadif to every video, just in case?",
+        "We measure frames changed, detail kept, frame count."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Three clips, two readers",
+      "narration": "Three synthetic clips, fifty frames each. Fine is progressive, with one pixel stripes, static one pixel lines, and a moving striped box. Smooth is progressive without fine detail. The control is truly interlaced, woven from two moments: adjacent rows differ five point five times as much as rows two apart. Readers: raw luma in Node, frame md5, and the i det filter.",
+      "captions": [
+        "Fine and smooth are progressive. Control is woven.",
+        "Control combing: 5.5. Smooth clip: 0.5."
+      ]
+    },
+    {
+      "id": "wipe",
+      "chapter": "yadif on progressive",
+      "narration": "Plain yadif on the fine progressive clip: fifty of fifty frames change, by raw luma and by frame md5. In the stripe patch, adjacent rows differed by one hundred eighty; now one point six. P S N R against the source is six point one decibels. The moving striped box falls from thirty eight point five to point one. Static single lines survive.",
+      "captions": [
+        "yadif: 50 of 50 frames changed.",
+        "Stripe detail 180 to 1.6. PSNR 6.1 dB."
+      ]
+    },
+    {
+      "id": "flag",
+      "chapter": "deint=interlaced reads the flag",
+      "narration": "On the smooth clip yadif still changes fifty of fifty frames, but only fourteen pixels each. With deint equals interlaced, zero of fifty change: the same hashes. But it trusts the flag, not the picture. The same fine pixels, encoded with ilme and ildct, say interlaced, and fifty of fifty change again.",
+      "captions": [
+        "Smooth clip: 14 pixels a frame, 52.7 dB.",
+        "deint=interlaced: 0 of 50. Mislabeled: 50 of 50."
+      ]
+    },
+    {
+      "id": "rate",
+      "chapter": "Control and frame rate",
+      "narration": "The control proves the readers. On the woven clip, yadif takes combing from five point five to point five, and i det goes from fifty interlaced to fifty progressive. And mode equals one doubles the rate: fifty frames in, one hundred out.",
+      "captions": [
+        "Control: combing 5.5 to 0.5. idet 50 TFF to 50 progressive.",
+        "mode=1: 100 frames, every 0.02 s."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Do not add yadif to everything. Read the field order with f f probe. I det cannot call the fine clip progressive: fifty undetermined. Use deint equals interlaced only if the flag is honest. Not tested: real footage, other deinterlacers, other builds, players.",
+      "captions": [
+        "Check field_order with ffprobe, count with idet.",
+        "Not tested: real footage, other deinterlacers, players."
+      ]
+    }
+  ]
+}

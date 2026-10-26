@@ -1,0 +1,77 @@
+{
+  "n": 40,
+  "slug": "ffmpeg-crop-odd-offset-chroma",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "I cropped at an odd offset: is the picture where I asked?",
+  "fullTitle": "FFmpeg crop Rounds an Odd Offset to Even; exact=1 Shifts the Chroma",
+  "kicker": "Episode 40",
+  "thumb": {
+    "number": "1 px",
+    "label": "THE CROP MOVED ONE PIXEL",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "odd",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You crop with crop equals w, h, x, y, at an odd offset: column three, row five. Is the picture really where you asked? In four two zero, color is stored at half resolution, so something has to give. We read the pixels to find out.",
+      "captions": [
+        "crop=96:54:3:5 asks for column 3, row 5.",
+        "Is the picture where I asked?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Coded cards, two readers, control",
+      "narration": "The test cards are one ninety two by one oh eight, and every pixel says where it came from: luma is the column on one card, the row on the other. Reader one is f f probe, width and height. Reader two decodes the planes and reads the first column and row kept. Control: an even offset, four and six, lands exactly there.",
+      "captions": [
+        "Cards 192x108: luma is the column, or the row.",
+        "Control: offset 4,6 starts at column 4, row 6."
+      ]
+    },
+    {
+      "id": "odd",
+      "chapter": "Odd offset rounds to even",
+      "narration": "Now crop ninety six by fifty four, at three and five. The picture starts at column two, row four, identical to asking for two and four. Ask for one and one, and nothing moves. An odd size is rounded down too: ninety five by fifty three becomes ninety four by fifty two. No warning.",
+      "captions": [
+        "Asked column 3, row 5. Got column 2, row 4.",
+        "95x53 becomes 94x52. No warning."
+      ]
+    },
+    {
+      "id": "exact",
+      "chapter": "The exact option",
+      "narration": "The crop filter has an option, exact, off by default. Turn it on, and luma starts at column three, row five, as asked, and the size stays odd. But the chroma still starts at chroma column one, row two: the color is one luma pixel off. In four four four, offset three and five is honored either way.",
+      "captions": [
+        "exact=1: luma at 3,5. Chroma one pixel off.",
+        "4:4:4 control: 3,5 honored, odd size kept."
+      ]
+    },
+    {
+      "id": "center",
+      "chapter": "A centered crop",
+      "narration": "The common case is a centered crop. Ninety by fifty in a one ninety two by one oh eight frame asks for column fifty one, row twenty nine. The picture starts at fifty, twenty eight: margins of fifty and fifty two, not fifty one and fifty one. With exact on, the margins are equal.",
+      "captions": [
+        "crop=90:50 asks for 51,29. Starts at 50,28.",
+        "Margins 50 and 52, not 51 and 51."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So use an even offset and an even size, or expect crop to move the window down to even. Use exact only when luma position matters more than a half sample of color. Not tested: other builds, real footage, other crop options, and any player.",
+      "captions": [
+        "Even offset, even size. Or read the pixels.",
+        "Not tested: other builds, real footage."
+      ]
+    }
+  ]
+}
