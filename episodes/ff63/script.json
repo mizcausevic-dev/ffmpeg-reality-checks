@@ -1,0 +1,86 @@
+{
+  "n": 63,
+  "slug": "ffmpeg-overlay-freeze",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does my overlay freeze on its last frame?",
+  "fullTitle": "FFmpeg overlay: a 2 s Clip Freezes for 3 s on Its Last Frame",
+  "kicker": "Episode 63",
+  "thumb": {
+    "number": "75 frames",
+    "label": "OVERLAY FROZEN, LAST FRAME",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "hold",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You put a short clip over a longer one with the overlay filter. When it ends, it does not disappear. It freezes on its last frame. Why, and how do you stop it? A five second base, a two second overlay with a counter, on f f m peg six point one point one.",
+      "captions": [
+        "The short clip ends. The overlay does not disappear.",
+        "Why does it freeze, and how do we stop it?"
+      ]
+    },
+    {
+      "id": "story",
+      "chapter": "The story in four panels",
+      "narration": "Two reels on a desk: five seconds of base, two seconds of overlay. At one second, the overlay shows counter twenty five. At two seconds the small reel is empty, and counter forty nine was its last frame. At four seconds, the screen still shows forty nine.",
+      "captions": [
+        "Counter 25 at 1.00 s. Counter 49 was the last frame.",
+        "At 4.00 s the screen still shows counter 49."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Two reels, two readers",
+      "narration": "The base has one hundred twenty five frames. The overlay has fifty, with a counter in its luma, so a pixel names its frame. Two readers: hashes of a crop, and raw pixels in Node. The control is a two second base: fifty frames, every counter once, no freeze.",
+      "captions": [
+        "Base 125 frames. Overlay 50 frames, counter 0 to 49.",
+        "Readers: crop hashes and raw pixels. Control: no freeze."
+      ]
+    },
+    {
+      "id": "hold",
+      "chapter": "The default: 75 frames frozen",
+      "narration": "The default is e o f underscore action equals repeat. Five seconds, one hundred twenty five frames. Counter forty nine stays on screen for seventy six frames. Seventy five of them, three seconds, are the freeze. The base plays on underneath.",
+      "captions": [
+        "Default: 125 frames, counter 49 on 76 frames.",
+        "75 frozen frames, 3 s. The base plays on."
+      ]
+    },
+    {
+      "id": "endall",
+      "chapter": "Ending everything",
+      "narration": "Two options end the freeze by ending everything: e o f underscore action equals endall, and shortest equals one. Fifty frames, two seconds. But seventy five frames of the base, three seconds, are cut off with it.",
+      "captions": [
+        "endall and shortest=1: 50 frames, 2 s.",
+        "75 frames of the base are cut off."
+      ]
+    },
+    {
+      "id": "pass",
+      "chapter": "Keeping the base",
+      "narration": "To keep the base and drop the overlay, use e o f underscore action equals pass. Counters zero to forty nine play, then the base plays alone for seventy five frames. Repeat last equals zero, and enable with lt t comma two, give the same frames, hash for hash. Delay the overlay one second, and the default still freezes it, for fifty frames.",
+      "captions": [
+        "pass, repeatlast=0 and enable: identical frames.",
+        "Overlay delayed 1 s: default still freezes it, 50 frames."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So the freeze is the default, not a bug. Use pass, repeat last equals zero, or enable. Not tested: alpha, other overlay options, real footage, and builds other than six point one point one.",
+      "captions": [
+        "The freeze is the default: eof_action=repeat.",
+        "Not tested: alpha, real footage, other builds."
+      ]
+    }
+  ]
+}

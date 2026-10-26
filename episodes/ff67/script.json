@@ -1,0 +1,91 @@
+{
+  "n": 67,
+  "slug": "ffmpeg-x264-zerolatency-bytes",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "What does zerolatency cost in bytes?",
+  "fullTitle": "FFmpeg x264 zerolatency: 2.39x the Bytes at the Same CRF 23",
+  "kicker": "Episode 67",
+  "thumb": {
+    "number": "2.39x",
+    "label": "BYTES AT THE SAME CRF",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "bytes",
+    "t": 9.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Dash tune zerolatency is meant for low latency streaming. At the same CRF, how many more bytes does it cost? A hundred frames of a moving test clip with noise, f f m peg six point one point one, libx264, and a hard dash frames and dash t on every command.",
+      "captions": [
+        "-tune zerolatency, at the same CRF.",
+        "How many more bytes?"
+      ]
+    },
+    {
+      "id": "clip",
+      "chapter": "The clip",
+      "sim": null,
+      "narration": "Test source two, moving, in two versions: clean, and with temporal noise. A flat patch of the red bar is eighty one in every frame of the clean clip. In the noisy clip it takes twelve values, seventy five to eighty six, and changes every frame.",
+      "captions": [
+        "Flat patch: 81 clean, 75 to 86 noisy.",
+        "Mean change per frame: 2.8 clean, 6.4 noisy."
+      ]
+    },
+    {
+      "id": "bytes",
+      "chapter": "The bytes",
+      "sim": null,
+      "narration": "Both at CRF twenty three, preset medium. No tune: one hundred seventy nine thousand one hundred seventy four bytes. Zerolatency: four hundred twenty eight thousand two hundred forty five, two point three nine times. Film costs one point one eight times. Animation, about the same.",
+      "captions": [
+        "CRF 23: 179174 bytes, or 428245 with zerolatency.",
+        "2.39 times. Film 1.18, animation 1.00."
+      ]
+    },
+    {
+      "id": "bframes",
+      "chapter": "The B frames",
+      "sim": null,
+      "narration": "Zerolatency turns off the B frames. The default has seventy four in a hundred frames. Zerolatency has none: one I frame, ninety nine P. Two readers agree: ffprobe frame types, and the x264 statistics line.",
+      "captions": [
+        "Default: 1 I, 25 P, 74 B.",
+        "Zerolatency: 1 I, 99 P, 0 B."
+      ]
+    },
+    {
+      "id": "cause",
+      "chapter": "The cause",
+      "sim": null,
+      "narration": "Are the B frames the cost? Dash b f zero alone is one point one times. The x264 options line shows zerolatency also sets m b tree to zero. M b tree zero alone is two point one seven times, and zerolatency with dash b f three put back is the same.",
+      "captions": [
+        "-bf 0: 1.10 times. mbtree=0: 2.17 times.",
+        "Zerolatency with -bf 3: 2.17 times."
+      ]
+    },
+    {
+      "id": "quality",
+      "chapter": "The quality",
+      "sim": null,
+      "narration": "Quality is not lower: thirty six point four five decibels against thirty six point one five. At equal quality it still costs. Default CRF twenty two is within three hundredths of a decibel of zerolatency at twenty three. Zerolatency is still one point seven five times bigger.",
+      "captions": [
+        "Same CRF: 36.45 dB against 36.15 dB.",
+        "Same quality: 428245 against 244638 bytes."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "The cost depends on CRF: one point two seven times at eighteen, two point three nine at twenty three, one point zero three at thirty two. Not tested: other presets, real footage, other builds, x265, or the latency saved. Measure your own clip.",
+      "captions": [
+        "Cost by CRF: 1.27 times at 18, 2.39 at 23, 1.03 at 32.",
+        "Not tested: other presets, real footage, other builds."
+      ]
+    }
+  ]
+}

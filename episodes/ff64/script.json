@@ -1,0 +1,86 @@
+{
+  "n": 64,
+  "slug": "ffmpeg-loop-shortest-still-image",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Is my still image video longer than the song?",
+  "fullTitle": "FFmpeg -loop 1 -shortest: Picture Ends Early, 1 s of a 4.3 s Song",
+  "kicker": "Episode 64",
+  "thumb": {
+    "number": "1 s",
+    "label": "PICTURE, 4.3 S SONG",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "copy",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You make a video from one still image and a song, with dash loop one and dash shortest. Is the video longer than the song? A four point three second song, measured frame by frame, on f f m peg six point one point one.",
+      "captions": [
+        "A still image and a song, -loop 1 -shortest.",
+        "Is the video longer than the song?"
+      ]
+    },
+    {
+      "id": "story",
+      "chapter": "The story in four panels",
+      "narration": "A picture and a song of four point three seconds. At one frame a second, the picture shows four frames and stops at four seconds. Copy the song instead of re-encoding it, and the picture stops at one second.",
+      "captions": [
+        "1 frame a second: 4 frames, the picture ends at 4.0 s.",
+        "Song copied: the picture ends at 1.0 s."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "One picture, four songs, two readers",
+      "narration": "The picture is a flat image. The songs are tones of four, four point three, four point three seven and four point nine nine seconds. Two readers: ffprobe packets, and decoded frames and samples. The control, a four second song, gives exactly one hundred frames, equal length.",
+      "captions": [
+        "Songs: 4.0, 4.3, 4.37 and 4.99 s.",
+        "Control: 4.0 s gives 100 frames, equal length."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "-shortest: never longer",
+      "narration": "With dash shortest and the song re-encoded, the picture is never longer. It stops after the floor of song length times frame rate: one hundred seven frames at twenty five, four at one. At one frame a second it ends up to a second early.",
+      "captions": [
+        "Frames = floor(song length x frame rate).",
+        "At 1 fps the picture ends 0.30, 0.37, 0.99 s early."
+      ]
+    },
+    {
+      "id": "copy",
+      "chapter": "A copied song: 1 frame",
+      "narration": "Copy the song with dash c colon a copy, and the picture ends earlier: one hundred five frames at twenty five. At one frame a second, one frame, one second of picture for a four point three second song. Frames waiting inside the encoder are dropped. Dash b f zero gives four frames, and so does ffv1.",
+      "captions": [
+        "-c:a copy at 1 fps: 1 frame, 1.0 s of picture.",
+        "-bf 0 or ffv1: 4 frames."
+      ]
+    },
+    {
+      "id": "longer",
+      "chapter": "When it is longer",
+      "narration": "So when is the video longer? With no stop option it runs to the limit: eight seconds. Dash f flags plus shortest does not stop at the song: ten seconds. And dash t, set to the song length, rounds: one hundred eight frames, point zero two seconds longer.",
+      "captions": [
+        "No stop option: 8 s. -fflags +shortest: 10 s.",
+        "-t 4.3 rounds: 108 frames, 0.02 s longer."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "With dash shortest the picture is never longer, and with a copied song it can be much shorter: add dash b f zero. Not tested: other encoders, containers and songs, real images, players, and builds other than six point one point one.",
+      "captions": [
+        "-shortest: never longer. Copied song: add -bf 0.",
+        "Not tested: other encoders, real images, players."
+      ]
+    }
+  ]
+}

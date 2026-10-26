@@ -1,0 +1,86 @@
+{
+  "n": 66,
+  "slug": "ffmpeg-atempo-range-clicks",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "What does atempo do to the sound?",
+  "fullTitle": "FFmpeg atempo: Pitch Holds, but 40 Clicks Become 122 at Half Speed",
+  "kicker": "Episode 66",
+  "thumb": {
+    "number": "122",
+    "label": "FROM 40 CLICKS AT HALF SPEED",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "clicks",
+    "t": 11.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Atempo is the filter for changing speed and keeping pitch. Which speeds does it accept, and what does it do to the sound? A one thousand hertz tone, forty clicks, f f m peg six point one point one, and a hard dash t on every command.",
+      "captions": [
+        "Which atempo speeds are allowed?",
+        "And what does it do to the sound?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "The sources and a control",
+      "narration": "The tone: four seconds, one hundred ninety two thousand samples. The clicks: single samples at point nine of full scale, every four thousand eight hundred, forty in all. Control: dash a f anull returns the source exactly. A second control changes speed by resampling.",
+      "captions": [
+        "Tone: 1000 Hz, 192000 samples. Clicks: 40, 4800 apart.",
+        "Control: -af anull returns the source exactly."
+      ]
+    },
+    {
+      "id": "range",
+      "chapter": "The range",
+      "narration": "The range here is point five to one hundred, not two. Point two five, point four, one hundred point five and two hundred are refused, with no output. The nine speeds tried inside it all run. For slower than half, chain: point five then point eight is point four.",
+      "captions": [
+        "Accepted: 0.5 to 100. Refused: 0.25, 0.4, 100.5, 200.",
+        "Chain 0.5 then 0.8: speed 0.4."
+      ]
+    },
+    {
+      "id": "length",
+      "chapter": "The length",
+      "narration": "Half speed should give three hundred eighty four thousand samples. It gives three hundred eighty two thousand eight hundred ninety six: one thousand one hundred four short. At one hundred, one thousand twenty four, not nineteen hundred twenty. A chain of one hundred then two gives nothing.",
+      "captions": [
+        "0.5: 382896 samples, 1104 short of 384000.",
+        "100: 1024 of 1920. Chain 100 then 2: 0 samples."
+      ]
+    },
+    {
+      "id": "pitch",
+      "chapter": "The pitch",
+      "narration": "The pitch holds: nine hundred ninety nine point eight seven hertz at half speed, nine hundred ninety four point nine at ten times. The resampling control moves it: five hundred hertz at half, two thousand at twice.",
+      "captions": [
+        "Tone at 0.5: 999.87 Hz. At 10: 994.9 Hz.",
+        "Resampling control: 500, 2000, 4000 Hz."
+      ]
+    },
+    {
+      "id": "clicks",
+      "chapter": "The clicks",
+      "narration": "The timing does not hold. Forty clicks go in, one hundred twenty two events come out at half speed, thirty one at twice, thirteen at four times. Even speed one gives fifty five. The click is twenty nine thousand four hundred ninety one; at half speed the second event is only sixty five hundred twenty one. Resampling keeps forty.",
+      "captions": [
+        "40 clicks in. 0.5: 122. 2: 31. 4: 13.",
+        "atempo=1: 55 events. Resampling: 40."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Atempo keeps the pitch, but not the timing of sharp sounds, even at speed one. A single sample click is its hardest case. Not tested: speech, music, other builds, other settings.",
+      "captions": [
+        "Pitch holds. Click timing does not.",
+        "Not tested: speech, music, other builds."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "n": 65,
+  "slug": "ffmpeg-apad-never-ends",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does my apad output never end?",
+  "fullTitle": "FFmpeg apad: a 3 s Song Becomes a 12 s File Until You Set a Length",
+  "kicker": "Episode 65",
+  "thumb": {
+    "number": "12 s",
+    "label": "FROM A 3 S SONG",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "never",
+    "t": 14.5
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Add dash a f apad to pad a short song, and the file never finishes. A three second song, a five second picture, f f m peg six point one point one, and a hard dash t on every command. What stops apad?",
+      "captions": [
+        "-af apad, and the file never finishes.",
+        "What stops apad?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "The test clip and two readers",
+      "narration": "The picture is a flat clip: five seconds, one hundred twenty five frames. The song is a tone: three seconds, one hundred forty four thousand samples. Two readers: ffprobe packets, and decoded frames and samples. Control, no apad: the file is five seconds, the audio ends at three.",
+      "captions": [
+        "Picture: 5 s, 125 frames. Song: 3 s, 144000 samples.",
+        "Control, no apad: file 5.000 s, audio ends at 3.000 s."
+      ]
+    },
+    {
+      "id": "never",
+      "chapter": "apad alone: no stop",
+      "narration": "Now dash a f apad alone. Nothing stops it. An eight second guard gives eight seconds and three hundred eighty four thousand samples. A twelve second guard gives twelve. The picture stays one hundred twenty five frames. The length is whatever you typed after dash t.",
+      "captions": [
+        "-af apad -t 8: 8.000 s, 384000 samples.",
+        "-t 12: 12.000 s. Picture: still 125 frames."
+      ]
+    },
+    {
+      "id": "shortest",
+      "chapter": "-shortest: ends, a little short",
+      "narration": "Dash shortest ends the file with the picture: five seconds at any frame rate. But the audio is short: two hundred thirty eight thousand two hundred eight samples, not two hundred forty thousand. Thirty seven milliseconds missing, at every frame rate.",
+      "captions": [
+        "-shortest: file 5.000 s at 25, 30 and 1 fps.",
+        "Audio: 238208 of 240000 samples, 37 ms short."
+      ]
+    },
+    {
+      "id": "whole",
+      "chapter": "Ask for a length",
+      "narration": "Ask for a length instead. Whole dur five, pad dur two, pad len, whole len: all four stop by themselves, with exactly two hundred forty thousand samples. Whole dur sets the audio, not the file: four gives four seconds of audio. And it never cuts: a seven second song stays seven.",
+      "captions": [
+        "whole_dur, pad_dur, pad_len, whole_len: 240000 samples.",
+        "whole_dur=4: 192000 samples. 7 s song: still 336000."
+      ]
+    },
+    {
+      "id": "catches",
+      "chapter": "Two catches",
+      "narration": "Two catches. A looped still picture is endless, so apad with dash shortest runs to the guard: eight seconds, two hundred frames. Whole dur five fixes it. And a four point three second picture is one hundred eight frames, four point three two seconds: the audio is point zero two short.",
+      "captions": [
+        "Looped picture, apad, -shortest: 8 s, 200 frames.",
+        "4.3 s: picture 4.32 s (108 frames), audio 4.300 s."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "To stop apad, give it a length, exact to the sample. Dash shortest ends the file but leaves the audio a few milliseconds short. Not tested: other encoders and containers, real music, players, and builds other than six point one point one.",
+      "captions": [
+        "Give apad a length: exact to the sample.",
+        "Not tested: other encoders, real music, players."
+      ]
+    }
+  ]
+}
