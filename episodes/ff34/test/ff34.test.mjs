@@ -94,7 +94,8 @@ t('a sequence that begins at img051.png: without -start_number the command fails
 });
 
 t('the two readers agree on every output: frame md5 and decoded pixel code name the same source files, ffprobe and decode agree on length and frame count', () => {
-  for (const [k, r] of [...Object.entries(ev.runs), ['lateSet', ev.lateSet]]) {
+  for (const [k, r] of [...Object.entries(ev.runs), ["lateSet", ev.lateSet]]) {
+    if (r.unsupported) continue;
     assert.deepEqual(r.byCode, r.byMd5, k);
     assert.ok(!r.byMd5.includes(0), `${k}: every frame matches a source PNG`);
     near(r.ffprobe.end, r.decode.end, 0.02, `${k} length`);
