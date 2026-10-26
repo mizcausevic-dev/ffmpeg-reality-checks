@@ -30,12 +30,12 @@ Control: a 4 color palette scores 13.8 and 9.7 dB, so the scores can fall.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 Two clips, three measures
-00:40 The plain command
-00:57 With palettegen
-01:13 What it costs
-01:35 Dithering off
-01:56 What to do
+00:14 Two clips, three measures
+00:37 The plain command
+00:52 With palettegen
+01:08 What it costs
+01:27 Dithering off
+01:44 What to do
 <!-- chapters:end -->
 
 Limits: two synthetic clips, 20 frames each, two ffmpeg builds. Not tested: real footage, other GIF tools, how banding looks on screen.

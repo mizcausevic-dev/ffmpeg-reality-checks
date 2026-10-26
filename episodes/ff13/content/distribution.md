@@ -28,12 +28,12 @@ Let FFmpeg turn it, or copy the streams. Do not add transpose on top of a tagged
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Two readers
-00:41 A plain command
-00:58 The trap
-01:18 Switching it off
-01:34 Turning it by hand
-01:53 What to do
+00:16 Two readers
+00:39 A plain command
+00:51 The trap
+01:09 Switching it off
+01:23 Turning it by hand
+01:43 What to do
 <!-- chapters:end -->
 
 Limits: one synthetic clip, one angle (90), MP4 only, libx264 only, two ffmpeg builds. Not tested: real phone files, other angles, other containers, individual players.

@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:08,030
+A GIF holds 256 colors at most.
+
+2
+00:00:08,030 --> 00:00:14,390
+How bad is the plain command?
+
+3
+00:00:14,390 --> 00:00:25,790
+Gradient: 5,299 colors. Shapes: 15,124.
+
+4
+00:00:25,790 --> 00:00:37,190
+Measured: PSNR, SSIM, colors used.
+
+5
+00:00:37,190 --> 00:00:44,020
+Plain: PSNR 21.6 dB and 28.7 dB.
+
+6
+00:00:44,020 --> 00:00:51,830
+SSIM 0.40 and 0.84. 207 and 202 colors.
+
+7
+00:00:51,830 --> 00:00:59,140
+Palette: PSNR 35.3 dB and 39.7 dB.
+
+8
+00:00:59,140 --> 00:01:07,500
+SSIM 0.97 and 0.98. 253 and 255 colors.
+
+9
+00:01:07,500 --> 00:01:17,190
+Gradient: 460k with palette, 584k plain.
+
+10
+00:01:17,190 --> 00:01:26,870
+Shapes: 120k with palette, 104k plain.
+
+11
+00:01:26,870 --> 00:01:35,530
+dither=none: PSNR 36.2 dB and 40.7 dB.
+
+12
+00:01:35,530 --> 00:01:44,200
+Smaller files. Banding by eye: not tested.
+
+13
+00:01:44,200 --> 00:01:52,560
+Build a palette: +11 dB or more.
+
+14
+00:01:52,560 --> 00:02:02,120
+Not tested: real footage, other tools, by eye.

@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:09,450
+Sideways pixels, plus a note: turn 90.
+
+2
+00:00:09,450 --> 00:00:15,770
+Does FFmpeg follow the note?
+
+3
+00:00:15,770 --> 00:00:25,290
+Stored 320x180. Tag: rotate 90.
+
+4
+00:00:25,290 --> 00:00:38,610
+Two readers: ffprobe, and a decoded comparison.
+
+5
+00:00:38,610 --> 00:00:43,950
+Re-encode: 180x320, no tag, upright.
+
+6
+00:00:43,950 --> 00:00:51,420
+-c copy: sideways pixels plus tag, upright.
+
+7
+00:00:51,420 --> 00:01:00,830
+-vf transpose=1 on top of autorotate.
+
+8
+00:01:00,830 --> 00:01:08,680
+Result: no tag, sideways again.
+
+9
+00:01:08,680 --> 00:01:15,870
+-noautorotate: 6.1.1 keeps the tag.
+
+10
+00:01:15,870 --> 00:01:23,060
+8.1.2 drops it: plays sideways.
+
+11
+00:01:23,060 --> 00:01:33,530
+By hand on 6.1.1: tag kept, upside down.
+
+12
+00:01:33,530 --> 00:01:42,690
+By hand on 8.1.2: tag dropped, upright.
+
+13
+00:01:42,690 --> 00:01:49,000
+Let FFmpeg turn it. No transpose on top.
+
+14
+00:01:49,000 --> 00:01:54,520
+Not tested: phone files, other angles, players.
