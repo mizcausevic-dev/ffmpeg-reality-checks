@@ -27,7 +27,7 @@ The rule that predicted every cut: the first keyframe after the last cut and at 
 
 -hls_flags split_by_time cuts near 3 s, but 3 of the 7 segments start off a keyframe and lose frames when decoded alone.
 
-The thirteen tests pass on ffmpeg 6.1.1.
+The thirteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->

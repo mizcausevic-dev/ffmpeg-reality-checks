@@ -1,6 +1,6 @@
 # FF30 distribution kit: FFmpeg 6.1.1 VP9: -b:v 0 Changes Nothing, an Explicit -b:v Caps It
 
-All numbers below come from the synthetic fixture in `episodes/ff30/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (ffmpeg version 6.1.1-3ubuntu5). Not yet checked on 8.1.2.
+All numbers below come from the synthetic fixture in `episodes/ff30/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
 
 ## YouTube
 
@@ -39,7 +39,7 @@ Chapters
 01:46 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic noisy clip, libvpx-vp9 with -deadline good -cpu-used 5 -row-mt 1, ffmpeg 6.1.1 only (8.1.2 not yet checked). Not tested: other ffmpeg builds including older ones, other libvpx versions, two pass, other speeds, -maxrate and -minrate, real footage, players.
+Limits: one synthetic noisy clip, libvpx-vp9 with -deadline good -cpu-used 5 -row-mt 1, ffmpeg 6.1.1 and 8.1.2. Not tested: other ffmpeg builds including older ones, other libvpx versions, two pass, other speeds, -maxrate and -minrate, real footage, players.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

@@ -1,0 +1,52 @@
+{
+  "n": 36,
+  "slug": "ffmpeg-x264-maxrate-needs-bufsize",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "I capped my x264 bitrate at 2M. Why is it still higher?",
+  "fullTitle": "FFmpeg libx264 -maxrate Is Ignored Without -bufsize",
+  "kicker": "Episode 36",
+  "thumb": {"number": "3588 kbps", "label": "A 2M CAP THAT DID NOTHING", "color": "red"},
+  "endCard": {},
+  "hero": {"scene": "ignored", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You set dash max rate two M on a libx264 encode, and the bitrate comes out higher. Why? Max rate does nothing on its own. It needs dash buf size. We measure the average, and the busiest second.",
+      "captions": ["-maxrate 2M, and the bitrate is higher.", "Why? We measure the average and the busiest second."]
+    },
+    {
+      "id": "source",
+      "chapter": "Noisy clip, two readers",
+      "narration": "The source is eight seconds of test pattern with noise: two hundred frames, hard to compress on purpose. Reader one is f f probe, packet sizes in a sliding one second window. Reader two copies the raw stream, and Node sums the frame sizes. With C R F eighteen alone, the average is three thousand five hundred eighty eight kilobits a second.",
+      "captions": ["200 frames, 8 s. crf 18 alone: 3588 kbps.", "Readers: ffprobe packets, raw stream in Node."]
+    },
+    {
+      "id": "ignored",
+      "chapter": "maxrate alone",
+      "narration": "Now add dash max rate two M. F f mpeg prints a warning: V B V max rate specified, but no buf size, ignored. The output is the same bytes. Same packet hash, same three thousand five hundred eighty eight, same busiest second, same quality. Spelling it two thousand K changes nothing.",
+      "captions": ["Warning: VBV maxrate specified, but no bufsize, ignored.", "Same packet md5. Same 3588 kbps."]
+    },
+    {
+      "id": "buffer",
+      "chapter": "Add bufsize",
+      "narration": "Add dash buf size two M, and the encoder obeys. The average falls to two thousand ninety eight. The busiest second falls to two thousand five hundred ninety three, still above the cap. A four M buffer lets it climb to two thousand nine hundred forty two. The price is quality: P S N R falls from thirty seven point eight to thirty two point oh five dB.",
+      "captions": ["-bufsize 2M: 2098 kbps, busiest second 2593.", "-bufsize 4M: busiest second 2942. PSNR 37.80 to 32.05 dB."]
+    },
+    {
+      "id": "control",
+      "chapter": "Control and average mode",
+      "narration": "A tiny buffer, two hundred K, is our control. The busiest second is two thousand seventy seven, so the readers can see a cap. Average mode, dash b v two M, honors the average, two thousand twenty four, but its busiest second is two thousand five hundred thirty one.",
+      "captions": ["Control -bufsize 200k: busiest second 2077 kbps.", "-b:v 2M: average 2024, busiest second 2531."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "To cap a C R F encode, set both dash max rate and dash buf size, and check the busiest second, not only the average. Not tested: other presets, two pass, other encoders, real footage, and any player.",
+      "captions": ["Set -maxrate and -bufsize together.", "Not tested: presets, two pass, real footage."]
+    }
+  ]
+}

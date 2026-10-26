@@ -1,0 +1,77 @@
+{
+  "n": 37,
+  "slug": "ffmpeg-scale-pad-odd-size",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "I scaled to 1920x1080 and padded: why a black line, or an odd-size error?",
+  "fullTitle": "FFmpeg pad Drops an Odd Picture Row and Rounds the Offset to Even",
+  "kicker": "Episode 37",
+  "thumb": {
+    "number": "22 vs 24",
+    "label": "BLACK ROWS TOP VS BOTTOM",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "odd",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You fit a video into a nineteen twenty by ten eighty frame. Dash v f, scale with force underscore original underscore aspect underscore ratio equals decrease, then pad, centered. Sometimes a black line appears that should not be there, or the encoder says the size is odd. Why? We measure where the picture starts and ends.",
+      "captions": [
+        "scale to fit, then pad, centered.",
+        "Why a black line, or an odd size?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Pattern, two readers, control",
+      "narration": "The source is a synthetic test pattern, twelve eighty by six ninety. Reader one is f f probe, reading width and height. Reader two decodes the frame and finds the black rows and columns. Control: a four by three source scales to fourteen forty by ten eighty, with two hundred forty black columns on each side.",
+      "captions": [
+        "Source 1280x690. Control: 4:3 source.",
+        "Readers: ffprobe size, and decoded rows."
+      ]
+    },
+    {
+      "id": "odd",
+      "chapter": "One row goes missing",
+      "narration": "Now the odd case. Scale gives nineteen twenty by one thousand thirty five. The pad expression asks for twenty two and a half. The frame is ten eighty tall, but only one thousand thirty four picture rows are in it. The bars are twenty two above and twenty four below. The last picture row is gone.",
+      "captions": [
+        "Scale: 1920x1035. Pad asks for y=22.5.",
+        "Frame: 1034 picture rows, bars 22 and 24."
+      ]
+    },
+    {
+      "id": "why",
+      "chapter": "Pad rounds to even",
+      "narration": "Why? In four two zero, color is stored at half resolution, so pad rounds the offset down to even, and crops the picture to an even size. Ask for row twenty one, and the picture starts at row twenty. In four four four, all one thousand thirty five rows stay, and row twenty one is honored.",
+      "captions": [
+        "4:2:0: y=21 becomes row 20.",
+        "4:4:4: row 21, all 1035 rows."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "Encoder error and fix",
+      "narration": "Without pad, the odd size goes straight to libx264, which says height not divisible by 2. With pad, it encodes. Add force underscore divisible underscore by equals two to scale: ten thirty six rows, nothing cropped, bars of twenty two and twenty two. But an odd offset is still not centered: a nineteen eighteen wide picture gets zero columns left and two right.",
+      "captions": [
+        "Scale alone: height not divisible by 2.",
+        "force_divisible_by=2: bars 22 and 22."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So make the scaled size even, and expect bars that differ by up to two pixels when the offset is odd. Not tested: other builds, other pad colors, other scale algorithms, real footage, and any player.",
+      "captions": [
+        "Even size. Offset can still be off by 2.",
+        "Not tested: other builds, real footage."
+      ]
+    }
+  ]
+}

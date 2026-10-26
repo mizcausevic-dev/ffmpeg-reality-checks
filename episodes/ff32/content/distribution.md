@@ -25,7 +25,7 @@ With -c copy and -g 100: 100 frames, 3.333 s, starting at keyframe 200, ten more
 
 -sseof counts back from the container duration. With a 10 s picture and a 12 s audio track, -sseof -3 keeps 3 s of audio but 1 s of picture (30 frames, 270 to 299). -sseof -30 on a 10 s file is not an error: all 300 frames come out.
 
-The twelve tests pass on ffmpeg 6.1.1.
+The twelve tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->

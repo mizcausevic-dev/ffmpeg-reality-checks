@@ -25,7 +25,7 @@ After the input: -i img%03d.png -r 10. The input still runs at 25 fps, so ffmpeg
 
 -framerate 10 -i img%03d.png -r 30 keeps all 100 frames, repeats each 3 times: 300 frames, 10.0 s. If the files start at img051.png, the command fails without -start_number 51; with it you get 50 frames, 5.0 s.
 
-The 14 tests pass on ffmpeg 6.1.1.
+The 14 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -37,7 +37,7 @@ Chapters
 01:44 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic gray PNG set, FFV1 in Matroska, ffmpeg 6.1.1. Not tested: -pattern_type glob on builds without glob support (the Windows 8.1.2 build has none, so glob was measured on 6.1.1 only), other rates, other image formats, non-numeric file names, combining -framerate with -vf fps, real footage, players.
+Limits: one synthetic gray PNG set, FFV1 in Matroska, ffmpeg 6.1.1 and 8.1.2. Not tested: -pattern_type glob on builds without glob support (the Windows 8.1.2 build has none, so glob was measured on 6.1.1 only), other rates, other image formats, non-numeric file names, combining -framerate with -vf fps, real footage, players.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

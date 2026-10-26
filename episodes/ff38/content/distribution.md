@@ -25,7 +25,7 @@ Three readers: ffprobe (width, height, sample_aspect_ratio, display_aspect_ratio
 
 Order matters: -vf setsar=1,scale=1280:720 has the same pixels as the plain scale (478x479) but the flag is SAR 45:64, DAR 5:4, so the displayed picture is 900x720 and the circle is 0.70 wide.
 
-The eleven tests pass on ffmpeg 6.1.1.
+The eleven tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
