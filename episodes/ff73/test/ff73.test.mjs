@@ -54,7 +54,9 @@ t('the clean route works for all four strings on any build: textfile with expans
 t('typed the obvious way (one quoted string, nothing escaped) the text is wrong: 100% draws a blank frame (0 ink pixels) with exit 0, it\'s loses its apostrophe, a\\b loses its backslash, 12:30 is not drawn as typed', () => {
   assert.equal(C('typed-percent').drawn, ''); assert.equal(C('typed-percent').ink, 0); assert.equal(C('typed-percent').exit, 0); assert.equal(C('typed-percent').blank, true);
   assert.equal(C('typed-apostrophe').drawn, 'its'); assert.equal(C('typed-backslash').drawn, 'ab');
-  const col = C('typed-colon'); assert.equal(col.exit, 0); assert.notEqual(col.drawn, '12:30'); assert.ok(col.ink > 0);
+  const col = C('typed-colon'); assert.notEqual(col.drawn, '12:30');
+  // 6.1.1 draws a wrong frame and exits 0; 8.1.2 refuses the line (No option name near '30') and draws nothing
+  if (isV6()) { assert.equal(col.exit, 0); assert.ok(col.ink > 0); } else { assert.notEqual(col.exit, 0); assert.match(col.warn, /No option name near/); assert.equal(col.drawn, null); }
   for (const n of NAMES) assert.equal(C(`typed-${n}`).ok, false, n);
   if (isV6()) assert.match(C('typed-percent').warn, /Stray %/);
 });
@@ -76,11 +78,12 @@ t('% starts a function: %{pts} draws a number, not text; \\%{pts} (escaped as ab
 
 t('the colon: bare 12:30 is cut at the colon and the 30 becomes the next option. The frame is byte for byte the frame of text=12:fontfile=30, and of the build default font (no fontfile at all), not the test font. Fix: 1 backslash inside quotes, 2 bare', () => {
   const m = ev.colonMechanism;
-  assert.equal(m.bareMd5, m.asFontfileMd5); assert.equal(m.bareMd5, m.defaultFontMd5); assert.notEqual(m.bareMd5, m.testFontMd5);
+  if (isV6()) { assert.equal(m.bareMd5, m.asFontfileMd5); assert.equal(m.bareMd5, m.defaultFontMd5); assert.notEqual(m.bareMd5, m.testFontMd5); }
+  else { assert.equal(m.bareMd5, null, '8.1.2 refuses the bare colon line, so there is no frame to compare'); assert.notEqual(C('grid-colon-bare-0').exit, 0); }
   assert.equal(minBs(ev, 'grid', 'colon', 'quoted'), 1); assert.equal(minBs(ev, 'grid', 'colon', 'bare'), 2);
   assert.equal(minBs(ev, 'none', 'colon', 'quoted'), 1, 'expansion=none does not change the colon');
   assert.equal(C('grid-colon-quoted-1').drawn, '12:30');
-  assert.equal(C('grid-colon-bare-0').drawn, null, 'unreadable: another font'); assert.ok(C('grid-colon-bare-0').ink > 0);
+  assert.equal(C('grid-colon-bare-0').drawn, null, 'unreadable: another font, or no frame at all'); if (isV6()) assert.ok(C('grid-colon-bare-0').ink > 0);
 });
 
 t('the apostrophe needs 3 backslashes, bare or quoted, with expansion on or off; 0, 1 or 2 all lose the apostrophe, and an unclosed quote can swallow the next option into the text', () => {

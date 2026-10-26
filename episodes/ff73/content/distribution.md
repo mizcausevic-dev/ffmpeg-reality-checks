@@ -1,6 +1,6 @@
 # FF73 distribution kit: FFmpeg drawtext: 100% Draws a Blank Frame, Exit 0, Needs 2 Backslashes
 
-All numbers below come from the synthetic fixture in `episodes/ff73/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (8.1.2 pending).
+All numbers below come from the synthetic fixture in `episodes/ff73/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2, where one result differs (see limits).
 
 ## YouTube
 
@@ -42,7 +42,7 @@ Chapters
 01:39 What to check
 <!-- chapters:end -->
 
-Limits: one monospace font (DejaVu Sans Mono), one frame, no shell, ffmpeg 6.1.1. The Stray % behaviour (a warning, a blank frame, exit code 0) and the fallback font are the parts most likely to differ between builds. Not tested: ffmpeg 8.1.2, Windows, PowerShell and cmd.exe quoting, bash and zsh quoting layers, filter script files, other fonts, text shaping, enable expressions, real footage.
+Limits: one monospace font (DejaVu Sans Mono), one frame, no shell. On ffmpeg 8.1.2 (Windows build) one thing differs: a bare 12:30 is refused with "No option name near '30'" and a nonzero exit, instead of drawing a wrong frame with exit 0; the backslash counts for the other three strings are the same. The 8.1.2 run used DejaVu Sans Mono too (Consolas has a fractional advance that reader 2 cannot cut into cells). The Stray % behaviour on 6.1.1 (a warning, a blank frame, exit code 0) is the part most likely to differ between builds. Not tested: Windows paths for the font, PowerShell and cmd.exe quoting, bash and zsh quoting layers, filter script files, other fonts, text shaping, enable expressions, real footage.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 
