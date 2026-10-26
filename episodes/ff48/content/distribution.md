@@ -28,12 +28,12 @@ The 13 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 A clip with two shots
-00:31 Two controls
-00:48 It picks frame 54
-01:05 One frame per batch
-01:19 Make the batch the scene
-01:34 What to check
+00:14 A clip with two shots
+00:29 Two controls
+00:44 It picks frame 54
+01:00 One frame per batch
+01:12 Make the batch the scene
+01:26 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic clip, 160x120, lossless, rgb24 histograms, ffmpeg 6.1.1. "Best" here is the frame with the highest luma entropy, one measure among many. Not tested: real footage and real scene changes, other pixel formats, other resolutions, hardware thumbnail filters, players, ffmpeg builds other than 6.1.1.

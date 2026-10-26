@@ -28,12 +28,12 @@ The 12 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 A tone that marks the time
-00:36 Audio plus one second
-00:52 Where the second lives
-01:09 Audio minus one second
-01:26 Offset on the picture
-01:43 What to check
+00:15 A tone that marks the time
+00:32 Audio plus one second
+00:45 Where the second lives
+01:00 Audio minus one second
+01:15 Offset on the picture
+01:30 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic clip, ALAC audio and lossless H.264 picture, mp4 and mkv muxers of ffmpeg 6.1.1, two inputs. On 8.1.2 one file differs: for the mp4 minus-one-second file the edit list is identical (skip 48000 samples, byte reader -1.000 s) but ffmpeg's decoder returns 138752 samples and the tone lands 0.476 s in, so the decoded reader reads -1.024 s. Not tested: ffmpeg builds other than 6.1.1 and 8.1.2, players and editors (what they do with an edit list), uploads and re-muxes, AAC and its priming delay, other codecs and containers, subtitles, -itsoffset with re-encoding, -ss and -itsoffset together.

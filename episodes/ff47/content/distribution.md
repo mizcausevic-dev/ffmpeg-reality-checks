@@ -28,12 +28,12 @@ The 13 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 A clip with three silences
-00:32 With no options
-00:45 Only the start
-01:01 Stop periods one
-01:16 Both, and what it keeps
-01:31 What to check
+00:14 A clip with three silences
+00:30 With no options
+00:42 Only the start
+00:57 Stop periods one
+01:12 Both, and what it keeps
+01:25 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic clip with digital silence (exact zeros), 48000 Hz mono 16 bit, ffmpeg 6.1.1. Not tested: noisy silence and real recordings, the detection options (rms or peak, window), start_silence and stop_silence, other thresholds, multichannel, players, ffmpeg builds other than 6.1.1.

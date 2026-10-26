@@ -31,11 +31,11 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:18 A clip with three cues
-00:35 -c copy into mkv
-00:51 Name the codec
-01:09 No codec options at all
-01:24 The other direction
-01:41 What to check
+00:34 -c copy into mkv
+00:50 Name the codec
+01:06 No codec options at all
+01:21 The other direction
+01:37 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic clip, three text cues, mov_text, subrip and ass, .mp4, .mov and .mkv, ffmpeg 6.1.1. Not tested: other subtitle formats (webvtt, dvd_subtitle and other picture subtitles), styled ass files, players and how they render the cues, other builds than 6.1.1.

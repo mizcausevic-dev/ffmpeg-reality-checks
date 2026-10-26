@@ -30,12 +30,12 @@ Measured on ffmpeg 6.1.1. The 13 tests pass on ffmpeg 6.1.1. They also pass on 8
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 A source and a control
-00:35 At CRF 18
-00:50 At CRF 23 and 28
-01:06 Do the readers agree?
-01:22 The defaults
-01:38 What to check
+00:16 A source and a control
+00:32 At CRF 18
+00:46 At CRF 23 and 28
+01:01 Do the readers agree?
+01:16 The defaults
+01:31 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 3 s clip, preset medium, ffmpeg 6.1.1, one encoder build of each. PSNR and SSIM on the Y plane only. Not tested: real footage, other presets and tunes, other metrics such as VMAF, hardware encoders, other resolutions, builds other than 6.1.1.

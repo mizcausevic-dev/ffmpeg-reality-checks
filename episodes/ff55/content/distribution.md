@@ -31,11 +31,11 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:18 One clip, two readers
-00:35 1000 ticks: 33 or 34 ms
-00:52 No drift, half a tick
-01:09 Only multiples of 30000 are exact
-01:27 29.97 is not 30000/1001
-01:44 What to check
+00:32 1000 ticks: 33 or 34 ms
+00:50 No drift, half a tick
+01:05 Only multiples of 30000 are exact
+01:23 29.97 is not 30000/1001
+01:37 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic gray clip, lossless x264 with no B-frames, mp4 only, 29.97 fps and a 25 fps control, six timescales, ffmpeg 6.1.1. Not tested: other containers (mov, mkv), other frame rates, B-frames and composition offsets, edit lists, real footage, other muxer options, builds other than 6.1.1.

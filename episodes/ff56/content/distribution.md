@@ -34,12 +34,12 @@ The 13 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 Ten stream types, two readers
-00:36 Six of ten copy
-00:54 Four of ten fail
+00:18 Ten stream types, two readers
+00:35 Six of ten copy
+00:52 Four of ten fail
 01:11 The half fixes fail too
-01:26 What works
-01:43 What to check
+01:25 What works
+01:42 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 2 second clip, h264 in mkv, one extra stream per source, stream copy into MP4, ffmpeg 6.1.1. Not tested: other containers (mov, webm, mkv, ts), data and timecode streams, bitmap subtitles (dvd, pgs), real fonts, real files, multiple video streams, re-encoding beyond those three runs without -c copy, builds other than 6.1.1.

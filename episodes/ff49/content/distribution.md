@@ -30,12 +30,12 @@ The 12 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Five signals, two readers
-00:32 The control: constant bitrate
-00:48 Same quality, five bitrates
-01:05 Ten settings, two signals
-01:22 The average describes no frame
-01:39 What to check
+00:16 Five signals, two readers
+00:30 The control: constant bitrate
+00:43 Same quality, five bitrates
+01:00 Ten settings, two signals
+01:16 The average describes no frame
+01:31 What to check
 <!-- chapters:end -->
 
 Limits: synthetic stereo signals at 44100 Hz, ten seconds each, libmp3lame in ffmpeg 6.1.1. Not tested: real music, mono and other sample rates, joint stereo options and -compression_level, other mp3 encoders, players, ffmpeg builds other than 6.1.1.

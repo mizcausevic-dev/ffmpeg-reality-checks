@@ -32,12 +32,12 @@ The 13 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Two clips, two readers
-00:36 Offset 4: nine seconds
-00:53 Offset 3: one second lost
-01:09 Offset 5: no crossfade
-01:25 The rule
-01:42 What to check
+00:19 Two clips, two readers
+00:35 Offset 4: nine seconds
+00:51 Offset 3: one second lost
+01:07 Offset 5: no crossfade
+01:23 The rule
+01:41 What to check
 <!-- chapters:end -->
 
 Limits: two synthetic flat-card clips, lossless x264 in mkv, one transition (fade) of one second, 25 fps, ffmpeg 6.1.1. Not tested: other xfade transitions, audio (acrossfade), clips of different lengths, frame rates or sizes, real footage, other containers and codecs, builds other than 6.1.1. The offset 5 result (one frame of clip B) is the build specific part.

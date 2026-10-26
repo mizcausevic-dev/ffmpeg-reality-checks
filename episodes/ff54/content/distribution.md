@@ -30,12 +30,12 @@ The 13 tests pass on ffmpeg 6.1.1. They also pass on 8.1.2, but there the build-
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 A clip of flat cards
-00:35 -ss before -i: the fade lands
-00:51 -ss after -i: nothing fades
-01:06 The same number, another time
-01:23 Fade out: black for two seconds
-01:40 What to check
+00:16 A clip of flat cards
+00:32 -ss before -i: the fade lands
+00:48 -ss after -i: nothing fades
+01:00 The same number, another time
+01:16 Fade out: black for two seconds
+01:32 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic flat-luma clip, lossless x264 in mkv, fade in and fade out of one second, 25 fps, ffmpeg 6.1.1. Not tested: audio fades (afade), stream copy, keyframe seeking (-noaccurate_seek), real footage, other containers and codecs, other fade options (frame based start, alpha, color), builds other than 6.1.1.

@@ -30,12 +30,12 @@ Measured on ffmpeg 6.1.1. The 12 tests pass on ffmpeg 6.1.1. They also pass on 8
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Two readers and a control
-00:36 Zero, and no option
-00:54 Minus one
-01:10 A count of three
-01:27 Before the input
-01:45 What to check
+00:14 Two readers and a control
+00:30 Zero, and no option
+00:46 Minus one
+00:59 A count of three
+01:13 Before the input
+01:27 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic gif written by the ffmpeg gif muxer, ffmpeg 6.1.1, and ffmpeg's own demuxer as the player. How a browser or another player counts a loop was not tested. Not tested: browsers and players, gifs from other tools, other builds than 6.1.1.

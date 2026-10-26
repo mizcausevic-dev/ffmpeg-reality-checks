@@ -30,12 +30,12 @@ Measured on ffmpeg 6.1.1. The 14 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 A tone and a control
-00:36 Known positive: no filter
-00:51 The default aresample
-01:07 Close to the limit
-01:24 The filter does the work
-01:41 What to check
+00:17 A tone and a control
+00:34 Known positive: no filter
+00:49 The default aresample
+01:04 Close to the limit
+01:19 The filter does the work
+01:36 What to check
 <!-- chapters:end -->
 
 Limits: one resample (48000 to 24000 Hz), pure tones in a float wav, the built-in swr resampler, mono. Not tested: other rates, the soxr resampler, real music or speech, stereo, other filter options (cutoff, filter_type), other builds than 6.1.1.
