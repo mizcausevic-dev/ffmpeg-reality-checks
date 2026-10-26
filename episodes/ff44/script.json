@@ -1,0 +1,77 @@
+{
+  "n": 44,
+  "slug": "ffmpeg-hdr-to-sdr-grey",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does HDR to SDR look grey and washed out?",
+  "fullTitle": "FFmpeg HDR to SDR: a Plain Conversion Puts 100 Nit White at 127, Not 235",
+  "kicker": "Episode 44",
+  "thumb": {
+    "number": "127 not 235",
+    "label": "WHERE 100 NIT WHITE LANDS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "grey",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You convert HDR to SDR with a plain dash pix underscore fmt, and it looks grey and washed out. Why? We build a ten bit PQ clip with ten grey patches of known brightness, and measure what the conversion does to each.",
+      "captions": [
+        "HDR to SDR looks grey and washed out. Why?",
+        "Ten grey patches of known brightness, measured."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Ten patches, two readers",
+      "narration": "The clip is ten bit, tagged bt two thousand twenty and S M P T E twenty eighty four, which is PQ. Ten grey patches from zero to ten thousand nits. The control is an ordinary SDR clip. Readers: raw luma in Node, ffmpeg signalstats, and ffprobe for the tags.",
+      "captions": [
+        "10 bit, bt2020, smpte2084. Patches: 0 to 10000 nits.",
+        "Readers: raw luma in Node, signalstats, ffprobe tags."
+      ]
+    },
+    {
+      "id": "grey",
+      "chapter": "What the plain conversion does",
+      "narration": "Plain dash pix underscore fmt only rescales ten bit codes to eight bit. A hundred nit white lands at Y one twenty seven; an S D R white is two thirty five. The fifty nit patch is sixty seven point five codes too dark. Nothing is clipped: the ten thousand nit patch reaches two thirty five. It is just in the wrong place.",
+      "captions": [
+        "100 nit white: Y 127, expected 235.",
+        "Mid-tone error 64.5 codes. Nothing clipped, all misplaced."
+      ]
+    },
+    {
+      "id": "tags",
+      "chapter": "The tags",
+      "narration": "The tags survive: ffprobe still says PQ. So a reader that trusts them can fix it: zscale brings the patches back within half a code. Scale with an output matrix changes nothing useful. The colorspace filter refuses PQ. Force it, and the pixels stay the same but the tags now say bt seven oh nine.",
+      "captions": [
+        "Tags kept: zscale recovers within 0.5 code.",
+        "Forced colorspace: same pixels, tags say bt709."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "zscale and tonemap",
+      "narration": "Zscale alone is exact from zero to a hundred nits, but every patch from two hundred three nits up lands on two fifty five: five highlights, one value. Add tonemap hable and they stay apart: one eighty two, a thousand at two thirty five, four thousand at two fifty four. The control SDR clip stays exactly on its values.",
+      "captions": [
+        "zscale alone: 0 to 100 nits exact, 203 and up all 255.",
+        "With tonemap: 182, 222, 235, 254, 255. Control exact."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Read the color transfer with f f probe first. If it says S M P T E twenty eighty four, use zscale with a tone map. Not tested: real footage, HLG, Dolby Vision, saturated colors, players, other builds.",
+      "captions": [
+        "Check color_transfer with ffprobe first.",
+        "Not tested: real footage, HLG, Dolby Vision, colors, players."
+      ]
+    }
+  ]
+}
