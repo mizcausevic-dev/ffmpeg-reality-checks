@@ -1,5 +1,5 @@
 // Episode 71 fixture: "eq=brightness=0.1: how many levels does it add, and where does it clip?"
-// Synthetic input only (ffmpeg lavfi). Two kinds of source, all lossless ffv1 in mkv, yuv420p, chroma fixed at 128:
+// Synthetic input only (ffmpeg lavfi). Two kinds of source, all uncompressed rawvideo in mkv (ffv1 would convert the full range file to limited range on ffmpeg 8.1.2), yuv420p, chroma fixed at 128:
 //   levels  256 frames of 16x16, frame n is a flat card with luma Y = n (0..255). One file tagged limited range (tv), one tagged full range (pc).
 //           One frame holds exactly one input level, so the output level of a frame is the mapping f(n) of the filter.
 //   ramp    one frame of 256x16 where every column x has luma Y = x (a 0..255 ramp).
@@ -26,11 +26,11 @@ const ffm = (args, opts = {}) => {
 export function makeSources(dir) {
   const lv = (range) => {
     const f = path.join(dir, `levels_${range}.mkv`);
-    ffm(['-f', 'lavfi', '-i', `nullsrc=s=${S}x${S}:r=25,format=yuv420p,geq=lum='N':cb=128:cr=128,setparams=range=${range}`, '-frames:v', String(N), '-c:v', 'ffv1', f]);
+    ffm(['-f', 'lavfi', '-i', `nullsrc=s=${S}x${S}:r=25,format=yuv420p,geq=lum='N':cb=128:cr=128,setparams=range=${range}`, '-frames:v', String(N), '-c:v', 'rawvideo', f]);
     return f;
   };
   const ramp = path.join(dir, 'ramp.mkv');
-  ffm(['-f', 'lavfi', '-i', `nullsrc=s=${N}x${S}:r=25,format=yuv420p,geq=lum='X':cb=128:cr=128,setparams=range=tv`, '-frames:v', '1', '-c:v', 'ffv1', ramp]);
+  ffm(['-f', 'lavfi', '-i', `nullsrc=s=${N}x${S}:r=25,format=yuv420p,geq=lum='X':cb=128:cr=128,setparams=range=tv`, '-frames:v', '1', '-c:v', 'rawvideo', ramp]);
   return {tv: lv('tv'), pc: lv('pc'), ramp};
 }
 

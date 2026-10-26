@@ -15,7 +15,7 @@ All numbers below come from the synthetic fixture in `episodes/ff71/fixture/` (e
 
 You lift a dark clip with eq=brightness=0.1. How many gray levels does that add, and where does it clip? We measure the mapping level by level on synthetic input.
 
-Source (lavfi, lossless ffv1, yuv420p, chroma 128): 256 flat frames of 16x16 where frame n has luma Y = n (0 to 255), one file tagged limited range (tv) and one tagged full range (pc); and one 256x16 ramp frame where column x has luma x. Because every frame holds one level, the output level of a frame is the mapping of the filter at that level.
+Source (lavfi, uncompressed rawvideo in mkv, yuv420p, chroma 128): 256 flat frames of 16x16 where frame n has luma Y = n (0 to 255), one file tagged limited range (tv) and one tagged full range (pc); and one 256x16 ramp frame where column x has luma x. Because every frame holds one level, the output level of a frame is the mapping of the filter at that level.
 
 Readers: (1) Node reads the decoded Y plane (the first luma byte of every frame, and the 256 bytes of the ramp row). (2) ffmpeg signalstats gives YAVG, YMIN and YMAX per frame. They agree on all 256 levels for every filter tested, and on the ramp (mean 151.23, minimum 25, maximum 255).
 
