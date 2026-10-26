@@ -26,12 +26,12 @@ The extra frames are copies. Converted losslessly, every variant holds 93 distin
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 A variable clip
-00:41 The default
-01:05 Say what you want
-01:28 Where the frames come from
-01:50 More rate, more copies
-02:06 Do not rely on the default
+00:16 A variable clip
+00:38 The default
+00:59 Say what you want
+01:22 Where the frames come from
+01:42 More rate, more copies
+01:57 Do not rely on the default
 <!-- chapters:end -->
 
 Limits: one synthetic clip, two ffmpeg builds. Not tested: real phone files, editors or players, builds in between.

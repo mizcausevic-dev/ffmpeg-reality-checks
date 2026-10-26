@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:07,730
+Variable frame rate in. Constant out?
+
+2
+00:00:07,730 --> 00:00:16,040
+Does it add pictures? Change the length?
+
+3
+00:00:16,040 --> 00:00:23,210
+93 frames over 5 seconds.
+
+4
+00:00:23,210 --> 00:00:37,540
+Gaps: 33 ms, 67 ms, and one of 933 ms.
+
+5
+00:00:37,540 --> 00:00:47,510
+ffmpeg 6.1.1: 150 frames, 57 duplicates.
+
+6
+00:00:47,510 --> 00:00:59,150
+ffmpeg 8.1.2: 93 frames, uneven gaps kept.
+
+7
+00:00:59,150 --> 00:01:07,530
+-fps_mode passthrough: 93 frames.
+
+8
+00:01:07,530 --> 00:01:22,200
+-fps_mode cfr -r 30: about 150 frames.
+
+9
+00:01:22,200 --> 00:01:31,170
+93 distinct pictures in every variant.
+
+10
+00:01:31,170 --> 00:01:41,630
+Two counters agree. Still about 5 seconds.
+
+11
+00:01:41,630 --> 00:01:49,970
+60 fps: 207 duplicates of 300 frames.
+
+12
+00:01:49,970 --> 00:01:57,120
+Not tested: any editor or player.
+
+13
+00:01:57,120 --> 00:02:02,780
+Say what you want: passthrough or cfr.
+
+14
+00:02:02,780 --> 00:02:08,440
+Not tested: phone files, editors, other builds.
