@@ -28,6 +28,8 @@ differs = {
     'ff26': 'Black level after -color_range pc: 16 on 6.1.1, 0 on 8.1.2.',
     'ff31': 'Byte count after the hvc1 retag: 2 on 6.1.1, 5 on 8.1.2 (frames unchanged on both).',
     'ff33': '-stream_loop with a short audio track: 355 frames on 6.1.1, 359 on 8.1.2.',
+    'ff44': 'Matrix tag after scale=out_color_matrix=bt709: bt2020nc kept on 6.1.1, bt709 on 8.1.2 (pixels identical).',
+    'ff45': 'Plain .mov trim: 50 frames with 25 repeats on 6.1.1, 25 frames with a 1 s gap on 8.1.2.',
 }
 # Films measured on 6.1.1 only (the first 25 films were not re-run on 8.1.2).
 BOTH_FROM = 26

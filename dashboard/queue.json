@@ -1,26 +1,5 @@
 [
  {
-  "ep": "ff43",
-  "status": "building",
-  "topic": "Does libopus really resample to 48 kHz?",
-  "why": "Input rate vs output rate is a common surprise; measurable from the stream header and the samples.",
-  "kind": "gotcha"
- },
- {
-  "ep": "ff44",
-  "status": "building",
-  "topic": "What does a naive HDR to SDR conversion do to the picture?",
-  "why": "Greys out and clips highlights; two readers on pixel values make the claim checkable.",
-  "kind": "gotcha"
- },
- {
-  "ep": "ff45",
-  "status": "building",
-  "topic": "I cut a clip with the trim filter: why is the start frozen or black?",
-  "why": "A very common copied filter chain; timestamps are countable with two readers.",
-  "kind": "gotcha"
- },
- {
   "ep": "ff46",
   "status": "proposed",
   "topic": "-itsoffset with -c copy: does the audio really move, in MP4 and in MKV?",

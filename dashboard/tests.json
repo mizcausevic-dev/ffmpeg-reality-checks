@@ -208,5 +208,20 @@
   "tests": 16,
   "pass": 16,
   "fail": 0
+ },
+ "ff43": {
+  "tests": 16,
+  "pass": 16,
+  "fail": 0
+ },
+ "ff44": {
+  "tests": 15,
+  "pass": 15,
+  "fail": 0
+ },
+ "ff45": {
+  "tests": 13,
+  "pass": 13,
+  "fail": 0
  }
 }
