@@ -73,7 +73,14 @@ export function makeSources(dir) {
 export function makeCase(src, dir, c) {
   const out = path.join(dir, `${c.id}.${extOf(c)}`);
   const ac = c.fmt === 'pcm' ? 'pcm_s16le' : c.fmt === 'aac' ? 'aac' : 'copy';
-  ffm(['-loop', '1', '-framerate', String(c.fps), '-i', src.still, '-i', c.src === 'm4a' ? src.m4a : src.wav[c.aud], ...vArgs(c), '-c:a', ac, ...optArgs(c), out]);
+  const args = ['-loop', '1', '-framerate', String(c.fps), '-i', src.still, '-i', c.src === 'm4a' ? src.m4a : src.wav[c.aud], ...vArgs(c), '-c:a', ac, ...optArgs(c), out];
+  if (c.opt === 'fflags') {
+    // ffmpeg 8.1.2 refuses the shortest flag of the output option -fflags: record the refusal instead of throwing
+    const r = run('ffmpeg', ['-v', 'error', '-y', ...args]);
+    if (r.status !== 0) return {refused: true, error: String(r.stderr).split(/\r?\n/).find((l) => /fflags/.test(l)) ?? String(r.stderr).slice(0, 200)};
+    return out;
+  }
+  ffm(args);
   return out;
 }
 
@@ -132,6 +139,7 @@ export function runExperiment(dir) {
   };
   for (const c of cases()) {
     const f = makeCase(src, dir, c);
+    if (typeof f === 'object') { ev.runs[c.id] = {...c, command: commandOf(c), refused: true, error: f.error}; continue; }
     ev.runs[c.id] = {...c, command: commandOf(c), ...measure(f, c), srcSamples: c.src === 'm4a' ? ev.sources.m4aSamples : ev.sources.wavSamples[c.aud]};
   }
   return ev;

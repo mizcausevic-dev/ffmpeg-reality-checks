@@ -79,6 +79,7 @@ t('known positive for "video longer than the song": with no stop option the pict
 t('-fflags +shortest does not stop at the end of the song: at 25 fps the picture is 250 frames (10.00 s) against 4.3 s of song, 5.7 s too long, and at 30 fps 300 frames, in mkv and mp4; plain -shortest on the same inputs stops at 107 and 129 frames', () => {
   for (const fmt of ['pcm', 'aac']) {
     const a = R('fflags', 4.3, 25, fmt), b = R('fflags', 4.3, 30, fmt);
+    if (a.refused || b.refused) { assert.equal(isV6(), false, 'the 6.1.1 build accepts the flag'); assert.ok(a.refused && b.refused); assert.match(a.error, /fflags/); continue; }
     assert.ok(a.vSec > 9.9 && a.gap > 5.5, `${fmt} 25 fps`); assert.ok(b.vSec > 9.9 && b.gap > 5.5, `${fmt} 30 fps`);
     assert.equal(R('shortest', 4.3, 25, fmt).framesDecoded, 107); assert.equal(R('shortest', 4.3, 30, fmt).framesDecoded, 129);
     assert.ok(a.vSec > 2 * R('shortest', 4.3, 25, fmt).vSec);
