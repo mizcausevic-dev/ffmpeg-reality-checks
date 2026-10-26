@@ -58,10 +58,10 @@
     {
       "id": "cost",
       "chapter": "What it costs",
-      "narration": "There is a price. Measured against the original PNG frames, the four four four file scores thirty seven point oh four decibels. The four two zero file scores thirty five point four. Color detail is shared between neighbouring pixels. How visible that is depends on your picture.",
+      "narration": "There is a price. Measured against the original PNG frames, on ffmpeg six point one, the four four four file scores thirty seven point oh four decibels, and the four two zero file thirty five point four. On ffmpeg eight point one, the scores are thirty nine point seven eight and thirty six point nine nine. The numbers move with the build. The order does not. How visible it is depends on your picture.",
       "captions": [
-        "PSNR vs the PNG frames: 37.04 dB and 35.40 dB.",
-        "How visible it is depends on the picture."
+        "PSNR vs the PNG frames, two ffmpeg builds.",
+        "The numbers move with the build. The order does not."
       ]
     },
     {

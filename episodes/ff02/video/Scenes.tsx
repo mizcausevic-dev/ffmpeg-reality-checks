@@ -7,8 +7,8 @@ import type {SceneProps} from '../../kit/Episode';
 /* Every number below is measured by episodes/ff02/fixture/experiment.mjs (see evidence.json from fixture/run.mjs). */
 const EV = {
   frames: 50, size: '320x180',
-  defProfile: 'High 4:4:4 Predictive', defPix: 'yuv444p', defPsnr: 37.04,
-  fixProfile: 'High', fixPix: 'yuv420p', fixPsnr: 35.4,
+  defProfile: 'High 4:4:4 Predictive', defPix: 'yuv444p',
+  fixProfile: 'High', fixPix: 'yuv420p',
 };
 const CMD = 'ffmpeg -framerate 25 -i f%03d.png -c:v libx264 -crf 18 out.mp4';
 const CMD_FIX = 'ffmpeg -framerate 25 -i f%03d.png -c:v libx264 -crf 18 -pix_fmt yuv420p out.mp4';
@@ -101,14 +101,25 @@ const Fix: React.FC<SceneProps> = ({t}) => (
   </>
 );
 
-/* 6. What it costs */
+/* 6. What it costs: PSNR against the original PNG frames, two ffmpeg builds (both measured by fixture/run.mjs) */
+const PSNR = [
+  {build: 'ffmpeg 6.1.1 (Linux)', full: 37.04, sub: 35.4},
+  {build: 'ffmpeg 8.1.2 (Windows)', full: 39.78, sub: 36.99},
+];
 const Cost: React.FC<SceneProps> = ({t}) => (
   <>
-    <Overline y={150} color={C.amber}>Closeness to the original PNG frames (PSNR)</Overline>
-    <Readout x={M} y={260} w={640} label="4:4:4 · higher is closer" value={`${EV.defPsnr.toFixed(2)} dB`} color={C.red} o={ep(t, 0.6, 1.2)} />
-    <Readout x={M + 760} y={260} w={640} label="4:2:0 · what players accept" value={`${EV.fixPsnr.toFixed(2)} dB`} color={C.green} o={ep(t, 2.4, 3.0)} />
-    <Txt x={M} y={560} w={W - 2 * M} size={36} color={C.text} o={ep(t, 4.4, 5.0)}>Color detail is shared between neighbouring pixels.</Txt>
-    <Txt x={M} y={640} w={W - 2 * M} size={32} color={C.dim} o={ep(t, 5.2, 5.8)}>Measured on this synthetic pattern. How visible it is depends on your picture.</Txt>
+    <Overline y={150} color={C.amber}>Closeness to the original PNG frames (PSNR, higher is closer)</Overline>
+    <Txt x={M + 560} y={230} w={560} size={28} color={C.red} weight={700} align="center" o={ep(t, 0.4, 0.9)}>4:4:4 · default</Txt>
+    <Txt x={M + 1180} y={230} w={560} size={28} color={C.green} weight={700} align="center" o={ep(t, 0.4, 0.9)}>4:2:0 · -pix_fmt yuv420p</Txt>
+    {PSNR.map((r, i) => (
+      <React.Fragment key={r.build}>
+        <Txt x={M} y={330 + i * 190} w={520} size={32} color={C.text} weight={600} o={ep(t, 0.8 + i * 2.0, 1.4 + i * 2.0)}>{r.build}</Txt>
+        <Readout x={M + 560} y={300 + i * 190} w={560} label="decibels" value={r.full.toFixed(2)} color={C.red} o={ep(t, 1.0 + i * 2.0, 1.6 + i * 2.0)} />
+        <Readout x={M + 1180} y={300 + i * 190} w={560} label="decibels" value={r.sub.toFixed(2)} color={C.green} o={ep(t, 1.4 + i * 2.0, 2.0 + i * 2.0)} />
+      </React.Fragment>
+    ))}
+    <Txt x={M} y={700} w={W - 2 * M} size={40} color={C.amber} weight={700} o={ep(t, 5.0, 5.6)}>The numbers move with the build. The order does not.</Txt>
+    <Txt x={M} y={780} w={W - 2 * M} size={30} color={C.dim} o={ep(t, 6.0, 6.6)}>One synthetic pattern. How visible the difference is depends on your picture.</Txt>
   </>
 );
 

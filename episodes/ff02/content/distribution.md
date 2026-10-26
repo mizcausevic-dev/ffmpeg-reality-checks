@@ -19,11 +19,18 @@ We build a synthetic source of 50 PNG frames (RGB) and encode it with libx264 at
 
 Why it matters: 4:2:0 keeps one color sample per 2x2 block of pixels, 4:4:4 keeps one per pixel. The FFmpeg wiki (Encode/H.264) says some players only support 4:2:0 for H.264. We did not test any player; the profile in the file tells you what a player must support.
 
-The fix has a cost. Measured against the original PNG frames with PSNR, the 4:4:4 file scores 37.04 dB and the 4:2:0 file 35.40 dB on this synthetic pattern. How visible that is depends on your picture.
+The fix has a cost. Measured against the original PNG frames with PSNR on this synthetic pattern: on ffmpeg 6.1.1 the 4:4:4 file scores 37.04 dB and the 4:2:0 file 35.40 dB; on ffmpeg 8.1.2 they score 39.78 dB and 36.99 dB. The numbers move with the build; the order does not. How visible that is depends on your picture.
+
+The profile and pixel format results are identical on both builds.
 
 Chapters
 <!-- chapters:start -->
 00:00 The command
+00:16 The test frames
+00:30 What ffprobe says
+00:47 4:4:4 versus 4:2:0
+01:13 The fix
+01:35 What it costs
 <!-- chapters:end -->
 
 Limits: two ffmpeg builds (6.1.1 and 8.1.2), one synthetic test pattern, and no player was tested.
