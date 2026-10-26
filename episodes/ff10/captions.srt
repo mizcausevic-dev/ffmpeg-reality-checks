@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:09,650
+Two audio tracks in. How many come out?
+
+2
+00:00:09,650 --> 00:00:16,440
+No error. One track just vanishes.
+
+3
+00:00:16,440 --> 00:00:26,590
+Track 1: 440 Hz. Track 2: 880 Hz.
+
+4
+00:00:26,590 --> 00:00:34,210
+Two readers: ffprobe, and measured pitch.
+
+5
+00:00:34,210 --> 00:00:40,900
+No -map: 1 audio track, 440 Hz.
+
+6
+00:00:40,900 --> 00:00:49,500
+The 880 Hz track is gone. -c copy: same.
+
+7
+00:00:49,500 --> 00:00:55,380
+-map 0: both tones present.
+
+8
+00:00:55,380 --> 00:01:05,950
+-map 0:v -map 0:a:1: only the 880 Hz track.
+
+9
+00:01:05,950 --> 00:01:12,950
+Docs: audio, the stream with the most channels.
+
+10
+00:01:12,950 --> 00:01:20,830
+Track 2 is stereo. Track 1 was still kept.
+
+11
+00:01:20,830 --> 00:01:31,220
+Flag on track 2: output keeps 880 Hz, stereo.
+
+12
+00:01:31,220 --> 00:01:38,150
+Same on ffmpeg 6.1.1 and 8.1.2.
+
+13
+00:01:38,150 --> 00:01:45,370
+Every track: -map 0. One track: name it.
+
+14
+00:01:45,370 --> 00:01:49,880
+Not tested: subtitles, other containers.

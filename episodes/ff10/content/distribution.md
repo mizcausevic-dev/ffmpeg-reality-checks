@@ -28,12 +28,12 @@ Same results on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 A two track source
-00:38 No map option
-00:55 Say what you want
-01:13 The documented rule
-01:29 The default flag
-01:50 Name the track
+00:16 A two track source
+00:34 No map option
+00:50 Say what you want
+01:06 The documented rule
+01:21 The default flag
+01:38 Name the track
 <!-- chapters:end -->
 
 Limits: one synthetic MP4 with two audio tracks, two ffmpeg builds. Not tested: subtitles, other containers, other codecs, builds in between.

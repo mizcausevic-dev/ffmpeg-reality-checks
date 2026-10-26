@@ -28,12 +28,12 @@ Same behavior on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 A clean case
-00:36 The crash
-00:59 Which number breaks it
-01:28 The fix
-01:44 Why the encoder cares
-02:07 Pick an even height
+00:16 A clean case
+00:32 The crash
+00:53 Which number breaks it
+01:18 The fix
+01:32 Why the encoder cares
+01:52 Pick an even height
 <!-- chapters:end -->
 
 Limits: synthetic clips, libx264 only, two ffmpeg builds. Not tested: other encoders, hardware encoders, builds in between.
