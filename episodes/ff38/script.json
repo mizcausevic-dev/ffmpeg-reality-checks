@@ -1,0 +1,77 @@
+{
+  "n": 38,
+  "slug": "ffmpeg-sar-dar-setsar",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Video stretched or squished after scaling? What are SAR and DAR?",
+  "fullTitle": "FFmpeg scale Rewrites SAR; setsar=1 Before scale Squishes the Picture",
+  "kicker": "Episode 38",
+  "thumb": {
+    "number": "70% wide",
+    "label": "THE CIRCLE IS SQUISHED",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "order",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You scale a video and it looks stretched or squished. S A R is the shape of one pixel. D A R is the shape of the picture. Displayed width is stored width times S A R. We measure what scale and set S A R do.",
+      "captions": [
+        "Stretched or squished after scaling?",
+        "SAR is the pixel shape. DAR is the picture shape."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Test card, three readers",
+      "narration": "The test card is seven twenty by five seventy six, S A R sixty four to forty five, D A R sixteen to nine. Its ellipse is two sixty nine pixels wide, three eighty three tall: widened by S A R, a circle. Readers: f f probe, raw pixels, the P A S P box. A square pixel card is the control.",
+      "captions": [
+        "720x576, SAR 64:45, DAR 16:9.",
+        "Stored shape 269x383. Shown 1024 wide: round."
+      ]
+    },
+    {
+      "id": "scale",
+      "chapter": "scale rewrites SAR",
+      "narration": "Dash v f scale twelve eighty by seven twenty. Does the S A R carry over? No. The output is one to one, D A R is still sixteen to nine, and the pixels are a circle. Control: a square card scaled to six forty by seven twenty gets S A R two to one.",
+      "captions": [
+        "scale=1280:720: SAR 1:1, DAR 16:9.",
+        "Control 640x720: SAR 2:1, DAR still 16:9."
+      ]
+    },
+    {
+      "id": "flag",
+      "chapter": "setsar changes the flag",
+      "narration": "Set S A R one changes only the flag. Same pixel hash, but D A R falls to five to four, and a player that honors S A R squeezes the circle to seventy percent. To bake the aspect in, use scale i w times S A R, i h: ten twenty four by five seventy six, a true circle.",
+      "captions": [
+        "setsar=1: same pixels, DAR 5:4.",
+        "scale=iw*sar:ih: 1024x576, circle 383x383."
+      ]
+    },
+    {
+      "id": "order",
+      "chapter": "Order matters",
+      "narration": "Now set S A R one before the scale. The pixels equal the plain scale: a circle. But the flag is forty five to sixty four, the displayed picture is nine hundred by seven twenty, and the circle is seventy percent as wide as tall.",
+      "captions": [
+        "setsar=1,scale=1280:720: SAR 45:64.",
+        "Shown 900x720. Circle 0.70 wide."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "After any scale, read S A R and D A R with f f probe. Do not set S A R one before a scale unless the pixels are square. Not tested: any player, other builds, real footage, other encoders.",
+      "captions": [
+        "Check SAR and DAR with ffprobe.",
+        "Not tested: players, real footage, other encoders."
+      ]
+    }
+  ]
+}
