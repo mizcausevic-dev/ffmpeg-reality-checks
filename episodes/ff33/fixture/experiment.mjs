@@ -15,6 +15,8 @@ import {run, ffmpegVersion} from '../../../tools/ff.mjs';
 
 export const SIZE = 64, RATE = 44100, FPS = 30, SEC = 4, FRAMES = FPS * SEC;
 export const SOURCES = {eq: 4.0, near: 3.97, short: 3.9, long: 4.1};     // audio seconds; the picture is 4.0 s in all four
+// 'v6' (6.x), 'v8' (8.x) or 'other': the loop length rule for a clip whose audio and picture differ changed between these builds (episode 33)
+export const buildOf = (versionLine) => (/version 6\./.test(versionLine) ? 'v6' : /version 8\./.test(versionLine) ? 'v8' : 'other');
 const round3 = (x) => Math.round(x * 1000) / 1000;
 const ff = (args, cwd) => { const r = spawnSync('ffmpeg', ['-v', 'error', '-y', ...args], {encoding: 'utf8', cwd, maxBuffer: 1 << 26}); if (r.status !== 0) throw new Error(`ffmpeg failed: ${r.stderr}`); };
 
@@ -109,7 +111,7 @@ export function readOutput(file, srcMd5) {
 
 export function runExperiment(dir) {
   fs.mkdirSync(dir, {recursive: true});
-  const out = {ffmpeg: ffmpegVersion(), source: {fps: FPS, seconds: SEC, frames: FRAMES, audioSeconds: SOURCES}, reads: {}, runs: {}};
+  const out = {ffmpeg: ffmpegVersion(), build: buildOf(ffmpegVersion()), source: {fps: FPS, seconds: SEC, frames: FRAMES, audioSeconds: SOURCES}, reads: {}, runs: {}};
   let srcMd5;
   for (const [name, aSec] of Object.entries(SOURCES)) {
     ff(['-f', 'lavfi', '-i', `color=c=gray:s=${SIZE}x${SIZE}:r=${FPS}:d=${SEC},format=yuv420p,geq=lum='mod(N,256)':cb='128+floor(N/256)*20':cr=128`,
@@ -132,10 +134,14 @@ export function runExperiment(dir) {
   ff(['-i', 'eq.mkv', '-i', 'eq.mkv', '-i', 'eq.mkv', '-filter_complex',
       '[0:v]trim=start_frame=0,setpts=PTS-STARTPTS[a];[1:v]trim=start_frame=2,setpts=PTS-STARTPTS[b];[2:v]trim=start_frame=3,setpts=PTS-STARTPTS[c];[a][b][c]concat=n=3:v=1:a=0[v]',
       '-map', '[v]', '-c:v', 'ffv1', 'handmade-gaps.mkv'], dir);
+  ff(['-i', 'eq.mkv', '-i', 'eq.mkv', '-i', 'eq.mkv', '-filter_complex',
+      '[0:v]trim=start_frame=0,setpts=PTS-STARTPTS[a];[1:v]trim=start_frame=0,setpts=PTS-STARTPTS[b];[2:v]trim=start_frame=1,setpts=PTS-STARTPTS[c];[a][b][c]concat=n=3:v=1:a=0[v]',
+      '-map', '[v]', '-c:v', 'ffv1', 'handmade-gaps2.mkv'], dir);
   const rd = (n) => readOutput(path.join(dir, n + '.mkv'), srcMd5);
   out.controls = {
     concatDemux: {command: 'ffmpeg -f concat -safe 0 -i list.txt -c copy out.mkv   (list.txt: eq.mkv three times)', ...rd('concat-demux')},
     concatFilterShort: {command: 'ffmpeg -i short.mkv -i short.mkv -i short.mkv -filter_complex concat=n=3:v=1:a=1 out.mkv', ...rd('concat-filter-short')},
+    handmadeGaps2: {command: 'three trim filters then concat: frames 0 to 119, 0 to 119, 1 to 119', ...rd('handmade-gaps2')},
     handmadeGaps: {command: 'three trim filters then concat: frames 0 to 119, 2 to 119, 3 to 119', ...rd('handmade-gaps')},
   };
   return out;

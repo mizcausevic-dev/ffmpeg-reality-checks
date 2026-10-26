@@ -36,18 +36,18 @@ const Source: React.FC<SceneProps> = ({t}) => (
   </>
 );
 
-/* 3. Audio shorter than the picture */
+/* 3. Audio shorter than the picture, two builds */
 const Short: React.FC<SceneProps> = ({t}) => (
   <>
     <Halo y={520} color={C.red} o={ep(t, 0.2, 1.4)} />
-    <Head over="Audio 3.9 s · picture 4.0 s · re-encode" title="The loop follows the audio." color={C.red} o={ep(t, 0.2, 0.8)} />
-    <Duel y={280} h={250}
-      left={{label: 'Expected', value: '12.00 s', sub: '360 frames', color: C.cyan, o: ep(t, 0.9, 1.6), valueSize: 96}}
-      right={{label: 'Measured', value: '11.83 s', sub: '355 frames, audio 11.7 s', color: C.red, o: ep(t, 2.2, 2.9), valueSize: 96}}
-      mid="vs" midO={ep(t, 1.8, 2.4)} />
-    <FrameStrip y={575} n={8} kept={(i) => i >= 2} label={(i) => String(i)} o={ep(t, 3.8, 4.4)} fw={112} fh={80} gap={14} />
-    <Mid y={745} size={28} color={C.mute} o={ep(t, 5.0, 5.6)}>Source frames at the start of play 2. Frames 0 and 1 are gone; play 3 starts at frame 3.</Mid>
-    <Mid y={800} size={28} color={C.amber} o={ep(t, 6.4, 7.0)}>Audio 3.97 s, only 30 ms short: 359 frames.</Mid>
+    <Head over="Audio 3.9 s · picture 4.0 s · re-encode" title="Same command. Two builds." color={C.red} o={ep(t, 0.2, 0.8)} />
+    <Duel y={280} h={290}
+      left={{label: 'ffmpeg 6.1.1', value: '355 frames', sub: '11.83 s\nplays start at frames 0, 2, 3', color: C.red, o: ep(t, 0.9, 1.6), valueSize: 96}}
+      right={{label: 'ffmpeg 8.1.2', value: '359 frames', sub: '11.97 s\nplays start at frames 0, 0, 1', color: C.amber, o: ep(t, 2.4, 3.1), valueSize: 96}}
+      mid="vs" midO={ep(t, 2.0, 2.6)} />
+    <Mid y={620} size={30} color={C.dim} o={ep(t, 4.2, 4.8)}>Expected: 360 frames, 12.00 s. Both builds fall short; the loop follows the audio.</Mid>
+    <Mid y={700} size={28} color={C.amber} o={ep(t, 5.8, 6.4)}>Audio 3.97 s, only 30 ms short: 359 frames on both builds.</Mid>
+    <Mid y={760} size={28} color={C.mute} o={ep(t, 7.0, 7.6)}>6.1.1 audio is 11.7 s, continuous. 8.1.2 audio has 0.067 s holes at the seams.</Mid>
   </>
 );
 
@@ -56,10 +56,10 @@ const Long: React.FC<SceneProps> = ({t}) => (
   <>
     <Head over="Other cases" title="Holes at every seam." color={C.red} o={ep(t, 0.2, 0.8)} />
     <Duel y={280} h={310}
-      left={{label: 'Re-encode · audio 4.1 s', value: '12.3 s', sub: 'all 360 frames\npicture holes 0.13 s', color: C.red, o: ep(t, 0.9, 1.6), valueSize: 110}}
-      right={{label: '-c copy · audio 3.9 s', value: '12.0 s', sub: 'picture, 360 frames\nsound holes 0.1 s', color: C.amber, o: ep(t, 3.0, 3.7), valueSize: 110}}
+      left={{label: 'Re-encode · audio 4.1 s', value: '12.3 s', sub: 'all 360 frames, both builds\npicture holes 0.13 s', color: C.red, o: ep(t, 0.9, 1.6), valueSize: 110}}
+      right={{label: '-c copy · audio 3.9 s', value: '12.0 s', sub: 'picture, 360 frames, both builds\nsound holes 0.1 s', color: C.amber, o: ep(t, 3.0, 3.7), valueSize: 110}}
       mid="" midO={0} />
-    <Mid y={650} size={30} color={C.dim} o={ep(t, 5.0, 5.6)}>-c copy, audio 3.9 s: 11.7 s of samples on an 11.9 s timeline.</Mid>
+    <Mid y={650} size={30} color={C.dim} o={ep(t, 5.0, 5.6)}>-c copy, audio 3.9 s: 11.7 s of samples on an 11.9 s timeline, both builds.</Mid>
     <Verdict y={740} text="The seam is a hole, not a join" color={C.red} o={ep(t, 6.2, 7.0)} size={34} />
   </>
 );
@@ -70,10 +70,11 @@ const Span: React.FC<SceneProps> = ({t}) => (
     <Head over="-stream_loop -1 -t 25" title="Exact length. Lost heads." color={C.amber} o={ep(t, 0.2, 0.8)} />
     <Figure y={260} value="25.0 s" caption="750 frames, 7 plays, the last one cut after 1 s" color={C.green} size={150} o={ep(t, 0.9, 1.6)} />
     <Row y={560} h={230} cw={520} gap={32} valueSize={44} items={[
-      {label: 'Audio 4.0 s · play starts', value: '0 0 0 0 0 0 0', sub: 'source frame of each play', color: C.green, o: ep(t, 3.4, 4.0)},
-      {label: 'Audio 3.9 s · play starts', value: '0 2 3 3 3 3 3', sub: 'still 25.0 s, 750 frames', color: C.red, o: ep(t, 4.4, 5.0)},
-      {label: 'Sound minus picture', value: '-33 ms', sub: 'at every seam, no drift', color: C.cyan, o: ep(t, 5.4, 6.0)},
+      {label: 'Audio 4.0 s · both builds', value: '0 0 0 0 0 0 0', sub: 'source frame of each play start', color: C.green, o: ep(t, 3.4, 4.0)},
+      {label: 'Audio 3.9 s · 6.1.1', value: '0 2 3 3 3 3 3', sub: 'still 25.0 s, 750 frames', color: C.red, o: ep(t, 4.4, 5.0)},
+      {label: 'Audio 3.9 s · 8.1.2', value: '0 0 1 1 1 1 1', sub: 'still 25.0 s, 750 frames', color: C.amber, o: ep(t, 5.4, 6.0)},
     ]} />
+    <Mid y={820} size={26} color={C.mute} o={ep(t, 6.6, 7.2)}>Sound minus picture: -33 ms at each seam on 6.1.1, within 40 ms on both builds. No drift.</Mid>
   </>
 );
 
@@ -84,7 +85,7 @@ const Close: React.FC<SceneProps> = ({t}) => (
     <Head over="What to check" title="Match the lengths first." color={C.cyan} o={ep(t, 0.2, 0.9)} />
     <Duel y={290} h={260}
       left={{label: 'Equal lengths', value: 'exact', sub: '360 frames, 12.0 s', color: C.green, o: ep(t, 1.4, 2.1), valueSize: 80}}
-      right={{label: 'Unequal lengths', value: 'lost or holes', sub: '30 ms to 100 ms measured', color: C.red, o: ep(t, 2.0, 2.7), valueSize: 64}}
+      right={{label: 'Unequal lengths', value: 'lost or holes', sub: 'loss depends on the build', color: C.red, o: ep(t, 2.0, 2.7), valueSize: 64}}
       mid="or" midO={ep(t, 2.4, 3.0)} />
     <Mid y={610} size={28} color={C.mute} o={ep(t, 3.4, 4.0)}>Not tested: other builds, containers and codecs, real footage with encoder delay, stream order, players.</Mid>
     <Mid y={700} size={30} color={C.dim} o={ep(t, 4.0, 4.6)}>FFmpeg Reality Checks · episode 33 · fixture and tests in the description</Mid>

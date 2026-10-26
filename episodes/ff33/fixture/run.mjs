@@ -7,7 +7,7 @@ import {have} from '../../../tools/ff.mjs';
 if (!have('ffmpeg') || !have('ffprobe')) { console.error('ffmpeg and ffprobe must be on PATH'); process.exit(1); }
 const dir = path.resolve(process.argv[2] ?? 'out/ff33');
 const ev = runExperiment(dir);
-console.log(ev.ffmpeg + '\n');
+console.log(ev.ffmpeg + `   (build ${ev.build})\n`);
 console.log(`source: ${ev.source.frames} frames (${ev.source.unique} unique), ${ev.source.seconds} s picture at ${ev.source.fps} fps; audio ramp lengths ${JSON.stringify(ev.source.audioSeconds)} s\n`);
 const show = (k, r) => {
   console.log(`${k.padEnd(18)} ${r.command ?? ''}`);

@@ -1,4 +1,4 @@
-# FF33 distribution kit: FFmpeg -stream_loop: the Loop Length Follows the Audio
+# FF33 distribution kit: FFmpeg -stream_loop Follows the Audio: 355 or 359 Frames
 
 All numbers below come from the synthetic fixture in `episodes/ff33/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
 
@@ -6,40 +6,40 @@ All numbers below come from the synthetic fixture in `episodes/ff33/fixture/` (e
 
 ### Title options (≤ 60 chars), ranked
 
-1. `FFmpeg -stream_loop: Why 3 Plays Last 11.83 s, Not 12` : the measured finding.
+1. `FFmpeg -stream_loop: 355 or 359 Frames, Same Command` : the measured finding.
 2. `FFmpeg -stream_loop: Is the Loop Seamless?` : the question people ask.
 3. `FFmpeg -stream_loop -1 -t 25: Exact Length, Lost Frames` : the -t detail.
 4. `FFmpeg Loop With -c copy: Holes in the Audio` : the copy detail.
 
 ### Description
 
-You loop a 4 s clip with -stream_loop 2. Three plays should be 12 s with no seam. Is the loop seamless, and is the length what you expect? We mark every frame and every audio sample, loop the clip, and read what comes out.
+You loop a 4 s clip with -stream_loop 2. Three plays should be 12 s with no seam. Is the loop seamless, and is the length what you expect? We mark every frame and every audio sample, loop the clip, and read what comes out on two builds: ffmpeg 6.1.1 and ffmpeg 8.1.2.
 
 Source (lavfi, lossless, Matroska): 4.0 s at 30 fps, 120 frames of 64x64 gray, each with a unique code (luma carries N mod 256, chroma carries the high part), plus a mono audio ramp at 44100 Hz where sample n has the value n / 200000, so every sample says where it came from. Four sources differ only in audio length: 4.0 s, 3.97 s, 3.9 s and 4.1 s. The picture is always 4.0 s.
 
-Control with equal lengths: -stream_loop 2 gives 360 frames in source order, 12.0 s, 3 x 176400 samples, plays starting at 0, 4 and 8 s, with and without -c copy. A concat demuxer build of the clip three times gives the same frames and the same samples.
+Both builds, equal lengths: -stream_loop 2 gives 360 frames in source order, 12.0 s, 3 x 176400 samples, plays starting at 0, 4 and 8 s, with and without -c copy. A concat demuxer build of the clip three times gives the same frames and the same samples.
 
 Readers: ffprobe packets (timestamps, durations), and a decode (frame md5, decoded pixel codes, decoded audio samples). They agree on every output.
 
-Audio 3.9 s, re-encode: the three plays last 11.83 s, not 12. 355 of 360 frames survive: play 2 starts at source frame 2, play 3 at frame 3. Audio is 3 x 3.9 = 11.7 s. A hand-made sequence with those frames removed gives the same 355 frames. Audio 3.97 s (30 ms short) already loses a frame: 359.
+Audio 3.9 s, re-encode, same command, two builds. ffmpeg 6.1.1: 355 of 360 frames, 11.83 s, play 2 starts at source frame 2 and play 3 at frame 3, audio 11.7 s and continuous. ffmpeg 8.1.2: 359 of 360 frames, 11.97 s, plays start at frames 0, 0, 1, audio 11.7 s of samples with 0.067 s holes at the seams. Hand-made sequences with exactly those frames removed give the same frames. Audio 3.97 s (30 ms short): 359 frames on both builds.
 
-Audio 4.1 s, re-encode: 12.3 s of audio, all 360 frames, picture 12.2 s with a hole of about 0.13 s at each seam. Audio 3.9 s with -c copy: picture 12.0 s, 360 frames, but sound is 11.7 s of samples on an 11.9 s timeline, with a 0.1 s hole at each seam. Audio 4.1 s with -c copy: picture 12.18 s, sound timeline 12.28 s.
+Audio 4.1 s, re-encode, both builds: 12.3 s of audio, all 360 frames, picture 12.2 s with a hole of about 0.13 s at each seam. Audio 3.9 s with -c copy, both builds: picture 12.0 s, 360 frames, but sound is 11.7 s of samples on an 11.9 s timeline, with a 0.1 s hole at each seam. Audio 4.1 s with -c copy: picture 12.18 s and sound timeline 12.28 s on 6.1.1, picture 12.2 s and sound 12.3 s on 8.1.2.
 
--stream_loop -1 -t 25: exactly 25.0 s, 750 frames, 7 plays, the last one cut after 1 s. With audio 3.9 s it is still 25.0 s and 750 frames, but plays start at source frames 0, 2, 3, 3, 3, 3, 3. Sound minus picture stays within 33 ms at every seam, so there is no drift. Timestamps are strictly increasing everywhere and no frame is shown twice at a seam.
+-stream_loop -1 -t 25, both builds: exactly 25.0 s, 750 frames, 7 plays, the last one cut after 1 s. With audio 3.9 s it is still 25.0 s and 750 frames, but plays start at source frames 0, 2, 3, 3, 3, 3, 3 on 6.1.1 and 0, 0, 1, 1, 1, 1, 1 on 8.1.2; the sound is 25.0 s of samples on 6.1.1 and 24.6 s on 8.1.2. Sound minus picture stays within 40 ms at every seam (33 ms on 6.1.1), so there is no drift. Timestamps are strictly increasing everywhere and no frame is shown twice at a seam.
 
-The tests pass on ffmpeg 6.1.1.
+The tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Marked frames, two readers
+00:18 Marked frames, two readers
 00:37 Audio shorter than picture
-00:57 Audio longer, and copy
-01:17 Infinite loop with dash t
-01:37 What to check
+00:59 Audio longer, and copy
+01:20 Infinite loop with dash t
+01:43 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic lossless clip family, mkv container, ffmpeg 6.1.1. Not tested: other builds, other containers and codecs, real footage with encoder delay, stream order, other mismatch sizes beyond 30 ms and 100 ms, players.
+Limits: one synthetic lossless clip family, mkv container, ffmpeg 6.1.1. Not tested: builds other than 6.1.1 and 8.1.2, other containers and codecs, real footage with encoder delay, stream order, other mismatch sizes beyond 30 ms and 100 ms, players.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 
@@ -53,4 +53,4 @@ ffmpeg, ffmpeg tutorial, stream_loop, loop video, seamless loop, ffmpeg loop, au
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic 4 s clip, 120 marked frames and an audio ramp. Equal lengths: -stream_loop 2 gives 360 frames, 12.0 s. Audio 3.9 s: 11.83 s and 355 frames. Audio 4.1 s: 0.13 s picture holes. -t 25 stays exact. github.com/mizcausevic-dev/ffmpeg-reality-checks. Do you check lengths first?
+Synthetic 4 s clip, 120 marked frames and an audio ramp. Equal lengths: -stream_loop 2 gives 360 frames, 12.0 s on 6.1.1 and 8.1.2. Audio 3.9 s: 355 frames on 6.1.1, 359 on 8.1.2. -t 25 stays exact. github.com/mizcausevic-dev/ffmpeg-reality-checks. Which build do you run?

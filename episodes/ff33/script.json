@@ -4,11 +4,11 @@
   "palette": "lab",
   "series": "FFmpeg Reality Checks",
   "title": "I looped a clip with -stream_loop. Is it seamless?",
-  "fullTitle": "FFmpeg -stream_loop: the Loop Length Follows the Audio",
+  "fullTitle": "FFmpeg -stream_loop Follows the Audio: 355 or 359 Frames",
   "kicker": "Episode 33",
   "thumb": {
-    "number": "11.83 s",
-    "label": "3 PLAYS OF A 4 S CLIP",
+    "number": "355 vs 359",
+    "label": "FRAMES KEPT: 6.1.1 VS 8.1.2",
     "color": "red"
   },
   "endCard": {},
@@ -21,34 +21,34 @@
       "id": "ask",
       "chapter": "The question",
       "sim": null,
-      "narration": "You loop a four second clip with dash stream loop two. Three plays, so twelve seconds, and no seam. Is the loop seamless? Is the length what you expect? We mark every frame and every audio sample, and read what comes out.",
+      "narration": "You loop a four second clip with dash stream loop two. Three plays: twelve seconds, no seam? We mark every frame and every audio sample, and read the result on two builds, ffmpeg six point one point one and eight point one point two.",
       "captions": [
         "-stream_loop 2: three plays, 12 s?",
-        "Seamless? Is the length right?"
+        "Two builds: 6.1.1 and 8.1.2."
       ]
     },
     {
       "id": "source",
       "chapter": "Marked frames, two readers",
-      "narration": "The picture is one hundred twenty marked frames. The audio is a ramp where every sample says where it came from. Control: with both four seconds long, the loop is exactly three hundred sixty frames, twelve seconds, and matches a concat demuxer build. Readers: f f probe packets, and a decode.",
+      "narration": "The picture is one hundred twenty marked frames. The audio is a ramp where every sample says where it came from. Control: with both four seconds long, the loop is exactly three hundred sixty frames, twelve seconds, on both builds. Readers: f f probe packets, and a decode.",
       "captions": [
-        "Equal lengths: 360 frames, 12.0 s.",
+        "Equal lengths: 360 frames, 12.0 s, both builds.",
         "Same as the concat demuxer control."
       ]
     },
     {
       "id": "short",
       "chapter": "Audio shorter than picture",
-      "narration": "Now the audio is three point nine seconds, a hundred milliseconds short. Re-encoded, the three plays last eleven point eight three seconds, not twelve. Only three hundred fifty five of three hundred sixty frames survive: the second play starts at frame two, the third at frame three. The loop follows the audio.",
+      "narration": "Now the audio is three point nine seconds, a hundred milliseconds short. Re-encoded, the loop falls short of twelve seconds on both builds, by different amounts. Six point one point one keeps three hundred fifty five frames. Eight point one point two keeps three hundred fifty nine. Same command, two builds. The loop follows the audio.",
       "captions": [
-        "Audio 3.9 s: output 11.83 s, not 12.",
-        "355 of 360 frames. Plays start at 0, 2, 3."
+        "6.1.1: 355 frames, 11.83 s.",
+        "8.1.2: 359 frames, 11.97 s."
       ]
     },
     {
       "id": "long",
       "chapter": "Audio longer, and copy",
-      "narration": "With the audio four point one seconds, the loop is twelve point three seconds, and the picture freezes about a hundred thirty milliseconds at each seam. With dash c copy and the short audio, the picture is twelve seconds, but the sound has a hundred millisecond hole at each seam.",
+      "narration": "With the audio four point one seconds, the loop is twelve point three seconds on both builds, and the picture freezes a hundred thirty milliseconds at each seam. With dash c copy and the short audio, the picture keeps all three hundred sixty frames, but the sound has a hundred millisecond hole at each seam.",
       "captions": [
         "Audio 4.1 s: 12.3 s, picture holes 0.13 s.",
         "-c copy, audio 3.9 s: 0.1 s sound holes."
@@ -57,17 +57,17 @@
     {
       "id": "span",
       "chapter": "Infinite loop with dash t",
-      "narration": "With an infinite loop and dash t twenty five, the length is exact: twenty five seconds, seven hundred fifty frames. With the short audio it is exact too, but every play after the first loses its first two or three frames. Sound and picture stay within thirty three milliseconds. No drift.",
+      "narration": "With an infinite loop and dash t twenty five, the length is exact on both builds: twenty five seconds, seven hundred fifty frames. With the short audio each later play starts late: at frame two, then three on six point one point one, and at frame zero, then one on eight point one point two. No drift.",
       "captions": [
         "-stream_loop -1 -t 25: 25.0 s, 750 frames.",
-        "Short audio: plays start at 0, 2, 3, 3, 3..."
+        "Short audio: plays start late, by build."
       ]
     },
     {
       "id": "close",
       "chapter": "What to check",
       "sim": null,
-      "narration": "Before you loop, compare the audio length and the picture length. When they match, the loop is exact. Not tested: other ffmpeg builds, other containers and codecs, real footage with encoder delay, stream order, and any player.",
+      "narration": "Before you loop, compare the audio length and the picture length. When they match, the loop is exact on both builds. When they differ, the loss depends on the build. Not tested: other builds, containers and codecs, real footage with encoder delay, stream order, players.",
       "captions": [
         "Match audio and picture lengths first.",
         "Not tested: other builds, real footage."

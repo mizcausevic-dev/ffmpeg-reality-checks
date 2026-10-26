@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {have} from '../../../tools/ff.mjs';
-import {runExperiment} from '../fixture/experiment.mjs';
+import {runExperiment, buildOf} from '../fixture/experiment.mjs';
 
 const ok = have('ffmpeg') && have('ffprobe');
 let ev;
@@ -16,6 +16,10 @@ const near = (a, b, tol, msg) => assert.ok(Math.abs(a - b) <= tol, `${msg ?? ''}
 const range = (n) => [...Array(n).keys()];
 const loopOf = (n, plays) => Array.from({length: plays}, () => range(n)).flat();
 const sum = (a) => a.reduce((x, y) => x + y, 0);
+// frames a loop must show if each play is the source from its first kept frame to the end
+const fromHeads = (heads) => heads.flatMap((h) => range(120).slice(h));
+// per-build expectations: v6 (6.x) and v8 (8.x) differ for a clip whose audio is shorter than its picture; any other build only gets the build-independent checks
+const perBuild = (v6, v8) => { if (ev.build === 'v6') v6(); else if (ev.build === 'v8') v8(); };
 const noAdjacentRepeat = (a) => a.every((v, i) => i === 0 || v !== a[i - 1]);
 
 t('sources: 120 unique frames and 4.0 s of picture in all four clips; the audio ramps are 4.0, 3.97, 3.9 and 4.1 s long, sample exact', () => {
@@ -61,6 +65,12 @@ t('control by the concat filter: the short clip three times gives 360 frames and
   assert.equal(c.video.framesDecoded, 360); assert.deepEqual(c.byMd5, loopOf(120, 3)); near(c.video.endPackets, 12, 0.02);
 });
 
+t('known-positive control, second hand-made sequence: frames 0 to 119, 0 to 119, then 1 to 119 is read as 359 frames with plays starting at 0, 0, 1 by both frame readers', () => {
+  const h = C('handmadeGaps2');
+  assert.equal(h.video.framesDecoded, 359); assert.deepEqual(h.byMd5, fromHeads([0, 0, 1])); assert.deepEqual(h.byCode, fromHeads([0, 0, 1]));
+  assert.deepEqual(h.video.missingAtStart, [0, 0, 1]);
+});
+
 t('-stream_loop -1 -t 25 on the equal clip: exactly 25.0 s, 750 frames, 1102500 samples, 7 plays, the last play cut after 1 s (30 frames, 44100 samples)', () => {
   const r = R('eq-t25');
   assert.equal(r.video.framesDecoded, 750); assert.equal(r.audio.samples, 1102500);
@@ -69,14 +79,30 @@ t('-stream_loop -1 -t 25 on the equal clip: exactly 25.0 s, 750 frames, 1102500 
   assert.equal(r.audio.runsCount, 7); assert.equal(r.audio.runs[6].len, 44100);
 });
 
-t('re-encode, audio 3.9 s and picture 4.0 s: 3 plays last 11.83 s (not 12), only 355 of 360 frames, the second and third play lose their first 2 and 3 frames, audio is 3 x 3.9 = 11.7 s', () => {
-  const r = R('short-enc');
-  assert.equal(r.video.framesDecoded, 355); assert.deepEqual(r.video.missingAtStart, [0, 2, 3]);
-  near(r.video.endPackets, 11.833, 0.05); near(r.video.endDecoded, 11.833, 0.05); near(r.container, 11.833, 0.05);
-  assert.equal(r.audio.samples, 3 * 171990); near(r.audio.endPackets, 11.7, 0.02);
-  assert.deepEqual(r.audio.runs.map((x) => x.len), [171990, 171990, 171990]);
-  assert.deepEqual(r.byMd5, C('handmadeGaps').byMd5, 'same frames as the hand-made control');
+t('build label: the build seen by the test is the one in the version line', () => { assert.equal(buildOf(ev.ffmpeg), ev.build); });
+
+t('re-encode, audio 3.9 s and picture 4.0 s, any build: the loop is shorter than 12 s, the audio is 3 x 3.9 = 11.7 s, frames are lost at the start of the later plays, and the frames are exactly the source from each play head', () => {
+  const r = R('short-enc'), heads = r.video.missingAtStart;
+  assert.ok(r.video.framesDecoded < 360 && r.video.framesDecoded >= 355, `frames ${r.video.framesDecoded}`);
+  assert.ok(r.video.endPackets < 11.99 && r.video.endPackets > 11.8, `picture ${r.video.endPackets}`);
+  assert.equal(r.audio.samples, 3 * 171990); assert.deepEqual(r.audio.runs.map((x) => x.len), [171990, 171990, 171990]);
+  assert.equal(heads.length, 3); assert.equal(heads[0], 0); assert.ok(heads[2] >= heads[1] && heads[2] > 0 && heads[2] <= 3, `heads ${heads}`);
+  assert.deepEqual(r.byMd5, fromHeads(heads)); assert.deepEqual(r.byCode, fromHeads(heads));
   assert.ok(noAdjacentRepeat(r.byMd5), 'no frame is shown twice at a seam');
+});
+
+t('re-encode, audio 3.9 s, per build: 6.1.1 keeps 355 frames (plays start at 0, 2, 3, picture 11.83 s, audio continuous); 8.1.2 keeps 359 frames (plays start at 0, 0, 1, picture 11.97 s, audio has holes of about 0.067 s)', () => {
+  const r = R('short-enc');
+  perBuild(() => {
+    assert.equal(r.video.framesDecoded, 355); assert.deepEqual(r.video.missingAtStart, [0, 2, 3]);
+    near(r.video.endPackets, 11.833, 0.05); near(r.container, 11.833, 0.05); near(r.audio.endPackets, 11.7, 0.02); assert.deepEqual(r.audio.gaps, []);
+    assert.deepEqual(r.byMd5, C('handmadeGaps').byMd5, 'same frames as the hand-made control');
+  }, () => {
+    assert.equal(r.video.framesDecoded, 359); assert.deepEqual(r.video.missingAtStart, [0, 0, 1]);
+    near(r.video.endPackets, 11.966, 0.05); near(r.container, 11.966, 0.05); near(r.audio.endPackets, 11.834, 0.05);
+    assert.equal(r.audio.gaps.length, 2); r.audio.gaps.forEach((g) => near(g.gap, 0.067, 0.02, 'sound hole'));
+    assert.deepEqual(r.byMd5, C('handmadeGaps2').byMd5, 'same frames as the hand-made control');
+  });
 });
 
 t('re-encode, audio 3.97 s (30 ms short): the loop already loses a frame (fewer than 360, at least 357) and ends before 12 s', () => {
@@ -101,7 +127,7 @@ t('-c copy, audio 3.9 s: the picture loops at 4.0 s (360 frames, 12.0 s) while t
   assert.equal(r.audio.gaps.length, 2); r.audio.gaps.forEach((g) => near(g.gap, 0.1, 0.01, 'sound hole'));
 });
 
-t('-c copy, audio 4.1 s: all 360 frames, but picture 12.17 s and sound timeline 12.28 s, neither is 12.0 or the 12.3 s of samples; the picture has holes of about 0.12 s', () => {
+t('-c copy, audio 4.1 s: all 360 frames, picture 12.1 to 12.25 s (12.18 on 6.1.1, 12.2 on 8.1.2) and sound timeline 12.2 to 12.32 s, never 12.0; the picture has 2 holes of about 0.12 to 0.13 s', () => {
   const r = R('long-copy');
   assert.equal(r.video.framesDecoded, 360); assert.equal(r.audio.samples, 3 * 180810);
   assert.ok(r.video.endPackets > 12.1 && r.video.endPackets < 12.25, `picture ${r.video.endPackets}`);
@@ -115,11 +141,17 @@ t('the picture and the sound do not drift apart: sound minus picture at every pl
   assert.equal(o.length, 6); assert.ok(Math.max(...o) - Math.min(...o) <= 5, `spread ${o}`);
 });
 
-t('-stream_loop -1 -t 25 with audio 3.9 s: still exactly 25.0 s and 750 frames, but every play after the first starts at frame 2 or 3, so 6 seams each cost the head of the clip', () => {
+t('-stream_loop -1 -t 25 with audio 3.9 s, any build: still exactly 25.0 s and 750 frames in 7 plays, but every play after the first may start late (first kept frame 1 to 3), and the sound is no longer 25.0 s of samples', () => {
+  const r = R('short-t25'), heads = r.video.missingAtStart;
+  assert.equal(r.video.framesDecoded, 750); near(r.video.endPackets, 25, 0.05); near(r.container, 25, 0.05);
+  assert.equal(r.video.plays.length, 7); assert.equal(heads[0], 0); assert.ok(heads.slice(1).every((h) => h <= 3) && heads.slice(2).some((h) => h > 0), `heads ${heads}`);
+  assert.ok(r.audio.samples / 44100 > 24.5 && r.audio.samples / 44100 <= 25.001, `audio ${r.audio.samples / 44100} s`);
+});
+
+t('-stream_loop -1 -t 25 with audio 3.9 s, per build: 6.1.1 plays start at frames 0, 2, 3, 3, 3, 3, 3 and the sound is 25.0 s (1102500 samples); 8.1.2 plays start at 0, 0, 1, 1, 1, 1, 1 and the sound is 24.6 s (1084772 samples, holes at the seams)', () => {
   const r = R('short-t25');
-  assert.equal(r.video.framesDecoded, 750); assert.equal(r.audio.samples, 1102500);
-  near(r.video.endPackets, 25, 0.05); near(r.container, 25, 0.05);
-  assert.equal(r.video.plays.length, 7); assert.deepEqual(r.video.missingAtStart, [0, 2, 3, 3, 3, 3, 3]);
+  perBuild(() => { assert.deepEqual(r.video.missingAtStart, [0, 2, 3, 3, 3, 3, 3]); assert.equal(r.audio.samples, 1102500); },
+           () => { assert.deepEqual(r.video.missingAtStart, [0, 0, 1, 1, 1, 1, 1]); near(r.audio.samples, 1084772, 5); r.audio.gaps.forEach((g) => near(g.gap, 0.067, 0.02)); });
 });
 
 t('timestamps: video and audio packet pts are strictly increasing in every looped output, and no frame is shown twice at a seam', () => {
