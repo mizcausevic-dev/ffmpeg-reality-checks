@@ -1,0 +1,91 @@
+{
+  "n": 69,
+  "slug": "adelay-one-channel-late",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Stereo delay: why is only one channel late?",
+  "fullTitle": "Stereo Delay: One Value Delays Only the Left Channel (48000 vs 0 Samples)",
+  "kicker": "Episode 69",
+  "thumb": {
+    "number": "48000 vs 0",
+    "label": "ONLY THE LEFT IS LATE",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "one",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You add a delay equals one thousand to a stereo clip, expecting both channels a second late. Only the left one is. The right plays at once. Why? A two second clip, left a four forty hertz sine, right six sixty. Ten files, f f m peg six point one point one.",
+      "captions": [
+        "a delay equals 1000 on stereo: why is only one channel late?",
+        "We measure 10 synthetic files."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "The two readers",
+      "sim": null,
+      "narration": "Two readers. Node finds the first sample that is not zero in each channel. F f m peg splits each channel and runs silence detect. With no filter both start at zero. A left channel gated to begin at a quarter second reads twelve thousand in both.",
+      "captions": [
+        "Control: no filter, onset 0 and 0.",
+        "Known positive: left gated at 0.25 s reads 12000 in both readers."
+      ]
+    },
+    {
+      "id": "one",
+      "chapter": "One value",
+      "sim": null,
+      "narration": "Now a delay equals one thousand. Left starts at sample forty eight thousand, exactly one second. Right starts at zero, and ends with forty eight thousand zeros, so both are a hundred forty four thousand frames. The delayed left is an exact copy.",
+      "captions": [
+        "a delay equals 1000: left starts at sample 48000, right at 0.",
+        "Right is padded with 48000 zeros."
+      ]
+    },
+    {
+      "id": "list",
+      "chapter": "One value per channel",
+      "sim": null,
+      "narration": "The filter wants one value per channel, split by bars. A single value is the first channel's. One thousand bar one thousand moves both. So does all equals one, and so does a list that is too long. Zero bar one thousand moves only the right.",
+      "captions": [
+        "One value per channel, split by |.",
+        "1000|1000, all=1 and a longer list move both."
+      ]
+    },
+    {
+      "id": "samples",
+      "chapter": "Samples and length",
+      "sim": null,
+      "narration": "The unit is milliseconds. Forty eight thousand S is the same second in samples. Three thirty three and seven seventy seven land on fifteen thousand nine hundred eighty four and thirty seven thousand two ninety six. The output is always the input plus the largest delay.",
+      "captions": [
+        "1000 ms = 48000 samples = 48000S.",
+        "Output length = input + largest delay, in all 10 files."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "What to type",
+      "sim": null,
+      "narration": "To delay a stereo clip as a whole, write one value per channel, or add all equals one. Both onsets then read forty eight thousand, and no silence is added at the end.",
+      "captions": [
+        "Both channels late: 1000|1000 or 1000:all=1.",
+        "Onsets 48000 and 48000, no tail."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What we measured",
+      "sim": null,
+      "narration": "A single value delays the first channel only, and the other is padded with silence. Not tested: other builds, more than two channels, real footage, or a player's own latency. Fixture and tests are in the description.",
+      "captions": [
+        "A single value delays channel 0 only.",
+        "Not tested: other builds, more channels, real footage, players."
+      ]
+    }
+  ]
+}

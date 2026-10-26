@@ -1,0 +1,91 @@
+{
+  "n": 72,
+  "slug": "flac-compression-level",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "FLAC compression level 0 to 12: smaller files, same sound?",
+  "fullTitle": "ffmpeg flac Level 0 to 12: Same Sound, Size -48% to 0%",
+  "kicker": "Episode 72",
+  "thumb": {
+    "number": "-48% to 0%",
+    "label": "SAME SOUND, SIZE VARIES",
+    "color": "amber"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "smaller",
+    "t": 10.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Does the f l a c compression level from zero to twelve make smaller files, and is the sound the same? Four signals of three seconds, stereo, sixteen bit: noise, two tones, a music like chord, and silence. F f m peg six point one point one.",
+      "captions": [
+        "Compression level 0 to 12: smaller files, same sound?",
+        "Four signals: noise, tones, music, silence."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "The readers",
+      "sim": null,
+      "narration": "Readers. Node parses every f l a c frame and checks its c r c; f f probe lists the packets. For the sound, three m d five sums: ffmpeg, Node on the decoded samples, and the sum the encoder stored in the file. No level equals level five. A shift of one sample changes all three.",
+      "captions": [
+        "Readers: Node frame parser, ffprobe packets, three md5 sums.",
+        "Control: no level is level 5. Known positive: shift 1 sample."
+      ]
+    },
+    {
+      "id": "same",
+      "chapter": "Same sound",
+      "sim": null,
+      "narration": "The sound first. Fifty two files, thirteen levels of four signals. Every decoded sum equals the source sum, at every level. Level thirteen is rejected.",
+      "captions": [
+        "52 of 52 files decode to the source md5.",
+        "Level 13 is rejected."
+      ]
+    },
+    {
+      "id": "smaller",
+      "chapter": "Smaller, by how much",
+      "sim": null,
+      "narration": "Smaller depends on the signal. From level zero to twelve, tones shrink forty eight percent, music twelve, noise eight. From the default five to twelve: tones eleven point eight percent, music two point three, noise nothing.",
+      "captions": [
+        "Level 0 to 12: tones -48.0%, music -12.0%, noise -7.8%.",
+        "Level 5 to 12: tones -11.8%, music -2.3%, noise 0%."
+      ]
+    },
+    {
+      "id": "steps",
+      "chapter": "Not a straight line",
+      "sim": null,
+      "narration": "More is not always smaller. Noise at level six is one hundred twenty seven bytes bigger than at five. The big step is between two and three: frames go from one hundred fifteen to twenty nine, a block of eleven fifty two samples becomes forty six oh eight. Tones lose fifteen percent there.",
+      "captions": [
+        "Noise: level 6 is 127 bytes bigger than level 5.",
+        "Level 2 to 3: 115 frames become 29, tones -15.2%."
+      ]
+    },
+    {
+      "id": "header",
+      "chapter": "The header",
+      "sim": null,
+      "narration": "Every file carries eight thousand two hundred eighty eight bytes of header, eight thousand one hundred ninety two of it padding. Silence is that header plus four hundred eight bytes of audio at level three and up.",
+      "captions": [
+        "Header: 8288 bytes in every file, 8192 of it padding.",
+        "Silence: header plus 408 bytes of audio."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What we measured",
+      "sim": null,
+      "narration": "Level twelve never changes the sound. On noise it saves nothing, on music two percent. We did not time the encoder. Not tested: other builds, encode speed, real recordings.",
+      "captions": [
+        "Same sound at every level. Size depends on the signal.",
+        "Not tested: other builds, encode speed, real recordings."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "n": 70,
+  "slug": "rotate-45-cuts-corners",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Rotate 45 degrees: where did the corners go?",
+  "fullTitle": "ffmpeg rotate 45 Degrees: 15643 Pixels Cut, rotw and roth Keep Them",
+  "kicker": "Episode 70",
+  "thumb": {
+    "number": "4 of 4 corners",
+    "label": "ROTATE CUTS THE CORNERS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "default",
+    "t": 8.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You rotate a clip by forty five degrees and the corners vanish. How much is cut, and how big must the output be? A three twenty by two forty card with four colored corners, f f m peg six point one point one.",
+      "captions": [
+        "Rotate by 45 degrees: the corners vanish.",
+        "How much is cut, and how big must the output be?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "The two readers",
+      "sim": null,
+      "narration": "Two readers. Node counts the pixels that are not fill, and each marker. F f m peg gets the surviving area from signal stats. Rotating by zero keeps all seventy six thousand eight hundred pixels. Padding adds forty three thousand two hundred black; a crop removes all four markers.",
+      "captions": [
+        "Readers: Node pixels, ffmpeg signalstats area.",
+        "Control: 76800 pixels, 4 markers. Known positives: pad, crop."
+      ]
+    },
+    {
+      "id": "default",
+      "chapter": "The default size",
+      "sim": null,
+      "narration": "At forty five degrees and the default size, all four markers are gone. Fifteen thousand six hundred forty three card pixels are cut, one fifth. At fifteen and sixty degrees two markers go, at thirty all four. The output stays three twenty by two forty.",
+      "captions": [
+        "45 degrees, default size: 4 of 4 markers gone.",
+        "15643 card pixels cut, one fifth."
+      ]
+    },
+    {
+      "id": "size",
+      "chapter": "The size it needs",
+      "sim": null,
+      "narration": "Set o w and o h to rotw and roth. At forty five degrees that is three ninety six by three ninety six, width times cosine plus height times sine, rounded. All four markers survive. Seven tip pixels are clipped; three ninety nine would keep every one.",
+      "captions": [
+        "ow=rotw(a), oh=roth(a): 396x396 at 45 degrees.",
+        "All 4 markers kept, 7 tip pixels clipped."
+      ]
+    },
+    {
+      "id": "odd",
+      "chapter": "Odd sizes",
+      "sim": null,
+      "narration": "Watch for odd sizes. At thirty degrees rotw gives three ninety seven, and x two six four with yuv four two zero p refuses: width not divisible by two. Round up to even, three ninety eight by three sixty eight, and the markers stay.",
+      "captions": [
+        "At 30 degrees rotw is 397 wide: x264 refuses.",
+        "Round up to even: 398x368, markers kept."
+      ]
+    },
+    {
+      "id": "fill",
+      "chapter": "The fill color",
+      "sim": null,
+      "narration": "The corner color is fillcolor. White fills fourteen thousand six hundred thirty eight pixels, exactly the fill count. Transparent needs alpha: with rgba, none gives alpha zero. In yuv four two zero p it gives green.",
+      "captions": [
+        "fillcolor=white: 14638 pixels.",
+        "none: alpha 0 in rgba, green in yuv420p."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What we measured",
+      "sim": null,
+      "narration": "The default size cuts the corners. Rotw and roth keep them, give or take a few tip pixels. Make the size even for x two six four. Not tested: other builds, real footage, other angles.",
+      "captions": [
+        "Default size cuts corners; rotw and roth keep them.",
+        "Not tested: other builds, real footage."
+      ]
+    }
+  ]
+}

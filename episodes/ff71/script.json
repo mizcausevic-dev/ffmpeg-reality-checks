@@ -1,0 +1,91 @@
+{
+  "n": 71,
+  "slug": "eq-brightness-levels-clip",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "eq brightness 0.1: what does it add, and where does it clip?",
+  "fullTitle": "ffmpeg eq brightness 0.1: Adds 25 Levels, Levels 230 and Up Clip",
+  "kicker": "Episode 71",
+  "thumb": {
+    "number": "+25 levels",
+    "label": "WHITE CLIPS FROM LEVEL 230",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "clip",
+    "t": 8.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You raise a dark clip with e q brightness equals zero point one. How many gray levels does that add, and where does it clip? A ramp of two hundred fifty six levels, in limited and full range, f f m peg six point one point one.",
+      "captions": [
+        "Brightness 0.1: how many levels does it add?",
+        "And where does it clip?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "The two readers",
+      "sim": null,
+      "narration": "Two readers. Node reads the decoded luma of two hundred fifty six flat frames, frame n at level n. F f m peg signal stats gives each frame's average. No filter: every level maps to itself. Known positive: l u t y u v, value plus twenty five, which both readers see.",
+      "captions": [
+        "Readers: Node luma, ffmpeg signalstats.",
+        "Control: no filter. Known positive: lutyuv val+25."
+      ]
+    },
+    {
+      "id": "add",
+      "chapter": "The size of the shift",
+      "sim": null,
+      "narration": "Brightness zero point one adds twenty five levels, the same as value plus twenty five. But the steps are uneven. Zero point zero nine adds twenty two, zero point one one adds twenty five again, zero point one two adds twenty seven. Zero point zero one makes the picture one level darker.",
+      "captions": [
+        "brightness=0.1 adds 25 levels.",
+        "0.09 adds 22, 0.11 adds 25, 0.12 adds 27. 0.01 is 1 darker."
+      ]
+    },
+    {
+      "id": "clip",
+      "chapter": "Where it clips",
+      "sim": null,
+      "narration": "The sum stops at two fifty five. From level two thirty up, twenty six input levels all come out white. Black is lifted from zero to twenty five.",
+      "captions": [
+        "Levels 230 to 255 all become 255: 26 levels in one.",
+        "Black 0 becomes 25."
+      ]
+    },
+    {
+      "id": "range",
+      "chapter": "Limited or full range",
+      "sim": null,
+      "narration": "Tag the file limited range or full range: the output is identical. E q ignores the range. Legal black sixteen goes to forty one. Legal white two thirty five goes to two fifty five, twenty above legal white. Six legal levels merge into one.",
+      "captions": [
+        "Limited (tv) and full (pc): identical output.",
+        "Legal white 235 becomes 255. Legal black 16 becomes 41."
+      ]
+    },
+    {
+      "id": "other",
+      "chapter": "Contrast and gamma",
+      "sim": null,
+      "narration": "Contrast and gamma ignore the range too. Contrast one point five sends levels zero to forty three to black, legal black included. Gamma two point two lifts legal black from sixteen to seventy two.",
+      "captions": [
+        "contrast=1.5: levels 0 to 43 all become 0.",
+        "gamma=2.2: legal black 16 becomes 72."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What we measured",
+      "sim": null,
+      "narration": "A fix that respects limited range: l u t y u v, value plus twenty two, clipped between sixteen and two thirty five. It ends at two thirty five, and still merges the top levels. Not tested: other builds, real footage, ten bit.",
+      "captions": [
+        "Fix: lutyuv clipped to 16..235. Check YMAX.",
+        "Not tested: other builds, real footage, 10 bit."
+      ]
+    }
+  ]
+}

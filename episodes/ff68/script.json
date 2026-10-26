@@ -1,0 +1,86 @@
+{
+  "n": 68,
+  "slug": "ffprobe-three-durations",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Three durations in ffprobe: which is true?",
+  "fullTitle": "ffprobe Durations: ts Says 4.78 s, the Decoder Says 5.03 s (Same File)",
+  "kicker": "Episode 68",
+  "thumb": {
+    "number": "4.78 vs 5.03 s",
+    "label": "ONE TS FILE, TWO DURATIONS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "ts",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "f f probe prints a format duration, a stream duration and, adding up the packets, a third. Which is true? A four second video, audio of four or five seconds, or one second late. Twelve files, f f m peg six point one point one.",
+      "captions": [
+        "Format, stream, packets: which duration is true?",
+        "We measure 12 synthetic files."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "One clip, three readers",
+      "narration": "Video: a hundred frames, four seconds. Audio: a sine tone. Reader one is f f probe. Reader two decodes and counts. Reader three reads the bytes. The control, a mov with four seconds of each, says four point zero everywhere.",
+      "captions": [
+        "Readers: ffprobe, decoder counts, container bytes.",
+        "Control: mov, 4 s and 4 s, all readers say 4.0."
+      ]
+    },
+    {
+      "id": "long",
+      "chapter": "Audio longer: five seconds",
+      "narration": "Make the audio five seconds. The format says five, the video stream still says four. Both are true: the format is the latest stream end minus the earliest start. The decoder agrees. In m k v the Duration element holds five thousand milliseconds.",
+      "captions": [
+        "Audio 5 s: format 5.0 s, video stream 4.0 s.",
+        "Format = latest stream end minus earliest start."
+      ]
+    },
+    {
+      "id": "late",
+      "chapter": "Audio one second late",
+      "narration": "Start the four second audio one second late. The format says five, though no stream holds more than four. The mov marks the gap with an empty edit, media time minus one. Stream duration: mov four, m k v tag five.",
+      "captions": [
+        "Audio 4 s, starts at 1 s: format 5.0 s.",
+        "Stream duration: mov 4.0 s, mkv tag 5.0 s."
+      ]
+    },
+    {
+      "id": "packets",
+      "chapter": "Packets: the weakest number",
+      "narration": "Add up the packet durations in m k v: four seconds of audio gives three point nine three eight. Block times are whole milliseconds, so forty two point six six seven is reported as forty two. Sixty two milliseconds vanish. The packet span gives four.",
+      "captions": [
+        "mkv: sum of packet durations 3.938 s.",
+        "Last pts + duration - first pts: 4.000 s."
+      ]
+    },
+    {
+      "id": "ts",
+      "chapter": "Transport stream: an estimate",
+      "narration": "In t s, f f probe estimates. Five seconds of audio reads four point seven seven nine. The decoder says five point zero three five. It stops at the last P E S time stamp plus one frame, and that P E S holds thirteen. Two hundred fifty six milliseconds missing.",
+      "captions": [
+        "ts audio: ffprobe 4.779 s, decoder 5.035 s.",
+        "Last PES time stamp + 1 frame; it holds 13."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to trust",
+      "sim": null,
+      "narration": "So which is true? The format is the span of the file, except in t s. Stream duration is a length in mov, an end time in the m k v tag. The packet sum is weakest. Use the packet span, or decode. Not tested: other builds, real footage.",
+      "captions": [
+        "Trust: span of packets, or a decode and count.",
+        "Not tested: other builds, real footage, fragmented files."
+      ]
+    }
+  ]
+}
