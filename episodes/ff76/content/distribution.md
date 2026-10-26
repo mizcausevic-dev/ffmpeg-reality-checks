@@ -1,6 +1,6 @@
-# FF76 distribution kit: FFmpeg Black and White: gray and hue Match, the Mixer Follows Its Weights (34 Levels Off on HD)
+# FF76 distribution kit: FFmpeg Black and White: gray and hue Match, the Mixer Follows Its Weights, 8.1 Changes gray on HD
 
-All numbers below come from the synthetic fixture in `episodes/ff76/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff76/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2. The tests pass on both; one result differs by build: format=gray on a BT.709 file keeps the file's luma on 6.1.1 (red 55, green 183) and uses the 601 weights on 8.1.2 (red 76, green 149).
 
 ## YouTube
 
@@ -8,7 +8,7 @@ All numbers below come from the synthetic fixture in `episodes/ff76/fixture/` (e
 
 1. `FFmpeg Black and White: gray, hue and colorchannelmixer` : the question, all three filters named.
 2. `FFmpeg Grayscale: hue=s=0 Matches gray, the Mixer Does Not` : the measured finding.
-3. `FFmpeg colorchannelmixer Grayscale Is 34 Levels Off on HD` : the number that hurts.
+3. `FFmpeg format=gray on HD Video: 6.1 and 8.1 Disagree` : the build difference.
 4. `FFmpeg format=gray vs hue=s=0: Same Picture, 16 to 235` : the range surprise.
 
 ### Description
@@ -25,7 +25,7 @@ What the screen shows: the video range is stretched back, and hue shows 76, 150,
 
 The mixer: with the 601 weights it matches gray (76, 150, 29, 226). With the 709 weights it gives 54, 182, 18, 236 and white 254.
 
-High definition source (bt709 tag): gray and hue follow the file, 55, 183, 19, 236 (hue 54, 182, 18, 236). The 601 mixer stays at 76, 149, 29, 225. The gap: red 21, green 34, blue 10, yellow 11 levels.
+High definition source (bt709 tag), on 6.1.1: gray and hue follow the file, 55, 183, 19, 236 (hue 54, 182, 18, 236). The 601 mixer stays at 76, 149, 29, 225. The gap: red 21, green 34, blue 10, yellow 11 levels.
 
 Ramp 0 to 255 (rgb source): format=gray keeps 256 levels, hue=s=0 220, mixer 601 194, mixer 709 200 (top level 254). eq=saturation=0 leaves chroma at 127, a faint tint (channel spread up to 4).
 
@@ -42,7 +42,7 @@ Chapters
 01:27 What to write
 <!-- chapters:end -->
 
-Limits: one set of 16x8 patches and one ramp, rgb and two YUV matrices, ffmpeg 6.1.1. The ramp level counts of the mixers, white 254 under the 709 weights, the eq chroma of 127, and the native format and range each filter outputs are the parts most likely to differ on another build. Not tested: ffmpeg 8.1.2, real footage, other matrices, dithering, 10 bit.
+Limits: one set of 16x8 patches and one ramp, rgb and two YUV matrices, ffmpeg 6.1.1 and 8.1.2 (8.1.2 is the Windows full build). The ramp level counts of the mixers, white 254 under the 709 weights, the eq chroma of 127, and the native format and range each filter outputs are the parts most likely to differ on another build. Not tested: other ffmpeg builds, real footage, other matrices, dithering, 10 bit.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 
@@ -56,4 +56,4 @@ ffmpeg, ffmpeg tutorial, ffmpeg black and white, ffmpeg grayscale, ffmpeg format
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic patches and a ramp, ffmpeg 6.1.1. gray and hue=s=0 look the same (76 150 29 226) but store different ranges. The 601 mixer matches on SD and is 34 levels off on a bt709 file (green). github.com/mizcausevic-dev/ffmpeg-reality-checks Which one do you use?
+Synthetic patches and a ramp. gray and hue=s=0 look the same (76 150 29 226) but store different ranges. On a bt709 file gray follows the file on 6.1.1 (green 183) but uses 601 weights on 8.1.2 (green 149). github.com/mizcausevic-dev/ffmpeg-reality-checks Which one do you use?

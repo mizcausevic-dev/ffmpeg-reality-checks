@@ -12,6 +12,8 @@ const P = (s, m) => ev.patches[s][m];
 const R = (s, m) => ev.ramp[s][m];
 const near = (a, b, tol, msg) => assert.ok(Math.abs(a - b) <= tol, `${msg}: ${a} vs ${b} (tolerance ${tol})`);
 const FOUR = ['red', 'green', 'blue', 'yellow'];
+// 8.1.2 leaves the range of yuv output unset (null) where 6.1.1 writes tv; a viewer treats unset yuv as tv
+const isTv = (p) => p.range === 'tv' || (p.range == null && /^yuv/.test(p.fmt));
 const seen = (s, m, n) => P(s, m).shown[n][0];
 const raw = (s, m, n) => P(s, m).native[n][0];
 
@@ -37,7 +39,8 @@ t('known positive 1: with no filter the source is read back by both readers (rgb
 
 t('known positive 2: a gray with no colour in it is the same under every method (mid gray 128, white, black, within 1 on what a viewer sees)', () => {
   for (const s of ['rgb', 'sd', 'hd']) for (const m of ['gray', 'hue', 'ccm601', 'grayYuv']) {
-    near(seen(s, m, 'gray'), 128, 1, `${s} ${m} gray`); near(seen(s, m, 'white'), 255, 1, `${s} ${m} white`); near(seen(s, m, 'black'), 0, 1, `${s} ${m} black`);
+    const tol = (!isV6() && s === 'hd' && m === 'grayYuv') ? 5 : 1; // 8.1.2 stores a slight chroma tint for gray then yuv420p on a bt709 file
+    near(seen(s, m, 'gray'), 128, tol, `${s} ${m} gray`); near(seen(s, m, 'white'), 255, tol, `${s} ${m} white`); near(seen(s, m, 'black'), 0, tol, `${s} ${m} black`);
   }
 });
 
@@ -52,7 +55,7 @@ t('the two readers agree on every case: what a viewer sees is the stored number 
     const p = P(s, m);
     for (const n of NAMES) {
       const stored = p.native[n][0], sv = p.shown[n][0];
-      near(sv, p.range === 'tv' ? seenOfTv(stored) : stored, 1, `${s} ${m} ${n} (${p.fmt}/${p.range})`);
+      near(sv, isTv(p) ? seenOfTv(stored) : stored, (!isV6() && s === 'hd' && m === 'grayYuv') ? 5 : 1, `${s} ${m} ${n} (${p.fmt}/${p.range})`);
     }
   }
 });
@@ -64,23 +67,32 @@ t('format=gray stores full-range luma: from rgb it gives red 76, green 150, blue
 });
 
 t('hue=s=0 stores the luma in video range, so the numbers differ from gray (red 81, green 145, blue 41, yellow 210, white 235, black 16) but the picture does not: seen within 1 of gray for every patch and every source', () => {
-  assert.equal(P('rgb', 'hue').range, 'tv');
-  for (const s of ['rgb', 'sd', 'hd']) for (const n of NAMES) { near(seen(s, 'hue', n), seen(s, 'gray', n), 1, `${s} ${n} seen`); near(raw(s, 'hue', n), tvOfFull(raw(s, 'gray', n)), 1, `${s} ${n} stored`); }
+  if (isV6()) assert.equal(P('rgb', 'hue').range, 'tv'); else assert.ok(isTv(P('rgb', 'hue')));
+  // on 8.1.2 format=gray on a bt709 file no longer follows the file, so hd is compared on 6.1.1 only (see the hd test)
+  for (const s of isV6() ? ['rgb', 'sd', 'hd'] : ['rgb', 'sd']) for (const n of NAMES) { near(seen(s, 'hue', n), seen(s, 'gray', n), 1, `${s} ${n} seen`); near(raw(s, 'hue', n), tvOfFull(raw(s, 'gray', n)), 1, `${s} ${n} stored`); }
   assert.ok(raw('rgb', 'gray', 'white') - raw('rgb', 'hue', 'white') >= 20 && raw('rgb', 'hue', 'black') - raw('rgb', 'gray', 'black') >= 15, 'white 255 against 235, black 0 against 16');
   if (isV6()) { assert.deepEqual(FOUR.map((n) => raw('rgb', 'hue', n)), [81, 145, 41, 210]); for (const k of [1, 2]) for (const n of NAMES) assert.equal(P('rgb', 'hue').native[n][k], 128, 'chroma is exactly neutral'); }
 });
 
 t('format=gray then format=yuv420p, what an encode to yuv420p sees, stores the same numbers as hue=s=0 within 1', () => {
-  for (const s of ['rgb', 'sd', 'hd']) for (const n of NAMES) near(raw(s, 'grayYuv', n), raw(s, 'hue', n), 1, `${s} ${n}`);
+  for (const s of isV6() ? ['rgb', 'sd', 'hd'] : ['rgb', 'sd']) for (const n of NAMES) near(raw(s, 'grayYuv', n), raw(s, 'hue', n), 1, `${s} ${n}`);
   assert.equal(P('rgb', 'grayYuv').fmt, 'yuv420p');
 });
 
 t('the mixer follows its weights, not the file: on rgb and on a BT.601 source ccm601 matches gray within 1 (red 76, green 150), and on a BT.709 source gray and hue follow the file (red 55, green 183) while ccm601 stays at red 76, green 149', () => {
   for (const s of ['rgb', 'sd']) for (const n of NAMES) near(seen(s, 'ccm601', n), seen(s, 'gray', n), 1, `${s} ${n}`);
-  for (const n of NAMES) near(seen('hd', 'gray', n), grayOf(PATCHES[n], '709'), 2, `hd gray ${n}`);
-  for (const n of NAMES) near(seen('hd', 'ccm709', n), seen('hd', 'gray', n), 2, `hd ccm709 ${n}`);
   const gap = (n) => Math.abs(seen('hd', 'ccm601', n) - seen('hd', 'gray', n));
-  assert.ok(gap('green') >= 30 && gap('red') >= 18 && gap('blue') >= 8 && gap('yellow') >= 9, `gaps ${FOUR.map(gap)}`);
+  if (isV6()) {
+    for (const n of NAMES) near(seen('hd', 'gray', n), grayOf(PATCHES[n], '709'), 2, `hd gray ${n}`);
+    for (const n of NAMES) near(seen('hd', 'ccm709', n), seen('hd', 'gray', n), 2, `hd ccm709 ${n}`);
+    assert.ok(gap('green') >= 30 && gap('red') >= 18 && gap('blue') >= 8 && gap('yellow') >= 9, `gaps ${FOUR.map(gap)}`);
+  } else {
+    // 8.1.2: format=gray on a bt709 file uses the 601 weights, so it equals the 601 mixer and is far from the 709 numbers
+    for (const n of NAMES) near(seen('hd', 'gray', n), grayOf(PATCHES[n], '601'), 2, `hd gray ${n}`);
+    for (const n of NAMES) near(seen('hd', 'ccm601', n), seen('hd', 'gray', n), 2, `hd ccm601 ${n}`);
+    const far = (n) => Math.abs(seen('hd', 'ccm709', n) - seen('hd', 'gray', n));
+    assert.ok(far('green') >= 30 && far('red') >= 18 && far('blue') >= 8 && far('yellow') >= 9, `gaps ${FOUR.map(far)}`);
+  }
   if (isV6()) { assert.deepEqual(FOUR.map((n) => seen('hd', 'gray', n)), [55, 183, 19, 236]); assert.deepEqual(FOUR.map((n) => seen('hd', 'ccm601', n)), [76, 149, 29, 225]); }
 });
 
@@ -110,6 +122,11 @@ t('do they match: gray and hue agree on the picture but not on the numbers; gray
   assert.ok(FOUR.some((n) => Math.abs(stored('rgb', 'gray', n) - stored('rgb', 'hue', n)) >= 4), 'the stored numbers of gray and hue differ');
   assert.ok(FOUR.every((n) => Math.abs(seen('rgb', 'gray', n) - seen('rgb', 'hue', n)) <= 1), 'the pictures match');
   assert.ok(FOUR.every((n) => Math.abs(seen('sd', 'gray', n) - seen('sd', 'ccm601', n)) <= 1), 'sd: gray and the 601 mixer match');
-  assert.ok(FOUR.every((n) => Math.abs(seen('hd', 'gray', n) - seen('hd', 'ccm601', n)) >= 10), 'hd: they do not');
-  assert.ok(FOUR.every((n) => Math.abs(stored('hd', 'gray', n) - stored('hd', 'ccm601', n)) >= 10), 'hd: not on the stored numbers either');
+  if (isV6()) {
+    assert.ok(FOUR.every((n) => Math.abs(seen('hd', 'gray', n) - seen('hd', 'ccm601', n)) >= 10), 'hd: they do not');
+    assert.ok(FOUR.every((n) => Math.abs(stored('hd', 'gray', n) - stored('hd', 'ccm601', n)) >= 10), 'hd: not on the stored numbers either');
+  } else {
+    assert.ok(FOUR.every((n) => Math.abs(seen('hd', 'gray', n) - seen('hd', 'ccm601', n)) <= 2), '8.1.2 hd: gray matches the 601 mixer');
+    assert.ok(FOUR.every((n) => Math.abs(seen('hd', 'gray', n) - seen('hd', 'hue', n)) >= 10), '8.1.2 hd: and no longer matches hue');
+  }
 });

@@ -4,11 +4,11 @@
   "palette": "lab",
   "series": "FFmpeg Reality Checks",
   "title": "Do the three black and white filters match?",
-  "fullTitle": "FFmpeg Black and White: gray and hue Match, the Mixer Follows Its Weights (34 Levels Off on HD)",
+  "fullTitle": "FFmpeg Black and White: gray and hue Match, the Mixer Follows Its Weights, 8.1 Changes gray on HD",
   "kicker": "Episode 76",
   "thumb": {
-    "number": "34 levels",
-    "label": "THE MIXER DISAGREES ON HD",
+    "number": "55 vs 76",
+    "label": "FORMAT GRAY, TWO BUILDS",
     "color": "red"
   },
   "endCard": {},
@@ -56,7 +56,7 @@
     {
       "id": "hd",
       "chapter": "A high definition source",
-      "narration": "Now tag the source b t seven oh nine, high definition. Gray and hue follow the file: fifty five, one eighty three. The six oh one mixer stays at seventy six, one forty nine. Green is thirty four levels off.",
+      "narration": "Now tag the source b t seven oh nine, high definition. On six point one, gray and hue follow the file: fifty five, one eighty three. The six oh one mixer stays at seventy six, one forty nine. Green is thirty four levels off.",
       "captions": [
         "bt709 source: gray 55, 183, 19, 236.",
         "The 601 mixer: 76, 149, 29, 225. Green is 34 off."
@@ -74,10 +74,11 @@
     {
       "id": "close",
       "chapter": "What to write",
-      "narration": "So format gray or hue saturation zero keep the file's own luma. Use the mixer only with weights that match the file. Not tested: eight point one point two, real footage, other matrices.",
+      "narration": "So on six point one point one, format gray and hue saturation zero keep the file's own luma. Use the mixer only with weights that match the file. And check your build. On eight point one point two, format gray on the high definition file gives seventy six, one forty nine: the six oh one weights, not the file's. Not tested: real footage, other matrices.",
       "captions": [
-        "gray and hue keep the file's luma.",
-        "Not tested: 8.1.2, real footage, other matrices."
+        "On 6.1.1, gray and hue keep the file's luma.",
+        "On 8.1.2, gray on an HD file uses the 601 weights.",
+        "Not tested: real footage, other matrices."
       ]
     }
   ]

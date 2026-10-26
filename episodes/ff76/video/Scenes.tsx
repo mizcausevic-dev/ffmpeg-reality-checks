@@ -402,26 +402,33 @@ const Ramp: React.FC<SceneProps> = ({t}) => {
 const Close: React.FC<SceneProps> = ({t}) => (
   <Stage>
     <H t={t} a={0.2}>
-      <Mis x={108} y={122} size={92}>Match the weights to the file</Mis>
+      <Mis x={108} y={122} size={84}>Match the weights to the file</Mis>
     </H>
     <H t={t} a={0.8}>
-      <Slip x={140} y={300} w={1220} h={150} fill={C.bg2} seed={1} rot={-1}>
-        <Big x={40} y={20} size={66}>format=gray, or hue=s=0</Big>
-        <Tx x={40} y={96} size={36} color={C.dim}>keep the file's own luma</Tx>
+      <Slip x={140} y={250} w={1220} h={130} fill={C.bg2} seed={1} rot={-1}>
+        <Big x={40} y={14} size={58}>format=gray, or hue=s=0</Big>
+        <Tx x={40} y={80} size={32} color={C.dim}>6.1.1: keep the file's own luma</Tx>
       </Slip>
-      <Tape x={120} y={282} w={120} h={40} rot={-9} />
+      <Tape x={120} y={232} w={120} h={40} rot={-9} />
     </H>
     <H t={t} a={5.0}>
-      <Slip x={300} y={500} w={1380} h={170} fill={C.cyanDim} seed={3} rot={1}>
-        <Big x={40} y={18} size={66}>colorchannelmixer</Big>
-        <Tx x={40} y={96} size={34}>weights that match the file: 0.2126 0.7152 0.0722 for bt709</Tx>
+      <Slip x={300} y={410} w={1380} h={140} fill={C.cyanDim} seed={3} rot={1}>
+        <Big x={40} y={12} size={58}>colorchannelmixer</Big>
+        <Tx x={40} y={80} size={32}>weights that match the file: 0.2126 0.7152 0.0722 for bt709</Tx>
       </Slip>
-      <Tape x={1580} y={484} w={120} h={40} rot={8} />
+      <Tape x={1580} y={394} w={120} h={40} rot={8} />
     </H>
-    <H t={t} a={9.0}>
-      <Slip x={140} y={720} w={1500} h={156} fill={C.bg2} seed={5} rot={-0.5} dashed={C.amber}>
-        <Big x={40} y={14} size={60} color={C.amber}>Not tested</Big>
-        <Tx x={40} y={80} size={34}>ffmpeg 8.1.2, the PC build, real footage, other matrices</Tx>
+    <H t={t} a={9.5}>
+      <Slip x={140} y={580} w={1500} h={150} fill={C.amberDim} seed={2} rot={-0.6}>
+        <Big x={40} y={12} size={58} color={C.red}>8.1.2 changes gray on HD</Big>
+        <Tx x={40} y={80} size={32}>76 149 29 224: the 601 weights, not the file's (6.1.1: 55 183 19 236)</Tx>
+      </Slip>
+      <Tape x={110} y={564} w={110} h={38} rot={-7} />
+    </H>
+    <H t={t} a={15.5}>
+      <Slip x={300} y={756} w={1380} h={116} fill={C.bg2} seed={5} rot={0.5} dashed={C.amber}>
+        <Big x={40} y={10} size={52} color={C.amber}>Not tested</Big>
+        <Tx x={40} y={70} size={32}>real footage, other matrices, 10 bit</Tx>
       </Slip>
     </H>
   </Stage>
