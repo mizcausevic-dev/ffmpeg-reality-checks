@@ -1,0 +1,50 @@
+[
+ {
+  "item": "Daily quota",
+  "value": "10,000 units per day",
+  "note": "Default for a project; resets at midnight Pacific.",
+  "source": "YouTube Data API docs"
+ },
+ {
+  "item": "Uploads (videos.insert)",
+  "value": "100 calls per day",
+  "note": "A separate bucket from the 10,000 units.",
+  "source": "YouTube Data API docs"
+ },
+ {
+  "item": "Search (search.list)",
+  "value": "100 calls per day",
+  "note": "A separate bucket; the dashboard does not use search.",
+  "source": "YouTube Data API docs"
+ },
+ {
+  "item": "Metadata and thumbnails",
+  "value": "50 units each",
+  "note": "videos.update, thumbnails.set and playlistItems.insert.",
+  "source": "YouTube Data API docs"
+ },
+ {
+  "item": "Publish of ff26 to ff38",
+  "value": "about 1,300 units planned",
+  "note": "13 films at about 100 units each, from the uploader's own plan.",
+  "source": "Uploader log, 2026-10-26"
+ },
+ {
+  "item": "Channel upload limits",
+  "value": "not verified",
+  "note": "YouTube may also limit uploads per channel regardless of the API quota.",
+  "source": "Not checked"
+ },
+ {
+  "item": "End screens and cards",
+  "value": "Studio only",
+  "note": "The API cannot set them; they are added by hand in YouTube Studio.",
+  "source": "Observed"
+ },
+ {
+  "item": "Pinned comments",
+  "value": "Studio only",
+  "note": "The API cannot pin; each film's description file holds the text to paste.",
+  "source": "Observed"
+ }
+]

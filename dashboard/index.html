@@ -1,0 +1,316 @@
+<style>
+.rc { max-width: 1180px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); }
+.rc h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2rem; margin: 0; text-wrap: balance; }
+.rc h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.rc p { margin: 0; }
+.rc .lede { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); max-width: 70ch; line-height: 1.5; margin-top: var(--cds-gap-xs); }
+.rc .lede b, .rc .lede span { color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.rc .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: var(--cds-gap-md); }
+.rc .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.rc .kpi .label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.rc .kpi .val { font-family: var(--font-anthropic-serif); font-size: 2.25rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.rc .kpi .sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.rc .note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.45; }
+.rc .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.rc .tools { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+.rc input[type=search], .rc select { font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); min-width: 0; }
+.rc input[type=search] { flex: 1 1 14rem; }
+.rc input:focus-visible, .rc select:focus-visible, .rc button:focus-visible, .rc a:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.rc .scroll { overflow: auto; max-height: 34rem; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+.rc .scroll.short { max-height: none; }
+.rc table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-body); font-variant-numeric: tabular-nums; }
+.rc th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: 0; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; z-index: 1; }
+.rc th button { all: unset; box-sizing: border-box; cursor: pointer; display: block; width: 100%; padding: var(--cds-pad-xs) var(--cds-pad-sm); }
+.rc th.plain { padding: var(--cds-pad-xs) var(--cds-pad-sm); }
+.rc th button:hover { color: var(--color-fg); }
+.rc th[aria-sort=ascending] button::after { content: " \2191"; }
+.rc th[aria-sort=descending] button::after { content: " \2193"; }
+.rc td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.rc tr:last-child td { border-bottom: 0; }
+.rc td.num { text-align: right; white-space: nowrap; }
+.rc th.num button { text-align: right; }
+.rc td.q { min-width: 16rem; max-width: 30rem; }
+.rc td.stat { white-space: nowrap; }
+.rc td.stat b { font-weight: var(--cds-font-weight-medium); }
+.rc td.stat span { display: block; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); white-space: normal; max-width: 12rem; }
+.rc a { color: var(--color-fg); text-underline-offset: 2px; }
+.rc .chip { display: inline-block; font-size: var(--cds-font-size-caption); padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.rc .chip.public, .rc .chip.proposed { color: var(--color-ok); }
+.rc .chip.private, .rc .chip.queued { color: var(--color-warn); }
+.rc .chip.in-production, .rc .chip.open { color: var(--color-fg-muted); }
+.rc .diff { color: var(--cds-chart-status-critical); font-weight: var(--cds-font-weight-medium); }
+.rc .chartbox { position: relative; min-height: 220px; }
+.rc .chartbox svg { display: block; width: 100%; }
+.rc .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 16rem; opacity: 0; transition: opacity var(--cds-dur-slow); z-index: 3; }
+.rc .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.rc .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.rc .bars { display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-height: 140px; }
+.rc .bar { display: grid; grid-template-columns: 9rem 1fr 3rem; gap: var(--cds-gap-sm); align-items: center; font-size: var(--cds-font-size-body); }
+.rc .bar .track { background: var(--cds-chart-grid); border-radius: 4px; height: 14px; overflow: hidden; }
+.rc .bar .fill { height: 100%; border-radius: 4px; background: var(--dash-c0); }
+.rc .bar .v { text-align: right; font-variant-numeric: tabular-nums; }
+.rc .diffs { display: flex; flex-direction: column; gap: var(--cds-gap-sm); margin: 0; padding: 0; list-style: none; min-height: 140px; }
+.rc .diffs li { display: grid; grid-template-columns: 3rem 1fr; gap: var(--cds-gap-sm); align-items: baseline; }
+.rc .diffs li b { font-weight: var(--cds-font-weight-medium); }
+.rc .dash-skeleton { min-height: 1em; }
+@media (max-width: 560px) { .rc .bar { grid-template-columns: 6.5rem 1fr 2.5rem; } .rc h1 { font-size: 1.6rem; } }
+</style>
+
+<div class="rc" id="rc">
+  <header>
+    <h1>Reality Checks ledger</h1>
+    <p class="lede">
+      <span data-source="totals" data-row="0" data-field="public">—</span> of
+      <span data-source="totals" data-row="0" data-field="total">—</span> films are public.
+      <span data-source="totals" data-row="0" data-field="differ">—</span> gave a different result on ffmpeg 8.1.2 than on 6.1.1, and
+      <span data-source="totals" data-row="0" data-field="failing">—</span> tests are failing.
+    </p>
+  </header>
+
+  <section class="kpis" aria-label="Series totals">
+    <div class="card kpi"><span class="label">Films public</span><span class="val" data-source="totals" data-row="0" data-field="public">—</span><span class="sub">produced: <span data-source="totals" data-row="0" data-field="total">—</span></span></div>
+    <div class="card kpi"><span class="label">Tests passing</span><span class="val" data-source="totals" data-row="0" data-field="passing">—</span><span class="sub">failing: <span data-source="totals" data-row="0" data-field="failing">—</span></span></div>
+    <div class="card kpi"><span class="label">Build differences</span><span class="val" data-source="totals" data-row="0" data-field="differ">—</span><span class="sub">films run on both builds: <span data-source="totals" data-row="0" data-field="both">—</span></span></div>
+    <div class="card kpi"><span class="label">Runtime</span><span class="val" data-source="totals" data-row="0" data-field="hours">—</span><span class="sub">hours of narrated film</span></div>
+    <div class="card kpi"><span class="label">Views (API)</span><span class="val" data-source="totals" data-row="0" data-field="views">—</span><span class="sub">likes: <span data-source="totals" data-row="0" data-field="likes">—</span></span></div>
+  </section>
+
+  <section class="card" id="films">
+    <h2>Films</h2>
+    <p class="note">One row per episode. Each asks one question from a copied command, runs it on a synthetic clip, and reports the measurement. Click a column to sort.</p>
+    <div class="tools">
+      <input type="search" id="q" placeholder="Search questions" aria-label="Search films">
+      <select id="statusf" aria-label="Filter by status"><option value="">All statuses</option><option value="public">Public</option><option value="private">Private</option><option value="in production">In production</option></select>
+      <select id="diff" aria-label="Filter by build difference"><option value="">All films</option><option value="yes">Build difference found</option></select>
+    </div>
+    <div class="scroll">
+      <table id="ftable" data-source="films" data-row-key="code">
+        <thead><tr>
+          <th data-field="code" aria-sort="descending"><button type="button" data-k="n">Film</button></th>
+          <th data-field="question"><button type="button" data-k="question">Question</button></th>
+          <th data-field="stat"><button type="button" data-k="stat">Headline</button></th>
+          <th data-field="seconds" class="num"><button type="button" data-k="seconds">Length</button></th>
+          <th data-field="tests" class="num"><button type="button" data-k="tests">Tests</button></th>
+          <th data-field="builds"><button type="button" data-k="builds">Builds</button></th>
+          <th data-field="views" class="num"><button type="button" data-k="views">Views</button></th>
+          <th data-field="status"><button type="button" data-k="status">Status</button></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note" id="fcount"></p>
+  </section>
+
+  <section class="grid2">
+    <div class="card">
+      <h2>Tests per film</h2>
+      <p class="note">Test count for each episode on ffmpeg 6.1.1. Films where 8.1.2 gave a different result are marked.</p>
+      <div class="legend"><span><i style="background:var(--dash-c0)"></i>Same on both builds</span><span><i style="background:var(--dash-c1)"></i>Build difference found</span></div>
+      <div class="chartbox" id="tchart" data-source="films"><div class="tip" id="ttip"></div></div>
+    </div>
+    <div class="card">
+      <h2>Same command, two builds</h2>
+      <p class="note">Where one command gave different numbers on ffmpeg 6.1.1 and 8.1.2. These films state both values.</p>
+      <ul class="diffs" id="difflist" data-source="films"></ul>
+    </div>
+  </section>
+
+  <section class="grid2">
+    <div class="card">
+      <h2>Where views come from</h2>
+      <p class="note">YouTube Studio traffic-source export for the whole channel, an earlier snapshot.</p>
+      <div class="bars" id="traffic" data-source="traffic"></div>
+    </div>
+    <div class="card">
+      <h2>Upload and quota facts</h2>
+      <div class="scroll short">
+        <table id="ltable" data-source="limits" data-row-key="item">
+          <thead><tr><th class="plain" data-field="item">Item</th><th class="plain" data-field="value">Limit</th><th class="plain" data-field="note">Note</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="queue">
+    <h2>Queue and proposed next films</h2>
+    <p class="note">Topics come from the series' pattern (a copied command, one measurable surprise). There is no keyword-demand data behind the order.</p>
+    <div class="scroll">
+      <table id="qtable" data-source="queue" data-row-key="ep">
+        <thead><tr><th class="plain" data-field="ep">Film</th><th class="plain" data-field="status">Status</th><th class="plain" data-field="topic">Question</th><th class="plain" data-field="why">Why it is worth a film</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  dash.calc('totals', {
+    inputs: ['films'],
+    title: 'Series totals',
+    description: 'Counts and sums over the film list.',
+    fn: function (films) {
+      var sum = function (k) { return films.reduce(function (a, f) { return a + (Number(f[k]) || 0); }, 0); };
+      var both = films.filter(function (f) { return f.builds !== '6.1.1'; }).length;
+      return [{
+        total: films.length,
+        public: films.filter(function (f) { return f.status === 'public'; }).length,
+        passing: sum('tests') - sum('tests_failed'),
+        failing: sum('tests_failed'),
+        differ: films.filter(function (f) { return f.build_difference === 'yes'; }).length,
+        both: both,
+        hours: Math.round(sum('seconds') / 360) / 10,
+        views: sum('views'),
+        likes: sum('likes')
+      }];
+    }
+  });
+
+  var fmt = d3.format(',');
+  var state = { key: 'n', dir: -1, q: '', status: '', diff: '' };
+  var root = document.getElementById('rc');
+  var $ = function (id) { return document.getElementById(id); };
+  var mmss = function (s) { return s == null ? '' : Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+
+  document.querySelectorAll('#ftable th button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-k');
+      if (state.key === k) state.dir = -state.dir; else { state.key = k; state.dir = (k === 'n' || k === 'question' || k === 'builds' || k === 'status' || k === 'stat') ? 1 : -1; }
+      drawFilms();
+    });
+  });
+  $('q').addEventListener('input', function (e) { state.q = e.target.value.toLowerCase(); drawFilms(); });
+  $('statusf').addEventListener('change', function (e) { state.status = e.target.value; drawFilms(); });
+  $('diff').addEventListener('change', function (e) { state.diff = e.target.value; drawFilms(); });
+
+  function cell(tr, text, cls) { var td = document.createElement('td'); if (cls) td.className = cls; td.textContent = text; tr.appendChild(td); return td; }
+
+  function drawFilms() {
+    var d = dash.data('films');
+    var tbody = document.querySelector('#ftable tbody');
+    tbody.textContent = '';
+    if (d.status !== 'ok') { $('fcount').textContent = ''; return; }
+    var rows = d.data.filter(function (r) {
+      if (state.status && r.status !== state.status) return false;
+      if (state.diff && r.build_difference !== state.diff) return false;
+      if (state.q && (r.question + ' ' + r.video_title + ' ' + r.code + ' ' + r.stat + ' ' + r.stat_label).toLowerCase().indexOf(state.q) < 0) return false;
+      return true;
+    });
+    var k = state.key;
+    rows.sort(function (a, b) {
+      var x = a[k], y = b[k];
+      if (x == null) return 1; if (y == null) return -1;
+      if (typeof x === 'number' && typeof y === 'number') return (x - y) * state.dir;
+      return String(x).localeCompare(String(y)) * state.dir;
+    });
+    rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      tr.setAttribute('data-key', r.code);
+      var c = document.createElement('td');
+      if (r.url) { var a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.code; c.appendChild(a); } else { c.textContent = r.code; }
+      tr.appendChild(c);
+      cell(tr, r.question, 'q');
+      var st = cell(tr, '', 'stat'); var b = document.createElement('b'); b.textContent = r.stat || '\u2014'; st.appendChild(b); var sp = document.createElement('span'); sp.textContent = r.stat_label; st.appendChild(sp);
+      cell(tr, mmss(r.seconds), 'num');
+      cell(tr, r.tests == null ? '' : fmt(r.tests), 'num');
+      var bd = cell(tr, r.builds); if (r.build_difference === 'yes') { var m = document.createElement('span'); m.className = 'diff'; m.textContent = ' (differs)'; bd.appendChild(m); }
+      cell(tr, r.views == null ? '' : fmt(r.views), 'num');
+      var s = cell(tr, ''); var chip = document.createElement('span'); chip.className = 'chip ' + r.status.replace(' ', '-'); chip.textContent = r.status; s.appendChild(chip);
+      tbody.appendChild(tr);
+    });
+    $('fcount').textContent = rows.length === d.data.length ? '' : 'Showing a subset of the films';
+    document.querySelectorAll('#ftable th').forEach(function (th) {
+      var b = th.querySelector('button'); if (!b) return;
+      th.setAttribute('aria-sort', b.getAttribute('data-k') === k ? (state.dir > 0 ? 'ascending' : 'descending') : 'none');
+    });
+  }
+
+  function drawTests() {
+    var d = dash.data('films'), box = $('tchart');
+    box.querySelectorAll('svg').forEach(function (n) { n.remove(); });
+    if (d.status !== 'ok') return;
+    var rows = d.data.filter(function (r) { return r.tests != null; });
+    var tip = $('ttip');
+    if (!rows.length) { return; }
+    var W = Math.max(280, box.clientWidth), H = 230, m = { t: 8, r: 8, b: 26, l: 30 };
+    var x = d3.scaleBand().domain(rows.map(function (r) { return r.code; })).range([m.l, W - m.r]).padding(0.25);
+    var y = d3.scaleLinear().domain([0, d3.max(rows, function (r) { return r.tests; })]).nice().range([H - m.b, m.t]);
+    var svg = d3.select(box).insert('svg', ':first-child').attr('viewBox', '0 0 ' + W + ' ' + H).attr('width', '100%').attr('height', H);
+    svg.append('g').selectAll('line').data(y.ticks(4)).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).style('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(y.ticks(4)).join('text').attr('x', m.l - 6).attr('y', y).attr('dy', '0.32em').attr('text-anchor', 'end').style('fill', 'var(--color-fg-muted)').style('font-size', '11px').text(function (v) { return v; });
+    var step = Math.ceil(rows.length / Math.max(2, Math.floor((W - m.l) / 46)));
+    svg.append('g').selectAll('text').data(rows.filter(function (r, i) { return i % step === 0; })).join('text').attr('x', function (r) { return x(r.code) + x.bandwidth() / 2; }).attr('y', H - 8).attr('text-anchor', 'middle').style('fill', 'var(--color-fg-muted)').style('font-size', '11px').text(function (r) { return r.n; });
+    svg.append('g').selectAll('rect').data(rows).join('rect').attr('x', function (r) { return x(r.code); }).attr('width', x.bandwidth()).attr('y', function (r) { return y(r.tests); }).attr('height', function (r) { return y(0) - y(r.tests); }).attr('rx', 2)
+      .style('fill', function (r) { return r.build_difference === 'yes' ? dash.colors[1] : dash.colors[0]; })
+      .on('mousemove', function (ev, r) {
+        var p = d3.pointer(ev, box);
+        tip.textContent = r.code + ': ' + r.tests + ' tests' + (r.build_difference === 'yes' ? ', build difference found' : '');
+        tip.style.left = Math.min(Math.max(0, p[0] + 10), box.clientWidth - 150) + 'px'; tip.style.top = Math.max(0, p[1] - 34) + 'px'; tip.style.opacity = 1;
+      })
+      .on('mouseleave', function () { tip.style.opacity = 0; });
+  }
+
+  function drawDiffs() {
+    var d = dash.data('films'), ul = $('difflist');
+    ul.textContent = '';
+    if (d.status !== 'ok') return;
+    d.data.filter(function (r) { return r.build_difference === 'yes'; }).forEach(function (r) {
+      var li = document.createElement('li'); li.setAttribute('data-key', r.code);
+      var b = document.createElement('b'); b.textContent = r.code; li.appendChild(b);
+      var t = document.createElement('span'); t.textContent = r.build_note; li.appendChild(t);
+      ul.appendChild(li);
+    });
+  }
+
+  function drawTraffic() {
+    var d = dash.data('traffic'), el = $('traffic');
+    el.textContent = '';
+    if (d.status !== 'ok') return;
+    var mx = d3.max(d.data, function (r) { return Number(r.views); });
+    d.data.forEach(function (r) {
+      var row = document.createElement('div'); row.className = 'bar'; row.setAttribute('data-key', r.source);
+      var l = document.createElement('span'); l.textContent = r.source; row.appendChild(l);
+      var tr = document.createElement('span'); tr.className = 'track'; var f = document.createElement('span'); f.className = 'fill'; f.style.display = 'block'; f.style.width = (100 * Number(r.views) / mx) + '%'; f.style.background = dash.colors[0]; tr.appendChild(f); row.appendChild(tr);
+      var v = document.createElement('span'); v.className = 'v'; v.textContent = fmt(Number(r.views)); row.appendChild(v);
+      el.appendChild(row);
+    });
+  }
+
+  function drawSimple(id, tableId, cols, chipCol) {
+    var d = dash.data(id), tb = document.querySelector('#' + tableId + ' tbody');
+    tb.textContent = '';
+    if (d.status !== 'ok') return;
+    d.data.forEach(function (r) {
+      var tr = document.createElement('tr'); tr.setAttribute('data-key', r[cols[0]]);
+      cols.forEach(function (c) {
+        var td = document.createElement('td');
+        if (c === chipCol) { var s = document.createElement('span'); s.className = 'chip ' + r[c]; s.textContent = r[c]; td.appendChild(s); } else td.textContent = r[c];
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+  }
+
+  function fillTotals() {
+    var d = dash.data('totals');
+    var ok = d.status === 'ok' && d.data.length;
+    root.querySelectorAll('[data-source="totals"][data-field]').forEach(function (el) {
+      var k = el.getAttribute('data-field');
+      if (!ok) { el.textContent = '—'; return; }
+      var v = d.data[0][k];
+      el.textContent = (k === 'hours') ? v.toFixed(1) : fmt(v);
+    });
+  }
+
+  dash.onData(function () {
+    fillTotals();
+    drawFilms();
+    drawTests();
+    drawDiffs();
+    drawTraffic();
+    drawSimple('limits', 'ltable', ['item', 'value', 'note'], null);
+    drawSimple('queue', 'qtable', ['ep', 'status', 'topic', 'why'], 'status');
+  });
+})();
+</script>

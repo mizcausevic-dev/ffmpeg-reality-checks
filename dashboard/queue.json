@@ -1,0 +1,107 @@
+[
+ {
+  "ep": "ff43",
+  "status": "queued",
+  "topic": "Does libopus really resample to 48 kHz?",
+  "why": "Input rate vs output rate is a common surprise; measurable from the stream header and the samples.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff44",
+  "status": "queued",
+  "topic": "What does a naive HDR to SDR conversion do to the picture?",
+  "why": "Greys out and clips highlights; two readers on pixel values make the claim checkable.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff45",
+  "status": "open",
+  "topic": "To be picked from the list below",
+  "why": "Held open so the next result from the channel can decide it.",
+  "kind": "open"
+ },
+ {
+  "ep": "ff46",
+  "status": "proposed",
+  "topic": "trim without setpts=PTS-STARTPTS: why is my clip frozen or black at the start?",
+  "why": "One of the most copied filter snippets; timestamps are countable with two readers.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff47",
+  "status": "proposed",
+  "topic": "-itsoffset with -c copy: does the audio really move, in MP4 and in MKV?",
+  "why": "Containers disagree about edit lists; likely to differ between 6.1.1 and 8.1.2.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff48",
+  "status": "proposed",
+  "topic": "silenceremove: why does it only cut the start?",
+  "why": "The default stops after the leading silence; sample counts show it exactly.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff49",
+  "status": "proposed",
+  "topic": "The thumbnail filter: which frame does it pick, and is it the best one?",
+  "why": "Frame choice is deterministic on a coded test clip, so the answer is a number.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff50",
+  "status": "proposed",
+  "topic": "libmp3lame -q:a: what bitrate do I really get?",
+  "why": "VBR settings are quoted as quality but behave as an average that depends on the signal.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff51",
+  "status": "proposed",
+  "topic": "Downsampling with aresample: does a high tone alias into the audible range?",
+  "why": "A pure tone above the new Nyquist makes aliasing measurable with a frequency reader.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff52",
+  "status": "proposed",
+  "topic": "mov_text subtitles: why does -c copy to MKV fail or change?",
+  "why": "Subtitle codecs do not map one to one; the stream list shows what survived.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff53",
+  "status": "proposed",
+  "topic": "GIF -loop: what do 0, -1 and 3 really mean?",
+  "why": "The NETSCAPE loop count is readable from the file bytes, so it is a clean control.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff54",
+  "status": "proposed",
+  "topic": "x264 and x265 at the same CRF: same quality?",
+  "why": "A frequent assumption; PSNR and SSIM readers settle it on one synthetic clip.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff55",
+  "status": "proposed",
+  "topic": "fade with -ss before and after -i: where does the fade land?",
+  "why": "Same flags in a different order shift the fade; frame luma shows where.",
+  "kind": "gotcha"
+ },
+ {
+  "ep": "ff56",
+  "status": "proposed",
+  "topic": "29.97 fps and -video_track_timescale: do the timestamps round?",
+  "why": "Timestamp rounding at odd frame rates is where builds are most likely to disagree.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff57",
+  "status": "proposed",
+  "topic": "-map 0 into MP4: which streams make it fail?",
+  "why": "A common error message; the stream list before and after is the evidence.",
+  "kind": "gotcha"
+ }
+]
