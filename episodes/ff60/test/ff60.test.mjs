@@ -6,12 +6,13 @@ import path from 'node:path';
 import {have} from '../../../tools/ff.mjs';
 import {runExperiment, cell, rowOf, esc1, esc2, quote, STRATS, STRAT_IDS, PATHS, KINDS, DECOYS, buildOf, W, H} from '../fixture/experiment.mjs';
 
-const ok = have('ffmpeg') && have('ffprobe');
+// the 12 test paths hold characters (colon, backslash, quotes, brackets) that Windows file names cannot, so the grid needs a Linux or macOS file system
+const ok = have('ffmpeg') && have('ffprobe') && process.platform !== 'win32';
 let ev, dir;
 before(() => { if (ok) { dir = fs.mkdtempSync(path.join(os.tmpdir(), 'frc-ff60-')); ev = runExperiment(dir); } });
 test.after(() => { if (dir) fs.rmSync(dir, {recursive: true, force: true}); });
 const hasLibass = () => ok && ev.libassEnabled === true;
-const t = (name, fn) => test(name, {skip: !ok ? 'ffmpeg/ffprobe not on PATH' : false}, (c) => {
+const t = (name, fn) => test(name, {skip: !ok ? 'ffmpeg/ffprobe on PATH and a file system that allows : \\ \' [ ] in names are needed (not Windows)' : false}, (c) => {
   if (!hasLibass()) return c.skip('ffmpeg without libass: the subtitles filter does not exist, no finding');
   return fn(c);
 });

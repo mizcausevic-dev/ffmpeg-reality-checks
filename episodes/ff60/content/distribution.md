@@ -1,6 +1,6 @@
 # FF60 distribution kit: FFmpeg subtitles Filter Path Escaping: 3 of 12 Open the Wrong File
 
-All numbers below come from the synthetic fixture in `episodes/ff60/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff60/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 on Linux. The tests need file names with a colon and a backslash, which Windows cannot hold, so they are skipped on the Windows 8.1.2 build: nothing here is measured on 8.1.2.
 
 ## YouTube
 
