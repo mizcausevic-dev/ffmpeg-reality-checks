@@ -1,0 +1,86 @@
+{
+  "n": 51,
+  "slug": "ffmpeg-mov-text-mkv",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does copying mp4 subtitles into MKV fail?",
+  "fullTitle": "FFmpeg -c copy of mov_text to MKV Writes 0 of 3 Streams; -c:s srt Works",
+  "kicker": "Episode 51",
+  "thumb": {
+    "number": "0 of 3",
+    "label": "STREAMS IN THE MKV FILE",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "copy",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You copy an mp4 into an m k v with dash c copy, and its subtitles are mov text. Does it fail, or change? We build a five second synthetic clip with three cues, copy it every way we can, and read the stream list.",
+      "captions": [
+        "Copy mov_text subtitles into MKV: fail, or change?",
+        "We read the stream list and the cues, two ways."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "A clip with three cues",
+      "narration": "The source has video, a tone, and three cues, one in italics, as mov text. Controls: copied into a dot mov, it stays mov text; a subrip m k v stays subrip. Readers: f f probe, and the raw bytes in Node.",
+      "captions": [
+        "Controls: mov_text into .mov, subrip into .mkv: unchanged.",
+        "Readers: ffprobe; raw bytes (codec id, cue text)."
+      ]
+    },
+    {
+      "id": "copy",
+      "chapter": "-c copy into mkv",
+      "narration": "Now the question. Dash c copy into dot m k v: f f m peg stops, says the subtitle codec is not supported, and leaves a two hundred ninety three byte stub. Zero of three streams. Both readers find no cue text.",
+      "captions": [
+        "-c copy to .mkv: 0 of 3 streams, a 293 byte stub.",
+        "ffprobe and the raw bytes: no streams, no cue text."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "Name the codec",
+      "narration": "Name the codec. Dash c colon s, s r t, or dash c colon s, a s s: video and audio still copied, three cues, the same times to the millisecond, italics kept. Leave the subtitle out instead, and you get two streams, no text.",
+      "captions": [
+        "-c:s srt and -c:s ass: 3 streams, 3 cues, same times.",
+        "-map 0:v -map 0:a: 2 streams, no cue text."
+      ]
+    },
+    {
+      "id": "plain",
+      "chapter": "No codec options at all",
+      "narration": "Give no codec options at all, and nothing fails. The subtitle becomes a s s, the audio is converted to vorbis, and the cues land three milliseconds late. Text survives, but you did not copy what you thought.",
+      "captions": [
+        "No options: ass subtitle, vorbis audio, cues +3 ms.",
+        "The stream list shows it; the exit status does not."
+      ]
+    },
+    {
+      "id": "back",
+      "chapter": "The other direction",
+      "narration": "The other way is just as strict. Subrip into an mp4 with dash c copy fails and writes zero bytes. Dash c colon s, mov text, works: three cues, same times, italics. Mov text stores six packets for three cues; matroska stores three.",
+      "captions": [
+        "subrip -> .mp4 with -c copy: 0 bytes. -c:s mov_text: works.",
+        "mov_text: 6 packets for 3 cues. subrip, ass: 3."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Name the subtitle codec for the container: srt or a s s for m k v, mov text for mp4. Then read the stream list. Not tested: other subtitle formats, picture subtitles, players, and builds other than six point one.",
+      "captions": [
+        "srt or ass for MKV, mov_text for MP4. Then run ffprobe.",
+        "Not tested: image subtitles, players, other builds."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "n": 52,
+  "slug": "ffmpeg-gif-loop",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "What do gif loop 0, minus 1 and 3 really mean?",
+  "fullTitle": "FFmpeg GIF -loop: -1 Drops 19 Bytes, 0 Is the Default, 3 Is a Count of 3",
+  "kicker": "Episode 52",
+  "thumb": {
+    "number": "19 bytes",
+    "label": "WHAT MINUS ONE REMOVES",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "minus1",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "The gif muxer has a dash loop option: zero, minus one, or a count. What do they really mean? We write one synthetic ten frame gif each way, read the loop block in its bytes, and let f f m peg play each file back.",
+      "captions": [
+        "GIF -loop 0, -1 or 3: what is in the file?",
+        "We read the bytes, and play the file back."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Two readers and a control",
+      "narration": "Reader one parses the gif bytes in Node and finds the Netscape loop block. Reader two plays the file back in f f m peg and counts frames. The control is a gif built byte by byte with a count of seven: both readers see seven.",
+      "captions": [
+        "Control: a hand-built gif, count 7: 7 passes, 14 frames.",
+        "Readers: GIF bytes in Node; ffmpeg playback."
+      ]
+    },
+    {
+      "id": "zero",
+      "chapter": "Zero, and no option",
+      "narration": "Dash loop zero writes the Netscape block with a count of zero. Leaving dash loop out writes the same: the two files are byte for byte identical. Played back, f f m peg is still going at the twenty second limit. Zero is the default.",
+      "captions": [
+        "-loop 0 and no -loop: byte for byte identical.",
+        "Count 0 in the bytes. Still playing at 20 s."
+      ]
+    },
+    {
+      "id": "minus1",
+      "chapter": "Minus one",
+      "narration": "Dash loop minus one writes no loop block at all. The file is exactly nineteen bytes smaller, and the Netscape marker is not in the bytes. Played back, f f m peg plays it once. The ten frames are the same.",
+      "captions": [
+        "-loop -1: no loop block, 19 bytes smaller.",
+        "ffmpeg plays it once. Same 10 frames."
+      ]
+    },
+    {
+      "id": "three",
+      "chapter": "A count of three",
+      "narration": "Dash loop three writes a count of three: one byte differs from the zero file. F f m peg plays it three times, thirty frames. A count of one plays once, like minus one. Count sixty five thousand five hundred thirty six is refused.",
+      "captions": [
+        "-loop 3: count 3 in the bytes, 3 passes, 30 frames.",
+        "-loop 1 plays once. -loop 65536 is refused."
+      ]
+    },
+    {
+      "id": "input",
+      "chapter": "Before the input",
+      "narration": "Careful where you put it. Dash loop before dash i is the image reader's option: one repeats a still picture for the whole clip, and the gif still gets count zero. Three is not a yes or no, and f f m peg refuses.",
+      "captions": [
+        "-loop before -i is the image reader's option.",
+        "-loop 1 there: gif count stays 0. -loop 3: refused."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So minus one means no loop block, zero means a block with count zero, and three means three. How a browser counts is another matter. Not tested: browsers, players, gifs from other tools, and builds other than six point one.",
+      "captions": [
+        "-1: no block. 0: count 0. 3: count 3.",
+        "Not tested: browsers, players, other builds."
+      ]
+    }
+  ]
+}

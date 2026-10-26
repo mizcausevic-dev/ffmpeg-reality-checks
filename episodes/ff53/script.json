@@ -1,0 +1,86 @@
+{
+  "n": 53,
+  "slug": "ffmpeg-x264-x265-crf",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Same CRF, two encoders: same quality?",
+  "fullTitle": "FFmpeg x265 vs x264 at Same CRF: 40% Fewer Bytes at 18, 3% More at 23",
+  "kicker": "Episode 53",
+  "thumb": {
+    "number": "-40%",
+    "label": "BYTES AT THE SAME CRF 18",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "crf18",
+    "t": 5
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Does x two six five at the same C R F match x two six four? We encode one synthetic clip both ways, at eighteen, twenty three and twenty eight, then read size, P S N R and S S I M.",
+      "captions": [
+        "Is x265 at the same CRF as good as x264?",
+        "We read size, PSNR and SSIM against the source."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "A source and a control",
+      "narration": "Seventy five lossless frames. Reader one: f f m peg's P S N R and S S I M filters. Reader two: Node, from scratch. Control: lossless x two six four reads infinite P S N R and S S I M one, in both.",
+      "captions": [
+        "Control: lossless x264: PSNR inf, SSIM 1.0000, both readers.",
+        "Readers: ffmpeg psnr and ssim filters; Node from scratch."
+      ]
+    },
+    {
+      "id": "crf18",
+      "chapter": "At CRF 18",
+      "narration": "At C R F eighteen, x two six five makes a file forty percent smaller: four hundred ninety five thousand bytes against eight hundred nineteen thousand. But P S N R is zero point five nine decibels lower.",
+      "captions": [
+        "CRF 18: x265 494944 bytes, x264 819510 bytes.",
+        "PSNR Y -0.59 dB. SSIM Y 0.9039 vs 0.9270."
+      ]
+    },
+    {
+      "id": "flip",
+      "chapter": "At CRF 23 and 28",
+      "narration": "At twenty three, it flips: x two six five is three percent bigger, and zero point three three decibels higher. At twenty eight, sizes match, and it is zero point four nine decibels higher. Same C R F, not same quality.",
+      "captions": [
+        "CRF 23: +3.2% bytes, +0.33 dB. CRF 28: -0.2% bytes, +0.49 dB.",
+        "The gap changes sign with the CRF."
+      ]
+    },
+    {
+      "id": "readers",
+      "chapter": "Do the readers agree?",
+      "narration": "Both readers agree on all eight encodes, within one millionth. A second encode of the same file is byte for byte identical, so the gaps are not noise. Lower C R F meant more bytes and higher quality, in both codecs.",
+      "captions": [
+        "ffmpeg and Node agree within 1e-6 on PSNR and SSIM.",
+        "Second encode: identical file. Lower CRF: bigger, better."
+      ]
+    },
+    {
+      "id": "defaults",
+      "chapter": "The defaults",
+      "narration": "Defaults differ. Without dash c r f, libx264 gives the C R F twenty three file, libx265 the twenty eight file, byte for byte. So by default x two six five is forty nine percent smaller, one point four decibels lower.",
+      "captions": [
+        "No -crf: x264 = CRF 23, x265 = CRF 28, byte for byte.",
+        "Defaults: x265 -49.2% bytes, -1.40 dB PSNR Y."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Same C R F does not mean same quality, and the gap changes with C R F. Compare size and quality together, on your own footage. Not tested: real footage, other presets, other metrics, hardware encoders, other builds.",
+      "captions": [
+        "Compare size and quality together, on your footage.",
+        "Not tested: real footage, presets, VMAF, other builds."
+      ]
+    }
+  ]
+}

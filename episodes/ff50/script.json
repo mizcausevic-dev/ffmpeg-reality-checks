@@ -1,0 +1,86 @@
+{
+  "n": 50,
+  "slug": "ffmpeg-aresample-alias",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Does a high tone fold into the audible range?",
+  "fullTitle": "FFmpeg aresample: 20 kHz Alias at -106 dB, but 12.1 kHz Alias at -12 dB",
+  "kicker": "Episode 50",
+  "thumb": {
+    "number": "-12 dB",
+    "label": "ALIAS NEAR THE NEW LIMIT",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "leak",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Downsample audio, and a tone above the new limit must land somewhere lower. Does a twenty kilohertz tone fold into an audible four kilohertz one? We resample a pure tone from forty eight to twenty four kilohertz, and read the level at the alias.",
+      "captions": [
+        "Does a 20 kHz tone fold down to 4 kHz?",
+        "We read the level at the alias, with two readers."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "A tone and a control",
+      "narration": "A pure sine, forty eight thousand hertz in, twenty four out, so the new limit is twelve thousand. Control: a six kilohertz tone stays at six, zero decibels of change. Readers: an F F T in Node, and an f f m peg band pass with astats.",
+      "captions": [
+        "Control: 6 kHz in, 6 kHz out, 0.0 dB change.",
+        "Readers: FFT in Node; ffmpeg bandpass + astats."
+      ]
+    },
+    {
+      "id": "naive",
+      "chapter": "Known positive: no filter",
+      "narration": "To prove the readers can see an alias, we decimate by hand in Node: keep every second sample, no filter. The twenty kilohertz tone lands at four kilohertz at full strength, zero decibels down. Both readers see it.",
+      "captions": [
+        "No filter, every second sample: 4 kHz at 0.0 dB.",
+        "Both readers see the alias at full strength."
+      ]
+    },
+    {
+      "id": "tone",
+      "chapter": "The default aresample",
+      "narration": "Now a resample, twenty four thousand. The twenty kilohertz tone leaves nothing at four kilohertz: minus one hundred six decibels in Node, minus one hundred three for the f f m peg reader. From fourteen kilohertz up, ninety down or better.",
+      "captions": [
+        "20 kHz tone: alias at -106.1 dB (Node), -103.0 dB (ffmpeg).",
+        "14 to 23 kHz tones: all 90 dB down or better."
+      ]
+    },
+    {
+      "id": "leak",
+      "chapter": "Close to the limit",
+      "narration": "Now move the tone close to the limit. At twelve point one kilohertz, the alias is back at eleven point nine, only eleven point eight decibels down. At twelve point five, nineteen point four down. At thirteen, thirty four. By fourteen, gone.",
+      "captions": [
+        "12.1 kHz in, 11.9 kHz out: -11.8 dB (Node), -12.2 (ffmpeg).",
+        "12.5 kHz: -19.4 dB. 13 kHz: -34.0 dB."
+      ]
+    },
+    {
+      "id": "dial",
+      "chapter": "The filter does the work",
+      "narration": "The filter does the work. At filter size one, the alias is only seven decibels down. Two: fifteen point five. Four: thirty point seven. Eight: eighty eight. The default, thirty two: one hundred six. And dash a r gives the same samples as the filter.",
+      "captions": [
+        "filter_size 1, 2, 4, 8, 32: -7.0, -15.5, -30.7, -88.3, -106.1 dB.",
+        "-ar 24000, aresample, aformat: identical samples."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "A tone far above the new limit does not alias with the default filter. A tone just above it does, at eleven point nine kilohertz. Keep content well under half the new rate. Not tested: other rates, soxr, real music, builds other than six point one.",
+      "captions": [
+        "Far above the limit: gone. Just above: -12 dB.",
+        "Not tested: other rates, soxr, music, other builds."
+      ]
+    }
+  ]
+}
