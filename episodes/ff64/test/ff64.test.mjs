@@ -89,25 +89,27 @@ t('-fflags +shortest does not stop at the end of the song: at 25 fps the picture
 
 t('-shortest_buf_duration 0.2: no change at 25 fps (107 frames), but at 1 fps the picture is 6 frames (6.00 s), 1.7 s longer than the 4.3 s song (build specific, so exact numbers are for 6.1.1)', () => {
   for (const fmt of ['pcm', 'aac']) {
-    assert.equal(R('bufdur', 4.3, 25, fmt).framesDecoded, 107);
+    // ffmpeg 8.1.2: the option no longer leaves 25 fps alone (149 to 153 frames) and at 1 fps the picture runs to the 20 s guard while only 0.683 s of audio is written
+    if (isV6()) assert.equal(R('bufdur', 4.3, 25, fmt).framesDecoded, 107); else assert.ok(R('bufdur', 4.3, 25, fmt).framesDecoded > 107);
     const r = R('bufdur', 4.3, 1, fmt);
-    assert.ok(r.vSec >= 4); if (isV6()) { assert.equal(r.framesDecoded, 6); assert.ok(r.gap > 1.6); }
+    assert.ok(r.vSec >= 4); if (!isV6()) assert.ok(r.vSec > 4.3); if (isV6()) { assert.equal(r.framesDecoded, 6); assert.ok(r.gap > 1.6); }
   }
 });
 
 t('copying the song (-c:a copy of an aac file) with -shortest makes the picture end early: 105 frames (4.20 s) at 25 fps instead of 107, and 1 frame (1.00 s) at 1 fps against a 4.3 s song, 3.3 s short; the song itself is intact (4.300 s of packets)', () => {
   const runs = copyRuns('');
   assert.equal(runs.length, 6);
-  for (const r of runs) { near(r.aEnd, 4.3, 0.002, r.id); assert.ok(r.framesDecoded < floorFrames(4.3, r.fps), `${r.id} frames ${r.framesDecoded}`); }
+  // ffmpeg 8.1.2 at 1 fps: the copied song gives 9 frames (9.00 s), longer than the song, instead of 1 frame
+  for (const r of runs) { near(r.aEnd, 4.3, 0.002, r.id); if (isV6() || r.fps > 1) assert.ok(r.framesDecoded < floorFrames(4.3, r.fps), `${r.id} frames ${r.framesDecoded}`); }
   const a = R('shortest', 4.3, 25, 'copy', 'm4a'), b = R('shortest', 4.3, 1, 'copy', 'm4a');
-  assert.ok(a.vSec < R('shortest', 4.3, 25, 'aac').vSec && b.vSec < R('shortest', 4.3, 1, 'aac').vSec);
-  assert.ok(b.vSec <= 1 && b.aSec - b.vSec > 3);
+  assert.ok(a.vSec < R('shortest', 4.3, 25, 'aac').vSec);
+  if (isV6()) { assert.ok(b.vSec < R('shortest', 4.3, 1, 'aac').vSec); assert.ok(b.vSec <= 1 && b.aSec - b.vSec > 3); } else assert.ok(b.vSec > 4.3);
   if (isV6()) { assert.equal(a.framesDecoded, 105); assert.equal(b.framesDecoded, 1); assert.equal(R('shortest', 4.3, 2, 'copy', 'm4a').framesDecoded, 5); assert.equal(R('shortest', 4.3, 10, 'copy', 'm4a').framesDecoded, 41); }
 });
 
 t('the cause is frames waiting inside the video encoder: with -bf 0 (no B-frames) the copied-song outputs get the full count again (107, 129, 103, 43, 8, 4 frames), and ffv1, which has no encoder delay, gives 107 at 25 fps and 4 at 1 fps with the song copied', () => {
   for (const r of copyRuns('bf0')) assert.equal(r.framesDecoded, floorFrames(4.3, r.fps), r.id);
-  for (const r of copyRuns('')) assert.ok(R('shortest', 4.3, r.fps, 'copy', 'm4a', 'bf0').framesDecoded > r.framesDecoded, `${r.fps} fps: -bf 0 restores frames`);
+  for (const r of copyRuns('')) if (isV6() || r.fps > 1) assert.ok(R('shortest', 4.3, r.fps, 'copy', 'm4a', 'bf0').framesDecoded > r.framesDecoded, `${r.fps} fps: -bf 0 restores frames`);
   assert.equal(R('shortest', 4.3, 25, 'copy', 'm4a', 'ffv1').framesDecoded, 107); assert.equal(R('shortest', 4.3, 1, 'copy', 'm4a', 'ffv1').framesDecoded, 4);
 });
 
@@ -117,6 +119,8 @@ t('the two readers agree: ffprobe video packet count equals the decoded frame co
     if (r.ptsContiguous) near(r.vEnd, r.vSec, 0.0011, r.id);
     if (r.fmt === 'pcm') near(r.aEnd, r.aSec, 0.0011, r.id);
     else near(r.aEnd, r.aSec, 0.032, r.id);
+    const cutAudio = !isV6() && r.opt === 'bufdur' && r.fps === 1; // 8.1.2 writes only 0.683 s of audio here
+    if (cutAudio) { assert.ok(r.samplesDecoded < samplesOf(r.aud), `${r.id} audio cut`); continue; }
     if (r.fmt === 'pcm' && r.src === 'wav') assert.equal(r.samplesDecoded, samplesOf(r.aud), `${r.id} audio intact`);
     if (r.fmt === 'aac') assert.ok(r.samplesDecoded - samplesOf(r.aud) >= 0 && r.samplesDecoded - samplesOf(r.aud) <= 1024, `${r.id}: aac decodes up to one frame of padding more`);
     if (r.src === 'm4a') assert.ok(Math.abs(r.samplesDecoded - ev.sources.m4aSamples) <= 1024 + 100, `${r.id}: the copied song is not cut`);

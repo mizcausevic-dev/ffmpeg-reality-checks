@@ -1,6 +1,6 @@
 # FF66 distribution kit: FFmpeg atempo: Pitch Holds, but 40 Clicks Become 122 at Half Speed
 
-All numbers below come from the synthetic fixture in `episodes/ff66/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff66/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2.
 
 ## YouTube
 
@@ -23,7 +23,7 @@ Pitch holds: zero crossings read 999.87 Hz at 0.5, 999.46 at 2, 998.77 at 4 and 
 
 Timing does not hold. 40 clicks in; events out (samples at or above 0.1 of full scale, merged within 10 ms): 122 at 0.5, 70 at 0.8, 55 at 1, 40 at 1.5, 31 at 2, 26 at 2.5, 13 at 4, 5 at 10, 1 at 100. Chain 0.5 then 0.8: 176. atempo=1 is not a bypass: 191952 samples, a different md5 and 55 events. At 0.5 an ideal output has clicks at samples 0, 9600 and 19200 only; this one has events at samples 0, 6848, 8128 and 9408 with peaks 29490, 6521, 29486 and 29478. The resampling control keeps exactly 40 events, and so does anull. A second reader, ffmpeg silencedetect, counts the same events as the Node scan on every single value.
 
-The 15 tests pass on ffmpeg 6.1.1. Exact counts are asserted on 6.1.1 only; on other builds the tests assert relations, which have not been run on 8.1.2 yet.
+The 15 tests pass on ffmpeg 6.1.1 and 8.1.2. Exact counts are asserted on 6.1.1 only; on other builds the tests assert relations, which also pass on 8.1.2.
 
 Chapters
 <!-- chapters:start -->

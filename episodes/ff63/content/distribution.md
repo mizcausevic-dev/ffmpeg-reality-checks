@@ -1,6 +1,6 @@
 # FF63 distribution kit: FFmpeg overlay: a 2 s Clip Freezes for 3 s on Its Last Frame
 
-All numbers below come from the synthetic fixture in `episodes/ff63/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff63/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2.
 
 ## YouTube
 
@@ -27,7 +27,7 @@ eof_action=pass, repeatlast=0 and enable='lt(t,2)' keep the base: 125 frames, 5 
 
 A late overlay (delayed 1 s with setpts=PTS+1/TB): the base plays alone for 25 frames, the overlay starts at output frame 25, and with the default it still freezes on counter 49 to the end, counter 49 on 51 frames (50 of them frozen). With eof_action=pass it plays 50 frames and leaves at output frame 75.
 
-The 12 tests pass on ffmpeg 6.1.1. The exact counts are asserted on 6.1.1 only; on other builds the tests assert relations (the default repeats, endall is no longer than the overlay, pass is as long as the base), which have not been run on 8.1.2 yet.
+The 12 tests pass on ffmpeg 6.1.1 and 8.1.2. The exact counts are asserted on 6.1.1 only; on other builds the tests assert relations (the default repeats, endall is no longer than the overlay, pass is as long as the base), which also pass on 8.1.2.
 
 Chapters
 <!-- chapters:start -->

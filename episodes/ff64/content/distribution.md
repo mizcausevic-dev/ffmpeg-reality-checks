@@ -1,6 +1,6 @@
 # FF64 distribution kit: FFmpeg -loop 1 -shortest: Picture Ends Early, 1 s of a 4.3 s Song
 
-All numbers below come from the synthetic fixture in `episodes/ff64/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff64/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1. On 8.1.2 several results differ: `-fflags +shortest` is refused ("Unable to parse fflags option value shortest"), `-shortest_buf_duration 0.2` no longer leaves 25 fps alone (149 to 153 frames) and at 1 fps runs to the 20 s guard with only 0.683 s of audio, and a copied song at 1 fps gives 9 frames instead of 1.
 
 ## YouTube
 
@@ -27,7 +27,7 @@ Copy the song with -c:a copy and -shortest, and the picture ends earlier: 105 fr
 
 When is the picture longer? With no stop option it runs to the -t guard: 200 frames (8.00 s) at 25 fps, 3.7 s too long. -fflags +shortest does not stop at the end of the song: 250 frames (10.00 s) at 25 fps and 300 at 30 fps. -t set to the song length rounds to the nearest frame: 4.3 s at 25 fps gives 108 frames, 4.32 s, 0.02 s longer, and 4.99 s gives 125 (5.00 s). -shortest_buf_duration 0.2 changes nothing at 25 fps, but at 1 fps the picture is 6 frames (6.00 s), 1.7 s longer than the song.
 
-The 14 tests pass on ffmpeg 6.1.1. The exact counts are asserted on 6.1.1 only; on other builds the tests assert relations, which have not been run on 8.1.2 yet.
+The 14 tests pass on ffmpeg 6.1.1. The exact counts are asserted on 6.1.1 only; on 8.1.2 the tests assert the relations and the differences listed above.
 
 Chapters
 <!-- chapters:start -->

@@ -1,6 +1,6 @@
 # FF68 distribution kit: ffprobe Durations: ts Says 4.78 s, the Decoder Says 5.03 s (Same File)
 
-All numbers below come from the synthetic fixture in `episodes/ff68/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff68/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 ; the tests also pass on 8.1.2, where mkv audio comes in blocks of 85 or 86 ms instead of 42 or 43 ms, mkv packet spans read 1 ms short of the decoder, and the mp4 with late audio is 10.7 ms off the decoder instead of within 1 ms.
 
 ## YouTube
 

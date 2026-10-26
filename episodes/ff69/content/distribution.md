@@ -1,6 +1,6 @@
 # FF69 distribution kit: Stereo Delay: One Value Delays Only the Left Channel (48000 vs 0 Samples)
 
-All numbers below come from the synthetic fixture in `episodes/ff69/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff69/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2.
 
 ## YouTube
 
@@ -27,7 +27,7 @@ One value per channel: 1000|1000, 1000:all=1 and 1000|1000|1000 (a list longer t
 
 Length rule: in all 10 files the output has the input length plus the largest delay (96000 + 48000 = 144000; 168000 for 500|1500; 133296 for 333|777), and each channel ends with the difference as zeros. Delays are in milliseconds unless the S suffix is used (1000 ms = 48000 samples).
 
-The 13 tests pass on ffmpeg 6.1.1.
+The 13 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->

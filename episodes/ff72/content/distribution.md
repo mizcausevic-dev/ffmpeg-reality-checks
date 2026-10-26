@@ -1,6 +1,6 @@
 # FF72 distribution kit: ffmpeg flac Level 0 to 12: Same Sound, Size -48% to 0%
 
-All numbers below come from the synthetic fixture in `episodes/ff72/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff72/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2.
 
 ## YouTube
 
@@ -29,7 +29,7 @@ Not a straight line: noise at level 6 is 255971 bytes, 127 more than level 5 (25
 
 Header: every file starts with 8288 bytes (STREAMINFO, a 46 byte comment, 8192 bytes of padding from the muxer). Silence at level 3 and up is 8696 bytes: the header plus 408 bytes of audio.
 
-The 11 tests pass on ffmpeg 6.1.1.
+The 11 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->

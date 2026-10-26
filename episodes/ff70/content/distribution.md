@@ -1,6 +1,6 @@
 # FF70 distribution kit: ffmpeg rotate 45 Degrees: 15643 Pixels Cut, rotw and roth Keep Them
 
-All numbers below come from the synthetic fixture in `episodes/ff70/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff70/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2.
 
 ## YouTube
 
@@ -29,7 +29,7 @@ Odd sizes: at 30 degrees rotw gives 397x368. libx264 with yuv420p refuses it: "w
 
 fillcolor: white fills 14638 pixels (the fill count, 76800 minus the 62162 card pixels left), and 0xff8000 gives (255, 128, 0). With format=rgba and fillcolor=none the corner is (0, 0, 0, 0), alpha 0; the rgba default is opaque black (0, 0, 0, 255); in yuv420p, fillcolor=none gives (0, 135, 0): green.
 
-The 17 tests pass on ffmpeg 6.1.1.
+The 17 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->

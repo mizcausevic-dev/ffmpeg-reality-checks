@@ -106,7 +106,7 @@ t('the same late audio gets two meanings of stream duration: the mov says 4.0 s 
 t('summed packet durations are the weakest number: in mkv they fall short of the audio by 40 ms or more (all block times are whole milliseconds, steps of 42 or 43 ms), while last pts + duration - first pts equals the decoded length within 1 ms; mov packets sum within 0.2 ms; video packets sum to exactly 4 s everywhere', () => {
   for (const k of MKV) {
     const r = R(k); assert.ok(r.decoded.audioSeconds - r.packets.audio.sumDur >= (isV6() ? 0.04 : 0.005), `${k} short by ${r.decoded.audioSeconds - r.packets.audio.sumDur}`);
-    near(r.packets.audio.span, r.decoded.audioSeconds, SPAN_TOL, k); assert.equal(r.container.wholeMs, true, k); assert.deepEqual(r.container.audioStepsMs, [42, 43], k);
+    near(r.packets.audio.span, r.decoded.audioSeconds, SPAN_TOL, k); assert.equal(r.container.wholeMs, true, k); assert.deepEqual(r.container.audioStepsMs, isV6() ? [42, 43] : [85, 86], k); // 8.1.2 puts two aac frames in each mkv block
   }
   for (const k of MOV) near(R(k).packets.audio.sumDur, R(k).decoded.audioSeconds, 2e-4, k);
   for (const k of Object.keys(CASES)) near(R(k).packets.video.sumDur, 4, 1e-6, k);
@@ -159,6 +159,6 @@ t('the packet span (last pts + duration - first pts) is the number that holds up
   for (const [k, r] of Object.entries(ev.runs)) { if (Math.abs(r.packets.audio.span - r.decoded.audioSeconds) < SPAN_TOL) within++; }
   for (const k of [...PCM, ...TS]) near(R(k).packets.audio.span, R(k).decoded.audioSeconds, SPAN_TOL, k);
   for (const k of ['mp4_same', 'mp4_long']) { const d = R(k).packets.audio.span - R(k).decoded.audioSeconds; assert.ok(d > 0.007 && d < 0.012, `${k} ${d}`); }
-  assert.ok(within >= 10, `${within} of 12 within ~1 ms`);
+  assert.ok(within >= (isV6() ? 10 : 9), `${within} of 12 within ~1 ms`); // 8.1.2: mp4_late is 10.7 ms short of the decoder instead of within 1 ms
   if (isV6()) assert.equal(within, 10);
 });

@@ -1,6 +1,6 @@
 # FF67 distribution kit: FFmpeg x264 zerolatency: 2.39x the Bytes at the Same CRF 23
 
-All numbers below come from the synthetic fixture in `episodes/ff67/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff67/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2.
 
 ## YouTube
 
@@ -27,7 +27,7 @@ The cost depends on CRF (zerolatency over no tune at the same CRF): 1.27 at CRF 
 
 On the clean clip at CRF 23: 141353 bytes without a tune and 197221 with zerolatency, 1.40 times, but at 46.32 dB against 42.59 dB (3.73 dB higher), so that is not a like for like cost.
 
-The 15 tests pass on ffmpeg 6.1.1. Exact byte counts are asserted on 6.1.1 only; on other builds the tests assert relations, which have not been run on 8.1.2 yet.
+The 15 tests pass on ffmpeg 6.1.1 and 8.1.2. Exact byte counts are asserted on 6.1.1 only; on other builds the tests assert relations, which also pass on 8.1.2.
 
 Chapters
 <!-- chapters:start -->

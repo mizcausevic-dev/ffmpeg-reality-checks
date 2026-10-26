@@ -1,6 +1,6 @@
 # FF65 distribution kit: FFmpeg apad: a 3 s Song Becomes a 12 s File Until You Set a Length
 
-All numbers below come from the synthetic fixture in `episodes/ff65/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff65/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2, where the aac file under apad with -shortest can end up to 77 ms longer than the picture and the amount varies from run to run.
 
 ## YouTube
 
@@ -29,7 +29,7 @@ A length stops it exactly: apad=whole_dur=5, apad=pad_dur=2, apad=pad_len=96000 
 
 Catches: a looped still image is endless, so apad with -shortest runs to the guard: 8.000 s, 200 frames, 384000 samples. apad=whole_dur=5 with -shortest ends it at 5.000 s (125 frames, 240000 samples). A picture of 4.3 s at 25 fps is 108 frames (4.32 s); whole_dur=4.3 and pad_dur=1.3 give 206400 samples (4.300 s), 0.02 s shorter than the picture.
 
-The 15 tests pass on ffmpeg 6.1.1. The exact counts are asserted on 6.1.1 only; on other builds the tests assert relations, which have not been run on 8.1.2 yet.
+The 15 tests pass on ffmpeg 6.1.1 and 8.1.2. The exact counts are asserted on 6.1.1 only; on 8.1.2 the tests assert the relations.
 
 Chapters
 <!-- chapters:start -->

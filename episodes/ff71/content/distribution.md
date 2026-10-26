@@ -1,6 +1,6 @@
 # FF71 distribution kit: ffmpeg eq brightness 0.1: Adds 25 Levels, Levels 230 and Up Clip
 
-All numbers below come from the synthetic fixture in `episodes/ff71/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff71/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2.
 
 ## YouTube
 
@@ -27,7 +27,7 @@ Range: the limited tagged and the full tagged file give the identical mapping, s
 
 Contrast and gamma are range blind too: eq=contrast=1.5 sends levels 0 to 43 to 0 (legal black 16 included) and reaches 255 from level 214; eq=gamma=2.2 lifts legal black 16 to 72. A limited range aware lift, lutyuv=y=clip(val+22,16,235), ends at 235 (input 213 and up all give 235), so it still merges the top levels.
 
-The 14 tests pass on ffmpeg 6.1.1.
+The 14 tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
