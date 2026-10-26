@@ -26,12 +26,12 @@ Identical numbers on ffmpeg 6.1.1 and 8.1.2. No remedy is claimed.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:14 One file, counted
-00:38 The join
-01:03 Where the extra goes
-01:28 Why it happens
-01:55 How big is it
-02:12 Count, do not trust
+00:13 One file, counted
+00:34 The join
+00:56 Where the extra goes
+01:18 Why it happens
+01:42 How big is it
+01:57 Count, do not trust
 <!-- chapters:end -->
 
 Limits: one synthetic tone pair, one bitrate, two ffmpeg builds. Not tested: audibility, players, remedies, other codecs or sample rates, real recordings.

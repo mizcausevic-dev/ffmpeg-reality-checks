@@ -26,12 +26,12 @@ Numbers were identical on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 A quiet tone
-00:39 One pass
-01:01 Two passes
-01:20 What changed in the sound
-01:43 Same on two builds
-02:01 Measure the output
+00:17 A quiet tone
+00:37 One pass
+00:58 Two passes
+01:16 What changed in the sound
+01:37 Same on two builds
+01:54 Measure the output
 <!-- chapters:end -->
 
 Limits: one synthetic tone with two levels, two ffmpeg builds. Not tested: music, speech, other targets, builds in between. loudnorm documentation was not quoted in this episode; every figure is a measurement.

@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:07,260
+Two 2-second AAC files, joined with -c copy.
+
+2
+00:00:07,260 --> 00:00:13,080
+Exactly 4 seconds of sound? Count samples.
+
+3
+00:00:13,080 --> 00:00:22,260
+Asked for 88,200 samples.
+
+4
+00:00:22,260 --> 00:00:33,730
+Decoded: 89,088 samples (2.0201 s).
+
+5
+00:00:33,730 --> 00:00:44,910
+176 packets. Container: 4.02322 s.
+
+6
+00:00:44,910 --> 00:00:56,090
+Decoded: 180,224 samples (4.0867 s).
+
+7
+00:00:56,090 --> 00:01:06,440
+Join decodes 2,048 more than two separate decodes.
+
+8
+00:01:06,440 --> 00:01:18,080
+3,824 more than asked: 2 x (1,024 + 888).
+
+9
+00:01:18,080 --> 00:01:28,610
+Single file: first packet skips 1,024 samples.
+
+10
+00:01:28,610 --> 00:01:42,140
+Join: no skip marker. Same on 6.1.1 and 8.1.2.
+
+11
+00:01:42,140 --> 00:01:51,810
+3,824 samples at 44.1 kHz is about 87 ms.
+
+12
+00:01:51,810 --> 00:01:57,190
+Audibility and players: not tested.
+
+13
+00:01:57,190 --> 00:02:04,330
+Count decoded samples when length matters.
+
+14
+00:02:04,330 --> 00:02:11,480
+Not tested: remedies, other codecs, players.

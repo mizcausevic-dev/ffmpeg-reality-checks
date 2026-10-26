@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:11,290
+Two clips, different sizes. Join with -c copy.
+
+2
+00:00:11,290 --> 00:00:19,310
+Does FFmpeg stop you? Warn you?
+
+3
+00:00:19,310 --> 00:00:30,940
+A: 320x180, 50 frames. B: 640x360, 50 frames.
+
+4
+00:00:30,940 --> 00:00:42,570
+Docs: all files must have the same streams.
+
+5
+00:00:42,570 --> 00:00:50,260
+Exit code 0. Zero warning lines.
+
+6
+00:00:50,260 --> 00:00:55,390
+A file came out.
+
+7
+00:00:55,390 --> 00:01:04,260
+Header: 320x180, 100 frames, 4 s.
+
+8
+00:01:04,260 --> 00:01:08,690
+Nothing mentions 640x360.
+
+9
+00:01:08,690 --> 00:01:17,730
+Inside: 50 at 320x180, 50 at 640x360.
+
+10
+00:01:17,730 --> 00:01:25,470
+Decode problems: 0. Players: not tested.
+
+11
+00:01:25,470 --> 00:01:34,430
+Same-size control: 100 frames, all 320x180.
+
+12
+00:01:34,430 --> 00:01:47,880
+Re-encode with scale and pad: all 100 at 640x360.
+
+13
+00:01:47,880 --> 00:01:56,060
+Silent success is not proof.
+
+14
+00:01:56,060 --> 00:02:05,880
+Not tested: players, editors, other codecs.

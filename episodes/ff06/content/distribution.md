@@ -26,12 +26,12 @@ Results were identical on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:21 Two clips
-00:48 The join succeeds
-01:03 What the header says
-01:17 What is inside
-01:38 Controls and the fix
-02:02 Check before you copy
+00:19 Two clips
+00:43 The join succeeds
+00:55 What the header says
+01:09 What is inside
+01:25 Controls and the fix
+01:48 Check before you copy
 <!-- chapters:end -->
 
 Limits: two synthetic H.264 clips, two ffmpeg builds. Not tested: players, editors, other codecs, other kinds of mismatch.
