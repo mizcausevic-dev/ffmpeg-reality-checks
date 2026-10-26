@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:05,490
+x264 -crf 0: lossless?
+
+2
+00:00:05,490 --> 00:00:16,500
+RGB in. Is it RGB out, bit for bit?
+
+3
+00:00:16,500 --> 00:00:23,770
+25 frames, 320x180, RGB.
+
+4
+00:00:23,770 --> 00:00:34,680
+Two readers: frame md5, and PSNR.
+
+5
+00:00:34,680 --> 00:00:43,090
+FFV1: 25 of 25 identical, psnr inf.
+
+6
+00:00:43,090 --> 00:00:51,500
+libx264rgb -crf 0: same, stored as RGB.
+
+7
+00:00:51,500 --> 00:00:56,890
+Stored as yuv444p, chosen quietly.
+
+8
+00:00:56,890 --> 00:01:07,660
+Back in RGB: 0 of 25 identical. psnr 54.6 dB.
+
+9
+00:01:07,660 --> 00:01:18,270
+Compared in yuv444p: 25 of 25 identical.
+
+10
+00:01:18,270 --> 00:01:30,400
+The gap is the RGB to YUV conversion.
+
+11
+00:01:30,400 --> 00:01:42,980
+yuv420p: psnr 24.0 dB (6.1.1), 22.8 dB (8.1.2).
+
+12
+00:01:42,980 --> 00:01:52,420
+Exact in yuv420p, not in RGB.
+
+13
+00:01:52,420 --> 00:01:59,630
+Need RGB back? libx264rgb or FFV1.
+
+14
+00:01:59,630 --> 00:02:08,040
+Not tested: other codecs, real footage, hardware.

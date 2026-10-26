@@ -30,12 +30,12 @@ If you need RGB back exactly, use libx264rgb or a lossless codec such as FFV1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 Two ways to compare
-00:33 Two controls
-00:48 Plain libx264
-01:05 Lossless in its own format
-01:26 Add 4:2:0
-01:47 If you need RGB back
+00:17 Two ways to compare
+00:35 Two controls
+00:52 Plain libx264
+01:08 Lossless in its own format
+01:30 Add 4:2:0
+01:52 If you need RGB back
 <!-- chapters:end -->
 
 Limits: one synthetic test pattern, libx264 only, two ffmpeg builds. Not tested: other lossless codecs, real footage, hardware encoders.

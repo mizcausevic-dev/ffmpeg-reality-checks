@@ -30,12 +30,12 @@ We tested only the tags we made. Check the output yourself before you share a fi
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 Five made-up tags
-00:45 A plain command
-00:58 Remove it on purpose
-01:10 The tool's own name
-01:23 What we did not test
-01:39 Metadata survives by default
+00:17 Five made-up tags
+00:41 A plain command
+00:53 Remove it on purpose
+01:05 The tool's own name
+01:17 What we did not test
+01:31 Metadata survives by default
 <!-- chapters:end -->
 
 Limits: one synthetic MP4, five made-up tags, MP4 only, two ffmpeg builds. Not tested: real phone files, location tracks, thumbnails, vendor atoms, other containers.
