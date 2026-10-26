@@ -1,0 +1,47 @@
+1
+00:00:00,600 --> 00:00:10,980
+Louder with -af volume. Does it clip?
+
+2
+00:00:10,980 --> 00:00:16,910
+Nine chains, two readers.
+
+3
+00:00:16,910 --> 00:00:26,960
+Source: 440 Hz sine at -3 dBFS.
+
+4
+00:00:26,960 --> 00:00:35,570
+Two readers: astats, and raw samples.
+
+5
+00:00:35,570 --> 00:00:45,870
++3 dB fits. +6 dB clips half the samples.
+
+6
+00:00:45,870 --> 00:00:50,450
++12 dB clips 76.8%.
+
+7
+00:00:50,450 --> 00:01:04,300
+One command: back to the source, error 0.
+
+8
+00:01:04,300 --> 00:01:14,690
+Two commands, 16-bit between: damage stays.
+
+9
+00:01:14,690 --> 00:01:21,300
+alimiter, level=disabled: peak -1 dB.
+
+10
+00:01:21,300 --> 00:01:30,550
+Default level: 801 samples at full scale.
+
+11
+00:01:30,550 --> 00:01:37,220
+Clipping happens when the file is written.
+
+12
+00:01:37,220 --> 00:01:44,840
+Keep gain in one chain, or use float.

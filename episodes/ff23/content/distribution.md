@@ -30,11 +30,11 @@ Both readers agree on all five cuts. The seven tests pass on ffmpeg 6.1.1 and 8.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Source and readers
-00:39 Both before the input
-00:54 To after the input
-01:14 A length
-01:30 What to check
+00:17 Source and readers
+00:35 Both before the input
+00:48 To after the input
+01:05 A length
+01:20 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 20 s clip, lossless FFV1 output, two ffmpeg builds (6.1.1 and 8.1.2). Not tested: -c copy, other containers, audio, other seek options (-sseof, -accurate_seek).

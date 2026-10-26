@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:07,750
+Stereo to mono with -ac 1.
+
+2
+00:00:07,750 --> 00:00:12,510
+Four sources, three ways.
+
+3
+00:00:12,510 --> 00:00:21,120
+Right channel: same, inverted, silent, different.
+
+4
+00:00:21,120 --> 00:00:29,730
+Two readers: astats, and raw samples.
+
+5
+00:00:29,730 --> 00:00:34,840
+Identical channels: no change.
+
+6
+00:00:34,840 --> 00:00:41,220
+The case most people test.
+
+7
+00:00:41,220 --> 00:00:49,790
+Only left has sound: 6 dB quieter.
+
+8
+00:00:49,790 --> 00:00:57,140
+Peak -7.96 dB becomes -13.98 dB.
+
+9
+00:00:57,140 --> 00:01:02,770
+Right = inverted left: average is zero.
+
+10
+00:01:02,770 --> 00:01:06,790
+Both readers: minus infinity. Silence.
+
+11
+00:01:06,790 --> 00:01:13,990
+pan=mono|c0=c0 keeps the left level.
+
+12
+00:01:13,990 --> 00:01:24,070
+c0+c1 adds: +6 dB on identical channels.
+
+13
+00:01:24,070 --> 00:01:31,210
+-ac 1 is an average.
+
+14
+00:01:31,210 --> 00:01:36,920
+Check loudness and phase.

@@ -28,12 +28,12 @@ The right mix depends on the recording. Check loudness and phase before you trus
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Four sources, two readers
-00:40 Identical channels
-00:60 One-sided stereo
-00:80 Out of phase
-00:100 Choosing the mix
-00:120 What to check
+00:13 Four sources, two readers
+00:30 Identical channels
+00:41 One-sided stereo
+00:57 Out of phase
+01:07 Choosing the mix
+01:24 What to check
 <!-- chapters:end -->
 
 Limits: four synthetic 2 s stereo tones, 16-bit WAV, two ffmpeg builds (6.1.1 and 8.1.2), same numbers on both. Not tested: 5.1 downmix, real recordings.

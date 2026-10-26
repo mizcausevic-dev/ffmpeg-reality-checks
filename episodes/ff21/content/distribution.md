@@ -32,11 +32,11 @@ The seven tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:14 Clip and readers
-00:33 The default
-00:49 A strict grid
-01:04 Forced keyframes
-01:23 What to check
+00:13 Clip and readers
+00:30 The default
+00:46 A strict grid
+01:00 Forced keyframes
+01:18 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 10 s clip, libx264 only, two ffmpeg builds (6.1.1 and 8.1.2). Not tested: x265, other encoders, B-frame and open-GOP settings, real footage.

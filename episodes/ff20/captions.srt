@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:09,300
+No -b:a. What bitrate do you get?
+
+2
+00:00:09,300 --> 00:00:16,760
+Mono and stereo, four sample rates.
+
+3
+00:00:16,760 --> 00:00:23,830
+Synthetic pink noise, 10 seconds.
+
+4
+00:00:23,830 --> 00:00:32,310
+Two readers: declared, and packet sizes.
+
+5
+00:00:32,310 --> 00:00:38,230
+Stereo: about 128 kbps, every rate.
+
+6
+00:00:38,230 --> 00:00:43,160
+Both readers agree within 1%.
+
+7
+00:00:43,160 --> 00:00:47,140
+Mono: about 69 kbps.
+
+8
+00:00:47,140 --> 00:00:53,110
+Not 64. Not half of stereo.
+
+9
+00:00:53,110 --> 00:00:58,040
+Silence: about 2 kbps.
+
+10
+00:00:58,040 --> 00:01:09,140
+Control: MP3 is a fixed 128 / 64 kbps.
+
+11
+00:01:09,140 --> 00:01:14,390
+-b:a 96k gives 96 kbps.
+
+12
+00:01:14,390 --> 00:01:20,700
+If the number matters, set it.
+
+13
+00:01:20,700 --> 00:01:25,490
+Default: ~128 stereo, ~69 mono.
+
+14
+00:01:25,490 --> 00:01:31,240
+Not tested: real music, VBR, 5.1.

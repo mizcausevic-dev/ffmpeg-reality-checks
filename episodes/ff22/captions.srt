@@ -1,0 +1,47 @@
+1
+00:00:00,600 --> 00:00:08,480
+Thin red text looks fuzzy and purple.
+
+2
+00:00:08,480 --> 00:00:15,230
+One red line. Three pixel formats.
+
+3
+00:00:15,230 --> 00:00:25,660
+1-pixel red line on blue. crf 0.
+
+4
+00:00:25,660 --> 00:00:37,590
+Readers: decoded RGB, and chroma U and V.
+
+5
+00:00:37,590 --> 00:00:53,640
+444: pure red. 422 and 420: purple.
+
+6
+00:00:53,640 --> 00:01:05,110
+Neighbor pixel: 104, 0, 103.
+
+7
+00:01:05,110 --> 00:01:12,980
+422: horizontal line stays red.
+
+8
+00:01:12,980 --> 00:01:20,860
+420: smeared up and down.
+
+9
+00:01:20,860 --> 00:01:25,530
+Brightness at the line: unchanged.
+
+10
+00:01:25,530 --> 00:01:30,190
+Color is lost, not light.
+
+11
+00:01:30,190 --> 00:01:35,490
+420 shares color between pixels.
+
+12
+00:01:35,490 --> 00:01:42,920
+Thin colored lines: 444, or accept it.

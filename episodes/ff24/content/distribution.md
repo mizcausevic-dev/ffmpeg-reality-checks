@@ -28,10 +28,10 @@ Both chapter readers agree on the count for every output. The seven tests pass o
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Source and readers
-00:40 Metadata off
-00:60 Chapters off
-00:80 What to check
+00:18 Source and readers
+00:35 Metadata off
+00:52 Chapters off
+01:05 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic MP4 with a title and two chapters, six outputs (five strips and a control), two ffmpeg builds (6.1.1 and 8.1.2). Not tested: other tags, cover art, other containers beyond MP4 and Matroska, real files.

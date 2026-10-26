@@ -30,12 +30,12 @@ The six tests pass on ffmpeg 6.1.1 and 8.1.2 with the same numbers.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 Two readers
-00:36 Stereo
-00:48 Mono
-00:59 Silence
-01:19 Setting it
-01:30 What to check
+00:17 Two readers
+00:32 Stereo
+00:43 Mono
+00:53 Silence
+01:09 Setting it
+01:21 What to check
 <!-- chapters:end -->
 
 Limits: synthetic pink noise and silence, ffmpeg's native aac encoder and libmp3lame, two ffmpeg builds (6.1.1 and 8.1.2). Not tested: real music, variable bitrate modes (-q:a), 5.1, other AAC encoders.

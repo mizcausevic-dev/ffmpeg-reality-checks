@@ -30,10 +30,10 @@ The six tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Source and readers
-00:42 A vertical line
-01:10 A horizontal line
-01:28 Color, not light
+00:15 Source and readers
+00:38 A vertical line
+01:05 A horizontal line
+01:21 Color, not light
 <!-- chapters:end -->
 
 Limits: one blue image with one red line, libx264 -crf 0 only, two ffmpeg builds (6.1.1 and 8.1.2). Not tested: other encoders, chroma resampling options (sws flags), real screen recordings, lines at odd pixel positions.

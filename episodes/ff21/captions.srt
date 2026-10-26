@@ -1,0 +1,47 @@
+1
+00:00:00,600 --> 00:00:08,220
+-g 100: a keyframe every 4 seconds?
+
+2
+00:00:08,220 --> 00:00:12,580
+One clip, four encodes.
+
+3
+00:00:12,580 --> 00:00:23,150
+10 s clip, hard cuts at 3.2 s and 6.8 s.
+
+4
+00:00:23,150 --> 00:00:29,880
+Two readers: key packets, and I frames.
+
+5
+00:00:29,880 --> 00:00:38,450
+-g 100 alone: keyframes at 0, 3.2, 6.8.
+
+6
+00:00:38,450 --> 00:00:45,940
+The cuts, not a 4 s grid.
+
+7
+00:00:45,940 --> 00:00:52,350
++ -sc_threshold 0: 0, 4, 8.
+
+8
+00:00:52,350 --> 00:00:59,830
+A strict grid. The cuts get none.
+
+9
+00:00:59,830 --> 00:01:05,800
+-force_key_frames 3.2,6.8: exact.
+
+10
+00:01:05,800 --> 00:01:17,750
+-force_key_frames 2: added to the cuts.
+
+11
+00:01:17,750 --> 00:01:24,720
+-g is a maximum, not a fixed gap.
+
+12
+00:01:24,720 --> 00:01:29,080
+Fixed grid: add -sc_threshold 0.

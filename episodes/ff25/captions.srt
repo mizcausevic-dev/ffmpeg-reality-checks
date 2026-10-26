@@ -1,0 +1,47 @@
+1
+00:00:00,600 --> 00:00:08,770
+fps=1: one thumbnail per second.
+
+2
+00:00:08,770 --> 00:00:16,950
+Which frame of each second?
+
+3
+00:00:16,950 --> 00:00:25,020
+Frame N has luma N.
+
+4
+00:00:25,020 --> 00:00:34,700
+Readers: frame md5, and decoded luma.
+
+5
+00:00:34,700 --> 00:00:44,760
+25 fps: frames 12, 37, 62, 87, 112.
+
+6
+00:00:44,760 --> 00:00:53,560
+First thumbnail at 0.48 s, not 0.
+
+7
+00:00:53,560 --> 00:01:04,440
+round=up: first frame of each second.
+
+8
+00:01:04,440 --> 00:01:13,510
+round=down: last. select also works.
+
+9
+00:01:13,510 --> 00:01:19,980
+60 to 24: frame 0 is never used.
+
+10
+00:01:19,980 --> 00:01:29,690
+Kept: 1, 3, 6, 8, 11, 13. Steps of 2 and 3.
+
+11
+00:01:29,690 --> 00:01:35,380
+First frame of each second: round=up.
+
+12
+00:01:35,380 --> 00:01:41,080
+Not tested: VFR input, real footage.

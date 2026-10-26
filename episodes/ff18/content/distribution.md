@@ -30,11 +30,11 @@ The nine tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Two readers
-00:40 Plain gain
-00:60 Boost, then cut
-00:80 A limiter
-00:100 What to check
+00:17 Two readers
+00:36 Plain gain
+00:50 Boost, then cut
+01:15 A limiter
+01:31 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic sine, 16-bit WAV output, volume and alimiter only, two ffmpeg builds. Not tested: AAC and other lossy encodes, loudnorm, real music, other gain values.

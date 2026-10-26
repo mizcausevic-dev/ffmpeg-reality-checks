@@ -30,11 +30,11 @@ The seven tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Marked frames, two readers
-00:37 The default
-00:58 Rounding
-01:19 Sixty to twenty four
-01:38 What to check
+00:17 Marked frames, two readers
+00:35 The default
+00:54 Rounding
+01:14 Sixty to twenty four
+01:30 What to check
 <!-- chapters:end -->
 
 Limits: three synthetic lossless clips, the fps and select filters, two ffmpeg builds (6.1.1 and 8.1.2). Not tested: other round modes (zero, inf), variable frame rate input, real footage.

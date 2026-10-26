@@ -1,0 +1,39 @@
+1
+00:00:00,600 --> 00:00:10,940
+-map_metadata -1: are chapters gone too?
+
+2
+00:00:10,940 --> 00:00:17,840
+Five strips, one control.
+
+3
+00:00:17,840 --> 00:00:25,850
+Made-up title and two chapters.
+
+4
+00:00:25,850 --> 00:00:35,460
+Three readers: ffprobe, ffmetadata, raw bytes.
+
+5
+00:00:35,460 --> 00:00:42,200
+-map_metadata -1: titles gone.
+
+6
+00:00:42,200 --> 00:00:52,310
+Chapters stay: 2 markers, blank titles.
+
+7
+00:00:52,310 --> 00:01:00,060
+-map_chapters -1: chapters gone, title stays.
+
+8
+00:01:00,060 --> 00:01:05,230
+Both flags: nothing left.
+
+9
+00:01:05,230 --> 00:01:12,910
+-map_metadata -1 is not a chapter remover.
+
+10
+00:01:12,910 --> 00:01:16,200
+Add -map_chapters -1.
