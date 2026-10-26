@@ -1,0 +1,49 @@
+{
+  "n": 18,
+  "slug": "ffmpeg-volume-clipping",
+  "palette": "ember",
+  "title": "Does FFmpeg volume clip my audio?",
+  "fullTitle": "FFmpeg volume Boosts Fine. The Output File Clips",
+  "kicker": "Episode 18",
+  "hero": {"scene": "chain", "t": 6.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You make audio louder with FFmpeg: dash a f volume, six d B. Does it clip? And if you boost, then cut by the same amount, do you get your audio back? We run one tone through nine gain chains, and read each file two ways.",
+      "captions": ["Louder with -af volume. Does it clip?", "Nine chains, two readers."]
+    },
+    {
+      "id": "source",
+      "chapter": "Two readers",
+      "narration": "The source is a two second, four hundred forty hertz sine, at minus three d B F S. Nothing in it is at full scale. Reader one is the astats filter: peak level, and flat factor, a measure of flat tops. Reader two reads the raw sixteen bit samples, and counts the ones at full scale.",
+      "captions": ["Source: 440 Hz sine at -3 dBFS.", "Two readers: astats, and raw samples."]
+    },
+    {
+      "id": "gain",
+      "chapter": "Plain gain",
+      "narration": "Minus six, and plus three, do not clip. Plus three lands just under full scale. Plus six puts forty nine point eight percent of the samples at full scale. Plus twelve puts seventy six point eight percent there. Both readers agree.",
+      "captions": ["+3 dB fits. +6 dB clips half the samples.", "+12 dB clips 76.8%."]
+    },
+    {
+      "id": "chain",
+      "chapter": "Boost, then cut",
+      "narration": "Boost twelve d B, then cut twelve, in one command, and the source comes back exactly, with zero error. The gain stage works in floating point, and it does not clip. Do the same in two commands, with a sixteen bit file between, and the first file clips. The cut cannot undo it. The error is about fifteen thousand. Use a thirty two bit float file between, and the source is exact again.",
+      "captions": ["One command: back to the source, error 0.", "Two commands, 16-bit between: damage stays."]
+    },
+    {
+      "id": "limiter",
+      "chapter": "A limiter",
+      "narration": "The alimiter filter, with its limit at point eight nine, and level disabled, holds the peak at minus one d B, and nothing reaches full scale. With its default level setting, this signal still puts eight hundred one samples at full scale.",
+      "captions": ["alimiter, level=disabled: peak -1 dB.", "Default level: 801 samples at full scale."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "The clip happens when the file is written, not while the filter runs. Keep boost and cut in one chain, or use float between steps. Not tested: A A C and other lossy encodes, loudnorm, real music, and other volume settings.",
+      "captions": ["Clipping happens when the file is written.", "Keep gain in one chain, or use float."]
+    }
+  ]
+}
