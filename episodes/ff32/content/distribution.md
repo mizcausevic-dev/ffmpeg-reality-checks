@@ -30,11 +30,11 @@ The twelve tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Marked frames, two readers
-00:42 Re-encode
-00:58 Stream copy
-01:21 From the container end
-01:42 What to check
+00:16 Marked frames, two readers
+00:38 Re-encode
+00:54 Stream copy
+01:15 From the container end
+01:35 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic clip, mkv container, ffmpeg 6.1.1. Not tested: other containers and encoders, audio with -c copy, sseof 0, real footage, players.

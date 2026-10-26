@@ -30,11 +30,11 @@ x264 core 164 r3108 (libx264 in ffmpeg 6.1.1) and x264 core 165 r3223 (ffmpeg 8.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 Noisy clip, two readers
-00:40 maxrate alone
-01:00 Add bufsize
-01:27 Control and average mode
-01:46 What to check
+00:14 Noisy clip, two readers
+00:36 maxrate alone
+00:56 Add bufsize
+01:18 Control and average mode
+01:37 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic noisy clip, libx264 -preset medium, mp4 container, ffmpeg 6.1.1 and 8.1.2. Exact kbps depend on the x264 build. Not tested: other presets, two pass, nal-hrd, other encoders (x265, NVENC), real footage, players.

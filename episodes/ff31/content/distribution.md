@@ -34,11 +34,11 @@ The 16 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:23 Three readers, one control
-00:50 What ffmpeg writes
-01:14 Retag without re-encoding
-01:34 Size depends on the build
-01:59 What to check
+00:20 Three readers, one control
+00:44 What ffmpeg writes
+01:06 Retag without re-encoding
+01:24 Size depends on the build
+01:45 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 50 frame clip, libx265 ultrafast, ffmpeg 6.1.1. Not tested: any Apple player (iPhone, Safari, QuickTime), other ffmpeg builds, other encoders, hardware encoders, fragmented MP4, HLS, real footage.

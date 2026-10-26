@@ -32,11 +32,11 @@ The ten tests pass three times in a row on ffmpeg 6.1.1 (ffmpeg version 6.1.1-3u
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 Noisy clip, four readers
-00:41 The fix that does nothing
-01:03 The cap you write
-01:25 Under the cap
-01:46 What to check
+00:17 Noisy clip, four readers
+00:39 The fix that does nothing
+00:57 The cap you write
+01:19 Under the cap
+01:37 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic noisy clip, libvpx-vp9 with -deadline good -cpu-used 5 -row-mt 1, ffmpeg 6.1.1 and 8.1.2. Not tested: other ffmpeg builds including older ones, other libvpx versions, two pass, other speeds, -maxrate and -minrate, real footage, players.

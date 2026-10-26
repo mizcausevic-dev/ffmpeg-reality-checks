@@ -30,11 +30,11 @@ The 14 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Marked frames, two readers
-00:43 Before the input
-01:02 After the input
-01:22 Rates that work
-01:44 What to check
+00:19 Marked frames, two readers
+00:39 Before the input
+00:58 After the input
+01:18 Rates that work
+01:37 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic gray PNG set, FFV1 in Matroska, ffmpeg 6.1.1 and 8.1.2. Not tested: -pattern_type glob on builds without glob support (the Windows 8.1.2 build has none, so glob was measured on 6.1.1 only), other rates, other image formats, non-numeric file names, combining -framerate with -vf fps, real footage, players.

@@ -32,14 +32,14 @@ The 17 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Six tones, two readers
-00:40 The default matrix
-01:03 Why it is quieter
-01:26 Writing the matrix
-01:48 What to check
+00:14 Six tones, two readers
+00:34 The default matrix
+00:53 Why it is quieter
+01:11 Writing the matrix
+01:30 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic 5.1 file with six tones, the default -ac 2 matrix, pan and two aresample options, one ffmpeg build (6.1.1). Not tested: 7.1 or other layouts, real mixes, other decoders or builds, loudness (LUFS) of real dialogue.
+Limits: one synthetic 5.1 file with six tones, the default -ac 2 matrix, pan and two aresample options, two ffmpeg builds (6.1.1 and 8.1.2). Not tested: 7.1 or other layouts, real mixes, other decoders or builds, loudness (LUFS) of real dialogue.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

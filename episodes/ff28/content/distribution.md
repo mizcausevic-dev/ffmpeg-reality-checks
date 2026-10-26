@@ -33,10 +33,10 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:19 Tones, two readers
-00:42 The default
-01:01 The jump
-01:23 normalize equals zero
-01:48 What to check
+00:36 The default
+00:54 The jump
+01:13 normalize equals zero
+01:37 What to check
 <!-- chapters:end -->
 
 Limits: synthetic sine tones, amix only, ffmpeg 6.1.1 and 8.1.2. Not tested: other ffmpeg builds, real music, speech, a limiter or compressor after the mix, other mixing filters (amerge, join), more than three inputs.

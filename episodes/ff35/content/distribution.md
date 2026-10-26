@@ -32,11 +32,11 @@ The thirteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Known keyframes, three readers
-00:40 Asked 3, got 4 and 2
-00:60 The rule
-00:80 Force the keyframes
-00:100 What to check
+00:16 Known keyframes, three readers
+00:36 Asked 3, got 4 and 2
+00:54 The rule
+01:12 Force the keyframes
+01:32 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 25 fps clip, video only, libx264, MPEG-TS segments, ffmpeg 6.1.1. Not tested: audio, other encoders and builds, fragmented MP4 segments, variable frame rate input, real footage, players.

@@ -32,11 +32,11 @@ The tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Marked frames, two readers
-00:37 Audio shorter than picture
-00:59 Audio longer, and copy
-01:20 Infinite loop with dash t
-01:43 What to check
+00:16 Marked frames, two readers
+00:34 Audio shorter than picture
+00:52 Audio longer, and copy
+01:11 Infinite loop with dash t
+01:32 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic lossless clip family, mkv container, ffmpeg 6.1.1. Not tested: builds other than 6.1.1 and 8.1.2, other containers and codecs, real footage with encoder delay, stream order, other mismatch sizes beyond 30 ms and 100 ms, players.

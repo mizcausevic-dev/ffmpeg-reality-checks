@@ -30,11 +30,11 @@ The eleven tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 Test card, three readers
-00:43 scale rewrites SAR
-01:05 setsar changes the flag
-01:28 Order matters
-01:46 What to check
+00:15 Test card, three readers
+00:38 scale rewrites SAR
+00:56 setsar changes the flag
+01:17 Order matters
+01:32 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic lossless anamorphic card and one square card, mp4 with x264, ffmpeg 6.1.1. Display sizes are computed as width x SAR, not played. Not tested: any player, other builds, real footage, other containers and encoders, other scale options.

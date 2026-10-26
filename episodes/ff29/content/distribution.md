@@ -30,11 +30,11 @@ The ten tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:21 Marked frames, two readers
-00:40 setpts alone
-01:01 Frames that survive
-01:19 atempo and asetrate
-01:39 What to check
+00:17 Marked frames, two readers
+00:36 setpts alone
+00:54 Frames that survive
+01:10 atempo and asetrate
+01:27 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic lossless clip, mkv container, ffmpeg 6.1.1 and 8.1.2. Not tested: other speeds, chained atempo, variable frame rate input, other containers and encoders, real footage, players.

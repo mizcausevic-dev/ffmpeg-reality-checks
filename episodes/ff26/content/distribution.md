@@ -35,10 +35,10 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:21 Test card, two readers
-00:41 The default
-00:58 Same command, two builds
-01:19 Real full range, and a control
-01:44 What to check
+00:39 The default
+00:54 Same command, two builds
+01:16 Real full range, and a control
+01:39 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic lossless RGB card, libx264, two ffmpeg builds (6.1.1 and 8.1.2). Not tested: other builds, real players, real footage, YUV sources, other encoders, 10-bit, HDR.
