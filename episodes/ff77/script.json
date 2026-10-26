@@ -1,0 +1,84 @@
+{
+  "n": 77,
+  "slug": "ffmpeg-fragmented-mp4-duration-and-seeking",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Fragmented MP4: where did the duration go?",
+  "fullTitle": "FFmpeg Fragmented MP4: Header Duration 0, ffprobe Says 3 of 10 s on a Pipe, sseof Lands on the Wrong Frame",
+  "kicker": "Episode 77",
+  "thumb": {
+    "number": "3 of 10 s",
+    "label": "FFPROBE GUESSES ON A PIPE",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "duration",
+    "t": 9.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "A fragmented MP4, written with frag keyframe plus empty moov. Players say the duration is missing. Can you still seek? A ten second counter clip, read by our own box reader and by ffprobe. On f f m peg six point one point one.",
+      "captions": [
+        "Fragmented MP4: is the duration really missing?",
+        "100 frames, 10 fps, a keyframe every 10."
+      ]
+    },
+    {
+      "id": "boxes",
+      "chapter": "Inside the file",
+      "narration": "A regular file is ftyp, mdat, moov, and its header says ten thousand milliseconds. The fragmented file is ftyp, moov, ten pairs of moof and mdat, and an mfra. Its header says zero. No mehd, no sidx.",
+      "captions": [
+        "Regular: ftyp, mdat, moov. Header 10000.",
+        "Fragmented: 10 moof, header 0, no mehd, no sidx."
+      ]
+    },
+    {
+      "id": "duration",
+      "chapter": "Three durations",
+      "narration": "So where does ten seconds come from? On disk, ffprobe finds ten. From a pipe it says three. Our reader adds every sample: ten. A mehd added by hand changes nothing.",
+      "captions": [
+        "Header 0. ffprobe on disk 10. On a pipe 3.",
+        "A hand-made mehd changes nothing."
+      ]
+    },
+    {
+      "id": "seek",
+      "chapter": "Seeking",
+      "narration": "On disk every seek works: dash s s three point five lands on frame thirty five, sseof minus two on eighty. From a pipe, dash s s still works, but sseof counts back from the guess, and lands on frame ten.",
+      "captions": [
+        "On disk: frame 35 and frame 80.",
+        "On a pipe, -sseof -2 lands on frame 10, not 80."
+      ]
+    },
+    {
+      "id": "sidx",
+      "chapter": "The index",
+      "narration": "A global sidx lists all ten fragments, and adds up to ten seconds. A pipe then reads ten, and sseof lands on eighty. But global sidx alone writes offsets a hundred sixty bytes stale: no frame decodes. Add default base moof.",
+      "captions": [
+        "global_sidx: a pipe reads 10, sseof lands on 80.",
+        "Without default_base_moof: 0 frames decode."
+      ]
+    },
+    {
+      "id": "cut",
+      "chapter": "Why fragment",
+      "narration": "Why fragment? Cut both files at fifty five percent, as if the writer died. The regular one lost its moov and will not open. The fragmented one keeps five whole fragments. And a regular MP4 cannot be written to a pipe.",
+      "captions": [
+        "Cut at 55%: regular has no moov. Fragmented: 50 frames.",
+        "A regular MP4 cannot be written to a pipe."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "A header of zero is not broken, only unfinished. To keep the file, remux with c copy. To stream it, add global sidx and default base moof. Not tested: eight point one point two, audio, browsers.",
+      "captions": [
+        "Keep it: -c copy. Stream it: global_sidx and default_base_moof.",
+        "Not tested: 8.1.2, audio, browsers."
+      ]
+    }
+  ]
+}

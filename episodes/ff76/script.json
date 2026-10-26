@@ -1,0 +1,84 @@
+{
+  "n": 76,
+  "slug": "ffmpeg-black-and-white-three-ways",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Do the three black and white filters match?",
+  "fullTitle": "FFmpeg Black and White: gray and hue Match, the Mixer Follows Its Weights (34 Levels Off on HD)",
+  "kicker": "Episode 76",
+  "thumb": {
+    "number": "34 levels",
+    "label": "THE MIXER DISAGREES ON HD",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "hd",
+    "t": 9.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "Black and white, three ways: format gray, hue with saturation equals zero, and color channel mixer. Do they match? Four pure patches, red, green, blue and yellow, and a ramp. Read the numbers. On f f m peg six point one point one.",
+      "captions": [
+        "Three ways to black and white. Do they match?",
+        "Pure red, green, blue, yellow, and a ramp."
+      ]
+    },
+    {
+      "id": "raw",
+      "chapter": "What gets stored",
+      "narration": "Gray stores red seventy six, green one fifty, blue twenty nine, yellow two twenty six. Hue stores eighty one, one forty five, forty one, two ten. Different numbers. White is two fifty five against two thirty five.",
+      "captions": [
+        "format=gray: 76, 150, 29, 226.",
+        "hue=s=0: 81, 145, 41, 210. White 235, not 255."
+      ]
+    },
+    {
+      "id": "seen",
+      "chapter": "What the screen shows",
+      "narration": "But hue stores luma in video range, sixteen to two thirty five. A screen stretches it back, and hue shows seventy six, one fifty, twenty nine, two twenty six. Same picture. Only the range differs.",
+      "captions": [
+        "Video range 16 to 235 is stretched to 0 to 255.",
+        "Seen on screen, gray and hue are the same."
+      ]
+    },
+    {
+      "id": "mixer",
+      "chapter": "The mixer",
+      "narration": "Color channel mixer is only your weights. The six oh one set matches gray. The seven oh nine set gives fifty four, one eighty two, eighteen, two thirty six.",
+      "captions": [
+        "0.299 0.587 0.114 matches gray.",
+        "0.2126 0.7152 0.0722: 54, 182, 18, 236."
+      ]
+    },
+    {
+      "id": "hd",
+      "chapter": "A high definition source",
+      "narration": "Now tag the source b t seven oh nine, high definition. Gray and hue follow the file: fifty five, one eighty three. The six oh one mixer stays at seventy six, one forty nine. Green is thirty four levels off.",
+      "captions": [
+        "bt709 source: gray 55, 183, 19, 236.",
+        "The 601 mixer: 76, 149, 29, 225. Green is 34 off."
+      ]
+    },
+    {
+      "id": "ramp",
+      "chapter": "A ramp",
+      "narration": "On a zero to two fifty five ramp, gray keeps two fifty six levels, hue two twenty, the mixer one ninety four. And eq with saturation zero leaves chroma at one twenty seven: a faint tint.",
+      "captions": [
+        "Levels kept: gray 256, hue 220, mixer 194.",
+        "eq=saturation=0 leaves chroma 127."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to write",
+      "narration": "So format gray or hue saturation zero keep the file's own luma. Use the mixer only with weights that match the file. Not tested: eight point one point two, real footage, other matrices.",
+      "captions": [
+        "gray and hue keep the file's luma.",
+        "Not tested: 8.1.2, real footage, other matrices."
+      ]
+    }
+  ]
+}

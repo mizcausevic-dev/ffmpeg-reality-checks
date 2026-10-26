@@ -1,0 +1,84 @@
+{
+  "n": 75,
+  "slug": "ffmpeg-tpad-freeze-last-frame",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does tpad freeze the last frame as black?",
+  "fullTitle": "FFmpeg tpad: The Default Pads With Black (Y 16), stop_mode=clone Freezes the Last Frame",
+  "kicker": "Episode 75",
+  "thumb": {
+    "number": "25 frames",
+    "label": "THE FREEZE CAME OUT BLACK",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "black",
+    "t": 9.5
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "The music runs a second past the picture, so you freeze the last frame with t pad. A fifty frame counter clip, every frame holds its own number. The screen goes black. On f f m peg six point one point one.",
+      "captions": [
+        "Freeze the last frame for 1 s with tpad.",
+        "A 50 frame counter clip. The screen goes black."
+      ]
+    },
+    {
+      "id": "black",
+      "chapter": "What the default adds",
+      "narration": "Twenty five frames were added, all black. Luma sixteen, chroma one twenty eight: video black, not zero. The color source makes the same frame. The default stop mode is add: it adds a color, not your picture.",
+      "captions": [
+        "Default: 25 frames of Y 16, U 128, V 128.",
+        "stop_mode=add paints a color. It repeats nothing."
+      ]
+    },
+    {
+      "id": "clone",
+      "chapter": "Clone freezes",
+      "narration": "Stop mode equals clone. Same one second, and now the twenty five added frames are copies of card forty nine. Their hashes match the real last frame. Start mode equals clone does the same at the front, repeating card zero.",
+      "captions": [
+        "stop_mode=clone: 25 copies of card 49.",
+        "start_mode=clone repeats card 0."
+      ]
+    },
+    {
+      "id": "trap",
+      "chapter": "Two traps",
+      "narration": "Two traps. Clone on its own adds nothing: fifty frames in, fifty out, because stop and stop duration are both zero. And give both, stop equals ten with stop duration equals one, and the duration wins: twenty five frames, not ten.",
+      "captions": [
+        "Clone alone: 50 in, 50 out.",
+        "stop=10 with stop_duration=1 adds 25."
+      ]
+    },
+    {
+      "id": "round",
+      "chapter": "Rounding",
+      "narration": "Stop duration is rounded to whole frames. Point zero one seconds adds none. Point zero two adds one. Point zero six adds two. At twenty five frames a second, half a frame rounds up.",
+      "captions": [
+        "0.01 s adds 0 frames. 0.02 s adds 1.",
+        "0.06 s adds 2. Halves round up."
+      ]
+    },
+    {
+      "id": "sound",
+      "chapter": "The sound side",
+      "narration": "Sound pads differently. A pad adds silence: eight thousand samples, every one zero, not a held tone. And dash shortest ends at the shorter stream, so the freeze is cut: seventy five frames become fifty.",
+      "captions": [
+        "apad adds 8000 samples, all zero.",
+        "-shortest: 75 frames become 50."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to write",
+      "narration": "To hold the last frame for one second: t pad, stop mode equals clone, stop duration equals one. Pad the audio if you use dash shortest. Not tested: eight point one point two, real footage, variable frame rate.",
+      "captions": [
+        "tpad=stop_mode=clone:stop_duration=1",
+        "Not tested: 8.1.2, real footage, variable fps."
+      ]
+    }
+  ]
+}

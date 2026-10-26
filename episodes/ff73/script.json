@@ -1,0 +1,86 @@
+{
+  "n": 73,
+  "slug": "ffmpeg-drawtext-escaping",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does drawtext show the wrong text?",
+  "fullTitle": "FFmpeg drawtext: 100% Draws a Blank Frame, Exit 0, Needs 2 Backslashes",
+  "kicker": "Episode 73",
+  "thumb": {
+    "number": "0 pixels",
+    "label": "100% DRAWS A BLANK FRAME",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "percent",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "Draw text gives the wrong text: a percent sign draws nothing, a colon changes the font, an apostrophe vanishes. We draw four strings, read every frame back, and count the backslashes each needs. On f f m peg six point one point one.",
+      "captions": [
+        "drawtext: the text comes out wrong.",
+        "Four strings, every frame read back."
+      ],
+      "sim": null
+    },
+    {
+      "id": "source",
+      "chapter": "One frame, two readers",
+      "narration": "One black frame, seven sixty eight by sixty four, one monospace font. Reader one is frame md five. Reader two cuts the frame into thirty two cells and matches each against ninety four reference glyphs. Control: a hundred fifty random strings read back, zero mismatches.",
+      "captions": [
+        "One frame, one font, white text.",
+        "Readers: framemd5, and a cell by cell glyph read."
+      ]
+    },
+    {
+      "id": "percent",
+      "chapter": "The percent sign",
+      "narration": "A percent sign in quotes draws a blank frame: zero ink pixels, exit code zero, only a warning, stray percent. One backslash changes nothing. Quoted it takes two, bare it takes four, and the frame reads one hundred percent.",
+      "captions": [
+        "100% draws 0 pixels. Exit code 0.",
+        "Quoted: 2 backslashes. Bare: 4."
+      ]
+    },
+    {
+      "id": "colon",
+      "chapter": "The colon and the apostrophe",
+      "narration": "A colon ends the option. Twelve colon thirty draws twelve, in another font: the thirty became the font file, hash for hash. One backslash in quotes fixes it. The apostrophe is a quote mark, so it's becomes its. It takes three backslashes.",
+      "captions": [
+        "12:30 draws 12: the 30 became fontfile.",
+        "it's draws its. Fix: 3 backslashes."
+      ]
+    },
+    {
+      "id": "backslash",
+      "chapter": "The backslash itself",
+      "narration": "The backslash eats itself: a, backslash, b draws a b. Quoted it takes four backslashes, bare eight. Braces are harmless, but percent brace p t s is a function: it draws the time, not your text.",
+      "captions": [
+        "a\\b draws ab.",
+        "4 backslashes quoted, 8 bare."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "Three parsers",
+      "narration": "Three parsers each remove one level of backslash: the filter graph, the option list, and draw text's expansion. Quotes skip the first, expansion equals none skips the last. That predicts all sixteen minimums. The clean route, a text file with expansion equals none, drew all four exactly.",
+      "captions": [
+        "Filter graph, options, expansion: one level each.",
+        "Clean route: textfile + expansion=none."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "narration": "Check the frame, not the exit code: zero proves nothing here. Read the pixels, or the warning. Not tested: other fonts, other builds, shell and Windows quoting, real footage.",
+      "captions": [
+        "Exit code 0 proves nothing.",
+        "Not tested: other builds, Windows quoting."
+      ],
+      "sim": null
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "n": 74,
+  "slug": "ffmpeg-loop-filter-plays",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "How many times does the loop filter play?",
+  "fullTitle": "FFmpeg loop Filter: loop=2 Plays 3 Times, start=10 Begins at Frame 9",
+  "kicker": "Episode 74",
+  "thumb": {
+    "number": "frame 9",
+    "label": "LOOP STARTS ONE FRAME EARLY",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "start",
+    "t": 11.2
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "The loop filter repeats frames. Is size in frames or seconds? Does loop equals two play the frames twice, or three times? A fifty frame counter clip, every frame holds its own number. On f f m peg six point one point one.",
+      "captions": [
+        "loop: frames or seconds? Two plays or three?",
+        "A 50 frame counter clip. Every frame names itself."
+      ]
+    },
+    {
+      "id": "plays",
+      "chapter": "Two plays or three",
+      "narration": "Loop equals two, size equals five, start equals ten. Fifty frames in, sixty out. The five frames play three times, not two: loop counts extra plays. Loop one adds five frames, two adds ten, three adds fifteen.",
+      "captions": [
+        "loop=2 plays the frames 3 times.",
+        "N extra plays add 5 x N frames."
+      ]
+    },
+    {
+      "id": "size",
+      "chapter": "Frames or seconds",
+      "narration": "Size is frames. Same filter at ten, twenty five and fifty frames a second: the same five frames repeat. The extra time is half a second, a fifth, a tenth. And size is a maximum: size one hundred repeats only forty one frames.",
+      "captions": [
+        "size is frames: 5 frames at 10, 25, 50 fps.",
+        "size 100 repeats only the 41 frames left."
+      ]
+    },
+    {
+      "id": "start",
+      "chapter": "The off by one",
+      "narration": "Start. Start equals ten repeats frame nine, not ten. Start counts from one: start zero and start one are the same loop, from frame zero. Two readers agree on all eighty cases.",
+      "captions": [
+        "start=10 repeats frame 9 first.",
+        "start 0 and 1: the same loop, from frame 0."
+      ]
+    },
+    {
+      "id": "time",
+      "chapter": "Time and defaults",
+      "narration": "Time has no off by one: zero point four seconds at twenty five frames a second starts at frame ten. But start defaults to zero, so time alone loops from frame zero. Set start to minus one. Size zero, the default, loops nothing.",
+      "captions": [
+        "time=0.4 starts at frame 10, if start=-1.",
+        "Default size 0 loops nothing: 50 frames out."
+      ]
+    },
+    {
+      "id": "infinite",
+      "chapter": "Loop minus one",
+      "narration": "Loop equals minus one never ends. With dash frames colon v one hundred twenty, you get one hundred twenty frames: zero to thirteen, then nine to thirteen again. Unguarded, it was still running when killed at three seconds.",
+      "captions": [
+        "loop=-1 plus -frames:v 120 = 120 frames.",
+        "Unguarded: killed after 3 s, never ended."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to write",
+      "narration": "To loop frames ten to fourteen on six point one point one, write start equals eleven. Loop counts extra plays, size counts frames. Guard minus one. Not tested: eight point one point two, audio loops, real footage.",
+      "captions": [
+        "Loop = extra plays. Size = frames.",
+        "Not tested: 8.1.2, aloop, real footage."
+      ],
+      "sim": null
+    }
+  ]
+}
