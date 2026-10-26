@@ -17,7 +17,7 @@ export const CHANNELS = [
   {name: 'LFE', hz: 50}, {name: 'BL', hz: 2500}, {name: 'BR', hz: 6000},
 ];
 const sine = (hz) => `${AMP}*sin(2*PI*${hz}*t)`;
-export const SOURCE = `aevalsrc=${CHANNELS.map((c) => sine(c.hz)).join('|')}:s=${RATE}:d=${DUR}:c=FL|FR|FC|LFE|BL|BR`;
+export const SOURCE = `aevalsrc=${CHANNELS.map((c) => sine(c.hz)).join('|')}:s=${RATE}:d=${DUR}:c=FL+FR+FC+LFE+BL+BR`;
 
 const ITU = 'pan=stereo|FL=FL+0.707*FC+0.707*BL|FR=FR+0.707*FC+0.707*BR';
 export const WAYS = {
@@ -93,7 +93,7 @@ function levels(file, srcRef1, srcRef2, outCh) {
 }
 
 // clipping probe: the same 0.8 tone in FL, FC and BL (in phase), the others silent
-const LOUD = `aevalsrc=${[0.8, 0, 0.8, 0, 0.8, 0].map((a) => (a ? `${a}*sin(2*PI*440*t)` : '0')).join('|')}:s=${RATE}:d=2:c=FL|FR|FC|LFE|BL|BR`;
+const LOUD = `aevalsrc=${[0.8, 0, 0.8, 0, 0.8, 0].map((a) => (a ? `${a}*sin(2*PI*440*t)` : '0')).join('|')}:s=${RATE}:d=2:c=FL+FR+FC+LFE+BL+BR`;
 function peakInfo(file, f32) {
   const r = spawnSync('ffmpeg', ['-hide_banner', '-i', file, '-af', 'astats', '-f', 'null', '-'], {encoding: 'utf8', maxBuffer: 1 << 26});
   const err = r.stderr.split(/\r?\n/);
