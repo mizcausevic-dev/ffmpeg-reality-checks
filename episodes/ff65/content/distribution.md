@@ -1,6 +1,6 @@
 # FF65 distribution kit: FFmpeg apad: a 3 s Song Becomes a 12 s File Until You Set a Length
 
-All numbers below come from the synthetic fixture in `episodes/ff65/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2, where the aac file under apad with -shortest can end up to 77 ms longer than the picture and the amount varies from run to run.
+All numbers below come from the synthetic fixture in `episodes/ff65/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2, where the aac file under apad with -shortest can end up to about 230 ms longer than the picture and the amount varies from run to run.
 
 ## YouTube
 
