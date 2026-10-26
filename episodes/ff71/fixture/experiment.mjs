@@ -18,7 +18,7 @@ export const buildOf = (versionLine) => (/version 6\./.test(versionLine) ? 'v6' 
 const FS = S * S * 3 / 2; // bytes of one yuv420p frame
 
 const ffm = (args, opts = {}) => {
-  const r = spawnSync('nice', ['-n', '10', 'ffmpeg', '-v', 'error', '-y', ...args], {maxBuffer: 1 << 28, ...opts});
+  const r = spawnSync('ffmpeg', ['-v', 'error', '-y', ...args], {maxBuffer: 1 << 28, ...opts});
   if (r.status !== 0) throw new Error(`ffmpeg ${args.join(' ')} failed: ${String(r.stderr)}`);
   return r;
 };

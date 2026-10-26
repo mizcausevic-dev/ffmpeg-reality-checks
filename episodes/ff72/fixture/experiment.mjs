@@ -28,7 +28,7 @@ export const buildOf = (versionLine) => (/version 6\./.test(versionLine) ? 'v6' 
 
 const run = (cmd, args, opts = {}) => spawnSync(cmd, args, {maxBuffer: 1 << 28, ...opts});
 const ffm = (args, opts = {}) => {
-  const r = run('nice', ['-n', '10', 'ffmpeg', '-v', 'error', '-y', ...args], opts);
+  const r = run('ffmpeg', ['-v', 'error', '-y', ...args], opts);
   if (r.status !== 0) throw new Error(`ffmpeg ${args.join(' ')} failed: ${String(r.stderr)}`);
   return r;
 };
