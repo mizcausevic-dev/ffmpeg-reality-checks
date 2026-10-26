@@ -1,0 +1,55 @@
+{
+  "n": 15,
+  "slug": "ffmpeg-shortest",
+  "palette": "ember",
+  "title": "What does FFmpeg -shortest cut?",
+  "fullTitle": "FFmpeg -shortest Ends the Picture Early With -c copy",
+  "kicker": "Episode 15",
+  "hero": {"scene": "shortcopy", "t": 6.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You add a soundtrack to a video, and the lengths do not match. FFmpeg has an option for that: dash shortest. What does it cut, and how exactly? We build a five second video, a three second tone, and an eight second tone, and measure.",
+      "captions": ["Video and sound, different lengths.", "What exactly does -shortest cut?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Two readers",
+      "narration": "The video is five seconds: a hundred twenty five frames. The tones are three and eight seconds. We read each output two ways. ffprobe shows the durations the file declares. And a full decode counts the frames, and the seconds of sound, that are really there.",
+      "captions": ["Video 5 s (125 frames). Tones 3 s and 8 s.", "Two readers: ffprobe, and a full decode."]
+    },
+    {
+      "id": "noshort",
+      "chapter": "Without -shortest",
+      "narration": "First, no dash shortest, with the three second tone. The file runs five seconds, as long as the video. The sound ends at three, so the last two seconds are silent. All a hundred twenty five frames are there.",
+      "captions": ["No -shortest: file 5 s, sound 3 s.", "Last 2 seconds silent. 125 frames."]
+    },
+    {
+      "id": "shortcopy",
+      "chapter": "-shortest with -c copy",
+      "narration": "Now dash shortest, with dash c copy. The file ends at three seconds, as the sound does. But the picture stops early: seventy three of the hundred twenty five frames, which is two point nine two seconds. The picture ends eighty milliseconds before the sound.",
+      "captions": ["-shortest -c copy: file 3 s.", "Video 73 frames, 2.92 s. Sound 3 s."]
+    },
+    {
+      "id": "shortenc",
+      "chapter": "-shortest with a re-encode",
+      "narration": "With a re-encode, dash shortest ends both together: seventy five frames, three seconds, and sound of three seconds.",
+      "captions": ["Re-encode + -shortest: 75 frames, 3 s.", "Picture and sound end together."]
+    },
+    {
+      "id": "longaudio",
+      "chapter": "When the sound is longer",
+      "narration": "Now the eight second tone. With no dash shortest, the file runs eight seconds, but the picture ends at five. Three seconds of sound play over no picture. Add dash shortest, and the sound is trimmed to five seconds, and all a hundred twenty five frames are kept.",
+      "captions": ["No -shortest: file 8 s, picture ends at 5 s.", "-shortest: sound trimmed to 5 s. 125 frames."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to remember",
+      "sim": null,
+      "narration": "Dash shortest ends the file with the shortest stream. With copy, expect the picture to end a little early. We saw the same on ffmpeg six point one and eight point one. Not tested: other containers, other codecs, and files with more than two streams.",
+      "captions": ["-shortest follows the shortest stream.", "Not tested: other containers, 3+ streams."]
+    }
+  ]
+}

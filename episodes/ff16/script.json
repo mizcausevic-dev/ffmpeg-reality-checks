@@ -1,0 +1,55 @@
+{
+  "n": 16,
+  "slug": "ffmpeg-r-before-after",
+  "palette": "ember",
+  "title": "Does FFmpeg -r mean the same before and after -i?",
+  "fullTitle": "FFmpeg -r Before -i Stretches Time. After -i Drops Frames",
+  "kicker": "Episode 16",
+  "hero": {"scene": "before", "t": 6.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "The option dash r sets a frame rate. But put it before the input, and it means one thing. Put it after, and it means another. What exactly happens? We build a two second clip at thirty frames per second, and ask for ten frames per second, both ways.",
+      "captions": ["-r sets a frame rate.", "Before -i or after -i: same thing?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Two readers",
+      "narration": "The source is sixty frames, two seconds, thirty frames per second. We read each output two ways. ffprobe shows the duration and frame rate the file declares. And we look inside: the packets in the container, the frames a full decode produces, and the gaps between timestamps.",
+      "captions": ["Source: 60 frames, 30 fps, 2.0 s.", "Two readers: ffprobe, and what is inside."]
+    },
+    {
+      "id": "after",
+      "chapter": "-r after the input",
+      "narration": "Dash r after the input drops frames. The output is ten frames per second, and keeps about the same length: twenty two frames, two point two seconds. The fps filter is exact: twenty frames, two seconds.",
+      "captions": ["-r 10 after -i: 22 frames, 2.2 s.", "fps=10 filter: 20 frames, 2.0 s."]
+    },
+    {
+      "id": "before",
+      "chapter": "-r before the input",
+      "narration": "Dash r before the input does something else. All sixty frames are kept, and the clip is relabeled as ten frames per second. It plays for six seconds, in slow motion at one third speed. Dash r on both sides gives the same: six seconds.",
+      "captions": ["-r 10 before -i: all 60 frames kept.", "Plays 6 s, at one third speed."]
+    },
+    {
+      "id": "copy",
+      "chapter": "With -c copy",
+      "narration": "With dash c copy, dash r before the input has no effect on an MP4. Still thirty frames per second, still two seconds.",
+      "captions": ["-r 10 before -i, with -c copy:", "no effect. 30 fps, 2.0 s."]
+    },
+    {
+      "id": "raw",
+      "chapter": "A raw stream",
+      "narration": "On a raw H.264 stream, which stores no timing, dash r before the input is how you say the rate. By default it assumes thirty frames per second. With dash r ten, it is ten frames per second, six seconds.",
+      "captions": ["Raw H.264: default 30 fps, 2 s.", "-r 10 before -i: 10 fps, 6 s."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to remember",
+      "sim": null,
+      "narration": "After the input, dash r changes the frames. Before the input, it changes the clock. For exact dropping, use the fps filter. We saw the same on ffmpeg six point one and eight point one. Not tested: variable frame rate sources, other containers, and audio.",
+      "captions": ["After -i: changes the frames.", "Before -i: changes the clock."]
+    }
+  ]
+}
