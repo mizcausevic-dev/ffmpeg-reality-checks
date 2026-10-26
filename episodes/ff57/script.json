@@ -1,0 +1,86 @@
+{
+  "n": 57,
+  "slug": "ffmpeg-xfade-offset",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does my crossfade start at the wrong time?",
+  "fullTitle": "FFmpeg xfade: Offset 4 Makes 9 s, Offset 3 Cuts 1 s of Clip A (8 s)",
+  "kicker": "Episode 57",
+  "thumb": {
+    "number": "9 vs 8 s",
+    "label": "CROSSFADE, OFFSET ONE SHORT",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "early",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You join two clips with x fade, and the crossfade starts at the wrong time, or the first clip is cut short. Where does the offset go? Two five second synthetic clips, every frame measured, on f f m peg six point one point one.",
+      "captions": [
+        "Crossfade at the wrong time, or the first clip cut early?",
+        "We measure every output frame."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Two clips, two readers",
+      "narration": "Clip A is five seconds, luma climbing, chroma ninety six. Clip B is five seconds, luma falling, chroma one sixty. One frame tells its clip and its number. The control, concat, has two hundred fifty frames and no blend. Readers: frame md5 and raw pixels.",
+      "captions": [
+        "Control: concat, 250 frames, no blend.",
+        "Readers: framemd5 and raw pixels in Node."
+      ]
+    },
+    {
+      "id": "right",
+      "chapter": "Offset 4: nine seconds",
+      "narration": "Offset four is the first clip's length minus the fade. A holds to four seconds, the blend runs one second, and B plays on. Two hundred twenty five frames, nine seconds. Twenty four blended frames, and the weight of B rises every frame.",
+      "captions": [
+        "Offset 4 = 5 s minus 1 s. Output 9 s, 225 frames.",
+        "24 blended frames. B's weight rises every frame."
+      ]
+    },
+    {
+      "id": "early",
+      "chapter": "Offset 3: one second lost",
+      "narration": "Offset three starts the blend a second early. The output is eight seconds, not nine, and the last second of A, twenty five frames, never appears. Offset one: six seconds, and three seconds of A lost. The output is offset plus five.",
+      "captions": [
+        "Offset 3: 8 s. 25 frames of A never show.",
+        "Offset 1: 6 s. 3 s of A lost."
+      ]
+    },
+    {
+      "id": "late",
+      "chapter": "Offset 5: no crossfade",
+      "narration": "Offset five, the full length of A, is the other failure. There is no blend at all. A plays through, and B shows one frame, its last. The output is five point zero four seconds, and the crossfade never happens.",
+      "captions": [
+        "Offset 5: 0 blended frames.",
+        "125 frames of A, then 1 frame of B."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "The rule",
+      "narration": "The rule: offset is the first clip's length minus the fade. Here, five minus one. Offsets one to four give six, seven, eight and nine seconds, and lose three, two, one and zero seconds of A. The blend is twenty four frames every time.",
+      "captions": [
+        "Offset = first clip length minus the fade.",
+        "Offsets 1 to 4: 6, 7, 8, 9 s."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Check the output length: offset plus the second clip's length. Frame luma shows where the blend sits. Not tested: other transitions, audio, clips of different lengths or frame rates, real footage, and builds other than six point one point one.",
+      "captions": [
+        "Output length = offset + 5 s.",
+        "Not tested: other transitions, audio, real footage."
+      ]
+    }
+  ]
+}

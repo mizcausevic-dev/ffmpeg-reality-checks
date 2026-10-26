@@ -1,0 +1,86 @@
+{
+  "n": 54,
+  "slug": "ffmpeg-fade-ss-order",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where does my fade land after a seek?",
+  "fullTitle": "FFmpeg fade: -ss Before -i Fades 25 Frames, After -i Fades 0",
+  "kicker": "Episode 54",
+  "thumb": {
+    "number": "25 vs 0",
+    "label": "FADED FRAMES, SEEK ORDER",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "after",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You cut from second two and add a one second fade in. With dash s s before the input, the fade is there. After the input, it vanishes. Where does the fade land? We measure the brightness of every frame, in both orders.",
+      "captions": [
+        "Same fade, same flags. Where does it land?",
+        "We measure the brightness of every frame."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "A clip of flat cards",
+      "narration": "One hundred and fifty frames, every frame a flat card of brightness two hundred. Black is sixteen. The control is dash s s two, dash t three, no fade: seventy five frames, all two hundred. Readers: frame md5, signal stats, raw luma, f f probe.",
+      "captions": [
+        "Control: 75 frames, all luma 200, first at 0.00 s.",
+        "Readers: framemd5, signalstats, raw luma, ffprobe."
+      ]
+    },
+    {
+      "id": "before",
+      "chapter": "-ss before -i: the fade lands",
+      "narration": "Dash s s two before the input, fade in, start zero, one second. Twenty five frames are faded. The first is black, sixteen. The brightness climbs, and frame twenty five, at one second, is back at two hundred. Both readers agree.",
+      "captions": [
+        "-ss 2 before -i, fade st=0: 25 frames faded.",
+        "First frame 16, full 200 again at 1.00 s."
+      ]
+    },
+    {
+      "id": "after",
+      "chapter": "-ss after -i: nothing fades",
+      "narration": "Now dash s s two after the input, the same fade, start zero. Zero frames are faded. All seventy five frames are two hundred, the control's hash. The fade ran over the two seconds that were thrown away.",
+      "captions": [
+        "-ss 2 after -i, fade st=0: 0 frames faded.",
+        "All 75 frames equal the control."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "The same number, another time",
+      "narration": "After the input, say start two: twenty five frames fade, the same frames as before the input with start zero. Say start two before the input, and it lands late: black for fifty one frames, and the ramp never reaches two hundred.",
+      "captions": [
+        "After -i, st=2 equals before -i, st=0.",
+        "Before -i, st=2: black 51 frames, never reaches 200."
+      ]
+    },
+    {
+      "id": "out",
+      "chapter": "Fade out: black for two seconds",
+      "narration": "Fade out has the same trap. After the input, start four gives a one second ramp at the end, the same frames as start two before the input. But start two after the input fades at once, and the clip stays black for fifty frames.",
+      "captions": [
+        "After -i, st=4 equals before -i, st=2.",
+        "After -i, st=2: black for 50 of 75 frames."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Before the input, the fade clock starts at zero. After the input, it runs on the source clock: add the seek. Count the faded frames. Not tested: audio fades, stream copy, real footage, other builds than six point one point one.",
+      "captions": [
+        "Before -i: start at the cut. After -i: add the seek.",
+        "Not tested: afade, stream copy, real footage, other builds."
+      ]
+    }
+  ]
+}

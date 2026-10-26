@@ -1,0 +1,86 @@
+{
+  "n": 56,
+  "slug": "ffmpeg-map-0-into-mp4",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does mapping everything into MP4 fail?",
+  "fullTitle": "FFmpeg -map 0 Into MP4: 4 of 10 Stream Types Fail, 6 Copy",
+  "kicker": "Episode 56",
+  "thumb": {
+    "number": "4 of 10",
+    "label": "STREAM TYPES FAIL INTO MP4",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "fail",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You copy a file into m p four with dash map zero, and f f m peg says: could not find tag for codec. Which stream is the problem? We copy ten stream types, one at a time, and read the stream list before and after.",
+      "captions": [
+        "-map 0 into mp4: which streams make it fail?",
+        "Ten stream types, read before and after."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Ten stream types, two readers",
+      "narration": "Each source is a video plus one extra stream: five audio codecs, cover art, three subtitle formats, a font attachment. The control copies video, five audio and cover art together: seven streams in, seven out. Readers: f f probe, and the m p four boxes.",
+      "captions": [
+        "Control: 7 streams in, 7 out.",
+        "Readers: ffprobe, and the mp4 boxes in Node."
+      ]
+    },
+    {
+      "id": "pass",
+      "chapter": "Six of ten copy",
+      "narration": "Six of ten pass: a a c, opus, flac, P C M, vorbis and cover art. The cover art becomes a second video track. The stream list after matches the list before, and the video frames are the same fifty hashes as the source.",
+      "captions": [
+        "6 of 10 pass: aac, opus, flac, pcm, vorbis, cover art.",
+        "Stream list after equals before. Same 50 video hashes."
+      ]
+    },
+    {
+      "id": "fail",
+      "chapter": "Four of ten fail",
+      "narration": "Four of ten fail: subrip, a s s, web v t t and the font attachment. The message names the codec. The output is a zero byte file with no moov box, and f f probe cannot open it. The video was never the problem.",
+      "captions": [
+        "4 of 10 fail: subrip, ass, webvtt, ttf attachment.",
+        "Zero byte output. No moov box."
+      ]
+    },
+    {
+      "id": "trap",
+      "chapter": "The half fixes fail too",
+      "narration": "Put them in one file, and half fixes fail one by one. Convert the subtitle to mov text: the font attachment fails next. Dash s n removes subtitles: the attachment stays. Drop the attachment: subrip is still there.",
+      "captions": [
+        "-c:s mov_text alone: the attachment fails next.",
+        "-sn keeps the attachment. -map -0:t keeps subrip."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "What works",
+      "narration": "Both together work: drop the attachment with minus map zero colon t, and convert the subtitle to mov text. Seven streams out: video, five audio, mov text. The cue text is in the bytes. Or map video and audio only: six streams.",
+      "captions": [
+        "-map -0:t and -c:s mov_text: 7 streams out.",
+        "Cue text found in the bytes and in a decode."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Dash map zero is fine for video, audio and cover art. Subtitles need mov text, and attachments must go. Count streams before and after. Not tested: other containers, data streams, bitmap subtitles, real files, other builds.",
+      "captions": [
+        "Count the streams before and after.",
+        "Not tested: other containers, data, bitmap subs, real files."
+      ]
+    }
+  ]
+}

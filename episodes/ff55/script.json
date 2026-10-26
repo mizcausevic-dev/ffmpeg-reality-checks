@@ -1,0 +1,86 @@
+{
+  "n": 55,
+  "slug": "ffmpeg-video-track-timescale-2997",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Do 29.97 fps timestamps round in an mp4?",
+  "fullTitle": "FFmpeg 29.97 fps, -video_track_timescale 1000: Frames Are 33 or 34 ms",
+  "kicker": "Episode 55",
+  "thumb": {
+    "number": "33 or 34",
+    "label": "MS PER FRAME AT 1000 TICKS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "round",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Twenty nine point nine seven frames a second means a frame is thirty three point three seven milliseconds, not a whole number. An m p four file stores whole ticks. Do the timestamps round? We set the track timescale seven ways and read every frame.",
+      "captions": [
+        "29.97 fps is 33.37 ms a frame. Do the timestamps round?",
+        "We set -video_track_timescale seven ways and read every frame."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "One clip, two readers",
+      "narration": "One synthetic gray clip: three hundred frames at thirty thousand over one thousand and one. The control, timescale thirty thousand, stores one thousand and one ticks per frame, zero error. Readers: the m p four bytes in Node, and f f probe.",
+      "captions": [
+        "Control: timescale 30000, 1001 ticks a frame, 0 error.",
+        "Readers: the mp4 bytes in Node, and ffprobe."
+      ]
+    },
+    {
+      "id": "round",
+      "chapter": "1000 ticks: 33 or 34 ms",
+      "narration": "At timescale one thousand, frames are thirty three or thirty four milliseconds, never thirty three point three seven. One hundred and ninety are thirty three; one hundred and ten are thirty four. Stored times: zero, thirty three, sixty seven, one hundred. Both readers agree.",
+      "captions": [
+        "Timescale 1000: 190 frames of 33 ms, 110 of 34 ms.",
+        "Stored times: 0, 33, 67, 100, 133, 167."
+      ]
+    },
+    {
+      "id": "drift",
+      "chapter": "No drift, half a tick",
+      "narration": "No drift. Each time is rounded from its exact value, so the error stays within half a tick: half a millisecond at one thousand, point eight three at six hundred. The clip lasts ten point zero one seconds. The twenty five frame control: none.",
+      "captions": [
+        "Error stays within half a tick: 0.50 ms at 1000, 0.83 ms at 600.",
+        "25 fps at 1000: 40 ticks, no error."
+      ]
+    },
+    {
+      "id": "exact",
+      "chapter": "Only multiples of 30000 are exact",
+      "narration": "Only multiples of thirty thousand are exact: thirty thousand and ninety thousand, zero error. Twenty four thousand, fifteen three sixty, one thousand and six hundred all round. At fifteen three sixty, the clip is twenty six microseconds longer, and f f probe's average rate changes.",
+      "captions": [
+        "30000 and 90000: exact. 24000, 15360, 1000, 600: rounded.",
+        "15360: avg rate 2304000/76877, 10.010026 s."
+      ]
+    },
+    {
+      "id": "rate",
+      "chapter": "29.97 is not 30000/1001",
+      "narration": "Typed as a decimal, twenty nine point nine seven is not thirty thousand over one thousand and one. It is two thousand nine hundred ninety seven over one hundred, timescale eleven thousand nine hundred eighty eight, and ten microseconds off by the last frame.",
+      "captions": [
+        "29.97 as a decimal is 2997/100, timescale 11988.",
+        "0.010 ms behind the 30000/1001 grid at frame 299."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Use a timescale that is a multiple of thirty thousand, or the default, thirty thousand here. Read the ticks, not the times frame md5 prints. Not tested: other containers, other rates, real footage, builds other than six point one point one.",
+      "captions": [
+        "Use a multiple of 30000, or the default (30000 here).",
+        "Not tested: other containers, rates, real footage, other builds."
+      ]
+    }
+  ]
+}
