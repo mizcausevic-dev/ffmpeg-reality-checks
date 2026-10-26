@@ -1,0 +1,49 @@
+{
+  "n": 21,
+  "slug": "ffmpeg-keyframe-interval",
+  "palette": "ember",
+  "title": "Does FFmpeg -g give a keyframe every N frames?",
+  "fullTitle": "FFmpeg -g 100 Is a Maximum. Scene Cuts Add Keyframes",
+  "kicker": "Episode 21",
+  "hero": {"scene": "cuts", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You set dash g one hundred in FFmpeg, expecting a keyframe every one hundred frames, so every four seconds. Do you get one? We encode one clip four ways, and read the keyframes two ways.",
+      "captions": ["-g 100: a keyframe every 4 seconds?", "One clip, four encodes."]
+    },
+    {
+      "id": "source",
+      "chapter": "Clip and readers",
+      "narration": "The source is ten seconds at twenty five frames a second, with two hard cuts: at three point two seconds, and at six point eight. Reader one is ffprobe, listing packets flagged as keyframes. Reader two is ffprobe again, listing decoded frames whose picture type is I.",
+      "captions": ["10 s clip, hard cuts at 3.2 s and 6.8 s.", "Two readers: key packets, and I frames."]
+    },
+    {
+      "id": "cuts",
+      "chapter": "The default",
+      "narration": "With dash g one hundred alone, the keyframes land at zero, three point two, and six point eight. On the two cuts, not on a four second grid. The setting is a maximum. The encoder adds a keyframe when the picture changes.",
+      "captions": ["-g 100 alone: keyframes at 0, 3.2, 6.8.", "The cuts, not a 4 s grid."]
+    },
+    {
+      "id": "grid",
+      "chapter": "A strict grid",
+      "narration": "Add dash s c underscore threshold zero, and scene detection is off. Now the keyframes are at zero, four, and eight. A strict four second grid, and the cuts get no keyframe. This is what segmented streaming needs.",
+      "captions": ["+ -sc_threshold 0: 0, 4, 8.", "A strict grid. The cuts get none."]
+    },
+    {
+      "id": "forced",
+      "chapter": "Forced keyframes",
+      "narration": "Force keyframes at three point two, and six point eight, with scene detection off, and you get exactly those. Force one at two seconds, with scene detection on, and it is added to the cuts: zero, two, three point two, six point eight. Both readers agree on every encode.",
+      "captions": ["-force_key_frames 3.2,6.8: exact.", "-force_key_frames 2: added to the cuts."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "The largest gap never exceeded four seconds, so dash g is a maximum. For a fixed grid, turn off scene detection. Not tested: x265, other encoders, B-frame settings, and real footage.",
+      "captions": ["-g is a maximum, not a fixed gap.", "Fixed grid: add -sc_threshold 0."]
+    }
+  ]
+}
