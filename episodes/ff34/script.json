@@ -1,0 +1,52 @@
+{
+  "n": 34,
+  "slug": "ffmpeg-framerate-vs-r-image-sequence",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "I turned 100 PNGs into a video: why is it the wrong speed?",
+  "fullTitle": "FFmpeg -framerate vs -r: -r After -i Keeps 42 of 100 PNG Frames",
+  "kicker": "Episode 34",
+  "thumb": {"number": "42 of 100", "label": "FRAMES KEPT, 4.2 S FILM", "color": "red"},
+  "endCard": {},
+  "hero": {"scene": "output", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You turn a hundred numbered PNGs into a video at ten frames a second. You add dash r ten after the input. The film is far too short. Dash framerate and dash r both set a rate, so what is the difference? We mark every picture and count what survives.",
+      "captions": ["100 PNGs, 10 fps: expect 10 s.", "-framerate or -r: what is the difference?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Marked frames, two readers",
+      "narration": "The source is one hundred synthetic PNGs, image zero zero one to image one hundred. Each file's gray level carries its own number. The control uses no option. The default input rate is twenty five, so the hundred frames last four seconds, each once. Reader one is f f probe. Reader two decodes: frame hashes and pixel values.",
+      "captions": ["img001 to img100, gray level = file number.", "Control: 25 fps default, 4.0 s, each frame once."]
+    },
+    {
+      "id": "input",
+      "chapter": "Before the input",
+      "narration": "Dash framerate ten before the input gives all one hundred frames, once each, in ten seconds. Dash r ten before the input gives exactly the same. Set both, dash framerate twenty five and dash r ten, and the dash r value wins: ten seconds. A glob pattern changes nothing.",
+      "captions": ["-framerate 10 -i, or -r 10 -i: 100 frames, 10 s.", "Both set: -r wins. Glob: same."]
+    },
+    {
+      "id": "output",
+      "chapter": "After the input",
+      "narration": "Now put dash r ten after the input. The input still runs at twenty five, so ffmpeg converts twenty five to ten. Only forty two of the hundred frames survive: one, two, three, five, eight, ten. Fifty eight are dropped, none repeated. The film lasts four point two seconds, not ten.",
+      "captions": ["-i img%03d.png -r 10: 42 of 100 frames.", "Film: 4.2 s. 58 frames dropped."]
+    },
+    {
+      "id": "fix",
+      "chapter": "Rates that work",
+      "narration": "Set the input rate with dash framerate ten, and you keep all hundred frames, once each. Add dash r thirty after the input, and every frame is repeated three times: three hundred frames, still ten seconds. If your files start at image fifty one, add dash start number fifty one. Without it, the command fails.",
+      "captions": ["-framerate 10, then -r 30: 300 frames, 10 s.", "Files start at 051: add -start_number 51."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "For an image sequence, set the speed with dash framerate before the input. Dash r after the input is a conversion, and it drops or repeats frames. Not tested: other rates, other formats, variable names, real footage, and any player.",
+      "captions": ["Speed: -framerate before -i.", "Not tested: other rates, real footage."]
+    }
+  ]
+}
