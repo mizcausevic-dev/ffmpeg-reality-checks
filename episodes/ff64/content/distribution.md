@@ -1,6 +1,6 @@
 # FF64 distribution kit: FFmpeg -loop 1 -shortest: Picture Ends Early, 1 s of a 4.3 s Song
 
-All numbers below come from the synthetic fixture in `episodes/ff64/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1. On 8.1.2 several results differ: `-fflags +shortest` is refused ("Unable to parse fflags option value shortest"), `-shortest_buf_duration 0.2` no longer leaves 25 fps alone (149 to 153 frames) and at 1 fps runs to the 20 s guard with only 0.683 s of audio, and a copied song at 1 fps gives 9 frames instead of 1 (with -bf 0 it gave 4 frames in one run and 8 in another).
+All numbers below come from the synthetic fixture in `episodes/ff64/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1. On 8.1.2 several results differ: `-fflags +shortest` is refused ("Unable to parse fflags option value shortest"), `-shortest_buf_duration 0.2` no longer leaves 25 fps alone (149 to 153 frames) and at 1 fps runs to the 20 s guard with only 0.683 s of audio, and the frame counts of every copied-song output changed from run to run (a copied song at 1 fps gave 9 frames, with -bf 0 4 in one run and 8 in another; 30 fps gave 126 to 129 frames), so the copy results are 6.1.1 only.
 
 ## YouTube
 
