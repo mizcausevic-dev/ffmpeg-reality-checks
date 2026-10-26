@@ -32,11 +32,11 @@ The sixteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:21 Ten rates, two readers
-00:42 The label says 48000
-00:58 The header remembers
-01:18 A 32 kHz source loses its top
-01:41 What to check
+00:18 Ten rates, two readers
+00:38 The label says 48000
+00:53 The header remembers
+01:11 A 32 kHz source loses its top
+01:31 What to check
 <!-- chapters:end -->
 
 Limits: synthetic sines and white noise, libopus 64k and 128k, mono, 2 s, ffmpeg 6.1.1 and 8.1.2. Not tested: real music, stereo or surround, other Opus encoders (the native opus encoder), other bitrates and application modes, other builds, players and browsers.

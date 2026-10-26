@@ -31,10 +31,11 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:21 A clip that names its frames
-00:48 Without setpts, in a mov file
-01:05 Same command, an mkv file
-01:30 Audio and the half fix
-01:53 What to check
+00:45 Without setpts, in a mov file, 6.1.1
+01:03 Same command, an mkv file
+01:17 Same command, two builds
+01:42 Audio and the half fix
+02:04 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic lossless clip, x264 with pcm audio, .mov and .mkv outputs, ffmpeg 6.1.1 and 8.1.2. The default frame rate mode is the part that differs between them (.mov only). Not tested: players (whether a gap shows as black), other containers and codecs, variable frame rate or real footage, other trim options (duration, start_frame), builds other than 6.1.1 and 8.1.2.

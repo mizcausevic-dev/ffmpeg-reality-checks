@@ -32,11 +32,11 @@ The 15 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Ten patches, two readers
-00:37 What the plain conversion does
-01:01 The tags
-01:23 zscale and tonemap
-01:46 What to check
+00:15 Ten patches, two readers
+00:35 What the plain conversion does
+00:58 The tags
+01:17 zscale and tonemap
+01:39 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic grey-patch clip, lossless x264 output, ffmpeg 6.1.1 and 8.1.2 (zscale and tonemap are optional filters; where a build lacks them the evidence records unsupported). Not tested: real footage, HLG, Dolby Vision, saturated colors and the BT.2020 to BT.709 gamut, other tone-mapping curves (reinhard, mobius), tonemap_opencl or hardware paths, players and how they treat the tags, other builds.
