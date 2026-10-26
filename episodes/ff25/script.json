@@ -1,0 +1,49 @@
+{
+  "n": 25,
+  "slug": "ffmpeg-fps-frame-choice",
+  "palette": "ember",
+  "title": "Which frame does FFmpeg fps=1 keep?",
+  "fullTitle": "FFmpeg fps=1 Does Not Grab the First Frame of Each Second",
+  "kicker": "Episode 25",
+  "hero": {"scene": "near", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You grab one thumbnail per second with dash v f f p s equals one. Which frame do you get from each second? The first one, at zero, one, two seconds? We mark every frame of a test clip, and read which ones come out.",
+      "captions": ["fps=1: one thumbnail per second.", "Which frame of each second?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Marked frames, two readers",
+      "narration": "Each source frame has its own gray level: frame N has luma N. Reader one matches frame md five hashes back to the source. Reader two reads the luma value of the decoded frame, which is the frame number. Three clips: twenty five, thirty, and sixty frames a second.",
+      "captions": ["Frame N has luma N.", "Readers: frame md5, and decoded luma."]
+    },
+    {
+      "id": "near",
+      "chapter": "The default",
+      "narration": "At twenty five frames a second, fps equals one keeps frames twelve, thirty seven, sixty two, eighty seven, one twelve. The first one is at point four eight seconds, not zero. At thirty frames a second, it is frame fourteen. The default rounding picks the frame in the middle of each second.",
+      "captions": ["25 fps: frames 12, 37, 62, 87, 112.", "First thumbnail at 0.48 s, not 0."]
+    },
+    {
+      "id": "round",
+      "chapter": "Rounding",
+      "narration": "Add round equals up, and you get the first frame of each second: zero, twenty five, fifty, seventy five, one hundred. Round equals down gives the last: twenty four, forty nine, seventy four. The select filter, with not mod n, twenty five, and fps mode v f r, also keeps frames zero, twenty five, fifty.",
+      "captions": ["round=up: first frame of each second.", "round=down: last. select also works."]
+    },
+    {
+      "id": "sixty",
+      "chapter": "Sixty to twenty four",
+      "narration": "Convert sixty frames a second to twenty four with fps equals twenty four, and the first source frame is never used. The kept frames are one, three, six, eight, eleven, thirteen: steps of two, then three, then two. Forty eight frames out. Both readers agree on every output.",
+      "captions": ["60 to 24: frame 0 is never used.", "Kept: 1, 3, 6, 8, 11, 13. Steps of 2 and 3."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "For the first frame of each second, add round equals up. For exact frames, use select. Not tested: other rounding modes, variable frame rate input, and real footage.",
+      "captions": ["First frame of each second: round=up.", "Not tested: VFR input, real footage."]
+    }
+  ]
+}
