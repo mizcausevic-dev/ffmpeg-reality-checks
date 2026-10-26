@@ -1,0 +1,55 @@
+{
+  "n": 20,
+  "slug": "ffmpeg-aac-default-bitrate",
+  "palette": "ember",
+  "title": "What bitrate does FFmpeg AAC use by default?",
+  "fullTitle": "FFmpeg's Default AAC Bitrate: 128 kbps Stereo, 69 kbps Mono",
+  "kicker": "Episode 20",
+  "hero": {"scene": "mono", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You encode audio with FFmpeg's A A C encoder and set no bitrate. What do you get? And does it depend on the channels, or the sample rate? We encode synthetic noise at four sample rates, in mono and stereo, and read each file two ways.",
+      "captions": ["No -b:a. What bitrate do you get?", "Mono and stereo, four sample rates."]
+    },
+    {
+      "id": "source",
+      "chapter": "Two readers",
+      "narration": "Ten seconds of pink noise, with a different seed in each channel. Plus ten seconds of digital silence, as a control. Reader one is ffprobe, the bit rate the stream declares. Reader two adds up every packet's size, and divides by the time.",
+      "captions": ["Synthetic pink noise, 10 seconds.", "Two readers: declared, and packet sizes."]
+    },
+    {
+      "id": "stereo",
+      "chapter": "Stereo",
+      "narration": "Stereo comes out near one hundred twenty eight kilobits a second, at all four sample rates, from twenty two point oh five to forty eight kilohertz. Both readers agree within one percent.",
+      "captions": ["Stereo: about 128 kbps, every rate.", "Both readers agree within 1%."]
+    },
+    {
+      "id": "mono",
+      "chapter": "Mono",
+      "narration": "Mono comes out near sixty nine kilobits a second. Not sixty four, and not half of stereo. It is point five four of stereo, at all four sample rates.",
+      "captions": ["Mono: about 69 kbps.", "Not 64. Not half of stereo."]
+    },
+    {
+      "id": "silence",
+      "chapter": "Silence",
+      "narration": "Digital silence, with no bitrate set, costs about two kilobits a second. The default is a target. The encoder only fills it when there is sound to code. As a control, the M P three encoder writes a fixed one twenty eight for stereo, and sixty four for mono.",
+      "captions": ["Silence: about 2 kbps.", "Control: MP3 is a fixed 128 / 64 kbps."]
+    },
+    {
+      "id": "explicit",
+      "chapter": "Setting it",
+      "narration": "Set dash b colon a, ninety six k, and you get ninety six, within one percent, in stereo and in mono. If the number matters to you, set it.",
+      "captions": ["-b:a 96k gives 96 kbps.", "If the number matters, set it."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "The default is about one twenty eight stereo and sixty nine mono, for sound. Not tested: other A A C encoders, variable bitrate modes, five point one, and real music.",
+      "captions": ["Default: ~128 stereo, ~69 mono.", "Not tested: real music, VBR, 5.1."]
+    }
+  ]
+}
