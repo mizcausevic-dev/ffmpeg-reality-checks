@@ -1,0 +1,54 @@
+{
+  "n": 4,
+  "slug": "preset-vs-crf",
+  "title": "Does a slower preset make better video?",
+  "fullTitle": "A Slower x264 Preset Does Not Always Make a Smaller File",
+  "kicker": "Episode 04",
+  "hero": {"scene": "size", "t": 7.5},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You pick an x264 preset, and you keep the same CRF. Does a slower preset give you better video? The FFmpeg wiki says a slower preset gives better compression, which it defines as quality per file size. So we measure both: file size, and quality.",
+      "captions": ["Same CRF. Slower preset.", "Better? Measure size and quality."]
+    },
+    {
+      "id": "fixture",
+      "chapter": "The test",
+      "narration": "Two synthetic clips, ten seconds each: a test pattern, and a mandelbrot zoom. We make a lossless copy of each as the reference. Then we encode the reference at CRF twenty three with eight presets, from ultrafast to slower, and score every result against the reference with SSIM.",
+      "captions": ["2 synthetic clips, 10 s each.", "8 presets, CRF 23, SSIM against a lossless copy."]
+    },
+    {
+      "id": "quality",
+      "chapter": "Quality",
+      "narration": "First, quality. Across all eight presets, SSIM on the test pattern stays between point nine nine three six and point nine nine seven two. On the mandelbrot clip, between about point nine eight two and point nine eight nine. CRF held the quality near one level, whichever preset we chose. On the test pattern, ultrafast even scored highest.",
+      "captions": ["Test pattern: 0.9936 to 0.9972.", "Mandelbrot: about 0.982 to 0.989."]
+    },
+    {
+      "id": "size",
+      "chapter": "Size",
+      "narration": "Now size. On the test pattern, ultrafast makes a two point two megabyte file. Veryfast: eight hundred thirty five thousand bytes. Then the files get bigger: faster, fast, medium, even slow. Only slower beats veryfast, at seven hundred ninety seven thousand. A slower preset did not always mean a smaller file.",
+      "captions": ["ultrafast 2.2 MB, then veryfast 835 kB.", "Then it rises. Only slower beats veryfast."]
+    },
+    {
+      "id": "time",
+      "chapter": "Time",
+      "narration": "Time is what the slower presets cost. Slower took five to six times as long as ultrafast, on both machines we tried, and on both clips. The mandelbrot clip showed the same shape in size: veryfast beat medium.",
+      "captions": ["slower took 5 to 6 times as long as ultrafast.", "Mandelbrot: veryfast smaller than medium."]
+    },
+    {
+      "id": "wiki",
+      "chapter": "What the wiki says",
+      "narration": "The wiki says that for constant quality encoding, you will simply save bitrate by choosing a slower preset. On these clips, that held from ultrafast to veryfast, and from medium to slower. It did not hold at every step in between. Two synthetic clips are not a verdict on your footage.",
+      "captions": ["Held: ultrafast to veryfast, medium to slower.", "Not at every step. Two clips are not your footage."]
+    },
+    {
+      "id": "close",
+      "chapter": "Measure your own",
+      "sim": null,
+      "narration": "Same CRF holds the quality. The preset trades time for size, but not in a straight line. Measure your own footage. Not tested here: other x264 versions, other content, and hardware encoders.",
+      "captions": ["Same CRF holds quality. Presets trade time for size.", "Not tested: other content, hardware encoders."]
+    }
+  ]
+}

@@ -24,9 +24,10 @@ t('at the same CRF the quality barely moves: SSIM spread across all presets is u
   each((name, c) => { const s = c.rows.map((r) => r.ssim); assert.ok(Math.max(...s) - Math.min(...s) < 0.02, name); assert.ok(Math.min(...s) > 0.97, name); });
 });
 
-t('ultrafast is the largest file and the fastest encode, on both clips', () => {
+t('ultrafast is the largest file on both clips, and faster to encode than fast, medium, slow and slower', () => {
   each((name, c, by) => {
-    for (const r of c.rows) if (r.preset !== 'ultrafast') { assert.ok(by.ultrafast.bytes > r.bytes, `${name} bytes vs ${r.preset}`); assert.ok(by.ultrafast.ms < r.ms, `${name} time vs ${r.preset}`); }
+    for (const r of c.rows) if (r.preset !== 'ultrafast') assert.ok(by.ultrafast.bytes > r.bytes, `${name} bytes vs ${r.preset}`);
+    for (const p of ['fast', 'medium', 'slow', 'slower']) assert.ok(by.ultrafast.ms < by[p].ms, `${name} time vs ${p}`);
   });
 });
 
@@ -45,4 +46,12 @@ t('size is not monotonic along the preset ladder: some slower preset gives a big
 
 t('veryfast gives a smaller file than medium, on both clips', () => {
   each((name, c, by) => assert.ok(by.veryfast.bytes < by.medium.bytes, `${name}: ${by.veryfast.bytes} vs ${by.medium.bytes}`));
+});
+
+t('the wiki claim holds on stretches of the ladder (ultrafast to veryfast, medium to slower) and fails between them', () => {
+  each((name, c, by) => {
+    assert.ok(by.ultrafast.bytes > by.superfast.bytes && by.superfast.bytes > by.veryfast.bytes, `${name} ultrafast..veryfast`);
+    assert.ok(by.medium.bytes > by.slow.bytes && by.slow.bytes > by.slower.bytes, `${name} medium..slower`);
+    assert.ok(by.fast.bytes > by.faster.bytes && by.faster.bytes > by.veryfast.bytes, `${name} veryfast < faster < fast`);
+  });
 });

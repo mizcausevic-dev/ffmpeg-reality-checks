@@ -1,0 +1,54 @@
+{
+  "n": 5,
+  "slug": "vfr-to-cfr",
+  "title": "What does constant frame rate do to my video?",
+  "fullTitle": "FFmpeg Constant Frame Rate Means Duplicate Frames",
+  "kicker": "Episode 05",
+  "hero": {"scene": "default", "t": 7.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "A phone records video at a variable frame rate. Some tools want a constant one. So what does FFmpeg do when you convert? Does it add pictures? Does the film change length? We build a variable frame rate clip, and we count.",
+      "captions": ["Variable frame rate in. Constant out?", "Does it add pictures? Change the length?"]
+    },
+    {
+      "id": "fixture",
+      "chapter": "A variable clip",
+      "narration": "Here is a synthetic clip: five seconds of a test pattern at thirty frames per second, with frames removed at uneven intervals. It has ninety three frames. ffprobe says the base rate is thirty, but the average is eighteen point five. The gaps between frames are thirty three milliseconds, sixty seven, and one long gap of nine hundred thirty three.",
+      "captions": ["93 frames over 5 seconds.", "Gaps: 33 ms, 67 ms, and one of 933 ms."]
+    },
+    {
+      "id": "default",
+      "chapter": "The default",
+      "narration": "Now convert it to MP4 and say nothing about frame rate. On ffmpeg six point one, the result is constant: a hundred and fifty frames, and fifty seven of them are duplicates. On ffmpeg eight point one, the same command keeps all ninety three frames and the uneven gaps. The default differs between these two builds. We did not test builds in between.",
+      "captions": ["ffmpeg 6.1.1: 150 frames, 57 duplicates.", "ffmpeg 8.1.2: 93 frames, uneven gaps kept."]
+    },
+    {
+      "id": "modes",
+      "chapter": "Say what you want",
+      "narration": "So say what you want. Dash fps underscore mode passthrough keeps ninety three frames, on both builds. Dash fps underscore mode cfr, with dash r thirty, makes a constant rate: a hundred fifty frames on six point one, a hundred fifty one on eight point one. Twenty five gives about a hundred twenty five. Sixty gives about three hundred.",
+      "captions": ["-fps_mode passthrough: 93 frames.", "-fps_mode cfr -r 30: about 150 frames."]
+    },
+    {
+      "id": "copies",
+      "chapter": "Where the frames come from",
+      "narration": "Where do the extra frames come from? They are copies. We converted losslessly and counted distinct pictures: ninety three, in every variant. Two counters agree: FFmpeg's own duplicate count, and our count of identical frames. Nothing new was added. The long gap is filled with repeats. And the film is still five seconds long.",
+      "captions": ["93 distinct pictures in every variant.", "Two counters agree. Still about 5 seconds."]
+    },
+    {
+      "id": "cost",
+      "chapter": "More rate, more copies",
+      "narration": "A higher constant rate means more copies. At sixty frames per second, on six point one, two hundred seven of the three hundred frames are duplicates. Whether that matters depends on what reads the file. We did not test any editor or player.",
+      "captions": ["60 fps: 207 duplicates of 300 frames.", "Not tested: any editor or player."]
+    },
+    {
+      "id": "close",
+      "chapter": "Do not rely on the default",
+      "sim": null,
+      "narration": "Say what you want: passthrough, or cfr. Do not rely on the default. It differed between the two builds we tried. Not tested here: real phone files, editors, and builds in between.",
+      "captions": ["Say what you want: passthrough or cfr.", "Not tested: phone files, editors, other builds."]
+    }
+  ]
+}

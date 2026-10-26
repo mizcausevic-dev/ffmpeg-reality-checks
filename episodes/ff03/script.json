@@ -1,0 +1,54 @@
+{
+  "n": 3,
+  "slug": "faststart-moov",
+  "title": "Why does my video wait before it plays?",
+  "fullTitle": "Your MP4 May Wait to Play: The Index Is at the End",
+  "kicker": "Episode 03",
+  "hero": {"scene": "faststart", "t": 6.5},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You put an MP4 on your website, and it seems to wait before it plays. Is the file the problem? An MP4 is a list of boxes. So we will not guess. We will read the order of the boxes.",
+      "captions": ["An MP4 that seems to wait before it plays.", "Read the order of the boxes."]
+    },
+    {
+      "id": "fixture",
+      "chapter": "Two files",
+      "narration": "Here is a synthetic clip: ten seconds, six forty by three sixty, with a tone. We encode it twice. Once with the plain command. Once with dash movflags plus faststart. The picture is the same. Two hundred fifty frames, both times.",
+      "captions": ["One synthetic clip, encoded twice.", "250 frames both times."]
+    },
+    {
+      "id": "atoms",
+      "chapter": "The plain file",
+      "narration": "Now read the top level boxes. The plain file goes: ftyp, free, mdat, moov. The mdat box holds the picture and the sound. The moov box is the index: the duration, and where every frame lives. Here it comes last, at byte nine hundred seventeen thousand of a nine hundred twenty seven thousand byte file.",
+      "captions": ["Plain: ftyp, free, mdat, moov.", "The index (moov) is the last box."]
+    },
+    {
+      "id": "faststart",
+      "chapter": "With faststart",
+      "narration": "With plus faststart, the order is ftyp, moov, free, mdat. Same size. Same frames. The index moved to the front. Two separate readers agree on this: a parser we wrote, and ffprobe's own trace. Two ffmpeg builds gave the same order.",
+      "captions": ["+faststart: ftyp, moov, free, mdat.", "Same size, same frames. The index moved."]
+    },
+    {
+      "id": "client",
+      "chapter": "A client reads it",
+      "narration": "Now a client. We serve both files from a local server and let ffprobe read them. A client that cannot seek has to read from the start. For the plain file, the server sent every byte. For the faststart file, under fifty thousand. A client that can ask for byte ranges copes with the plain file too, by jumping to the end. That took three requests, not one.",
+      "captions": ["No seeking: whole file vs under 50 KB.", "Range requests: 3 requests vs 1."]
+    },
+    {
+      "id": "cost",
+      "chapter": "What it costs",
+      "narration": "The flag is not free. The FFmpeg documentation says it runs a second pass, can take a while, and does not work in various situations, such as fragmented output. That is why it is off by default. And remember what we measured with: ffprobe as the client. We did not test a browser.",
+      "captions": ["FFmpeg docs: a second pass, can take a while.", "Tested with ffprobe. Not tested: a browser."]
+    },
+    {
+      "id": "close",
+      "chapter": "Check the order",
+      "sim": null,
+      "narration": "Check the box order before you upload. One flag moves the index to the front. Not tested here: browsers, other players, and fragmented MP4.",
+      "captions": ["Check the box order before you upload.", "Not tested: browsers, other players, fragmented MP4."]
+    }
+  ]
+}
