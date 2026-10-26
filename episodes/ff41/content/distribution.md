@@ -1,6 +1,6 @@
 # FF41 distribution kit: FFmpeg mjpeg -q:v 2 Costs 3.4x the Bytes of -q:v 5; -q:v 1 Is 2
 
-All numbers below come from the synthetic fixture in `episodes/ff41/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
+All numbers below come from the synthetic fixture in `episodes/ff41/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2. The quoted bytes and dB are the 6.1.1 values; the noise source renders a little differently on 8.1.2 (setting 2: 149832 bytes and 36.38 dB on 6.1.1, 149975 and 36.29 on 8.1.2), and the ratios (3.37, 1.95, 1.95), the clamp of 1 to 2 and the quantizer steps match.
 
 ## YouTube
 
@@ -29,7 +29,7 @@ The curve is steep at the low end. 2 costs 3.37x the bytes of 5 for +4.60 dB. 5 
 
 -huffman default is bigger than -huffman optimal, which is the default: 49679 against 44436 bytes at setting 5 (+11.8%), with identical decoded pixels in both readers.
 
-The sixteen tests pass on ffmpeg 6.1.1.
+The sixteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -41,7 +41,7 @@ Chapters
 01:53 What to use
 <!-- chapters:end -->
 
-Limits: one synthetic noisy test frame, the native mjpeg encoder, -pix_fmt yuvj444p, ffmpeg 6.1.1. PSNR measures pixel error, not how a picture looks. Not tested: other builds, libjpeg-based encoders, real photos, chroma subsampling (yuvj420p), settings above 31, -pred, any player.
+Limits: one synthetic noisy test frame, the native mjpeg encoder, -pix_fmt yuvj444p, ffmpeg 6.1.1 and 8.1.2. PSNR measures pixel error, not how a picture looks. Not tested: other builds, libjpeg-based encoders, real photos, chroma subsampling (yuvj420p), settings above 31, -pred, any player.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

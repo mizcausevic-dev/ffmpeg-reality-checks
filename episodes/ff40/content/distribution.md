@@ -23,7 +23,7 @@ exact=1: luma starts at column 3 row 5 as asked and the size stays odd (95x53), 
 
 Centered crop: crop=90:50 in the 192x108 frame asks for x=51 y=29 and starts at column 50 row 28: margins 50 and 52 columns, 28 and 30 rows. With exact=1 the margins are 51 and 51, 29 and 29.
 
-The twelve tests pass on ffmpeg 6.1.1.
+The twelve tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -35,7 +35,7 @@ Chapters
 01:48 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic 192x108 coded card, one frame, FFV1 in Matroska, ffmpeg 6.1.1. Not tested: other builds, real footage, other crop options (keep_aspect), other pixel formats, any player or encoder.
+Limits: one synthetic 192x108 coded card, one frame, FFV1 in Matroska, ffmpeg 6.1.1 and 8.1.2. Not tested: other builds, real footage, other crop options (keep_aspect), other pixel formats, any player or encoder.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

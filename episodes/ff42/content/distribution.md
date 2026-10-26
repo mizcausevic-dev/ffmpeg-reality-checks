@@ -25,7 +25,7 @@ Readers: raw decoded luma planes read in Node (frame compare, row difference, PS
 
 Control: on the woven clip yadif takes combing from 5.5 to 0.5 and idet goes from 50 interlaced frames to 50 progressive. yadif=mode=1 (send_field) doubles the frame rate: 50 frames in, 100 out, a timestamp every 0.02 s. idet itself cannot call the fine clip progressive (50 undetermined).
 
-The sixteen tests pass on ffmpeg 6.1.1.
+The sixteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -37,7 +37,7 @@ Chapters
 01:43 What to check
 <!-- chapters:end -->
 
-Limits: three synthetic lossless clips, mp4 with x264, ffmpeg 6.1.1. Not tested: real footage, other deinterlacers (bwdif, w3fdif, nnedi), other yadif parity settings, other builds, hardware deinterlacers, players, other encoders.
+Limits: three synthetic lossless clips, mp4 with x264, ffmpeg 6.1.1 and 8.1.2. Not tested: real footage, other deinterlacers (bwdif, w3fdif, nnedi), other yadif parity settings, other builds, hardware deinterlacers, players, other encoders.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

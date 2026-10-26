@@ -25,7 +25,7 @@ Every other flag keeps all 12 lines, but faint. area gives peak 107 at every pha
 
 Ringing: next to a line lanczos goes down to 53 and bicubic to 56 (background 60); bilinear, area and neighbor stay at 60. On a hard edge from 60 to 200, bicubic and lanczos overshoot by 2 to 3 levels. Line luma sum, input = 1: area, bilinear and bicubic 1.01, lanczos 1.03 to 1.05, spline up to 1.06, neighbor 0 or 3. The scale default gives the same bytes as flags=bicubic.
 
-The fourteen tests pass on ffmpeg 6.1.1.
+The fourteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
@@ -37,7 +37,7 @@ Chapters
 01:49 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic luma card, 3x down (2x for the stripes), raw yuv420p, ffmpeg 6.1.1. Not tested: color planes, real footage, other scale factors, other builds, any player or encoder, upscaling.
+Limits: one synthetic luma card, 3x down (2x for the stripes), raw yuv420p, ffmpeg 6.1.1 and 8.1.2. Not tested: color planes, real footage, other scale factors, other builds, any player or encoder, upscaling.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 
