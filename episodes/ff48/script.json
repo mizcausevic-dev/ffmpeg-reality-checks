@@ -1,0 +1,86 @@
+{
+  "n": 48,
+  "slug": "ffmpeg-thumbnail-filter-pick",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Which frame does the thumbnail filter pick?",
+  "fullTitle": "FFmpeg thumbnail Picks Frame 54 of 100, Not the Most Detailed Frame 80",
+  "kicker": "Episode 48",
+  "thumb": {
+    "number": "54 vs 80",
+    "label": "PICKED VS MOST DETAILED",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "pick",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "The thumbnail filter promises the most representative frame. Which frame is that, and is it the best one? We build a hundred frame clip, a dark title card then a colourful scene, and measure the pick four ways.",
+      "captions": [
+        "Which frame does thumbnail pick?",
+        "Is it the best one? Measured four ways."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "A clip with two shots",
+      "narration": "Fifty five frames of dark title card with a growing loading bar, then forty five frames of colour bars. Every frame is different. Readers: f f m peg timestamps and hashes, raw pixels in Node, and the filter's algorithm, rewritten.",
+      "captions": [
+        "Frames 0 to 54: title card. Frames 55 to 99: scene.",
+        "Readers: ffmpeg pts and framemd5, raw pixels, the algorithm."
+      ]
+    },
+    {
+      "id": "control",
+      "chapter": "Two controls",
+      "narration": "Controls first. A ramp of ninety nine frames has its average at frame forty nine, and thumbnail picks forty nine. A hundred frames with one white odd frame: it never picks the odd one, it picks frame zero. All four readers agree.",
+      "captions": [
+        "Ramp of 99 frames: picks 49, the middle.",
+        "100 frames, one odd frame 37: picks 0, never 37."
+      ]
+    },
+    {
+      "id": "pick",
+      "chapter": "It picks frame 54",
+      "narration": "With default settings it picks frame fifty four, the last of the title card. Mean luma thirty nine, against a hundred and fourteen for frame eighty, the most detailed. Fifty four has a tenth of the entropy: rank forty six of a hundred.",
+      "captions": [
+        "Default: frame 54, the dark title card.",
+        "Entropy 0.44 bits vs 4.55 for frame 80. Rank 46 of 100."
+      ]
+    },
+    {
+      "id": "batch",
+      "chapter": "One frame per batch",
+      "narration": "It picks one frame per batch of n. Fifty: frames twenty four and ninety three. Twenty five: four frames. Ten: ten frames. A sixty frame clip still gets one. Where the batches fall decides the answer.",
+      "captions": [
+        "n=50: frames 24 and 93. n=25: 12, 37, 67, 86.",
+        "n=10 gives ten frames. A 60 frame clip gives one."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "Make the batch the scene",
+      "narration": "To get a scene frame, make the batch the scene: trim from frame fifty five, then thumbnail forty five. It picks seventy four: entropy ninety eight percent of the best, rank thirty two. Most typical, still not the best.",
+      "captions": [
+        "trim from frame 55, thumbnail n=45: frame 74.",
+        "Entropy 98% of the best frame. Rank 32 of 100."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So thumbnail picks the frame closest to the average colour histogram of its batch: the most typical frame, not the best. Choose the batch yourself and check the pick. Not tested: real footage, other pixel formats, other builds.",
+      "captions": [
+        "Closest to the batch average, not the best.",
+        "Not tested: real footage, other pixel formats, other builds."
+      ]
+    }
+  ]
+}

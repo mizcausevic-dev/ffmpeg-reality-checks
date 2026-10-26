@@ -1,0 +1,86 @@
+{
+  "n": 47,
+  "slug": "ffmpeg-silenceremove-start-only",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does silenceremove only cut the start?",
+  "fullTitle": "FFmpeg silenceremove Cuts 1 of 3 Silences: Only the Leading One",
+  "kicker": "Episode 47",
+  "thumb": {
+    "number": "1 of 3",
+    "label": "SILENCES REMOVED",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "start",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You paste silence remove to cut the silence, and only the start goes. Is the filter broken? We make a four second synthetic clip with three silences and two tones, run seven settings, and count samples three ways.",
+      "captions": [
+        "Why does silenceremove only cut the start?",
+        "Four seconds, three silences, seven settings, three readers."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "A clip with three silences",
+      "narration": "Forty eight kilohertz mono: half a second of silence, a tone, a second of silence, a tone, half a second. One hundred and ninety two thousand samples. Two controls: one hand cut removes exactly twenty four thousand, another leaves all tone.",
+      "captions": [
+        "192000 samples: silences of 24000, 48000 and 24000.",
+        "Controls: atrim removes 24000; a hand cut leaves 96000, no silence."
+      ]
+    },
+    {
+      "id": "none",
+      "chapter": "With no options",
+      "narration": "With no options, silence remove does nothing. One hundred and ninety two thousand samples in, one hundred and ninety two thousand out, byte for byte the source, and all three silences are still there.",
+      "captions": [
+        "No options: 192000 in, 192000 out. 3 of 3 silences stay.",
+        "Output equals the source, byte for byte."
+      ]
+    },
+    {
+      "id": "start",
+      "chapter": "Only the start",
+      "narration": "Add start underscore periods equals one and it cuts the front: twenty four thousand and three samples. The silences in the middle and at the end are untouched. One of three gone, and the rest is the source, byte for byte.",
+      "captions": [
+        "start_periods=1 removes 24003 samples: the leading silence.",
+        "Middle 48001 and end 24000 stay. 2 of 3 silences left."
+      ]
+    },
+    {
+      "id": "stop",
+      "chapter": "Stop periods one",
+      "narration": "Stop underscore periods equals one sounds like the other half, but it is worse. It cuts at the first silence after the tone and drops everything after it. Eighty seven thousand samples remain, and the second tone is gone.",
+      "captions": [
+        "stop_periods=1 keeps 87357 of 192000 samples.",
+        "Tone samples left: 47999 of 95998. The second tone is gone."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "Both, and what it keeps",
+      "narration": "Use both: start periods one, stop periods minus one. Now both tones stay and the front is gone. But each gap keeps fifteen thousand three hundred and fifty seven samples, because stop duration is the silence it keeps.",
+      "captions": [
+        "Both options: 126708 samples, both tones kept.",
+        "Each gap keeps 15357 samples. stop_duration 0.1 keeps 5757."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So the default does nothing, start periods cuts one silence, and stop periods one deletes your audio. Name both periods, set stop duration small, and count samples. Not tested: noisy silence, real recordings, other builds.",
+      "captions": [
+        "Name both periods. Set stop_duration small. Count samples.",
+        "Not tested: noisy silence, real recordings, other builds."
+      ]
+    }
+  ]
+}

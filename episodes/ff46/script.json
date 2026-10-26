@@ -1,0 +1,86 @@
+{
+  "n": 46,
+  "slug": "ffmpeg-itsoffset-stream-copy",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Does an input time offset really move the audio?",
+  "fullTitle": "FFmpeg itsoffset Moves Audio 1.000 s: MP4 Keeps It in an Edit List",
+  "kicker": "Episode 46",
+  "thumb": {
+    "number": "1.000 s",
+    "label": "MP4 EDIT LIST CARRIES IT",
+    "color": "amber"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "ignore",
+    "t": 5
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You add input time offset one to the audio and copy the streams, no re-encode. Does the audio really move, in M P four and in M K V? We build a four second synthetic clip, run five cases, and read the start three ways.",
+      "captions": [
+        "Does itsoffset with -c copy really move the audio?",
+        "Five cases, two containers, three readers."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "A tone that marks the time",
+      "narration": "The picture is one hundred different frames. The sound is silent until one and a half seconds, then a tone: our marker. As a control, a real delay filter moves the tone to two and a half seconds, while the container stamps stay at zero.",
+      "captions": [
+        "100 frames, 192000 samples, tone at 1.500 s.",
+        "Control: adelay moves the tone to 2.500 s, stamps stay at 0."
+      ]
+    },
+    {
+      "id": "plus",
+      "chapter": "Audio plus one second",
+      "narration": "Input time offset one on the audio, stream copy. In both containers the audio starts at exactly one second and the tone lands at two and a half. All one hundred ninety two thousand samples are unchanged. The picture stays at zero.",
+      "captions": [
+        "Both files: audio start 1.000 s, tone 2.500 s, picture 0.000 s.",
+        "192000 samples equal the source. Three readers agree."
+      ]
+    },
+    {
+      "id": "ignore",
+      "chapter": "Where the second lives",
+      "narration": "In the M P four the second is an empty edit of one thousand milliseconds. Tell ffmpeg to ignore edit lists and the audio starts at zero again. In the M K V it is the time of the first audio block.",
+      "captions": [
+        "mp4: empty edit of 1000 ms. -ignore_editlist 1: audio start 0.000 s.",
+        "mkv: first audio block at 1.000 s, picture block at 0.000 s."
+      ]
+    },
+    {
+      "id": "minus",
+      "chapter": "Audio minus one second",
+      "narration": "Now minus one. Both files end one second early, but built differently. The M P four keeps the picture at zero and skips the first forty eight thousand samples. The M K V keeps every sample and starts the picture at one second.",
+      "captions": [
+        "mp4: 144000 samples decode, tone at 0.500 s, picture 0.000 s.",
+        "mkv: 192000 samples, tone at 1.500 s, picture starts 1.000 s."
+      ]
+    },
+    {
+      "id": "same",
+      "chapter": "Offset on the picture",
+      "narration": "Put the offset on the video input instead and the shift is the same, the other way: the picture starts at one second, the audio at zero. In all ten files the hundred frames are the source frames, and copy changed no sample.",
+      "captions": [
+        "itsoffset 1 on the video: audio -1.000 s against the picture.",
+        "10 files: 100 frames equal the source, audio equals the source."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So input time offset really moves the audio, in both containers, and costs no quality. But in M P four it lives in an edit list that some readers skip. Check start times. Not tested: other builds, players, uploads, other codecs.",
+      "captions": [
+        "It moves. Check start times, and whether your reader honors edit lists.",
+        "Not tested: other builds, players, uploads, AAC, subtitles."
+      ]
+    }
+  ]
+}

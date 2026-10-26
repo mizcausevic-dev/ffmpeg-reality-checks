@@ -1,0 +1,86 @@
+{
+  "n": 49,
+  "slug": "ffmpeg-libmp3lame-quality-bitrate",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "What bitrate does MP3 quality 2 really give?",
+  "fullTitle": "FFmpeg libmp3lame Quality 2: 32 to 182 kbit/s, Depending on the Signal",
+  "kicker": "Episode 49",
+  "thumb": {
+    "number": "32-182",
+    "label": "KBPS AT ONE QUALITY SETTING",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "spread",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You encode an m p three with dash q colon a two. What bitrate do you get? Quality is not a bitrate. Does one setting always cost the same? We encode five synthetic signals at ten settings, and measure the average two ways.",
+      "captions": [
+        "What bitrate does -q:a 2 really give?",
+        "Five signals, ten settings, two readers."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Five signals, two readers",
+      "narration": "Ten seconds of stereo made inside f f m peg: silence, a sine, a chord, a sweep, and white noise. Reader one is f f probe, on packet sizes. Reader two is Node, walking the frame headers itself.",
+      "captions": [
+        "Silence, sine, chord, sweep, noise.",
+        "Readers: ffprobe packets, and Node on the frame headers."
+      ]
+    },
+    {
+      "id": "control",
+      "chapter": "The control: constant bitrate",
+      "narration": "First the control. Dash b colon a one twenty eight k asks for a constant bitrate. All five signals give one hundred and twenty eight kilobits per second, and every frame is a one twenty eight frame. Both readers agree.",
+      "captions": [
+        "-b:a 128k: 128 kbit/s for 5 of 5 signals.",
+        "Every frame is a 128 kbit/s frame."
+      ]
+    },
+    {
+      "id": "spread",
+      "chapter": "Same quality, five bitrates",
+      "narration": "Now one setting, quality two, on the same ten seconds. Silence is thirty two kilobits per second. A sweep is forty three, a sine fifty eight, a chord sixty nine. White noise is one hundred and eighty two: five point seven times more.",
+      "captions": [
+        "-q:a 2: 32, 43, 58, 69, 182 kbit/s.",
+        "Same encoder, same ten seconds, 5.7 times apart."
+      ]
+    },
+    {
+      "id": "curve",
+      "chapter": "Ten settings, two signals",
+      "narration": "Across all ten settings, silence never moves: every frame sits at the thirty two minimum. Noise falls from two hundred and fifty at quality zero to seventy seven at quality nine. A bigger number always costs less, but how much depends on the signal.",
+      "captions": [
+        "Silence: 32 kbit/s at every setting.",
+        "Noise: 250 at quality 0, 77 at quality 9."
+      ]
+    },
+    {
+      "id": "average",
+      "chapter": "The average describes no frame",
+      "narration": "Put five seconds of silence before five seconds of noise, at quality two. The file averages one hundred and seven, about the mean of its halves, thirty two point seven and one hundred and eighty two point five. No frame is near it.",
+      "captions": [
+        "5 s silence + 5 s noise: 107 kbit/s average.",
+        "Halves: 32.7 and 182.5. Frames near 107: 0 of 384."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So quality is a target, not a bitrate. Need a size? Set dash b colon a, and it is exact. Need quality? Encode your own files and read the average with f f probe. Not tested: real music, mono, other builds, players.",
+      "captions": [
+        "Need a size: -b:a. Need quality: measure your files.",
+        "Not tested: real music, mono, other builds, players."
+      ]
+    }
+  ]
+}
