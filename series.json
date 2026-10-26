@@ -6,5 +6,113 @@
   "hashtags": "#FFmpeg #VideoEngineering",
   "playlistTitle": "FFmpeg Reality Checks: What Your Command Really Did",
   "playlistDescription": "Short narrated experiments on one question each: what did that FFmpeg command really do? Every episode runs on a synthetic test video, measures the result frame by frame, and ships a fixture and tests so you can rerun it.\n\nSource, fixtures and tests: github.com/mizcausevic-dev/ffmpeg-reality-checks\n\nMiz Causevic, Kinetic Gain LLC",
-  "narration": {"voiceId": "6q6UVsvekS0UjrUXFz79", "model": "eleven_v4"}
+  "narration": {
+    "voiceId": "6q6UVsvekS0UjrUXFz79",
+    "model": "eleven_v4"
+  },
+  "footer": {
+    "site": "https://kineticgain.com",
+    "related": {
+      "ff01": [
+        "ff23",
+        "ff15"
+      ],
+      "ff02": [
+        "ff17",
+        "ff11"
+      ],
+      "ff03": [
+        "ff12",
+        "ff02"
+      ],
+      "ff04": [
+        "ff11",
+        "ff21"
+      ],
+      "ff05": [
+        "ff16",
+        "ff25"
+      ],
+      "ff06": [
+        "ff08",
+        "ff09"
+      ],
+      "ff07": [
+        "ff18",
+        "ff19"
+      ],
+      "ff08": [
+        "ff06",
+        "ff20"
+      ],
+      "ff09": [
+        "ff22",
+        "ff06"
+      ],
+      "ff10": [
+        "ff19",
+        "ff15"
+      ],
+      "ff11": [
+        "ff22",
+        "ff17"
+      ],
+      "ff12": [
+        "ff24",
+        "ff13"
+      ],
+      "ff13": [
+        "ff12",
+        "ff24"
+      ],
+      "ff14": [
+        "ff22",
+        "ff04"
+      ],
+      "ff15": [
+        "ff01",
+        "ff10"
+      ],
+      "ff16": [
+        "ff05",
+        "ff25"
+      ],
+      "ff17": [
+        "ff02",
+        "ff22"
+      ],
+      "ff18": [
+        "ff07",
+        "ff19"
+      ],
+      "ff19": [
+        "ff10",
+        "ff18"
+      ],
+      "ff20": [
+        "ff08",
+        "ff07"
+      ],
+      "ff21": [
+        "ff25",
+        "ff05"
+      ],
+      "ff22": [
+        "ff17",
+        "ff11"
+      ],
+      "ff23": [
+        "ff01",
+        "ff15"
+      ],
+      "ff24": [
+        "ff12",
+        "ff13"
+      ],
+      "ff25": [
+        "ff16",
+        "ff21"
+      ]
+    }
+  }
 }
