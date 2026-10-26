@@ -1,0 +1,55 @@
+{
+  "n": 13,
+  "slug": "ffmpeg-autorotate",
+  "palette": "ember",
+  "title": "Does FFmpeg rotate my phone video?",
+  "fullTitle": "FFmpeg Already Rotates Phone Video. transpose Undoes It",
+  "kicker": "Episode 13",
+  "hero": {"scene": "transpose", "t": 6.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "A phone records a video sideways, and adds a note that says: turn this ninety degrees. Does FFmpeg follow the note when you convert the file? We build a test clip with that note, run five commands, and read each result two ways.",
+      "captions": ["Sideways pixels, plus a note: turn 90.", "Does FFmpeg follow the note?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Two readers",
+      "narration": "The source is a three twenty by one eighty test pattern. The pixels are sideways. Only a rotation tag says to turn it ninety degrees. We read each file two ways. ffprobe shows the stored size and the tag. And we decode the video and compare it with four reference pictures: as recorded, upright, upside down, and turned the other way.",
+      "captions": ["Stored 320x180. Tag: rotate 90.", "Two readers: ffprobe, and a decoded comparison."]
+    },
+    {
+      "id": "plain",
+      "chapter": "A plain command",
+      "narration": "A plain re-encode does the turning for you. The stored size becomes one eighty by three twenty, the tag is gone, and the picture is upright. Copying the streams keeps the sideways pixels and the tag, and the decoded picture is still upright.",
+      "captions": ["Re-encode: 180x320, no tag, upright.", "-c copy: sideways pixels plus tag, upright."]
+    },
+    {
+      "id": "transpose",
+      "chapter": "The trap",
+      "narration": "Now the trap. You add dash vf transpose one, to fix a sideways video. FFmpeg already turned it, so your filter turns it back. The stored size is three twenty by one eighty, there is no tag, and the decoded picture matches the sideways original. The fix undid the fix.",
+      "captions": ["-vf transpose=1 on top of autorotate.", "Result: no tag, sideways again."]
+    },
+    {
+      "id": "noauto",
+      "chapter": "Switching it off",
+      "narration": "Switch the automatic turning off with dash noautorotate, and the build matters. On ffmpeg six point one, the tag is carried along, and the picture is upright. On eight point one, the tag is dropped, and the video plays sideways.",
+      "captions": ["-noautorotate: 6.1.1 keeps the tag.", "8.1.2 drops it: plays sideways."]
+    },
+    {
+      "id": "manual",
+      "chapter": "Turning it by hand",
+      "narration": "Turn it by hand, with noautorotate and transpose two, and the same difference decides the result. On six point one, the old tag is carried along, so players turn it again, and the picture is upside down. On eight point one, the tag is dropped, and the picture is upright.",
+      "captions": ["By hand on 6.1.1: tag kept, upside down.", "By hand on 8.1.2: tag dropped, upright."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "sim": null,
+      "narration": "Let FFmpeg turn it, or copy the streams. Do not add transpose on top. If you switch autorotate off, check the tag on your build. Not tested: real phone files, other angles, other containers, and players.",
+      "captions": ["Let FFmpeg turn it. No transpose on top.", "Not tested: phone files, other angles, players."]
+    }
+  ]
+}

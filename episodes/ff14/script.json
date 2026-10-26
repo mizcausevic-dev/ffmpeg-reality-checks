@@ -1,0 +1,55 @@
+{
+  "n": 14,
+  "slug": "ffmpeg-gif-palette",
+  "palette": "ember",
+  "title": "Why does my FFmpeg GIF look bad?",
+  "fullTitle": "FFmpeg GIFs Look Worse Without palettegen",
+  "kicker": "Episode 14",
+  "hero": {"scene": "default", "t": 6.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "A GIF can only hold two hundred fifty six colors. FFmpeg's plain command makes one anyway, and it often looks muddy. How much worse is it, and what does a palette step cost? We make two synthetic clips and measure.",
+      "captions": ["A GIF holds 256 colors at most.", "How bad is the plain command?"]
+    },
+    {
+      "id": "source",
+      "chapter": "Two clips, three measures",
+      "narration": "Two test clips, three twenty by one eighty, twenty frames each. One is a smooth gradient, a fractal, with five thousand two hundred ninety nine colors. The other is flat shapes and text, with fifteen thousand one hundred twenty four. We compare each GIF with its lossless source three ways: PSNR, SSIM, and the count of colors the GIF really uses.",
+      "captions": ["Gradient: 5,299 colors. Shapes: 15,124.", "Measured: PSNR, SSIM, colors used."]
+    },
+    {
+      "id": "default",
+      "chapter": "The plain command",
+      "narration": "The plain command scores twenty one point six decibels PSNR on the gradient, and twenty eight point seven on the shapes. SSIM is zero point four, and zero point eight four. It uses only two hundred seven, and two hundred two, colors.",
+      "captions": ["Plain: PSNR 21.6 dB and 28.7 dB.", "SSIM 0.40 and 0.84. 207 and 202 colors."]
+    },
+    {
+      "id": "palette",
+      "chapter": "With palettegen",
+      "narration": "Add palettegen and paletteuse, and PSNR rises to thirty five point three, and thirty nine point seven. SSIM is zero point nine seven, and zero point nine eight. The GIF now uses two hundred fifty three, and two hundred fifty five, colors.",
+      "captions": ["Palette: PSNR 35.3 dB and 39.7 dB.", "SSIM 0.97 and 0.98. 253 and 255 colors."]
+    },
+    {
+      "id": "size",
+      "chapter": "What it costs",
+      "narration": "The cost is file size, but not always. On the gradient, the palette file is smaller: about four hundred sixty thousand bytes, against five hundred eighty four thousand. On the flat shapes it is larger: about one hundred twenty thousand against one hundred four thousand. The sizes differ by under one percent between the two builds.",
+      "captions": ["Gradient: 460k with palette, 584k plain.", "Shapes: 120k with palette, 104k plain."]
+    },
+    {
+      "id": "dither",
+      "chapter": "Dithering off",
+      "narration": "Turn dithering off with dither equals none, and the scores rise again: thirty six point two, and forty point seven decibels. The files shrink, to about three hundred ninety thousand, and one hundred three thousand bytes. The scores do not measure how banding looks to your eye. We did not test that.",
+      "captions": ["dither=none: PSNR 36.2 dB and 40.7 dB.", "Smaller files. Banding by eye: not tested."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "sim": null,
+      "narration": "For a GIF, build a palette from the clip. On both clips it gains at least eleven decibels. Our control, a four color palette, scores thirteen point eight and nine point seven, so the scores can fall. Not tested: real footage, other GIF tools, and how it looks on screen.",
+      "captions": ["Build a palette: +11 dB or more.", "Not tested: real footage, other tools, by eye."]
+    }
+  ]
+}
