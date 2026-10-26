@@ -1,0 +1,77 @@
+{
+  "n": 35,
+  "slug": "ffmpeg-hls-time-keyframes",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "My HLS segments are not the length I asked for: why?",
+  "fullTitle": "FFmpeg HLS Segments Follow Keyframes, Not the -hls_time You Set",
+  "kicker": "Episode 35",
+  "thumb": {
+    "number": "0 of 7",
+    "label": "SEGMENTS THAT ARE 3 S",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "cut",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You set dash h l s time to three, and the playlist comes back with segments of four seconds and two seconds. Not one is three. Why? The cutter works on keyframes, not seconds. We cut a synthetic clip and measure every segment.",
+      "captions": [
+        "-hls_time 3: segments of 4 s and 2 s.",
+        "Why is none of them 3 s?"
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Known keyframes, three readers",
+      "narration": "The clip is twenty seconds at twenty five frames a second: five hundred frames, with a keyframe every two seconds. We read each segment three ways: the playlist E X T I N F value, F F probe packets in the segment file, and a decode of the segment on its own.",
+      "captions": [
+        "500 frames, 20 s, keyframe every 2 s.",
+        "Readers: EXTINF, ffprobe packets, decode."
+      ]
+    },
+    {
+      "id": "cut",
+      "chapter": "Asked 3, got 4 and 2",
+      "narration": "Asked for three seconds, the playlist says four, two, four, two, four, two, two. F F probe and the decoder agree. Not one of seven segments is three. The cuts land at zero, four, six, ten, twelve, sixteen, eighteen. All keyframes. Five hundred of five hundred frames are kept.",
+      "captions": [
+        "EXTINF: 4 2 4 2 4 2 2. ffprobe agrees.",
+        "Cuts: 0, 4, 6, 10, 12, 16, 18 s."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "The rule",
+      "narration": "The rule: cut at the first keyframe after the last cut, and at or after n times the ask. It predicted every cut. Ask five seconds, get six, four, six, four. Ask one second, get ten segments of two. Nothing is lost. The lengths are just not yours.",
+      "captions": [
+        "Ask 5 s: 6 4 6 4. Ask 1 s: ten of 2 s.",
+        "500 of 500 frames in the segments."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "Force the keyframes",
+      "narration": "To get three seconds, put keyframes there. Dash force key frames with an expression gives three, three, three, three, three, three, two. A control with a seventy five frame G O P, equal to the ask, does the same. Dash c copy cannot fix it: it keeps the source keyframes, and gives four, two again.",
+      "captions": [
+        "-force_key_frames: 3 3 3 3 3 3 2.",
+        "-c copy: 4 2 4 2 4 2 2 again."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So dash h l s time is a minimum, snapped to the next keyframe. Match the G O P, or force the keyframes. Dash h l s flags split by time cuts near three seconds, but three of seven segments then start off a keyframe. Not tested: audio, other encoders, fragmented MP4, real footage, any player.",
+      "captions": [
+        "Match the GOP, or force keyframes.",
+        "Not tested: audio, real footage, players."
+      ]
+    }
+  ]
+}
