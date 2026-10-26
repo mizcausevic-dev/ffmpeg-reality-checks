@@ -1,0 +1,55 @@
+{
+  "n": 17,
+  "slug": "ffmpeg-color-matrix",
+  "palette": "ember",
+  "title": "Why do my FFmpeg video colors shift?",
+  "fullTitle": "FFmpeg's Default Output Is BT.601, With No Tag",
+  "kicker": "Episode 17",
+  "hero": {"scene": "default", "t": 6.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You turn an image into a video with FFmpeg, and in some players the colors look a little off. Pure green looks duller. Why? We encode four solid color patches four ways, and read each file back under three readings of the color matrix.",
+      "captions": ["Image to video. Colors look off.", "Four encodes, three readings."]
+    },
+    {
+      "id": "source",
+      "chapter": "Two readers",
+      "narration": "The source is a seven twenty p picture: pure red, pure green, pure blue, and mid gray. We read each file two ways. ffprobe shows the color matrix tag. And we decode the file to RGB, and read the value at the center of each patch.",
+      "captions": ["Source: red, green, blue, gray.", "Two readers: ffprobe tag, and decoded RGB."]
+    },
+    {
+      "id": "default",
+      "chapter": "The default output",
+      "narration": "A plain command writes no color matrix tag. The pixels were made with BT six oh one. Read as six oh one, every patch comes back within two levels. Read as BT seven oh nine, pure green falls from two fifty five to two fifteen, and red picks up a green channel of twenty three.",
+      "captions": ["No tag. Pixels made with BT.601.", "Read as BT.709: green 255 becomes 215."]
+    },
+    {
+      "id": "tagged",
+      "chapter": "Converted and tagged",
+      "narration": "Convert with BT seven oh nine, and write the tag, and the file reads right, within one level. Read as six oh one instead, errors reach twenty three. The tag is what lets a reader choose the right matrix.",
+      "captions": ["BT.709 pixels plus a BT.709 tag: right.", "Read as BT.601: off by up to 23."]
+    },
+    {
+      "id": "untagged",
+      "chapter": "Converted, no tag",
+      "narration": "Convert with BT seven oh nine, and write no tag. On ffmpeg six point one the file stays untagged, a reader that follows the file assumes six oh one, and every color is off, by up to twenty three. On eight point one, FFmpeg writes the BT seven oh nine tag for you, and the file reads right.",
+      "captions": ["6.1.1: no tag, read as 601, off by 23.", "8.1.2: FFmpeg writes the tag. Reads right."]
+    },
+    {
+      "id": "liar",
+      "chapter": "Only the label",
+      "narration": "Add dash colorspace bt seven oh nine to a plain RGB source. On six point one it only writes a label: the pixels stay six oh one, and the file reads wrong, off by forty. On eight point one it also changes the conversion, and the file reads right.",
+      "captions": ["6.1.1: -colorspace only labels. Off by 40.", "8.1.2: it also converts. Reads right."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Gray never moved. Only colors do. Check the tag and the matrix together. Not tested: real players, other color ranges, H D R, and ten bit video.",
+      "captions": ["Gray never moved. Colors do.", "Check the tag and the matrix together."]
+    }
+  ]
+}
