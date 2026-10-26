@@ -36,11 +36,19 @@ differs = {
     'ff45': 'Plain .mov trim: 50 frames with 25 repeats on 6.1.1, 25 frames with a 1 s gap on 8.1.2.',
     'ff46': 'mp4 audio -1 s: the edit list is the same, but the decoder returns 138752 samples on 8.1.2, so the decoded reader says -1.024 s (6.1.1: -1.000 s).',
     'ff49': 'Printed bit_rate sits up to 1.9 kbit/s above the packet average on 8.1.2 (under 1 on 6.1.1).',
+    'ff59': 'Default mp4 after select: 99 frames on 6.1.1, 4 frames on 8.1.2 (image files repeat on both).',
+    'ff64': '-fflags +shortest is refused on 8.1.2, and the copied-song and -shortest_buf_duration counts are not stable there.',
+    'ff65': 'aac output with apad and -shortest: the sample count differs by build.',
+    'ff68': 'mkv audio comes in blocks of 85 or 86 ms on 8.1.2 (42 or 43 ms on 6.1.1), so packet sums differ slightly.',
+    'ff73': 'A bare 12:30 in drawtext is refused with an error on 8.1.2; on 6.1.1 it draws a wrong frame and exits 0.',
+    'ff76': 'format=gray on a bt709 file keeps the file luma on 6.1.1 (red 55) and uses the 601 weights on 8.1.2 (red 76).',
 }
 # Films measured on 6.1.1 only (the first 25 films were not re-run on 8.1.2).
 BOTH_FROM = 26
 # Films whose build-dependent claims are asserted on 6.1.1 only; 8.1.2 ran the build-independent checks.
 PARTIAL = {'ff51','ff52','ff53','ff54','ff55','ff56','ff57'}
+# Films whose path grid needs file names Windows cannot hold: measured on 6.1.1 only.
+LINUX_ONLY = {'ff60'}
 
 films = []
 for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
@@ -68,7 +76,7 @@ for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
         'words': words,
         'tests': t.get('tests'),
         'tests_failed': t.get('fail'),
-        'builds': '6.1.1 (8.1.2 partly)' if code in PARTIAL else ('6.1.1 and 8.1.2' if n >= BOTH_FROM else '6.1.1'),
+        'builds': '6.1.1 (8.1.2 partly)' if code in PARTIAL else ('6.1.1 only (tests skip on Windows)' if code in LINUX_ONLY else None) or ('6.1.1 and 8.1.2' if n >= BOTH_FROM else '6.1.1'),
         'build_difference': 'yes' if code in differs else 'no',
         'build_note': differs.get(code, ''),
         'status': 'public' if st and st['privacy'] == 'public' else ('private' if st else 'in production'),
