@@ -7,7 +7,7 @@ import {have} from '../../../tools/ff.mjs';
 if (!have('ffmpeg') || !have('ffprobe')) { console.error('ffmpeg and ffprobe must be on PATH'); process.exit(1); }
 const dir = path.resolve(process.argv[2] ?? 'out/ff31');
 const ev = runExperiment(dir);
-console.log(ev.ffmpeg + '\n');
+console.log(ev.ffmpeg + `   [build: ${ev.build}]\n`);
 console.log(`source: lavfi testsrc2 ${ev.source.width}x${ev.source.height}, ${ev.source.fps} fps, ${ev.source.seconds} s = ${ev.source.frames} frames, ${ev.source.encoder}\n`);
 for (const [k, f] of Object.entries(ev.files)) {
   console.log(`${k.padEnd(8)} ${f.command}`);
@@ -18,6 +18,9 @@ for (const [k, f] of Object.entries(ev.files)) {
   console.log(`         ${f.bytes} bytes   packet md5 ${f.packetMd5.slice(0, 12)}   frame hash ${f.decoded.sha.slice(0, 12)} (${f.decoded.frames} frames)` + (b ? `   sample sha ${b.sampleSha.slice(0, 12)}` : ''));
 }
 console.log('\nbyte level differences between files of the same length:');
-for (const [k, d] of Object.entries(ev.diffs)) console.log(`  ${k.padEnd(10)} ${d.sameLength ? `${d.count} bytes differ, all inside the sample entry: ${d.insideSampleEntry}, at ${d.offsets.join(', ')}` : 'different length'}`);
+for (const [k, d] of Object.entries(ev.diffs)) {
+  console.log(`  ${k.padEnd(10)} ${d.sameLength ? `${d.count} bytes differ, all inside the sample entry: ${d.insideSampleEntry}, at ${d.offsets.join(', ')}` : 'different length'}`);
+  for (const w of d.where ?? []) console.log(`             ${w.offset}: ${w.from.path} -> ${w.from.field}; ${w.from.hex} becomes ${w.to.hex}; context "${w.from.ascii}" becomes "${w.to.ascii}"`);
+}
 fs.writeFileSync(path.join(dir, 'evidence.json'), JSON.stringify(ev, null, 2));
 console.log(`\nEvidence written to ${path.join(dir, 'evidence.json')}`);

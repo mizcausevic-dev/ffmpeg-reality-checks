@@ -4,7 +4,7 @@ import {ep} from '../../kit/anim';
 import {Cmd, Duel, Figure, Halo, Head, Mid, Row, Verdict} from '../../kit/Sym';
 import type {SceneProps} from '../../kit/Episode';
 
-/* Every number below is measured by episodes/ff31/fixture/experiment.mjs (see evidence.json from fixture/run.mjs). ffmpeg 6.1.1, libx265, 50 synthetic frames. */
+/* Every number below is measured by episodes/ff31/fixture/experiment.mjs (see evidence.json from fixture/run.mjs). libx265, 50 synthetic frames. Byte counts are per build: 6.1.1 measured here, 8.1.2 measured on the PC. */
 
 /* 1. The ask */
 const Ask: React.FC<SceneProps> = ({t}) => (
@@ -52,27 +52,27 @@ const Default: React.FC<SceneProps> = ({t}) => (
 /* 4. Retag without re-encoding */
 const Retag: React.FC<SceneProps> = ({t}) => (
   <>
-    <Head over="Stream copy, new tag" title="Two bytes change." color={C.green} o={ep(t, 0.2, 0.8)} />
-    <Figure y={290} value="2 of 29532" caption="bytes differ: hev1 becomes hvc1" color={C.green} size={170} o={ep(t, 0.9, 1.7)} />
+    <Head over="Stream copy, new tag" title="Zero frames change." color={C.green} o={ep(t, 0.2, 0.8)} />
+    <Figure y={290} value="0 of 50" caption="decoded frames changed by the retag" color={C.green} size={190} o={ep(t, 0.9, 1.7)} />
     <Row y={600} h={190} cw={420} gap={28} valueSize={48} items={[
       {label: 'Packets · 50', value: 'same md5', sub: 'before and after', color: C.green, o: ep(t, 3.0, 3.6)},
       {label: 'Raw samples', value: 'same hash', sub: 'read from mdat', color: C.green, o: ep(t, 3.8, 4.4)},
       {label: 'Decoded frames', value: 'same hash', sub: '50 of 50', color: C.green, o: ep(t, 4.6, 5.2)},
     ]} />
-    <Mid y={830} size={28} color={C.mute} o={ep(t, 5.8, 6.4)}>Both readers say hvc1. Retag back to hev1: 2 bytes again.</Mid>
+    <Mid y={830} size={28} color={C.mute} o={ep(t, 5.8, 6.4)}>Both readers say hvc1. Against a plain copy, every differing byte is inside the sample entry.</Mid>
   </>
 );
 
-/* 5. Two details */
-const Extra: React.FC<SceneProps> = ({t}) => (
+/* 5. Size depends on the build */
+const Size: React.FC<SceneProps> = ({t}) => (
   <>
-    <Head over="Two details" title="More than a name." color={C.amber} o={ep(t, 0.2, 0.8)} />
-    <Duel y={290} h={300}
-      left={{label: 'Retag by copy', value: '2 bytes', sub: 'parameter set arrays: flags 0 0 0', color: C.cyan, o: ep(t, 0.9, 1.6), valueSize: 100}}
-      right={{label: 'Encoded with the tag', value: '5 bytes', sub: 'VPS, SPS, PPS arrays: flags 1 1 1', color: C.amber, o: ep(t, 2.4, 3.1), valueSize: 100}}
+    <Head over="Bytes that change · by build" title="The label's size is the build's." color={C.amber} o={ep(t, 0.2, 0.8)} />
+    <Duel y={290} h={320}
+      left={{label: 'ffmpeg 6.1.1', value: '2 bytes', sub: 'retag vs plain copy: the FourCC\nplain copy vs encode: 0 bytes', color: C.cyan, o: ep(t, 0.9, 1.6), valueSize: 100}}
+      right={{label: 'ffmpeg 8.1.2', value: '5 bytes', sub: 'retag vs plain copy: FourCC + 3 flags\nplain copy vs encode: 3 bytes', color: C.amber, o: ep(t, 2.4, 3.1), valueSize: 100}}
       mid="vs" midO={ep(t, 2.0, 2.6)} />
-    <Mid y={650} size={30} color={C.dim} o={ep(t, 4.2, 4.8)}>Stream with parameter sets inside its first sample, then retagged to hvc1: they are still there.</Mid>
-    <Verdict y={750} text="The retag renames. It checks nothing." color={C.red} o={ep(t, 5.6, 6.4)} size={34} />
+    <Mid y={670} size={30} color={C.dim} o={ep(t, 4.4, 5.0)}>Both builds: packets, samples and frames hash the same.</Mid>
+    <Verdict y={760} text="The picture never changes. The label size does." color={C.red} o={ep(t, 5.6, 6.4)} size={34} />
   </>
 );
 
@@ -80,14 +80,14 @@ const Extra: React.FC<SceneProps> = ({t}) => (
 const Close: React.FC<SceneProps> = ({t}) => (
   <>
     <Halo y={470} color={C.cyan} o={ep(t, 0, 1.2)} />
-    <Head over="What to check" title="Read the sample entry." color={C.cyan} o={ep(t, 0.2, 0.9)} />
+    <Head over="What to check" title="A label, not a check." color={C.cyan} o={ep(t, 0.2, 0.9)} />
     <Duel y={290} h={260}
-      left={{label: 'mp4 and mov', value: 'stsd FourCC', sub: 'hev1 or hvc1', color: C.green, o: ep(t, 1.4, 2.1), valueSize: 64}}
-      right={{label: 'mkv', value: 'no FourCC', sub: 'CodecID V_MPEGH/ISO/HEVC', color: C.amber, o: ep(t, 2.0, 2.7), valueSize: 64}}
-      mid="or" midO={ep(t, 2.4, 3.0)} />
-    <Mid y={610} size={28} color={C.mute} o={ep(t, 3.4, 4.0)}>Not tested: any Apple player, other ffmpeg builds, other encoders, hardware encoders, real footage.</Mid>
+      left={{label: 'Parameter sets in the samples', value: '1 sample', sub: 'still holds VPS, SPS, PPS after the retag', color: C.amber, o: ep(t, 1.4, 2.1), valueSize: 80}}
+      right={{label: 'mkv', value: 'no FourCC', sub: 'CodecID V_MPEGH/ISO/HEVC', color: C.green, o: ep(t, 2.0, 2.7), valueSize: 64}}
+      mid="" midO={0} />
+    <Mid y={610} size={28} color={C.mute} o={ep(t, 3.4, 4.0)}>Not tested: any Apple player, other builds, other encoders, hardware encoders, real footage.</Mid>
     <Mid y={700} size={30} color={C.dim} o={ep(t, 4.0, 4.6)}>FFmpeg Reality Checks · episode 31 · fixture and tests in the description</Mid>
   </>
 );
 
-export const scenes: Record<string, React.FC<SceneProps>> = {ask: Ask, source: Source, writes: Default, retag: Retag, extra: Extra, close: Close};
+export const scenes: Record<string, React.FC<SceneProps>> = {ask: Ask, source: Source, writes: Default, retag: Retag, size: Size, close: Close};

@@ -1,4 +1,4 @@
-# FF31 distribution kit: FFmpeg HEVC in MP4: -tag:v hvc1 Changes 2 Bytes, Not the Video
+# FF31 distribution kit: FFmpeg HEVC in MP4: -tag:v hvc1 Retags Without Touching a Frame
 
 All numbers below come from the synthetic fixture in `episodes/ff31/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2.
 
@@ -6,7 +6,7 @@ All numbers below come from the synthetic fixture in `episodes/ff31/fixture/` (e
 
 ### Title options (≤ 60 chars), ranked
 
-1. `FFmpeg HEVC in MP4: -tag:v hvc1 Changes 2 Bytes` : the measured finding.
+1. `FFmpeg -tag:v hvc1: Retag HEVC, Zero Frames Change` : the measured finding.
 2. `HEVC in MP4 Won't Play on iPhone: hvc1 vs hev1` : the question people ask.
 3. `FFmpeg libx265 Writes hev1 by Default: Fix With hvc1` : the default.
 4. `ffmpeg -c copy -tag:v hvc1: Retag HEVC Without Re-encoding` : the fix.
@@ -15,19 +15,21 @@ All numbers below come from the synthetic fixture in `episodes/ff31/fixture/` (e
 
 HEVC in MP4 will not play on an iPhone or in Safari. The usual advice: ffmpeg writes the hev1 sample entry by default, Apple players want hvc1, so add -tag:v hvc1. We measure what ffmpeg writes and what the flag changes. We did not test any Apple player.
 
-Source (lavfi testsrc2): 2 s, 128x96, 25 fps, 50 frames, encoded with libx265 (ultrafast).
+Source (lavfi testsrc2): 2 s, 128x96, 25 fps, 50 frames, encoded with libx265 (ultrafast). Every number below is from the fixture; byte counts belong to the build named next to them.
 
 Readers: (1) ffprobe codec_tag_string and codec_tag; (2) a raw MP4 box parse in Node that reads the sample entry FourCC in stsd and whether an hvcC box is inside it; (3) the stream: packet md5, decoded frame md5, and a hash of the raw samples read from mdat. Control: files written with each tag, and a retag in each direction, so every reader is shown to see both hev1 and hvc1.
 
-Default, no tag: hev1 on both tag readers, with an hvcC box. A stream copy to mov, and from mkv to mp4, also give hev1. -tag:v hev1 gives byte for byte the same file as the default (0 bytes differ).
+On both builds, default, no tag: hev1 on both tag readers, with an hvcC box. A stream copy to mov, and from mkv to mp4, also give hev1. -tag:v hev1 gives byte for byte the same file as the default (0 bytes differ).
 
--c copy -tag:v hvc1: both readers say hvc1. The 50 packets, the raw samples and the decoded frames hash the same as the default file. Of 29532 bytes, 2 differ (hev1 becomes hvc1), all inside the sample entry. Retag back to hev1: 2 bytes again.
+On both builds, -c copy -tag:v hvc1: both readers say hvc1. The 50 packets, the raw samples and the 50 decoded frames hash the same as the default file: 0 of 50 frames change. Compared with a plain stream copy, every byte that differs is inside the sample entry.
 
-Encoding with -tag:v hvc1 directly differs from the default file in 5 bytes: the 2 tag bytes and the 3 flags that mark the VPS, SPS and PPS arrays in hvcC complete (1 instead of 0). The copy leaves them at 0. A stream encoded with repeat-headers=1 holds VPS, SPS and PPS in its first sample; after -c copy -tag:v hvc1 they are still there, and the label says hvc1. The retag renames, it does not check.
+How many bytes change depends on the build. ffmpeg 6.1.1 (file 29532 bytes): the retag rewrites 2 bytes (the FourCC, hev1 to hvc1), a plain copy differs from the encode in 0 bytes, an encode with -tag:v hvc1 differs from the default in 5 bytes (the 2 FourCC bytes and the 3 completeness flags on the VPS, SPS and PPS arrays in hvcC). ffmpeg 8.1.2 (file 30541 bytes): the retag also sets those 3 flags, so 5 bytes against a plain copy; a plain copy already differs from the encode in 3 bytes outside the sample entry, so 8 bytes against the encode. File sizes depend on the libx265 build.
+
+A stream encoded with repeat-headers=1 holds VPS, SPS and PPS in its first sample; after -c copy -tag:v hvc1 they are still there, and the label says hvc1. The retag renames, it does not check.
 
 Matroska has no such tag: ffprobe shows no hev1 or hvc1, and the header holds the CodecID V_MPEGH/ISO/HEVC.
 
-The 13 tests pass on ffmpeg 6.1.1.
+The 15 tests pass on ffmpeg 6.1.1.
 
 Chapters
 <!-- chapters:start -->
@@ -35,8 +37,8 @@ Chapters
 00:23 Three readers, one control
 00:50 What ffmpeg writes
 01:14 Retag without re-encoding
-01:34 Two details
-01:56 What to check
+01:34 Size depends on the build
+01:54 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 50 frame clip, libx265 ultrafast, ffmpeg 6.1.1. Not tested: any Apple player (iPhone, Safari, QuickTime), other ffmpeg builds, other encoders, hardware encoders, fragmented MP4, HLS, real footage.
@@ -53,4 +55,4 @@ ffmpeg, ffmpeg tutorial, hevc, h265, libx265, hvc1, hev1, mp4, safari, iphone, f
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic 50 frame clip, libx265. ffmpeg writes hev1 by default. -c copy -tag:v hvc1 changes 2 of 29532 bytes; packets, samples and frames hash the same. No Apple player tested. github.com/mizcausevic-dev/ffmpeg-reality-checks. Do your HEVC files say hev1 or hvc1?
+Synthetic 50 frame clip, libx265. ffmpeg writes hev1 by default. -c copy -tag:v hvc1 changes 0 of 50 frames; packets, samples and frames hash the same. The byte count depends on the build (2 on 6.1.1, 5 on 8.1.2). No Apple player tested. github.com/mizcausevic-dev/ffmpeg-reality-checks

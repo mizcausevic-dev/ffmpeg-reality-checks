@@ -30,6 +30,7 @@ export const CASES = {
   repvc:   {file: 'repvc.mp4',   command: 'ffmpeg -i rep.mp4 -c copy -tag:v hvc1 out.mp4',                from: 'rep', args: ['-c', 'copy', '-tag:v', 'hvc1']},
 };
 
+export const buildOf = (versionLine) => (/version 6\./.test(versionLine) ? 'v6' : /version 8\./.test(versionLine) ? 'v8' : 'other');
 const ff = (args, cwd) => { const r = spawnSync('ffmpeg', ['-v', 'error', '-y', ...args], {encoding: 'utf8', cwd, maxBuffer: 1 << 26}); if (r.status !== 0) throw new Error(`ffmpeg failed: ${r.stderr}`); };
 const sha = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 
@@ -112,6 +113,50 @@ export function parseMp4(buf) {
   return out;
 }
 
+
+// ---- where does a byte live? Walks the box tree and names the deepest box and, for a few boxes, the field. ----------------
+const CONTAINERS = new Set(['moov', 'trak', 'mdia', 'minf', 'stbl', 'edts', 'dinf', 'udta', 'ilst']);
+const hex2 = (b) => b.toString(16).padStart(2, '0');
+export function locate(buf, off) {
+  const trail = [];
+  let lo = 0, hi = buf.length, leaf = null;
+  for (let depth = 0; depth < 12; depth++) {
+    let hit = null;
+    for (const b of boxes(buf, lo, hi)) if (off >= b.start && off < b.end) { hit = b; break; }
+    if (!hit) break;
+    trail.push(hit.type); leaf = hit;
+    if (hit.type === 'meta') { lo = hit.start + hit.hdr + 4; hi = hit.end; }
+    else if (hit.type === 'stsd') {
+      const e = [...boxes(buf, hit.start + hit.hdr + 8, hit.end)][0];
+      if (e && off >= e.start && off < e.end) {
+        trail.push(e.type); leaf = e;
+        const kid = [...boxes(buf, e.start + 8 + 8 + 70, e.end)].find((k) => off >= k.start && off < k.end);
+        if (kid) { trail.push(kid.type); leaf = kid; }
+      }
+      break;
+    } else if (CONTAINERS.has(hit.type)) { lo = hit.start + hit.hdr; hi = hit.end; }
+    else break;
+  }
+  const rel = off - leaf.start, ver = buf[leaf.start + leaf.hdr];
+  let field = `byte ${rel} of the box`;
+  const t = leaf.type;
+  if (t === 'hev1' || t === 'hvc1') field = rel >= 4 && rel < 8 ? `sample entry FourCC, byte ${rel - 4}` : field;
+  else if (t === 'hvcC') {
+    const p = leaf.start + leaf.hdr; let q = p + 23; field = 'hvcC header';
+    for (let i = 0; i < buf[p + 22]; i++) {
+      const n = buf.readUInt16BE(q + 1);
+      if (off === q) field = `array ${i} header (completeness bit 7, NAL type in bits 0-5)`;
+      q += 3; for (let j = 0; j < n; j++) q += 2 + buf.readUInt16BE(q);
+    }
+  }
+  else if (t === 'mvhd' || t === 'mdhd') field = ver === 0 ? ({12: 'creation_time', 16: 'modification_time', 20: 'timescale', 24: 'duration'}[rel - (rel % 4)] ?? field) + ` (version 0, byte ${rel % 4})` : field;
+  else if (t === 'tkhd') field = ver === 0 ? ({12: 'creation_time', 16: 'modification_time', 20: 'track_id', 28: 'duration'}[rel - (rel % 4)] ?? field) + ` (version 0, byte ${rel % 4})` : field;
+  else if (t === 'data' && trail.includes('ilst')) field = 'metadata value text';
+  const a = Math.max(0, off - 8), z = Math.min(buf.length, off + 9);
+  const ctx = (b) => [...b.subarray(a, z)].map((c) => (c >= 32 && c < 127 ? String.fromCharCode(c) : '.')).join('');
+  return {path: trail.join('/'), box: t, boxStart: leaf.start, boxEnd: leaf.end, field, ascii: ctx(buf), hex: hex2(buf[off])};
+}
+
 // ---- reader 3: the stream -----------------------------------------------------------------------------------------------
 export const packetMd5 = (file) => run('ffmpeg', ['-v', 'error', '-i', file, '-map', '0:v:0', '-c', 'copy', '-f', 'md5', '-']).trim().replace(/^MD5=/, '');
 export const frameHash = (file) => {
@@ -142,18 +187,18 @@ export function readFile(file) {
 
 export function runExperiment(dir) {
   fs.mkdirSync(dir, {recursive: true});
-  const out = {ffmpeg: ffmpegVersion(), source: {width: 128, height: 96, fps: 25, seconds: 2, frames: 50, encoder: 'libx265 ultrafast'}, files: {}, diffs: {}};
+  const out = {ffmpeg: ffmpegVersion(), build: buildOf(ffmpegVersion()), source: {width: 128, height: 96, fps: 25, seconds: 2, frames: 50, encoder: 'libx265 ultrafast'}, files: {}, diffs: {}};
   for (const [name, c] of Object.entries(CASES)) {
     const input = c.from ? [...['-i', CASES[c.from].file]] : SRC;
     ff([...input, ...c.args, c.file], dir);
     out.files[name] = {command: c.command, file: c.file, ...readFile(path.join(dir, c.file))};
   }
   // byte level comparison of pairs that have the same length
-  const pairs = {'def:remux': ['def', 'remux'], 'def:hev': ['def', 'hev'], 'def:hvc': ['def', 'hvc'], 'def:copy': ['def', 'copy'], 'def:back': ['def', 'back'], 'hvc:back': ['hvc', 'back'], 'rep:repvc': ['rep', 'repvc']};
+  const pairs = {'def:remux': ['def', 'remux'], 'def:hev': ['def', 'hev'], 'def:hvc': ['def', 'hvc'], 'def:copy': ['def', 'copy'], 'def:back': ['def', 'back'], 'hvc:back': ['hvc', 'back'], 'rep:repvc': ['rep', 'repvc'], 'copy:remux': ['copy', 'remux'], 'copy:hvc': ['copy', 'hvc']};
   for (const [k, [a, b]] of Object.entries(pairs)) {
     const A = fs.readFileSync(path.join(dir, CASES[a].file)), B = fs.readFileSync(path.join(dir, CASES[b].file));
     const d = diffOffsets(A, B), box = out.files[a].box;
-    out.diffs[k] = d == null ? {sameLength: false} : {sameLength: true, count: d.length, insideSampleEntry: d.every((o) => o >= box.entryRange[0] && o < box.entryRange[1]), offsets: d.slice(0, 12)};
+    out.diffs[k] = d == null ? {sameLength: false} : {sameLength: true, count: d.length, insideSampleEntry: d.every((o) => o >= box.entryRange[0] && o < box.entryRange[1]), offsets: d.slice(0, 12), where: d.slice(0, 12).map((o) => ({offset: o, from: locate(A, o), to: {hex: hex2(B[o]), ascii: locate(B, o).ascii}}))};
   }
   return out;
 }

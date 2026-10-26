@@ -4,12 +4,12 @@
   "palette": "lab",
   "series": "FFmpeg Reality Checks",
   "title": "HEVC in MP4: why won't it play on my iPhone / Safari? (hvc1 vs hev1)",
-  "fullTitle": "FFmpeg HEVC in MP4: -tag:v hvc1 Changes 2 Bytes, Not the Video",
+  "fullTitle": "FFmpeg HEVC in MP4: -tag:v hvc1 Retags Without Touching a Frame",
   "kicker": "Episode 31",
   "thumb": {
-    "number": "2 bytes",
-    "label": "THE WHOLE HVC1 FIX",
-    "color": "amber"
+    "number": "0 of 50",
+    "label": "FRAMES CHANGED BY THE RETAG",
+    "color": "green"
   },
   "endCard": {},
   "hero": {
@@ -48,28 +48,28 @@
     {
       "id": "retag",
       "chapter": "Retag without re-encoding",
-      "narration": "Now dash c copy, dash tag colon v, h v c one. Both readers say h v c one. Packets, raw samples and decoded frames hash the same. Of twenty nine thousand five hundred thirty two bytes, two change: e v becomes v c. Retag back, and two bytes change again.",
+      "narration": "Now dash c copy, dash tag colon v, h v c one. Both readers say h v c one. The packets, the raw samples and the decoded frames all hash the same. Zero of fifty frames change. Against a plain copy, every byte that differs is inside the sample entry.",
       "captions": [
-        "-c copy -tag:v hvc1: 2 of 29532 bytes.",
-        "Packets, samples, frames: identical."
+        "-c copy -tag:v hvc1: 0 of 50 frames change.",
+        "Packets, samples, frames: same hash."
       ]
     },
     {
-      "id": "extra",
-      "chapter": "Two details",
-      "narration": "Two details. Encoding as h v c one changes three more bytes than the copy: flags marking the V P S, S P S and P P S arrays complete. The copy leaves them at zero. And parameter sets inside the samples stay there under the new label. The retag renames. It checks nothing.",
+      "id": "size",
+      "chapter": "Size depends on the build",
+      "narration": "How big is the label change? It depends on the build. On ffmpeg six point one point one, the retag rewrites two bytes. On eight point one point two, it also sets the parameter set flags: five bytes. A plain copy changes none on six, and three bytes elsewhere on eight.",
       "captions": [
-        "Encoded as hvc1: 5 bytes. Retag: 2 bytes.",
-        "Retag does not check the stream."
+        "6.1.1: 2 bytes. 8.1.2: 5 bytes.",
+        "Plain copy vs encode: 0 and 3 bytes."
       ]
     },
     {
       "id": "close",
       "chapter": "What to check",
       "sim": null,
-      "narration": "To check a file, read the sample entry, not the extension. Matroska has no such tag, only a codec I D. Not tested: any Apple player, other ffmpeg builds, other encoders, hardware encoders, real footage.",
+      "narration": "So the tag is a label. A stream with parameter sets inside its first sample keeps them under h v c one: the retag checks nothing. Matroska has no such tag. Not tested: any Apple player, other builds, other encoders, hardware encoders, real footage.",
       "captions": [
-        "Check the stsd FourCC, not the extension.",
+        "Retag renames. It checks nothing.",
         "Not tested: Apple players, real footage."
       ]
     }

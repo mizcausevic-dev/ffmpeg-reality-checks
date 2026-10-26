@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {have} from '../../../tools/ff.mjs';
-import {runExperiment} from '../fixture/experiment.mjs';
+import {runExperiment, buildOf, locate} from '../fixture/experiment.mjs';
 
 const hasX265 = () => (spawnSync('ffmpeg', ['-hide_banner', '-encoders'], {encoding: 'utf8'}).stdout ?? '').includes('libx265');
 const ok = have('ffmpeg') && have('ffprobe') && hasX265();
@@ -13,6 +13,9 @@ let ev;
 before(() => { if (ok) ev = runExperiment(fs.mkdtempSync(path.join(os.tmpdir(), 'frc-ff31-'))); });
 const t = (name, fn) => test(name, {skip: ok ? false : 'ffmpeg, ffprobe or libx265 not available'}, fn);
 const F = (k) => ev.files[k];
+// The tag, the stream identity and the sample entry hold on every build. The exact number of bytes that change is a property of the muxer, so it is asserted per build
+// (measured on 6.1.1 here and on 8.1.2 on the PC). On any other build only the build-independent facts are asserted.
+const B = () => ev.build;
 const MP4 = ['def', 'hev', 'hvc', 'remux', 'back', 'copy', 'mov', 'mkv2mp4', 'rep', 'repvc'];
 
 t('every file decodes to the same 50 frames (same frame hash), so no file below differs in its picture', () => {
@@ -54,23 +57,41 @@ t('the two tag readers agree on every mp4 and mov file, and the ffprobe numeric 
   }
 });
 
-t('-c copy -tag:v hvc1 changes only the tag: same 50 packets (packet md5), same raw samples (hash read from mdat), same decoded frames', () => {
+t('build label comes from the version line (v6, v8 or other)', () => {
+  assert.equal(buildOf(ev.ffmpeg), ev.build);
+});
+
+t('-c copy -tag:v hvc1 never touches the picture, on every build: same 50 packets (packet md5), same raw samples (hash read from mdat), same decoded frames, same file length', () => {
   const r = F('remux'), d = F('def');
   assert.equal(r.packetMd5, d.packetMd5); assert.equal(r.box.sampleSha, d.box.sampleSha); assert.equal(r.decoded.sha, d.decoded.sha);
   assert.equal(r.box.samples, 50); assert.equal(r.bytes, d.bytes);
-  assert.equal(F('copy').packetMd5, d.packetMd5);
+  assert.equal(F('copy').packetMd5, d.packetMd5); assert.equal(F('copy').box.sampleSha, d.box.sampleSha);
 });
 
-t('every byte that differs between the default file and the retagged copy lies inside the sample entry; a copy with no tag differs in none', () => {
+t('compared with a plain stream copy, the retagged copy differs only inside the sample entry (stsd), on every build, and the FourCC bytes are among them', () => {
+  const w = ev.diffs['copy:remux'];
+  assert.ok(w.sameLength); assert.ok(w.count >= 2); assert.ok(w.insideSampleEntry);
+  assert.ok(w.where.some((x) => x.from.field.startsWith('sample entry FourCC')));
+  assert.ok(w.where.every((x) => /stsd\/hev1/.test(x.from.path)));
+});
+
+t('the locator is itself proven by the known bytes: the FourCC offsets resolve to moov/trak/mdia/minf/stbl/stsd/hev1 and the retag back resolves to .../hvc1', () => {
+  const a = ev.diffs['def:remux'].where[0], b = ev.diffs['hvc:back'].where[0];
+  assert.equal(a.from.path, 'moov/trak/mdia/minf/stbl/stsd/hev1'); assert.match(a.from.field, /FourCC/);
+  assert.equal(b.from.path, 'moov/trak/mdia/minf/stbl/stsd/hvc1');
+});
+
+t('how many bytes the retag rewrites depends on the build. 6.x: 2 (the FourCC), plain copy 0. 8.x: plain copy already differs from the encode in 3 bytes outside the sample entry, the retag adds 5 (FourCC and 3 flags) on top, 8 in all. Other builds: only that some bytes differ', () => {
   const d = ev.diffs;
-  assert.ok(d['def:remux'].sameLength); assert.ok(d['def:remux'].insideSampleEntry); assert.ok(d['def:remux'].count > 0);
-  assert.equal(d['def:copy'].count, 0);
-  assert.ok(d['def:remux'].offsets.length <= 12);
-});
-
-t('on 6.1.1 the retag from hev1 to hvc1 rewrites exactly 2 bytes of the file ("e" to "v" and "v" to "c"), and the retag back also rewrites 2', () => {
-  assert.equal(ev.diffs['def:remux'].count, 2); assert.equal(ev.diffs['hvc:back'].count, 2);
-  const [a, b] = ev.diffs['def:remux'].offsets; assert.equal(b - a, 1);
+  assert.ok(d['def:remux'].count > 0);
+  if (B() === 'v6') {
+    assert.equal(d['def:remux'].count, 2); assert.equal(d['hvc:back'].count, 2); assert.equal(d['def:copy'].count, 0); assert.equal(d['copy:remux'].count, 2);
+    assert.ok(d['def:remux'].insideSampleEntry);
+    const [a, b] = d['def:remux'].offsets; assert.equal(b - a, 1);
+  } else if (B() === 'v8') {
+    assert.equal(d['def:copy'].count, 3); assert.equal(d['def:remux'].count, 8); assert.equal(d['hvc:back'].count, 8); assert.equal(d['copy:remux'].count, 5);
+    assert.equal(d['def:copy'].insideSampleEntry, false);
+  }
 });
 
 t('the hvcC box lists the VPS, SPS and PPS (nal types 32, 33, 34) and the samples carry none of them in band', () => {
@@ -82,9 +103,13 @@ t('the hvcC box lists the VPS, SPS and PPS (nal types 32, 33, 34) and the sample
   }
 });
 
-t('a native hvc1 mux marks the VPS, SPS and PPS arrays complete (flag 1), while the default hev1 and the retagged copy leave them 0', () => {
+t('a native hvc1 encode marks the VPS, SPS and PPS arrays complete (flag 1) and the default hev1 leaves them 0, on every build; whether a retag by copy sets them depends on the build (6.x: stays 0, 8.x: 1)', () => {
   const flag = (k, type) => F(k).box.arrays.find((a) => a.type === type).complete;
-  for (const type of [32, 33, 34]) { assert.equal(flag('hvc', type), 1); assert.equal(flag('def', type), 0); assert.equal(flag('remux', type), 0); }
+  for (const type of [32, 33, 34]) {
+    assert.equal(flag('hvc', type), 1); assert.equal(flag('def', type), 0); assert.equal(flag('hev', type), 0);
+    if (B() === 'v6') assert.equal(flag('remux', type), 0);
+    if (B() === 'v8') assert.equal(flag('remux', type), 1);
+  }
   assert.equal(ev.diffs['def:hvc'].count, 5);
 });
 
@@ -94,7 +119,7 @@ t('a stream that carries parameter sets in band keeps them under a hvc1 retag: t
   assert.deepEqual(r.box.firstSampleNals.filter((x) => x >= 32 && x <= 34), [32, 33, 34]);
   assert.equal(v.box.fourcc, 'hvc1'); assert.equal(v.box.samplesWithParamSets, r.box.samplesWithParamSets);
   assert.equal(v.box.sampleSha, r.box.sampleSha); assert.equal(v.packetMd5, r.packetMd5);
-  assert.ok(ev.diffs['rep:repvc'].insideSampleEntry);
+  assert.ok(ev.diffs['rep:repvc'].where.some((x) => /FourCC/.test(x.from.field)));
 });
 
 t('matroska has no such tag: ffprobe reports neither hev1 nor hvc1, the header holds the CodecID V_MPEGH/ISO/HEVC and neither FourCC', () => {
