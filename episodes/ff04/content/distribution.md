@@ -27,11 +27,11 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:18 The test
-00:37 Quality
-01:00 Size
-01:20 Time
-01:35 What the wiki says
-01:55 Measure your own
+00:35 Quality
+00:58 Size
+01:18 Time
+01:32 What the wiki says
+01:52 Measure your own
 <!-- chapters:end -->
 
 Limits: two synthetic clips, two ffmpeg builds, software x264 only. Not tested: real footage, other x264 versions, hardware encoders. Times come from two different machines, so compare ratios, not seconds.

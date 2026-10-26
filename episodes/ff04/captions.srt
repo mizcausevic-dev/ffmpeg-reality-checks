@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:08,200
+Same CRF. Slower preset.
+
+2
+00:00:08,200 --> 00:00:17,690
+Better? Measure size and quality.
+
+3
+00:00:17,690 --> 00:00:24,750
+2 synthetic clips, 10 s each.
+
+4
+00:00:24,750 --> 00:00:35,330
+8 presets, CRF 23, SSIM against a lossless copy.
+
+5
+00:00:35,330 --> 00:00:46,810
+Test pattern: 0.9936 to 0.9972.
+
+6
+00:00:46,810 --> 00:00:58,300
+Mandelbrot: about 0.982 to 0.989.
+
+7
+00:00:58,300 --> 00:01:08,360
+ultrafast 2.2 MB, then veryfast 835 kB.
+
+8
+00:01:08,360 --> 00:01:18,420
+Then it rises. Only slower beats veryfast.
+
+9
+00:01:18,420 --> 00:01:27,570
+slower took 5 to 6 times as long as ultrafast.
+
+10
+00:01:27,570 --> 00:01:32,150
+Mandelbrot: veryfast smaller than medium.
+
+11
+00:01:32,150 --> 00:01:40,250
+Held: ultrafast to veryfast, medium to slower.
+
+12
+00:01:40,250 --> 00:01:51,830
+Not at every step. Two clips are not your footage.
+
+13
+00:01:51,830 --> 00:01:58,870
+Same CRF holds quality. Presets trade time for size.
+
+14
+00:01:58,870 --> 00:02:03,560
+Not tested: other content, hardware encoders.
