@@ -36,7 +36,7 @@ Chapters
 01:43 What to check
 <!-- chapters:end -->
 
-Limits: one synthetic clip, ALAC audio and lossless H.264 picture, mp4 and mkv muxers of ffmpeg 6.1.1, two inputs. Not tested: ffmpeg builds other than 6.1.1 (8.1.2 pending), players and editors (what they do with an edit list), uploads and re-muxes, AAC and its priming delay, other codecs and containers, subtitles, -itsoffset with re-encoding, -ss and -itsoffset together.
+Limits: one synthetic clip, ALAC audio and lossless H.264 picture, mp4 and mkv muxers of ffmpeg 6.1.1, two inputs. On 8.1.2 one file differs: for the mp4 minus-one-second file the edit list is identical (skip 48000 samples, byte reader -1.000 s) but ffmpeg's decoder returns 138752 samples and the tone lands 0.476 s in, so the decoded reader reads -1.024 s. Not tested: ffmpeg builds other than 6.1.1 and 8.1.2, players and editors (what they do with an edit list), uploads and re-muxes, AAC and its priming delay, other codecs and containers, subtitles, -itsoffset with re-encoding, -ss and -itsoffset together.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

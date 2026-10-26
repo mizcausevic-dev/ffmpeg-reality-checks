@@ -45,11 +45,11 @@ t('control, known positive: -b:a 128k gives exactly 128 kbit/s for all five sign
   assert.ok(Math.max(...sizes) / Math.min(...sizes) < 1.001, 'constant bitrate files are the same size whatever the signal');
 });
 
-t('reader agreement on all 58 files: the average from the frame headers (Node) matches the average from ffprobe packet sizes within 0.5 percent, and the format bit_rate that tools print is within 1 kbit/s above it', () => {
+t('reader agreement on all 58 files: the average from the frame headers (Node) matches the average from ffprobe packet sizes within 0.5 percent, and the format bit_rate that tools print is above it by less than 1 kbit/s on ffmpeg 6.1.1 and by less than 2.5 kbit/s on 8.1.2 (the noise 320 kbit/s file is 1.9 above on 8.1.2)', () => {
   for (const [k, v] of allFiles()) {
     near(v.nodeKbps, v.probePacketKbps, 0.05, k);
     near(v.nodeHeaderKbps, v.probePacketKbps, Math.max(0.3, v.probePacketKbps * 0.005), k);
-    const d = v.probeFormatKbps - v.probePacketKbps; assert.ok(d > -0.2 && d < 1, `${k} format minus packets ${d}`);
+    const d = v.probeFormatKbps - v.probePacketKbps; assert.ok(d > -0.2 && d < (buildOf(ev.ffmpeg) === 'v8' ? 2.5 : 1), `${k} format minus packets ${d}`);
   }
 });
 

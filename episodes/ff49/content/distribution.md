@@ -17,7 +17,7 @@ You encode an MP3 with libmp3lame and -q:a 2. What bitrate do you get? Quality i
 
 Signals (lavfi, stereo, 44100 Hz, 10 s each): digital silence, a sine (1000 Hz left, 1500 Hz right), a chord (five tones per channel), a rising sweep, and white noise (a different seed in each channel). One more file has 5 s of silence followed by 5 s of the same noise. Each is encoded with -c:a libmp3lame at -q:a 0 to 9.
 
-Readers: ffprobe, which gives the format bit_rate that tools print and the packet sizes (bytes over packet duration), and a Node walker that reads every mp3 frame header itself (bitrate index, padding bit, frame length) and skips the Xing or Info tag frame. They agree on all 58 files: the two averages are within 0.05 kbit/s, and the printed bit_rate is within 1 kbit/s above them (it includes the tag frame).
+Readers: ffprobe, which gives the format bit_rate that tools print and the packet sizes (bytes over packet duration), and a Node walker that reads every mp3 frame header itself (bitrate index, padding bit, frame length) and skips the Xing or Info tag frame. They agree on all 58 files: the two averages are within 0.05 kbit/s, and the printed bit_rate is above them by less than 1 kbit/s on ffmpeg 6.1.1 (it includes the tag frame); on 8.1.2 the largest gap is 1.9 kbit/s, on the noise 320 kbit/s file.
 
 Control: -b:a 128k gives exactly 128 kbit/s on all five signals, read by both readers, and every single frame is a 128 kbit/s frame (the file has an Info tag, not a Xing tag). -b:a 320k gives 320.
 
