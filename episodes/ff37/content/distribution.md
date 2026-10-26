@@ -30,11 +30,11 @@ The nineteen tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Pattern, two readers, control
-00:40 One row goes missing
-00:60 Pad rounds to even
-00:80 Encoder error and fix
-00:100 What to check
+00:23 Pattern, two readers, control
+00:45 One row goes missing
+01:06 Pad rounds to even
+01:28 Encoder error and fix
+01:53 What to check
 <!-- chapters:end -->
 
 Limits: synthetic testsrc2 frames, one frame per case, default pad color, default scaler, ffv1 in mkv and libx264 in mp4, ffmpeg 6.1.1. Not tested: other builds, other pad colors, other scale algorithms, other sizes and ratios, real footage, players.

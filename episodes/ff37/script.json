@@ -3,7 +3,7 @@
   "slug": "ffmpeg-scale-pad-odd-size",
   "palette": "lab",
   "series": "FFmpeg Reality Checks",
-  "title": "I scaled to 1920x1080 and padded: why a black line, or an odd-size error?",
+  "title": "I scaled and padded: why a black line, or odd size?",
   "fullTitle": "FFmpeg pad Drops an Odd Picture Row and Rounds the Offset to Even",
   "kicker": "Episode 37",
   "thumb": {

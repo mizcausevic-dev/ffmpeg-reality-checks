@@ -11,9 +11,9 @@ const Ask: React.FC<SceneProps> = ({t}) => (
   <>
     <Halo y={540} color={C.cyan} o={ep(t, 0, 1.2)} />
     <Head over="Scale to fit, then pad" title="Why a black line?" o={ep(t, 0.2, 0.8)} />
-    <Cmd y={300} text="-vf scale=1920:1080:force_original_aspect_ratio=decrease," hi="force_original_aspect_ratio=decrease" size={30} o={ep(t, 1.0, 1.6)} />
-    <Cmd y={360} text="pad=1920:1080:(ow-iw)/2:(oh-ih)/2" hi="pad=1920:1080" size={30} o={ep(t, 1.6, 2.2)} />
-    <Duel y={480} h={290}
+    <Cmd y={290} text="-vf scale=1920:1080:force_original_aspect_ratio=decrease," hi="force_original_aspect_ratio=decrease" size={30} o={ep(t, 1.0, 1.6)} />
+    <Cmd y={385} text="pad=1920:1080:(ow-iw)/2:(oh-ih)/2" hi="pad=1920:1080" size={30} o={ep(t, 1.6, 2.2)} />
+    <Duel y={530} h={260}
       left={{label: 'You expect', value: 'equal bars', sub: 'the same black above and below', color: C.amber, o: ep(t, 2.6, 3.3), valueSize: 80}}
       right={{label: 'Test', value: '1280x690', sub: 'synthetic pattern, 4:2:0, one frame', color: C.cyan, o: ep(t, 3.6, 4.3), valueSize: 80}}
       mid="?" midO={ep(t, 3.2, 3.8)} />
@@ -41,12 +41,12 @@ const Odd: React.FC<SceneProps> = ({t}) => (
   <>
     <Halo y={560} color={C.red} o={ep(t, 0.2, 1.4)} />
     <Head over="Scaled height is odd" title="One row goes missing." color={C.red} o={ep(t, 0.2, 0.8)} />
-    <Duel y={250} h={250}
+    <Duel y={290} h={240}
       left={{label: 'Scale makes', value: '1920x1035', sub: 'ffprobe, pad asks for y=22.5', color: C.cyan, o: ep(t, 0.9, 1.6), valueSize: 80}}
       right={{label: 'The frame holds', value: '1034 rows', sub: 'of picture, in 1920x1080', color: C.red, o: ep(t, 2.4, 3.1), valueSize: 80}}
       mid="→" midO={ep(t, 2.0, 2.6)} />
-    <Figure y={560} value="22 vs 24" caption="black rows above vs below · asked for 22.5 each" color={C.red} size={150} o={ep(t, 4.0, 4.8)} />
-    <Verdict y={810} text="The last picture row is gone" color={C.red} o={ep(t, 5.8, 6.6)} size={34} />
+    <Figure y={565} value="22 vs 24" caption="black rows above vs below · asked for 22.5 each" color={C.red} size={150} o={ep(t, 4.0, 4.8)} />
+    <Verdict y={835} text="The last picture row is gone" color={C.red} o={ep(t, 5.8, 6.6)} size={34} />
   </>
 );
 
@@ -54,7 +54,7 @@ const Odd: React.FC<SceneProps> = ({t}) => (
 const Why: React.FC<SceneProps> = ({t}) => (
   <>
     <Head over="Pad rounds to even" title="Chroma is half size." color={C.amber} o={ep(t, 0.2, 0.8)} />
-    <Duel y={250} h={290}
+    <Duel y={290} h={270}
       left={{label: '4:2:0 · asked row 21', value: 'row 20', sub: 'picture starts here\n1034 rows kept', color: C.red, o: ep(t, 0.9, 1.6), valueSize: 100}}
       right={{label: '4:4:4 · asked row 21', value: 'row 21', sub: 'honored\nall 1035 rows kept', color: C.green, o: ep(t, 2.8, 3.5), valueSize: 100}}
       mid="vs" midO={ep(t, 2.4, 3.0)} />
@@ -70,7 +70,7 @@ const Fix: React.FC<SceneProps> = ({t}) => (
   <>
     <Halo y={520} color={C.green} o={ep(t, 0.2, 1.4)} />
     <Head over="Make the size even" title="Pad, or force even." color={C.green} o={ep(t, 0.2, 0.8)} />
-    <Duel y={250} h={300}
+    <Duel y={290} h={270}
       left={{label: 'Scale alone · encoder', value: 'refused', sub: 'libx264: height not divisible\nby 2 (1920x1035)', color: C.red, o: ep(t, 0.9, 1.6), valueSize: 100}}
       right={{label: 'Scale, then pad', value: '1920x1080', sub: 'encodes, even size', color: C.green, o: ep(t, 2.4, 3.1), valueSize: 100}}
       mid="" midO={0} />
