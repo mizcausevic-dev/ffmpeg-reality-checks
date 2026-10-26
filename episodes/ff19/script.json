@@ -1,0 +1,55 @@
+{
+  "n": 19,
+  "slug": "ffmpeg-ac-1-downmix",
+  "palette": "ember",
+  "title": "What does FFmpeg -ac 1 do to stereo?",
+  "fullTitle": "FFmpeg -ac 1 Averages Stereo. Out-of-Phase Audio Vanishes",
+  "kicker": "Episode 19",
+  "hero": {"scene": "anti", "t": 5.0},
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You turn a stereo file into mono with FFmpeg: dash a c one. Is the mono file as loud as the stereo one? We make four stereo files, and turn each into mono three ways.",
+      "captions": ["Stereo to mono with -ac 1.", "Four sources, three ways."]
+    },
+    {
+      "id": "source",
+      "chapter": "Four sources, two readers",
+      "narration": "Each source is a two second, four hundred forty hertz tone in the left channel, at minus eight d B F S. The right channel is the same, or inverted, or silent, or a different tone. We read each file two ways. The astats filter, and the raw sixteen bit samples.",
+      "captions": ["Right channel: same, inverted, silent, different.", "Two readers: astats, and raw samples."]
+    },
+    {
+      "id": "same",
+      "chapter": "Identical channels",
+      "narration": "When both channels are identical, dash a c one changes nothing. The peak stays at minus seven point nine six d B. This is the case most people test, and it hides what follows.",
+      "captions": ["Identical channels: no change.", "The case most people test."]
+    },
+    {
+      "id": "leftonly",
+      "chapter": "One-sided stereo",
+      "narration": "When only the left channel has sound, dash a c one averages it with silence. The peak falls by six point oh two d B, to minus thirteen point nine eight. A podcast with one active microphone ends up half as loud.",
+      "captions": ["Only left has sound: 6 dB quieter.", "Peak -7.96 dB becomes -13.98 dB."]
+    },
+    {
+      "id": "anti",
+      "chapter": "Out of phase",
+      "narration": "When the right channel is the left, inverted, the average is zero. Both readers see nothing at all: minus infinity. Digital silence, from a file that sounded fine in stereo.",
+      "captions": ["Right = inverted left: average is zero.", "Both readers: minus infinity. Silence."]
+    },
+    {
+      "id": "fix",
+      "chapter": "Choosing the mix",
+      "narration": "Pan with c zero equals c zero keeps the left channel at its own level, in all four sources. Pan with c zero equals c zero plus c one adds the channels: identical channels gain six d B, and out-of-phase still cancels. The right mix depends on the recording.",
+      "captions": ["pan=mono|c0=c0 keeps the left level.", "c0+c1 adds: +6 dB on identical channels."]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Dash a c one is an average. Check the loudness, and check the phase, before you trust a mono file. Not tested: five point one downmix, real recordings, and other builds beyond the two named.",
+      "captions": ["-ac 1 is an average.", "Check loudness and phase."]
+    }
+  ]
+}
