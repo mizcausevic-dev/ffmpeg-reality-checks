@@ -25,7 +25,7 @@ Why: in 4:2:0 pad rounds the offset down to an even number and crops the picture
 
 libx264 with yuv420p: scale alone to 1920x1035 fails with "height not divisible by 2 (1920x1035)"; 1917x1080 fails with "width not divisible by 2". The padded 1920x1080 encodes. Adding force_divisible_by=2 to scale gives 1920x1036, nothing cropped, bars 22 and 22, and the encoder accepts it. The scale filter then writes a sample aspect ratio of 1036:1035. An odd offset is still not centered: 1278x720 with force_divisible_by=2 is 1918 wide, x=1, so the bars are 0 and 2 columns.
 
-The nineteen tests pass on ffmpeg 6.1.1.
+The nineteen tests pass on ffmpeg 6.1.1 and 8.1.2.
 
 Chapters
 <!-- chapters:start -->
