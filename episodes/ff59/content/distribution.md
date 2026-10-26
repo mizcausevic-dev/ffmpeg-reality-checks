@@ -1,6 +1,6 @@
 # FF59 distribution kit: FFmpeg select Keyframes: 99 Files, 4 Different, Fixed by -fps_mode vfr
 
-All numbers below come from the synthetic fixture in `episodes/ff59/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff59/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 and 8.1.2. The tests pass on both; one result differs: the default mp4 holds 99 frames on 6.1.1 and 4 frames on 8.1.2. The image files repeat the same way on both.
 
 ## YouTube
 
@@ -25,9 +25,9 @@ What fixes it: -fps_mode vfr, -fps_mode passthrough, the deprecated -vsync 0 and
 
 Why: an image sequence is written at a constant frame rate, and select leaves holes in the timeline, which are filled by repeating the previous frame. Clip B (keyframes 0, 10, 40, 41) gives 50 files in runs of 9, 30, 2 and 9, and the output ends after the last repeat, at output frame 49, not at the end of the clip (100 frames); with -fps_mode vfr it writes 4.
 
-In a video it is the same: out.mp4 at the default holds 99 frames and lasts 3.96 s; with -fps_mode vfr it holds 4 frames and lasts 3.04 s (3 s plus one frame).
+In a video on 6.1.1 it is the same: out.mp4 at the default holds 99 frames and lasts 3.96 s (on 8.1.2 the default mp4 already holds 4 frames); with -fps_mode vfr it holds 4 frames and lasts 3.04 s (3 s plus one frame).
 
-The 11 tests pass on ffmpeg 6.1.1.
+The 11 tests pass on ffmpeg 6.1.1 and 8.1.2 (the mp4 default differs, see above).
 
 Chapters
 <!-- chapters:start -->
@@ -40,7 +40,7 @@ Chapters
 01:48 What to check
 <!-- chapters:end -->
 
-Limits: two synthetic lossless clips, x264 without B-frames, PNG sequences and mp4, ffmpeg 6.1.1. The default frame rate mode, the deprecated -vsync aliases and the length of the last repeat are the parts most likely to differ between builds. Not tested: other muxers, variable frame rate input, real footage, other codecs, builds other than 6.1.1.
+Limits: two synthetic lossless clips, x264 without B-frames, PNG sequences and mp4, ffmpeg 6.1.1 and 8.1.2 (Windows full build). The default frame rate mode, the deprecated -vsync aliases and the length of the last repeat are the parts most likely to differ between builds. Not tested: other muxers, variable frame rate input, real footage, other codecs, other builds.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

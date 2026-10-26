@@ -255,7 +255,9 @@ const Mp4: React.FC<SceneProps> = ({t, dur}) => {
         <div style={{position: 'absolute', left: 140, top: 650, width: 1640 * (3.04 / 4) * ep(lt, 0.8, 1.8), height: 90, background: C.greenDim}} />
         <Line y={755} text="3.04 s" size={56} color={C.greenDim} o={ep(lt, 1.6, 1.9)} /></>}
       {i === 4 && <><Cue text="the rule" />
-        <Code lt={lt} y={320} size={80} lines={[[{t: SEL, c: C.amberDim}], [{t: '-fps_mode vfr', c: C.greenDim}]]} /></>}
+        <Code lt={lt} y={320} size={80} lines={[[{t: SEL, c: C.amberDim}], [{t: '-fps_mode vfr', c: C.greenDim}]]} />
+        <Line y={640} text="8.1.2: the default mp4 already holds 4 frames" size={44} color={C.amberDim} o={ep(lt, 0.6, 0.9)} />
+        <Line y={710} text="8.1.2: image files still repeat" size={44} color={C.amberDim} o={ep(lt, 1.0, 1.3)} /></>}
       <Wipe t={t} starts={starts} />
     </Dark>
   );

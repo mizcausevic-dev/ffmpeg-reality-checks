@@ -21,7 +21,7 @@
       "id": "ask",
       "chapter": "The question",
       "sim": null,
-      "narration": "You select the keyframes of a clip with select equals e q, pict type, I. You expect four files. You get ninety nine. Is select broken? A synthetic clip, a keyframe every second, every output file hashed, on f f m peg six point one point one.",
+      "narration": "You select the keyframes of a clip with select equals e q, pict type, I. You expect four files. You get ninety nine. Is select broken? A synthetic clip, a keyframe every second, every output file hashed, on f f m peg six point one point one and eight point one point two.",
       "captions": [
         "select keyframes: 4 expected, 99 written.",
         "Is select broken?"
@@ -66,17 +66,18 @@
     {
       "id": "mp4",
       "chapter": "Same in a video",
-      "narration": "Same story in a video. M P four, default: ninety nine frames, three point nine six seconds. With dash fps mode vfr: four frames, three point zero four seconds. The rule: select, then dash fps mode vfr.",
+      "narration": "Same story in a video. M P four, default, on six point one point one: ninety nine frames, three point nine six seconds. With dash fps mode vfr: four frames, three point oh four seconds. On eight point one point two the default M P four already holds four frames. The image files still repeat. The rule: select, then dash fps mode vfr.",
       "captions": [
-        "mp4 default: 99 frames, 3.96 s.",
-        "-fps_mode vfr: 4 frames, 3.04 s."
+        "mp4 default on 6.1.1: 99 frames, 3.96 s.",
+        "-fps_mode vfr: 4 frames, 3.04 s.",
+        "8.1.2: the default mp4 holds 4 frames."
       ]
     },
     {
       "id": "close",
       "chapter": "What to check",
       "sim": null,
-      "narration": "Select keyframes, add dash fps mode vfr, count the files. Not tested: other muxers, variable frame rate input, real footage, and builds other than six point one point one.",
+      "narration": "Select keyframes, add dash fps mode vfr, count the files. Not tested: other muxers, variable frame rate input, real footage, other builds.",
       "captions": [
         "Select keyframes, add -fps_mode vfr.",
         "Not tested: other builds, real footage."

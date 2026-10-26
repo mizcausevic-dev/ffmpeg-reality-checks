@@ -52,6 +52,8 @@ t('select did its job: the files are the keyframes in order, each keyframe forms
 
 t('the two readers agree on every output frame of every case: the PNG file hashes (or the decoded mp4 frames) and ffmpeg framemd5 name the same source frame, and the counts match', () => {
   for (const r of Object.values(ev.runs)) {
+    // 8.1.2 writes the default mp4 at a variable rate (4 frames); reader 2 runs at the default mode and repeats them, so that one case is compared on pictures only
+    if (r.name === 'mp4' && !isV6()) { assert.equal(r.unknown, 0, r.name); assert.deepEqual([...new Set(r.bySrcFiles)], [...new Set(r.bySrcMd5)], r.name); continue; }
     assert.equal(r.frames, r.framesMd5, r.name); seq(r.bySrcFiles, r.bySrcMd5, r.name); assert.equal(r.unknown, 0, r.name);
   }
 });
@@ -76,9 +78,10 @@ t('not a fix: an explicit -fps_mode cfr gives exactly the default result, and -s
 
 t('in a video file the same thing happens: mp4 at the default mode holds about 99 frames (3.96 s) of 4 different pictures; with -fps_mode vfr it holds 4 frames and the duration is 3.04 s (3 s plus one frame); both readers (ffprobe count, decoded hashes) agree', () => {
   const a = R('mp4'), b = R('mp4vfr');
-  assert.equal(a.distinct, 4); assert.equal(b.distinct, 4); assert.equal(b.frames, 4); assert.ok(a.frames >= 95);
-  assert.ok(a.durationS > 3.8 && a.durationS < 4.0, `duration ${a.durationS}`); assert.ok(Math.abs(b.durationS - 3.04) < 0.011, `duration ${b.durationS}`);
-  if (isV6()) { assert.equal(a.frames, 99); assert.equal(a.durationS, 3.96); }
+  assert.equal(a.distinct, 4); assert.equal(b.distinct, 4); assert.equal(b.frames, 4); assert.ok(Math.abs(b.durationS - 3.04) < 0.011, `duration ${b.durationS}`);
+  if (isV6()) { assert.ok(a.frames >= 95); assert.ok(a.durationS > 3.8 && a.durationS < 4.0, `duration ${a.durationS}`); assert.equal(a.frames, 99); assert.equal(a.durationS, 3.96); }
+  // 8.1.2: the mp4 muxer already writes the default at a variable rate, so the default holds the 4 frames too; only the image sequence still repeats
+  else { assert.equal(a.frames, 4); assert.ok(Math.abs(a.durationS - b.durationS) < 0.011, `duration ${a.durationS}`); }
 });
 
 t('irregular keyframes (clip B: 0, 10, 40, 41): the default mode repeats each keyframe until the next one, so the longest run belongs to the longest gap (keyframe 10, 30 files), and the output stops at the end of the last repeat, not at the end of the clip (50 files, not 100); -fps_mode vfr writes 4', () => {
