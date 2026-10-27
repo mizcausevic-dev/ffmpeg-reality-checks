@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-26T23:10:00-04:00",
+ "asOf": "2026-10-27T03:17:00-04:00",
  "source": "YouTube Data API videos.list (statistics, contentDetails, status), read-only",
  "films": {
   "ff01": {
@@ -487,141 +487,141 @@
    "seconds": 122,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:01:00Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:45Z"
   },
   "ff62": {
    "videoId": "AYvmavkjoR8",
    "seconds": 130,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:04:38Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:47Z"
   },
   "ff63": {
    "videoId": "A5Jy-X11JD4",
    "seconds": 128,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:07:57Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:48Z"
   },
   "ff64": {
    "videoId": "R0TdxOXVlSU",
    "seconds": 122,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:11:10Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:49Z"
   },
   "ff65": {
    "videoId": "J2huw7VtC4w",
    "seconds": 132,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:18:05Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:50Z"
   },
   "ff66": {
    "videoId": "MGCwpGExqG4",
    "seconds": 129,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:21:54Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:51Z"
   },
   "ff67": {
    "videoId": "a2FK9swOwMY",
    "seconds": 133,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:25:51Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:52Z"
   },
   "ff68": {
    "videoId": "ww4o6KR5Tp4",
    "seconds": 127,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:29:22Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:53Z"
   },
   "ff69": {
    "videoId": "Dgqd6gDihhI",
    "seconds": 122,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:32:58Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:54Z"
   },
   "ff70": {
    "videoId": "kLu_zplUTF8",
    "seconds": 125,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:36:44Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:56Z"
   },
   "ff71": {
    "videoId": "017nDRSJqXY",
    "seconds": 123,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:45:13Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:57Z"
   },
   "ff72": {
    "videoId": "2F2Yxs85wkw",
    "seconds": 117,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:48:37Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:14:59Z"
   },
   "ff73": {
    "videoId": "ewz8CE6SsDE",
    "seconds": 125,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:52:27Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:15:01Z"
   },
   "ff74": {
    "videoId": "kU97Wl1_2JM",
    "seconds": 119,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:55:55Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:15:02Z"
   },
   "ff75": {
    "videoId": "QRE5gPFzL-8",
    "seconds": 107,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-26T23:58:58Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:15:03Z"
   },
   "ff76": {
    "videoId": "GdZiviweQOI",
    "seconds": 120,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T00:03:31Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:15:04Z"
   },
   "ff77": {
    "videoId": "ddNLLf3hRz4",
    "seconds": 117,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T00:07:28Z"
+   "privacy": "public",
+   "at": "2026-10-27T07:15:05Z"
   },
   "ff78": {
    "videoId": "8FCSMhf7CR0",
    "seconds": 117,
-   "views": 0,
+   "views": 1,
    "likes": 0,
    "privacy": "private",
    "at": "2026-10-27T02:36:46Z"
@@ -629,7 +629,7 @@
   "ff79": {
    "videoId": "Zw0HDhpiL3E",
    "seconds": 124,
-   "views": 0,
+   "views": 1,
    "likes": 0,
    "privacy": "private",
    "at": "2026-10-27T02:40:06Z"
