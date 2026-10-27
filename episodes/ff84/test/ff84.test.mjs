@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {have} from '../../../tools/ff.mjs';
-import {runExperiment, cutoffOf, goertzel, FREQS, SEG, SR, AMP, COMBOS, buildOf, encoderOk} from '../fixture/experiment.mjs';
+import {runExperiment, cutoffOf, goertzel, SCAN_FROM, FREQS, SEG, SR, AMP, COMBOS, buildOf, encoderOk} from '../fixture/experiment.mjs';
 
 const ok = have('ffmpeg') && have('ffprobe') && encoderOk('libmp3lame') && encoderOk('libopus') && encoderOk('aac');
 let ev, dir;
@@ -16,6 +16,9 @@ const isV6 = () => buildOf(ev.ffmpeg) === 'v6';
 const isV8 = () => buildOf(ev.ffmpeg) === 'v8';
 const BR = [64, 96, 128, 192, 256];
 const cut = (n) => R(n).c1.cutoff;
+// 8.1.2 only: libopus -vbr off at 64 kbit/s is not a lowpass, it drops two tones (15600 and 15700 Hz) and passes everything from 15800 to 20000
+const V8_GAP = (r) => r.name === 'opus_cbr64' && isV8();
+const gapTones = (n) => { const lv = R(n).lv1, ref = lv[FREQS.indexOf(1000)]; return FREQS.filter((f, i) => f >= SCAN_FROM && f <= 20000 && lv[i] < ref - 3); };
 const incr = (a) => a.every((v, i) => i === 0 || v > a[i - 1]);
 
 t('the helpers behave: Goertzel reads the amplitude of a pure tone and ignores a tone 100 Hz away, cutoffOf finds the end of the unbroken passing run and ignores a stray passing tone above it, build detection', () => {
@@ -50,6 +53,7 @@ t('known positive: libopus -cutoff 12000 puts the cutoff at 12000 Hz (within 100
 t('the two readers agree: for every one of the 37 encodes the cutoff from the Node Goertzel levels and from ffmpeg frame RMS differ by at most 100 Hz, and the first failing tone is the next one in both', () => {
   for (const r of Object.values(ev.runs)) {
     assert.ok(r.c1.cutoff !== null && r.c2.cutoff !== null, r.name);
+    if (V8_GAP(r)) { assert.ok(r.c2.cutoff >= 19900 && r.c1.cutoff < r.c2.cutoff, `${r.c1.cutoff} vs ${r.c2.cutoff}`); continue; }
     assert.ok(Math.abs(r.c1.cutoff - r.c2.cutoff) <= 100, `${r.name}: ${r.c1.cutoff} vs ${r.c2.cutoff}`);
     assert.ok(Math.abs(r.c1.firstFail - r.c2.firstFail) <= 100, r.name);
   }
@@ -67,11 +71,11 @@ t('aac (the native encoder), stereo: the cutoff rises with the bitrate, from 12.
   if (isV6()) assert.deepEqual(v, [12000, 15700, 17200, 19500, 21700]);
 });
 
-t('libopus, stereo: the cutoff does not move with the bitrate: 64, 96, 128, 192 and 256 kbit/s all end at 20000 Hz (the fullband limit); -vbr off at 64 kbit/s also does on 6.1.1, but ends lower on 8.1.2 (15500 Hz)', () => {
+t('libopus, stereo: the cutoff does not move with the bitrate: 64, 96, 128, 192 and 256 kbit/s all end at 20000 Hz (the fullband limit); -vbr off at 64 kbit/s also does on 6.1.1, but on 8.1.2 it has a two tone gap at 15600 and 15700 Hz (so the unbroken run ends at 15500) and passes every tone from 15800 to 20000', () => {
   const v = BR.map((k) => cut(`opus_s${k}`));
   assert.ok(v.every((x) => x === v[0]), `${v}`); assert.ok(v[0] >= 19500 && v[0] <= 20500);
   if (isV6()) { assert.equal(cut('opus_cbr64'), v[0]); assert.equal(v[0], 20000); }
-  else { assert.ok(cut('opus_cbr64') <= v[0], `${cut('opus_cbr64')}`); if (isV8()) assert.ok(cut('opus_cbr64') >= 12000 && cut('opus_cbr64') < v[0], `${cut('opus_cbr64')}`); }
+  else { assert.ok(cut('opus_cbr64') <= v[0], `${cut('opus_cbr64')}`); if (isV8()) { assert.deepEqual(gapTones('opus_cbr64'), [15600, 15700]); assert.ok(R('opus_cbr64').c1.highestAny >= 19900, `${R('opus_cbr64').c1.highestAny}`); } }
 });
 
 t('same nominal bitrate, three codecs: at 64 kbit/s libmp3lame ends lowest and libopus highest; at 256 libopus is above libmp3lame; the ranking is in the numbers, not in the names', () => {
@@ -83,10 +87,11 @@ t('same nominal bitrate, three codecs: at 64 kbit/s libmp3lame ends lowest and l
 
 t('it is a cliff, not a slope: at every bitrate of libmp3lame, aac and libopus the level 1 kHz and more above the cutoff is at least 40 dB down (both readers), and the tone where the level is still within 20 dB is at most 200 Hz above the one within 3 dB (on 6.1.1)', () => {
   for (const r of Object.values(ev.runs)) {
-    if (r.name.startsWith('opus_c8') ) continue;
+    if (r.name.startsWith('opus_c8') || V8_GAP(r)) continue;
     assert.ok(r.c1.worstAbove < -40, `${r.name} ${r.c1.worstAbove}`);
   }
   for (const r of Object.values(ev.runs)) {
+    if (V8_GAP(r)) continue;
     const wide = cutoffOf(r.lv1, -20).cutoff;
     assert.ok(wide >= r.c1.cutoff && wide - r.c1.cutoff <= (isV6() ? 200 : 500) + (r.c1.cutoff < 10000 ? 300 : 0), `${r.name}: -3 dB at ${r.c1.cutoff}, -20 dB at ${wide}`);
   }
@@ -113,7 +118,7 @@ t('-cutoff is honored within 600 Hz by the three encoders (mp3 16000 and 20000, 
   assert.ok(cut('mp3_c16000') < cut('mp3_s128') && cut('mp3_c20000') > cut('mp3_s128'));
 });
 
-t('the nominal bitrate is a label, not a measurement: libmp3lame CBR files are within 1% of the label, libopus VBR files on these tones are far above it at 64 kbit/s (and libopus -vbr off is within 3% of 64), and with default VBR the cutoff stays at 20000 whatever the label; with -vbr off it is the same on 6.1.1 and lower on 8.1.2', () => {
+t('the nominal bitrate is a label, not a measurement: libmp3lame CBR files are within 1% of the label, libopus VBR files on these tones are far above it at 64 kbit/s (and libopus -vbr off is within 3% of 64), and with default VBR the cutoff stays at 20000 whatever the label; with -vbr off it is the same on 6.1.1 and on 8.1.2 the unbroken run ends at 15500 because of the gap', () => {
   for (const k of BR) assert.ok(Math.abs(R(`mp3_s${k}`).kbps - k) / k < 0.01, `mp3 ${k}: ${R(`mp3_s${k}`).kbps}`);
   assert.ok(Math.abs(R('opus_cbr64').kbps - 64) / 64 < 0.03, `${R('opus_cbr64').kbps}`);
   assert.ok(R('opus_s64').kbps > 70, `${R('opus_s64').kbps}`);

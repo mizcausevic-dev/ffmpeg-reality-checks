@@ -123,7 +123,7 @@ t('a one frame flash: the jump into the flash is selected, the jump back scores 
 t('through libx264 at crf 23: the cut still scores the same within 1 percent; the noise first frame scores lower than the raw noise', () => {
   near(Cl('cutH264').peak / Cl('fade1').peak, 1, 0.01);
   assert.equal(Cl('cutH264').peakAt, CUT_AT);
-  assert.ok(Cl('noiseH264').peak < Cl('noise').peak * 0.95, `${Cl('noiseH264').peak} vs ${Cl('noise').peak}`);
+  assert.ok(Cl('noiseH264').peak < Cl('noise').peak * (isV6() ? 0.95 : 1), `${Cl('noiseH264').peak} vs ${Cl('noise').peak}`);
   assert.equal(Cl('noiseH264').peakAt, CUT_AT);
 });
 

@@ -69,7 +69,7 @@
       "narration": "A drift of two levels a frame scores point zero two, once. Noise: the first noisy frame scores point one nine eight, then nearly zero, though noisy frames differ more from each other than from flat. After x two six four, the cut keeps its point seven seven.",
       "captions": [
         "Drift: 0.02 once. Noise: 0.198 on the first frame, then near 0.",
-        "After x264: the cut 0.774, the noise 0.164."
+        "After x264 on 6.1.1: the cut 0.774, the noise 0.164."
       ]
     },
     {

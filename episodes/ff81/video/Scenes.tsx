@@ -276,7 +276,7 @@ const Noise: React.FC<SceneProps> = ({t}) => (
     <Line text="noisy against noisy: mean difference 26.5. flat against noisy: 19.8. The score of the later frames is still near 0." x={980} y={576} size={26} w={880} color={C.text} o={ep(t, 6.4, 7.0)} />
     <Line text="same scale, 0 to 0.25, dashed line at 0.1" x={60} y={576} size={26} mono w={880} color={C.dim} o={ep(t, 1.6, 2.2)} />
     <Blk x={60} y={680} w={1800} h={200} k="cyan" o={ep(t, 9.0, 9.4)} dy={(1 - ep(t, 9.0, 9.4)) * 30}>
-      <Tag text="after libx264, crf 23" y={16} />
+      <Tag text="after libx264, crf 23, on 6.1.1" y={16} />
       <Giant text="cut 0.773 to 0.774" size={100} color={C.bg} x={30} y={58} w={880} align="left" />
       <Giant text="noise 0.198 to 0.164" size={100} color={C.bg} x={930} y={58} w={850} align="left" />
     </Blk>
