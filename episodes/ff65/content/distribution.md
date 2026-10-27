@@ -35,11 +35,11 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:17 The test clip and two readers
-00:36 apad alone: no stop
-00:54 -shortest: ends, a little short
-01:10 Ask for a length
-01:30 Two catches
-01:50 What to check
+00:35 apad alone: no stop
+00:52 -shortest: ends, a little short
+01:07 Ask for a length
+01:27 Two catches
+01:45 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic flat picture, sine songs of 3 s and 7 s, libx264, pcm in mkv and aac in mp4, ffmpeg 6.1.1. How -shortest cuts the audio is build and muxer specific, so treat the 238208 and 239616 counts as 6.1.1 numbers. Not tested: other encoders (x265, hardware), other containers, long songs, variable frame rate, real music and footage, players, other audio filters that pad (aresample async, amix), builds other than 6.1.1.

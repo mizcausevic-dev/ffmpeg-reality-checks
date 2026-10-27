@@ -34,12 +34,12 @@ The 15 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 One frame, two readers
+00:18 One frame, two readers
 00:35 The percent sign
-00:50 The colon and the apostrophe
-01:07 The backslash itself
-01:21 Three parsers
-01:39 What to check
+00:51 The colon and the apostrophe
+01:08 The backslash itself
+01:23 Three parsers
+01:42 What to check
 <!-- chapters:end -->
 
 Limits: one monospace font (DejaVu Sans Mono), one frame, no shell. On ffmpeg 8.1.2 (Windows build) one thing differs: a bare 12:30 is refused with "No option name near '30'" and a nonzero exit, instead of drawing a wrong frame with exit 0; the backslash counts for the other three strings are the same. The 8.1.2 run used DejaVu Sans Mono too (Consolas has a fractional advance that reader 2 cannot cut into cells). The Stray % behaviour on 6.1.1 (a warning, a blank frame, exit code 0) is the part most likely to differ between builds. Not tested: Windows paths for the font, PowerShell and cmd.exe quoting, bash and zsh quoting layers, filter script files, other fonts, text shaping, enable expressions, real footage.

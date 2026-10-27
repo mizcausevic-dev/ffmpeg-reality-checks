@@ -32,12 +32,12 @@ The 11 tests pass on ffmpeg 6.1.1 and 8.1.2 (the mp4 default differs, see above)
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 The clip, two readers
-00:39 The default output
-00:53 What fixes it
-01:11 Why it repeats
-01:33 Same in a video
-01:48 What to check
+00:23 The clip, two readers
+00:43 The default output
+00:57 What fixes it
+01:16 Why it repeats
+01:38 Same in a video
+02:04 What to check
 <!-- chapters:end -->
 
 Limits: two synthetic lossless clips, x264 without B-frames, PNG sequences and mp4, ffmpeg 6.1.1 and 8.1.2 (Windows full build). The default frame rate mode, the deprecated -vsync aliases and the length of the last repeat are the parts most likely to differ between builds. Not tested: other muxers, variable frame rate input, real footage, other codecs, other builds.

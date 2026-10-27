@@ -34,12 +34,12 @@ The 12 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 The clip, two readers
-00:38 -ss before -i
-00:55 The mp4 edit list
-01:10 -ss after -i
-01:28 The rule
-01:45 What to check
+00:18 The clip, two readers
+00:37 -ss before -i
+00:54 The mp4 edit list
+01:09 -ss after -i
+01:26 The rule
+01:43 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic lossless clip, x264 without B-frames, a keyframe every 25 frames, stream copy into mp4 and mkv, ffmpeg 6.1.1. The mp4 edit list handling and the decode timing are the parts most likely to differ between builds. Not tested: audio, B-frames, players (whether they show the empty start as black or ignore the edit list), real footage, other codecs, other builds.

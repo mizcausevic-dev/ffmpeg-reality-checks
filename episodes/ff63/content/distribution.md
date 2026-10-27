@@ -32,12 +32,12 @@ The 12 tests pass on ffmpeg 6.1.1 and 8.1.2. The exact counts are asserted on 6.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:22 The story in four panels
-00:40 Two reels, two readers
-00:59 The default: 75 frames frozen
-01:16 Ending everything
-01:30 Keeping the base
-01:55 What to check
+00:19 The story in four panels
+00:36 Two reels, two readers
+00:55 The default: 75 frames frozen
+01:09 Ending everything
+01:22 Keeping the base
+01:46 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic flat-card pair, lossless x264 in mkv, opaque overlay at an even offset, 25 fps, ffmpeg 6.1.1. Not tested: alpha or premultiplied overlays, other overlay options (format, eval), other frame rates or sizes, real footage, other containers and codecs, builds other than 6.1.1.

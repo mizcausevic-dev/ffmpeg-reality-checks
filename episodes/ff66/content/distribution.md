@@ -28,12 +28,12 @@ The 15 tests pass on ffmpeg 6.1.1 and 8.1.2. Exact counts are asserted on 6.1.1 
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 The sources and a control
-00:36 The range
-00:56 The length
-01:14 The pitch
-01:28 The clicks
-01:52 What to check
+00:17 The sources and a control
+00:35 The range
+00:53 The length
+01:11 The pitch
+01:25 The clicks
+01:47 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 1000 Hz tone and one train of single-sample clicks, 48000 Hz mono, ffmpeg 6.1.1. A single-sample click is the hardest case for atempo, so 122 from 40 is a worst case, not what speech or music gets. The refusal limits and every count are 6.1.1 numbers. Not tested: speech or music, other sample rates, the tempo option of other filters (rubberband), other builds, players.

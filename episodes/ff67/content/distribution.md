@@ -32,12 +32,12 @@ The 15 tests pass on ffmpeg 6.1.1 and 8.1.2. Exact byte counts are asserted on 6
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:21 The clip
-00:39 The bytes
-00:56 The B frames
-01:10 The cause
-01:30 The quality
-01:49 What to check
+00:19 The clip
+00:38 The bytes
+00:55 The B frames
+01:07 The cause
+01:27 The quality
+01:46 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic 320 by 240 clip, 100 frames, libx264 preset medium, one thread, ffmpeg 6.1.1. The noisy clip is a hard case for the encoder, so 2.39 times is what this clip gives, not a rule for every video. The step in the default curve near CRF 22 makes CRF 23 the worst point tested. Not tested: other presets, real footage, other x264 or ffmpeg builds, x265, the latency actually saved, players.

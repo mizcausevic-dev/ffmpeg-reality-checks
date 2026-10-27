@@ -26,11 +26,11 @@ The 16 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 The card, two readers
-00:43 The wobble
-01:09 The integer lens
-01:33 What helps
-01:54 What to do
+00:17 The card, two readers
+00:40 The wobble
+01:04 The integer lens
+01:27 What helps
+01:47 What to do
 <!-- chapters:end -->
 
 Limits: ffmpeg 6.1.1 on Linux, a synthetic 960x540 card, a centred zoom, the common z expression, the default bicubic scaler, 25 fps, 120 frames. The yuv420p even alignment and the rounding of the crop are build specific parts and are the most likely to differ on other builds. Not tested: other builds, real photos, pans, other scalers, other output sizes, the encoder.

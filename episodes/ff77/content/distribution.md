@@ -36,10 +36,10 @@ Chapters
 00:00 The question
 00:18 Inside the file
 00:32 Three durations
-00:45 Seeking
+00:44 Seeking
 01:01 The index
 01:17 Why fragment
-01:33 What to do
+01:32 What to do
 <!-- chapters:end -->
 
 Limits: one 10 s clip, video only, lossless, one keyframe every 10 frames, ffmpeg 6.1.1. The pipe duration estimates (3.0, 4.0, 1.0 s), the -sseof landing frames on a pipe, the stale base offsets of global_sidx without default_base_moof, and the absence of mehd are the parts most likely to differ on another build. Not tested: other builds, audio tracks, browsers and players, HTTP range requests, real footage.

@@ -30,11 +30,11 @@ The 18 tests pass on ffmpeg 6.1.1 with libass 0.17.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 The test, two readers
-00:39 Written as is
-00:58 Why it breaks
-01:18 What fixes it
-01:39 What to do
+00:19 The test, two readers
+00:37 Written as is
+00:55 Why it breaks
+01:15 What fixes it
+01:35 What to do
 <!-- chapters:end -->
 
 Limits: ffmpeg 6.1.1 with libass 0.17.1 on Linux, srt files, a gray test frame, ffmpeg started without a shell (plus one set of sh runs). The wording of the errors, the quoting results and the relative-colon behavior are the parts most likely to differ between builds. Not tested: Windows paths and cmd.exe or PowerShell quoting (a folder named C: on Linux is only the same text), other ffmpeg builds, other libass versions, non-ASCII names, ass files, the fontsdir option.

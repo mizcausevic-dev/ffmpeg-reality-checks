@@ -35,11 +35,10 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:19 The readers
-00:41 Same sound
-00:51 Smaller, by how much
-01:05 Not a straight line
-01:26 The header
-01:41 What we measured
+00:39 Same sound
+01:02 Not a straight line
+01:22 The header
+01:36 What we measured
 <!-- chapters:end -->
 
 Limits: four 3 second signals, native flac encoder, ffmpeg 6.1.1 only. Exact sizes and the block size steps are asserted on 6.x only. Not tested: other builds, encode time and speed, real recordings, other sample rates and bit depths, the reference flac encoder.

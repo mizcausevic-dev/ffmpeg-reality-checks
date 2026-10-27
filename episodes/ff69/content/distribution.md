@@ -32,12 +32,12 @@ The 13 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:21 The two readers
-00:39 One value
-00:56 One value per channel
-01:14 Samples and length
-01:32 What to type
-01:45 What we measured
+00:19 The two readers
+00:36 One value
+00:52 One value per channel
+01:09 Samples and length
+01:26 What to type
+01:37 What we measured
 <!-- chapters:end -->
 
 Limits: one stereo wav of two sine tones, 48000 Hz, 16 bit, ten adelay settings, ffmpeg 6.1.1 only. Not tested: other builds, more than two channels, other sample formats or rates, real footage, other containers, a player's own output latency or A/V sync.

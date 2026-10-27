@@ -26,11 +26,11 @@ The 13 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Frames, two readers
-00:39 The default
-00:59 Other values of round
-01:18 The even offset
-01:41 What to do
+00:17 Frames, two readers
+00:35 The default
+00:56 Other values of round
+01:13 The even offset
+01:34 What to do
 <!-- chapters:end -->
 
 Limits: ffmpeg 6.1.1 on Linux, synthetic 1920x1080 frames, hard black bars, one picture luma, default limit and skip. The meaning of round=0 and round=1, the even offset and the multiples of 6 for round=3 are the parts most likely to differ between builds. Not tested: other builds, interlaced video, real footage, soft or non black bars, the limit, skip and reset options, other frame sizes.

@@ -32,12 +32,12 @@ The 14 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 The two readers
-00:39 The size of the shift
-01:00 Where it clips
-01:11 Limited or full range
-01:28 Contrast and gamma
-01:41 What we measured
+00:18 The two readers
+00:37 The size of the shift
+00:57 Where it clips
+01:07 Limited or full range
+01:25 Contrast and gamma
+01:35 What we measured
 <!-- chapters:end -->
 
 Limits: 8 bit yuv420p only, one flat gray card per level, ffmpeg 6.1.1 only. Exact shifts and clip points are asserted on 6.x only. Not tested: other builds, real footage, 10 bit, RGB input, eval=frame, other filters (curves, colorlevels).

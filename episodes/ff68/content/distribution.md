@@ -34,12 +34,12 @@ The 14 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 One clip, three readers
-00:40 Audio longer: five seconds
-00:60 Audio one second late
-00:80 Packets: the weakest number
-00:100 Transport stream: an estimate
-00:120 What to trust
+00:17 One clip, three readers
+00:33 Audio longer: five seconds
+00:48 Audio one second late
+01:03 Packets: the weakest number
+01:18 Transport stream: an estimate
+01:38 What to trust
 <!-- chapters:end -->
 
 Limits: 12 synthetic files, one video (lossless x264 copied), a sine tone in pcm and aac, mkv, mov, mp4 and ts written by ffmpeg 6.1.1, one start offset. The ts estimate, the mkv packet rounding and the aac priming numbers are the build specific parts. Not tested: ffprobe with other probe options, other builds, real footage, fragmented mp4, variable frame rate, other muxers or codecs.

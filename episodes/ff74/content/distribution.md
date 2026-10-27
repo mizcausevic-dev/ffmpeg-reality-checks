@@ -34,12 +34,12 @@ The 14 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Two plays or three
-00:32 Frames or seconds
+00:18 Two plays or three
+00:33 Frames or seconds
 00:49 The off by one
-01:01 Time and defaults
+01:02 Time and defaults
 01:18 Loop minus one
-01:33 What to write
+01:34 What to write
 <!-- chapters:end -->
 
 Limits: one clip, 64x48, 25 fps, a lossless counter, ffmpeg 6.1.1. The start rule (start N repeats frame N minus 1) comes from how this build counts frames and is the part most likely to differ on another build. Not tested: other builds, the aloop audio filter, real footage, variable frame rate input, sizes above 100 frames or the 32767 maximum.

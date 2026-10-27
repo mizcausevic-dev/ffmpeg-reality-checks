@@ -32,12 +32,12 @@ The 14 tests pass on ffmpeg 6.1.1. The exact counts are asserted on 6.1.1 only; 
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 The story in four panels
-00:34 One picture, four songs, two readers
-00:52 -shortest: never longer
-01:10 A copied song: 1 frame
-01:32 When it is longer
-01:51 What to check
+00:17 The story in four panels
+00:28 One picture, four songs, two readers
+00:44 -shortest: never longer
+01:01 A copied song: 1 frame
+01:20 When it is longer
+01:35 What to check
 <!-- chapters:end -->
 
 Limits: one synthetic flat image, sine songs of four lengths, libx264 and ffv1, pcm, aac and copied aac, mkv and mp4, ffmpeg 6.1.1. How -shortest, -fflags +shortest and -shortest_buf_duration end an output changed between builds, so treat these counts as 6.1.1 numbers. Not tested: other encoders (x265, hardware), other containers, long songs, variable frame rate, real images and music, players (how they show a picture that ends before the audio), builds other than 6.1.1.

@@ -35,11 +35,11 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:17 What gets stored
-00:32 What the screen shows
-00:46 The mixer
-00:57 A high definition source
+00:30 What the screen shows
+00:44 The mixer
+00:55 A high definition source
 01:13 A ramp
-01:27 What to write
+01:26 What to write
 <!-- chapters:end -->
 
 Limits: one set of 16x8 patches and one ramp, rgb and two YUV matrices, ffmpeg 6.1.1 and 8.1.2 (8.1.2 is the Windows full build). The ramp level counts of the mixers, white 254 under the 709 weights, the eq chroma of 127, and the native format and range each filter outputs are the parts most likely to differ on another build. Not tested: other ffmpeg builds, real footage, other matrices, dithering, 10 bit.

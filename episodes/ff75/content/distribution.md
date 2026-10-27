@@ -38,12 +38,12 @@ The 15 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 What the default adds
-00:32 Clone freezes
-00:47 Two traps
-01:03 Rounding
-01:17 The sound side
-01:30 What to write
+00:16 What the default adds
+00:29 Clone freezes
+00:43 Two traps
+01:00 Rounding
+01:11 The sound side
+01:22 What to write
 <!-- chapters:end -->
 
 Limits: one clip, 64x48, 25 fps, a lossless counter, one mono tone for the audio, ffmpeg 6.1.1. The rounding of stop_duration (halves up) and the black level of full-range and gray formats are the parts most likely to differ on another build. Not tested: other builds, real footage, variable frame rate input, interlaced input, sizes above a few hundred frames.

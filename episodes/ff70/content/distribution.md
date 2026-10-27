@@ -34,12 +34,12 @@ The 17 tests pass on ffmpeg 6.1.1 and 8.1.2.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 The two readers
-00:40 The default size
-00:60 The size it needs
-00:80 Odd sizes
-00:100 The fill color
-00:120 What we measured
+00:17 The two readers
+00:36 The default size
+00:53 The size it needs
+01:10 Odd sizes
+01:26 The fill color
+01:39 What we measured
 <!-- chapters:end -->
 
 Limits: one 320x240 gray card, five angles, ffmpeg 6.1.1 only. Exact pixel counts are asserted on 6.x only. Not tested: other builds, real footage, other card sizes, other filters (rotate is not the only way to turn a frame), hardware filters.
