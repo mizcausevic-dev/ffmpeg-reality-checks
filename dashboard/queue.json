@@ -1,9 +1,142 @@
 [
  {
-  "ep": "next",
-  "status": "open",
-  "topic": "No films queued: ff58 to ff77 are built and uploaded private.",
-  "why": "Next batch of proposals goes here once Miz picks a direction.",
-  "kind": ""
+  "ep": "ff78",
+  "status": "proposed",
+  "topic": "MP3 encoder delay: how many samples does the start carry, and does `-c copy` keep it gapless?",
+  "why": "Every MP3 starts with silence from the encoder and a decoder delay. Trims, joins and loops land late unless the delay is known. Style: Technical mini-documentary, specimen plate of the first frames with the Xing and LAME header bytes circled.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff79",
+  "status": "proposed",
+  "topic": "Opus pre-skip: does the file start 312 samples late, and what does `-ss` do to it?",
+  "why": "The Ogg header asks the decoder to drop samples before the audio. Players and `-c copy` cuts treat it differently. Style: Fireship fast code, one counter, hard cuts.",
+  "kind": "build-stable"
+ },
+ {
+  "ep": "ff80",
+  "status": "proposed",
+  "topic": "GIF to MP4: GIF delays are in hundredths of a second, so what frame rate comes out?",
+  "why": "A 3 cs delay is 33.3 fps, not 30. Speed and length shift after conversion. Style: Illustrated scenario, a reel and a clock, then the measured proof.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff81",
+  "status": "proposed",
+  "topic": "`select='gt(scene,0.4)'`: what is a scene score, and what does a cut, a fade and noise score?",
+  "why": "People pick 0.3 or 0.4 by folklore. Measure the score of known cuts, fades and noisy flat frames. Style: Vox flat graphics, bars drawn to scale.",
+  "kind": "build-stable"
+ },
+ {
+  "ep": "ff82",
+  "status": "proposed",
+  "topic": "`blackdetect`: what do `pix_th` and `pic_th` really mean on a fade to black?",
+  "why": "Two thresholds and a duration decide when black starts. Measure start and end against a known fade. Style: Cinematic screen demo, terminal with the matching lines pinned.",
+  "kind": "build-stable"
+ },
+ {
+  "ep": "ff83",
+  "status": "proposed",
+  "topic": "`silencedetect n=-50dB` or `n=0.001`: which units, and how exact are the timestamps?",
+  "why": "Same threshold, two spellings, and a start time that can sit a block late. Test tones with gaps of known length. Style: Fireship fast code.",
+  "kind": "build-stable"
+ },
+ {
+  "ep": "ff84",
+  "status": "proposed",
+  "topic": "Where does the spectrum end: AAC, MP3 and Opus lowpass at each bitrate",
+  "why": "Encoders cut the top of the spectrum by bitrate. Sweep a tone and read where it disappears. Style: Technical mini-documentary, spectrum plates.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff85",
+  "status": "proposed",
+  "topic": "10 bit to 8 bit: why does a smooth gradient band, and does dither fix it?",
+  "why": "`format=yuv420p` truncates or rounds; scaler dither changes the steps. Count distinct levels on a ramp. Style: Editorial collage, torn strips of the ramp.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff86",
+  "status": "proposed",
+  "topic": "`overlay` at an odd x or y in yuv420p: where does the picture really land?",
+  "why": "Chroma is half resolution, so an odd offset can shift color by a pixel. Marker card, read both planes. Style: Physical 3D cutaway, luma and chroma slabs.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff87",
+  "status": "proposed",
+  "topic": "`vstack` and `hstack` with different sizes: what error, and what do `scale2ref` and `shortest` change?",
+  "why": "The filter refuses mismatched widths; the fixes change length and size in ways nobody checks. Style: Johnny Harris desk-and-map, cards pinned on a board.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff88",
+  "status": "proposed",
+  "topic": "`chromakey` or `colorkey`: what does similarity mean, and how many edge pixels survive?",
+  "why": "Both take similarity and blend with different color spaces. Known green card with a soft edge, count alpha levels. Style: Vox flat graphics.",
+  "kind": "build-stable"
+ },
+ {
+  "ep": "ff89",
+  "status": "proposed",
+  "topic": "Transparent video: which formats keep alpha, and what does `yuv420p` do to it?",
+  "why": "PNG to MP4 flattens to black; ProRes 4444, VP9 and PNG keep alpha. Decode and read alpha. Style: Illustrated scenario, checkerboard and a cutout.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff90",
+  "status": "proposed",
+  "topic": "`-copyts` with `-ss`: what start time does the output keep?",
+  "why": "The flag keeps source timestamps, and the output starts late or negative. Compare start_time on mp4, mkv and ts. Style: Johnny Harris desk-and-map, string between timestamps.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff91",
+  "status": "proposed",
+  "topic": "`-f segment -c copy`: why are my segments not the length I asked for?",
+  "why": "Copy can only cut on keyframes, and `reset_timestamps` changes what players show. Measure each segment. Style: Cinematic screen demo, file tree filling up.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff92",
+  "status": "proposed",
+  "topic": "Does `-g 250` still add keyframes on hard cuts, and what does `-sc_threshold 0` change?",
+  "why": "Scene cut detection inserts extra keyframes. Count I-frames on a clip with known cuts. Style: Fireship fast code.",
+  "kind": "build-stable"
+ },
+ {
+  "ep": "ff93",
+  "status": "proposed",
+  "topic": "`pts`, `dts` and `best_effort_timestamp`: which one is the time of this frame?",
+  "why": "With B-frames the three differ. Read all of them for a known clip and show which tool prints which. Style: Technical mini-documentary, exploded timeline.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff94",
+  "status": "proposed",
+  "topic": "Resampling 48 kHz to 44.1 kHz: exact sample count, and does the length change?",
+  "why": "`aresample` rounds the output length by a few samples, which adds up in joins. Known tone, count samples. Style: Vox flat graphics.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff95",
+  "status": "proposed",
+  "topic": "`afade` curves: how loud is the middle of a fade for tri, qsin, exp and log?",
+  "why": "The curve names say nothing about how loud the midpoint is. Measure gain at 0, 25, 50, 75 and 100 percent. Style: Editorial collage, cut-out curves.",
+  "kind": "build-stable"
+ },
+ {
+  "ep": "ff96",
+  "status": "proposed",
+  "topic": "`dynaudnorm` or `loudnorm`: which one changes the loudness range, and by how much?",
+  "why": "Both are sold as normalizers; one levels, one targets. Measure integrated loudness and range on a synthetic program. Style: Illustrated scenario, a speaker and a dial.",
+  "kind": "two builds"
+ },
+ {
+  "ep": "ff97",
+  "status": "proposed",
+  "topic": "WAV piped out of ffmpeg: why does the header say the file is 4 GB, or 0 bytes?",
+  "why": "A pipe cannot seek back to fix the header. Read the RIFF and data sizes and what players make of them. Style: Technical mini-documentary, hex plate.",
+  "kind": "two builds"
  }
 ]

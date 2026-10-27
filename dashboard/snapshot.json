@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-26T20:12:00-04:00",
+ "asOf": "2026-10-26T20:25:00-04:00",
  "source": "YouTube Data API videos.list (statistics, contentDetails, status), read-only",
  "films": {
   "ff01": {
@@ -406,21 +406,21 @@
    "seconds": 127,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff59": {
    "videoId": "WlyLVL07NLc",
    "seconds": 144,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff60": {
    "videoId": "SRkHWbjUiCA",
    "seconds": 124,
    "views": 0,
    "likes": 0,
-   "privacy": "private"
+   "privacy": "public"
   },
   "ff61": {
    "videoId": "buwhD2ME4es",
