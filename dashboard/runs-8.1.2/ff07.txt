@@ -1,0 +1,7 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers   target -14 LUFS, true peak -1.5 dBTP, LRA 11 LU
+
+source     I -26.1   LUFS   LRA 8     LU   peak -20.1  dBFS 
+one pass   I -11.7   LUFS   LRA 4.5   LU   peak -3.9   dBFS (loudnorm said output -11.76 LUFS, LRA 4.1; pass 1 type: dynamic)
+two pass   I -14.5   LUFS   LRA 8     LU   peak -8.4   dBFS (second run type: linear)
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff07\evidence.json

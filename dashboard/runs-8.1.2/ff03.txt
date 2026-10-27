@@ -1,0 +1,12 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+plain      ftyp, free, mdat, moov   moov at byte 1036187 (9681 B) of 1045868; 250 frames, 10s
+faststart  ftyp, moov, free, mdat   moov at byte 32 (9681 B) of 1045868; 250 frames, 10s
+
+ffprobe reading the file over loopback HTTP
+plain      noSeek     exit 0  duration 10  server sent 1045868 of 1045868 bytes in 1 request(s)
+plain      rangeSeek  exit 0  duration 10  server sent 107985 of 1045868 bytes in 3 request(s)
+faststart  noSeek     exit 0  duration 10  server sent 49152 of 1045868 bytes in 1 request(s)
+faststart  rangeSeek  exit 0  duration 10  server sent 49152 of 1045868 bytes in 1 request(s)
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff03\evidence.json

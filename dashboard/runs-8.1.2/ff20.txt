@@ -1,0 +1,17 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+aac_mono_22050       declared  69017 bps | measured  69338 bps   ffmpeg -i noise_1ch_22050Hz -c:a aac out.m4a
+aac_mono_32000       declared  69385 bps | measured  69607 bps   ffmpeg -i noise_1ch_32000Hz -c:a aac out.m4a
+aac_mono_44100       declared  69195 bps | measured  69356 bps   ffmpeg -i noise_1ch_44100Hz -c:a aac out.m4a
+aac_mono_48000       declared  69278 bps | measured  69426 bps   ffmpeg -i noise_1ch_48000Hz -c:a aac out.m4a
+aac_stereo_22050     declared 127173 bps | measured 127764 bps   ffmpeg -i noise_2ch_22050Hz -c:a aac out.m4a
+aac_stereo_32000     declared 127811 bps | measured 128220 bps   ffmpeg -i noise_2ch_32000Hz -c:a aac out.m4a
+aac_stereo_44100     declared 128059 bps | measured 128357 bps   ffmpeg -i noise_2ch_44100Hz -c:a aac out.m4a
+aac_stereo_48000     declared 127861 bps | measured 128134 bps   ffmpeg -i noise_2ch_48000Hz -c:a aac out.m4a
+aac_stereo_silence   declared   2095 bps | measured   2101 bps   ffmpeg -i silence_2ch_44100Hz -c:a aac out.m4a
+aac_stereo_96k       declared  95918 bps | measured  96141 bps   ffmpeg -i noise_2ch_44100Hz -c:a aac -b:a 96k out.m4a
+aac_mono_96k         declared  96292 bps | measured  96516 bps   ffmpeg -i noise_1ch_44100Hz -c:a aac -b:a 96k out.m4a
+mp3_stereo           declared 128000 bps | measured 128397 bps   ffmpeg -i noise_2ch_44100Hz -c:a libmp3lame out.mp3
+mp3_mono             declared  64000 bps | measured  64198 bps   ffmpeg -i noise_1ch_44100Hz -c:a libmp3lame out.mp3
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff20\evidence.json

@@ -1,0 +1,12 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+plain      ftyp, free, mdat, moov   moov at byte 917559 (9679 B) of 927238; 250 frames, 10s
+faststart  ftyp, moov, free, mdat   moov at byte 32 (9679 B) of 927238; 250 frames, 10s
+
+ffprobe reading the file over loopback HTTP
+plain      noSeek     exit 0  duration 10  server sent 927238 of 927238 bytes in 1 request(s)
+plain      rangeSeek  exit 0  duration 10  server sent 58831 of 927238 bytes in 3 request(s)
+faststart  noSeek     exit 0  duration 10  server sent 49152 of 927238 bytes in 1 request(s)
+faststart  rangeSeek  exit 0  duration 10  server sent 32768 of 927238 bytes in 1 request(s)
+
+Evidence written to /tmp/frc-runs/ff03/evidence.json

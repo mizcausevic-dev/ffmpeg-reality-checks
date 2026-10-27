@@ -1,0 +1,12 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+Source: 93 frames over 5s, r_frame_rate 30/1, avg_frame_rate 2790/151 (18.477 fps), 3 distinct gaps (ms): 33 67 933
+
+variant      frames  dur     r_frame_rate  avg fps  gaps  unique  dup(counter)  dup(md5)  drop
+default      150     5       30/1          30       1     93      57            57        0
+passthrough  93      5       30/1          18.6     3     93      0             0         0
+cfr_30       150     5       30/1          30       1     93      57            57        0
+cfr_25       125     5       25/1          25       1     93      32            32        0
+cfr_60       300     5       60/1          60       1     93      207           207       0
+
+Evidence written to /tmp/frc-runs/ff05/evidence.json

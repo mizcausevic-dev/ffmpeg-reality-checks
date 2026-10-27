@@ -1,0 +1,10 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+Source: 50 PNG frames, rgb24
+
+variant                   profile                 pix_fmt   bytes    PSNR vs PNG
+default_rgb_input         High 4:4:4 Predictive   yuv444p   77648    37.04
+pix_fmt_yuv420p           High                    yuv420p   80263    35.4
+forced_yuv444p            High 4:4:4 Predictive   yuv444p   77648    37.04
+control_yuv420p_input     High                    yuv420p   80117    -
+
+Evidence written to /tmp/frc-runs/ff02/evidence.json

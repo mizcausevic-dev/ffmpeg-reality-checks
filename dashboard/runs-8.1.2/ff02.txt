@@ -1,0 +1,10 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+Source: 50 PNG frames, rgb24
+
+variant                   profile                 pix_fmt   bytes    PSNR vs PNG
+default_rgb_input         High 4:4:4 Predictive   yuv444p   77546    39.78
+pix_fmt_yuv420p           High                    yuv420p   82325    36.99
+forced_yuv444p            High 4:4:4 Predictive   yuv444p   77546    39.78
+control_yuv420p_input     High                    yuv420p   82125    -
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff02\evidence.json

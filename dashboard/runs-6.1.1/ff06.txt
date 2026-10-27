@@ -1,0 +1,16 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+mixed_copy: a (320x180) + b (640x360)
+   ffmpeg -f concat -i mixed.txt -c copy out.mp4
+   exit 0, 0 warning line(s), header says 320x180, 100 frames, 4s
+   frame sizes inside: {"320x180":50,"640x360":50}; decode problems: 0
+same_copy: a (320x180) + c (320x180)
+   ffmpeg -f concat -i same.txt -c copy out.mp4
+   exit 0, 0 warning line(s), header says 320x180, 100 frames, 4s
+   frame sizes inside: {"320x180":100}; decode problems: 0
+mixed_reencode: a (320x180) + b (640x360)
+   ffmpeg -f concat -i mixed.txt -vf "scale=640:360:force_original_aspect_ratio=decrease,pad=640:360:(ow-iw)/2:(oh-ih)/2,setsar=1" -c:v libx264 -crf 23 out.mp4
+   exit 0, 0 warning line(s), header says 640x360, 100 frames, 4s
+   frame sizes inside: {"640x360":100}; decode problems: 0
+
+Evidence written to /tmp/frc-runs/ff06/evidence.json

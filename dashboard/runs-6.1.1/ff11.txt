@@ -1,0 +1,16 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+x264_crf0: ffmpeg -i in -c:v libx264 -crf 0 out.mkv
+   stored as yuv444p (High 4:4:4 Predictive), 230057 bytes
+   back in RGB: 0/25 frames identical, psnr 54.637678; identical in its own format (yuv444p): 25/25
+x264_crf0_420: ffmpeg -i in -c:v libx264 -crf 0 -pix_fmt yuv420p out.mkv
+   stored as yuv420p (High 4:4:4 Predictive), 155173 bytes
+   back in RGB: 0/25 frames identical, psnr 23.959957; identical in its own format (yuv420p): 25/25
+x264rgb_crf0: ffmpeg -i in -c:v libx264rgb -crf 0 out.mkv
+   stored as gbrp (High 4:4:4 Predictive), 227595 bytes
+   back in RGB: 25/25 frames identical, psnr inf; identical in its own format (gbrp): 25/25
+ffv1: ffmpeg -i in -c:v ffv1 out.mkv
+   stored as bgr0, 290695 bytes
+   back in RGB: 25/25 frames identical, psnr inf; identical in its own format (bgr0): 25/25
+
+Evidence written to /tmp/frc-runs/ff11/evidence.json

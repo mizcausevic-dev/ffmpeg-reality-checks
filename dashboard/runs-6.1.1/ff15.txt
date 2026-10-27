@@ -1,0 +1,14 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+short_audio_none    declared: file 5s video 5s audio 3s | decoded: 125 frames (5s) audio 3.019s
+   ffmpeg -i video5s.mp4 -i tone3s.m4a -c copy out.mp4
+short_audio_copy    declared: file 3s video 2.92s audio 3s | decoded: 73 frames (2.92s) audio 3.019s
+   ffmpeg -i video5s.mp4 -i tone3s.m4a -c copy -shortest out.mp4
+short_audio_encode  declared: file 3.018s video 3s audio 3.018s | decoded: 75 frames (3s) audio 3.019s
+   ffmpeg -i video5s.mp4 -i tone3s.m4a -c:v libx264 -c:a aac -shortest out.mp4
+long_audio_none     declared: file 8s video 5s audio 8s | decoded: 125 frames (5s) audio 8.011s
+   ffmpeg -i video5s.mp4 -i tone8s.m4a -c copy out.mp4
+long_audio_short    declared: file 5s video 5s audio 4.992s | decoded: 125 frames (5s) audio 4.992s
+   ffmpeg -i video5s.mp4 -i tone8s.m4a -c copy -shortest out.mp4
+
+Evidence written to /tmp/frc-runs/ff15/evidence.json

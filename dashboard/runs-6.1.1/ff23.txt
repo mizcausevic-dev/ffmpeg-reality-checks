@@ -1,0 +1,15 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+source: 500 frames, 500 unique
+
+to_before_ss   declared 125 frames, 5s | holds source 5s to 10s (frames 125 to 249, contiguous true)
+   ffmpeg -ss 5 -to 10 -i src.mkv -c:v ffv1 out.mkv
+to_after_ss    declared 250 frames, 10s | holds source 5s to 15s (frames 125 to 374, contiguous true)
+   ffmpeg -ss 5 -i src.mkv -to 10 -c:v ffv1 out.mkv
+both_after     declared 125 frames, 5s | holds source 5s to 10s (frames 125 to 249, contiguous true)
+   ffmpeg -i src.mkv -ss 5 -to 10 -c:v ffv1 out.mkv
+t_after_ss     declared 125 frames, 5s | holds source 5s to 10s (frames 125 to 249, contiguous true)
+   ffmpeg -ss 5 -i src.mkv -t 5 -c:v ffv1 out.mkv
+to_only_input  declared 250 frames, 10s | holds source 0s to 10s (frames 0 to 249, contiguous true)
+   ffmpeg -to 10 -i src.mkv -c:v ffv1 out.mkv
+
+Evidence written to /tmp/frc-runs/ff23/evidence.json

@@ -1,0 +1,12 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+Source: 93 frames over 5s, r_frame_rate 30/1, avg_frame_rate 2790/151 (18.477 fps), 3 distinct gaps (ms): 33 67 933
+
+variant      frames  dur     r_frame_rate  avg fps  gaps  unique  dup(counter)  dup(md5)  drop
+default      93      5       30/1          18.6     3     93      0             0         0
+passthrough  93      5       30/1          18.6     3     93      0             0         0
+cfr_30       151     5.033333 30/1          30       1     93      58            58        0
+cfr_25       126     5.04    25/1          25       1     93      33            33        0
+cfr_60       301     5.016667 60/1          60       1     93      208           208       0
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff05\evidence.json

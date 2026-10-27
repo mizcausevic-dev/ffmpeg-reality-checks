@@ -1,0 +1,25 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers   (CRF 23)
+
+testsrc2 (test pattern): reference 250 frames, SSIM of the reference against itself 1
+preset      bytes      SSIM      ms     x264 core
+ultrafast   2245370    0.9972   132    165
+superfast   1529055    0.9971   156    165
+veryfast    870303     0.9936   192    165
+faster      927882     0.9950   211    165
+fast        959868     0.9955   299    165
+medium      953150     0.9958   312    165
+slow        909876     0.9957   495    165
+slower      825885     0.9961   820    165
+
+mandelbrot (zoom): reference 250 frames, SSIM of the reference against itself 1
+preset      bytes      SSIM      ms     x264 core
+ultrafast   4935946    0.9842   216    165
+superfast   3081164    0.9888   223    165
+veryfast    1762251    0.9824   288    165
+faster      1955237    0.9858   298    165
+fast        2128871    0.9872   403    165
+medium      2058133    0.9871   463    165
+slow        2022233    0.9873   733    165
+slower      1990340    0.9877   1105   165
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff04\evidence.json

@@ -1,0 +1,16 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+control (no tag) stored 320x180 tag none | shown 320x180 -> recorded
+source           stored 320x180 tag 90 | shown 180x320 -> upright
+plain            stored 180x320 tag none | shown 180x320 -> upright
+   ffmpeg -i in.mp4 -c:v libx264 out.mp4
+noautorot        stored 320x180 tag none | shown 320x180 -> recorded
+   ffmpeg -noautorotate -i in.mp4 -c:v libx264 out.mp4
+copy             stored 320x180 tag 90 | shown 180x320 -> upright
+   ffmpeg -i in.mp4 -c copy out.mp4
+transpose        stored 320x180 tag none | shown 320x180 -> recorded
+   ffmpeg -i in.mp4 -vf transpose=1 -c:v libx264 out.mp4
+manual           stored 180x320 tag none | shown 180x320 -> upright
+   ffmpeg -noautorotate -i in.mp4 -vf transpose=2 -c:v libx264 out.mp4
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff13\evidence.json

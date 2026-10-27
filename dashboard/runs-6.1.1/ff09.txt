@@ -1,0 +1,25 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+clean_16x9: control: 1920x1080 to height 720
+   source 1920x1080, scale=-1:720 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 1280x720; exit 0; on disk: 66343 bytes, video {"size":"1280x720","frames":10}
+odd_both: the crash: width and height both come out odd
+   source 1000x562, scale=-1:333 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 593x333; exit 187; on disk: 0 bytes, video null
+   encoder said: [libx264 @ 0x55edf55df400] width not divisible by 2 (593x333)
+odd_width: width odd, height even (16:9 source to height 240)
+   source 640x360, scale=-1:240 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 427x240; exit 187; on disk: 0 bytes, video null
+   encoder said: [libx264 @ 0x55c2bfc98e00] width not divisible by 2 (427x240)
+odd_height: width forced even by -2, height still odd
+   source 1000x562, scale=-2:333 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 592x333; exit 187; on disk: 0 bytes, video null
+   encoder said: [libx264 @ 0x556dcb646400] height not divisible by 2 (592x333)
+fixed: width forced even by -2, height even
+   source 1000x562, scale=-2:334 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 594x334; exit 0; on disk: 20674 bytes, video {"size":"594x334","frames":10}
+odd_444: same odd size as the crash, but 4:4:4 chroma
+   source 1000x562, scale=-1:333 -c:v libx264 -pix_fmt yuv444p out.mp4
+   scale gives 593x333; exit 0; on disk: 27072 bytes, video {"size":"593x333","frames":10}
+
+Evidence written to /tmp/frc-runs/ff09/evidence.json

@@ -1,0 +1,24 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+source: -3 dB peak, 0 samples at full scale
+
+minus6         astats: peak -9 dB flat 0 | samples: 0 at full scale (0.0%), max error vs source 11570
+   ffmpeg -i src.wav -af volume=-6dB out.wav
+plus3          astats: peak 0 dB flat 0 | samples: 0 at full scale (0.0%), max error vs source 9569
+   ffmpeg -i src.wav -af volume=3dB out.wav
+plus6          astats: peak 0 dB flat 28.69 | samples: 47840 at full scale (49.8%), max error vs source 16324
+   ffmpeg -i src.wav -af volume=6dB out.wav
+plus12         astats: peak 0 dB flat 32.45 | samples: 73760 at full scale (76.8%), max error vs source 24455
+   ffmpeg -i src.wav -af volume=12dB out.wav
+one_command    astats: peak -3 dB flat 0 | samples: 0 at full scale (0.0%), max error vs source 0
+   ffmpeg -i src.wav -af volume=12dB,volume=-12dB out.wav
+two_commands   astats: peak -12 dB flat 32.45 | samples: 0 at full scale (0.0%), max error vs source 14965
+   ffmpeg -i src.wav -af volume=12dB mid.wav  then  -af volume=-12dB out.wav
+float_between  astats: peak -3 dB flat 0 | samples: 0 at full scale (0.0%), max error vs source 0
+   ffmpeg -i src.wav -af volume=12dB -c:a pcm_f32le mid.wav  then  -af volume=-12dB out.wav
+limiter_auto   astats: peak 0 dB flat 0.08 | samples: 801 at full scale (0.8%), max error vs source 32552
+   ffmpeg -i src.wav -af volume=12dB,alimiter=limit=0.89 out.wav
+limiter        astats: peak -1.01 dB flat 0.11 | samples: 0 at full scale (0.0%), max error vs source 29952
+   ffmpeg -i src.wav -af volume=12dB,alimiter=limit=0.89:level=disabled out.wav
+
+Evidence written to /tmp/frc-runs/ff18/evidence.json

@@ -1,0 +1,22 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+mandelbrot: source uses 5299 colors; control psnr (source vs itself) Infinity
+  default    583871 B  psnr 21.56  ssim 0.3953  colors 207
+     ffmpeg -i in.mkv out.gif
+  palette    462009 B  psnr 35.35  ssim 0.9662  colors 253
+     ffmpeg -i in.mkv -vf "split[a][b];[a]palettegen[p];[b][p]paletteuse" out.gif
+  nodither   394004 B  psnr 36.24  ssim 0.9691  colors 248
+     ffmpeg -i in.mkv -vf "split[a][b];[a]palettegen[p];[b][p]paletteuse=dither=none" out.gif
+  four       160997 B  psnr 13.78  ssim 0.4511  colors 4
+     ffmpeg -i in.mkv -vf "split[a][b];[a]palettegen=max_colors=4:reserve_transparent=0[p];[b][p]paletteuse" out.gif
+testsrc2: source uses 15124 colors; control psnr (source vs itself) Infinity
+  default    104140 B  psnr 28.66  ssim 0.8432  colors 202
+     ffmpeg -i in.mkv out.gif
+  palette    121057 B  psnr 39.69  ssim 0.9803  colors 255
+     ffmpeg -i in.mkv -vf "split[a][b];[a]palettegen[p];[b][p]paletteuse" out.gif
+  nodither   103413 B  psnr 40.67  ssim 0.9816  colors 255
+     ffmpeg -i in.mkv -vf "split[a][b];[a]palettegen[p];[b][p]paletteuse=dither=none" out.gif
+  four        56008 B  psnr 9.71  ssim 0.4799  colors 4
+     ffmpeg -i in.mkv -vf "split[a][b];[a]palettegen=max_colors=4:reserve_transparent=0[p];[b][p]paletteuse" out.gif
+
+Evidence written to /tmp/frc-runs/ff14/evidence.json

@@ -1,0 +1,24 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+default      tag: matrix none, range none
+   ffmpeg -i in.png -c:v libx264 -pix_fmt yuv420p out.mp4
+   read as auto   worst channel error   2 | red 253,0,0 green 0,255,0 blue 0,0,254 gray 128,128,128
+   read as bt601  worst channel error   2 | red 253,0,0 green 0,255,0 blue 0,0,254 gray 128,128,128
+   read as bt709  worst channel error  40 | red 255,23,0 green 0,215,0 blue 0,14,255 gray 128,128,128
+tagged709    tag: matrix bt709, range tv
+   ffmpeg -i in.png -vf scale=out_color_matrix=bt709 -colorspace bt709 -color_primaries bt709 -color_trc bt709 ...
+   read as auto   worst channel error   1 | red 254,0,0 green 0,254,0 blue 0,0,254 gray 128,128,128
+   read as bt601  worst channel error  23 | red 232,0,1 green 19,255,8 blue 2,0,243 gray 128,128,128
+   read as bt709  worst channel error   1 | red 254,0,0 green 0,254,0 blue 0,0,254 gray 128,128,128
+untagged709  tag: matrix bt709, range tv
+   ffmpeg -i in.png -vf scale=out_color_matrix=bt709 out.mp4  (converted with BT.709, no tag)
+   read as auto   worst channel error   1 | red 254,0,0 green 0,254,0 blue 0,0,254 gray 128,128,128
+   read as bt601  worst channel error  23 | red 232,0,1 green 19,255,8 blue 2,0,243 gray 128,128,128
+   read as bt709  worst channel error   1 | red 254,0,0 green 0,254,0 blue 0,0,254 gray 128,128,128
+liar         tag: matrix bt709, range tv
+   ffmpeg -i in.png -colorspace bt709 out.mp4  (converted with the default matrix, tagged BT.709)
+   read as auto   worst channel error   1 | red 254,0,0 green 0,254,0 blue 0,0,254 gray 128,128,128
+   read as bt601  worst channel error  23 | red 232,0,1 green 19,255,8 blue 2,0,243 gray 128,128,128
+   read as bt709  worst channel error   1 | red 254,0,0 green 0,254,0 blue 0,0,254 gray 128,128,128
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff17\evidence.json

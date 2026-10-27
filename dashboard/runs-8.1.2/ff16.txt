@@ -1,0 +1,19 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+source: 60 frames, 30 fps, 2.0 s | mp4 declared 2s 30 fps
+after        declared 2.2s 10 fps | inside: 22 packets, 22 frames decoded, gap 0.095s
+   ffmpeg -i in.mp4 -r 10 out.mp4
+fps_filter   declared 2s 10 fps | inside: 20 packets, 20 frames decoded, gap 0.095s
+   ffmpeg -i in.mp4 -vf fps=10 out.mp4
+before       declared 6s 10 fps | inside: 60 packets, 60 frames decoded, gap 0.098s
+   ffmpeg -r 10 -i in.mp4 out.mp4
+before_copy  declared 2s 30 fps | inside: 60 packets, 60 frames decoded, gap 0.033s
+   ffmpeg -r 10 -i in.mp4 -c copy out.mp4
+both         declared 6s 10 fps | inside: 60 packets, 60 frames decoded, gap 0.098s
+   ffmpeg -r 10 -i in.mp4 -r 10 out.mp4
+raw_default  declared 2s 30 fps | inside: 60 packets, 60 frames decoded, gap 0.033s
+   ffmpeg -i in.h264 out.mp4
+raw_before   declared 6s 10 fps | inside: 60 packets, 60 frames decoded, gap 0.098s
+   ffmpeg -r 10 -i in.h264 out.mp4
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff16\evidence.json

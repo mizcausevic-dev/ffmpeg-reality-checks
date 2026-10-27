@@ -1,0 +1,17 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+source: 2 chapters ["Private Chapter One","Private Chapter Two"]
+
+plain            ffprobe: 2 chapters ["Private Chapter One","Private Chapter Two"] | ffmetadata: 2 ["Private Chapter One","Private Chapter Two"] global "Secret Global Title" | bytes: {"global":true,"chapter1":true,"chapter2":true}
+   ffmpeg -i in.mp4 -c copy out.mp4
+meta_off         ffprobe: 2 chapters ["",""] | ffmetadata: 2 ["",""] global null | bytes: {"global":false,"chapter1":false,"chapter2":false}
+   ffmpeg -i in.mp4 -map_metadata -1 -c copy out.mp4
+chapters_off     ffprobe: 0 chapters [] | ffmetadata: 0 [] global "Secret Global Title" | bytes: {"global":true,"chapter1":false,"chapter2":false}
+   ffmpeg -i in.mp4 -map_chapters -1 -c copy out.mp4
+both_off         ffprobe: 0 chapters [] | ffmetadata: 0 [] global null | bytes: {"global":false,"chapter1":false,"chapter2":false}
+   ffmpeg -i in.mp4 -map_metadata -1 -map_chapters -1 -c copy out.mp4
+meta_off_encode  ffprobe: 2 chapters ["",""] | ffmetadata: 2 ["",""] global null | bytes: {"global":false,"chapter1":false,"chapter2":false}
+   ffmpeg -i in.mp4 -map_metadata -1 -c:v libx264 -pix_fmt yuv420p -c:a aac out.mp4
+meta_off_mkv     ffprobe: 2 chapters [null,null] | ffmetadata: 2 [null,null] global null | bytes: {"global":false,"chapter1":false,"chapter2":false}
+   ffmpeg -i in.mp4 -map_metadata -1 -c copy out.mkv
+
+Evidence written to /tmp/frc-runs/ff24/evidence.json

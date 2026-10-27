@@ -1,0 +1,20 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+source: video, audio 1ch default, audio 1ch; audio pitches 441 Hz, 882 Hz
+source 2: video, audio 1ch default, audio 2ch; audio pitches 441 Hz, 881 Hz
+source 3: video, audio 1ch, audio 2ch default; audio pitches 441 Hz, 881 Hz
+
+no_map_flag_moved: ffmpeg -i in3.mp4 -c:v libx264 -c:a aac out.mp4
+   streams: video, audio; audio tracks 1 channels [2]; pitches [881] Hz
+no_map_more_channels: ffmpeg -i in2.mp4 -c:v libx264 -c:a aac out.mp4
+   streams: video, audio; audio tracks 1 channels [1]; pitches [441] Hz
+no_map: ffmpeg -i in.mp4 -c:v libx264 -c:a aac out.mp4
+   streams: video, audio; audio tracks 1 channels [1]; pitches [441] Hz
+no_map_copy: ffmpeg -i in.mp4 -c copy out.mp4
+   streams: video, audio; audio tracks 1 channels [1]; pitches [441] Hz
+map_all: ffmpeg -i in.mp4 -map 0 -c:v libx264 -c:a aac out.mp4
+   streams: video, audio, audio; audio tracks 2 channels [1,1]; pitches [441,882] Hz
+map_second: ffmpeg -i in.mp4 -map 0:v -map 0:a:1 -c:v libx264 -c:a aac out.mp4
+   streams: video, audio; audio tracks 1 channels [1]; pitches [882] Hz
+
+Evidence written to /tmp/frc-runs/ff10/evidence.json

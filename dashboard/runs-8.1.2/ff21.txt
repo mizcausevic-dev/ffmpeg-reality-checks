@@ -1,0 +1,13 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+source: 250 frames, hard cuts at 3.2 s and 6.8 s
+
+g100           keyframes (packets): 0, 3.2, 6.8 | I frames (decoded): 0, 3.2, 6.8
+   ffmpeg -i src.mkv -c:v libx264 -pix_fmt yuv420p -g 100 out.mp4
+g100_nosc      keyframes (packets): 0, 4, 8 | I frames (decoded): 0, 4, 8
+   ffmpeg -i src.mkv -c:v libx264 -pix_fmt yuv420p -g 100 -sc_threshold 0 out.mp4
+g100_forced    keyframes (packets): 0, 3.2, 6.8 | I frames (decoded): 0, 3.2, 6.8
+   ffmpeg -i src.mkv -c:v libx264 -pix_fmt yuv420p -g 100 -sc_threshold 0 -force_key_frames 3.2,6.8 out.mp4
+g100_force_2s  keyframes (packets): 0, 2, 3.2, 6.8 | I frames (decoded): 0, 2, 3.2, 6.8
+   ffmpeg -i src.mkv -c:v libx264 -pix_fmt yuv420p -g 100 -force_key_frames 2 out.mp4
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff21\evidence.json

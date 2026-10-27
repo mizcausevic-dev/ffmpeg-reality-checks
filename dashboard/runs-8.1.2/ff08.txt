@@ -1,0 +1,13 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+file   packets  last pkt  skip(first)  container s  decoded samples  decoded s
+a      88       136       1024         2           89088            2.0201
+b      88       136       1024         2           89088            2.0201
+join   176      136       0            4.02322     180224           4.0867
+
+valid samples per file 88200; both 176400
+join decodes 2048 more samples than the two files decoded separately
+join decodes 3824 more samples than the audio that was asked for
+priming per file 1024, padding per file 888; container duration is 1024 samples over 4.0 s
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff08\evidence.json

@@ -1,0 +1,25 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+clean_16x9: control: 1920x1080 to height 720
+   source 1920x1080, scale=-1:720 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 1280x720; exit 0; on disk: 80176 bytes, video {"size":"1280x720","frames":10}
+odd_both: the crash: width and height both come out odd
+   source 1000x562, scale=-1:333 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 593x333; exit 3752568763; on disk: 0 bytes, video null
+   encoder said: [libx264 @ 0000013a6e624f40] width not divisible by 2 (593x333)
+odd_width: width odd, height even (16:9 source to height 240)
+   source 640x360, scale=-1:240 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 427x240; exit 3752568763; on disk: 0 bytes, video null
+   encoder said: [libx264 @ 0000029ed2f7a4c0] width not divisible by 2 (427x240)
+odd_height: width forced even by -2, height still odd
+   source 1000x562, scale=-2:333 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 592x333; exit 3752568763; on disk: 0 bytes, video null
+   encoder said: [libx264 @ 000001d5ce7651c0] height not divisible by 2 (592x333)
+fixed: width forced even by -2, height even
+   source 1000x562, scale=-2:334 -c:v libx264 -pix_fmt yuv420p out.mp4
+   scale gives 594x334; exit 0; on disk: 23350 bytes, video {"size":"594x334","frames":10}
+odd_444: same odd size as the crash, but 4:4:4 chroma
+   source 1000x562, scale=-1:333 -c:v libx264 -pix_fmt yuv444p out.mp4
+   scale gives 593x333; exit 0; on disk: 30259 bytes, video {"size":"593x333","frames":10}
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff09\evidence.json

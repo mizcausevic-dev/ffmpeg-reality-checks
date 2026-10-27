@@ -1,0 +1,25 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers   (CRF 23)
+
+testsrc2 (test pattern): reference 250 frames, SSIM of the reference against itself 1
+preset      bytes      SSIM      ms     x264 core
+ultrafast   2245279    0.9972   1446   164
+superfast   1479487    0.9970   1250   164
+veryfast    834521     0.9936   2743   164
+faster      893064     0.9950   3478   164
+fast        915130     0.9955   7960   164
+medium      904286     0.9958   6768   164
+slow        865578     0.9957   9795   164
+slower      797106     0.9962   22994  164
+
+mandelbrot (zoom): reference 250 frames, SSIM of the reference against itself 1
+preset      bytes      SSIM      ms     x264 core
+ultrafast   4936141    0.9842   8399   164
+superfast   3082251    0.9889   7064   164
+veryfast    1761752    0.9824   9697   164
+faster      1957134    0.9859   12197  164
+fast        2127079    0.9872   17183  164
+medium      2057504    0.9871   24815  164
+slow        2020417    0.9873   31945  164
+slower      1987801    0.9877   41334  164
+
+Evidence written to /tmp/frc-runs/ff04/evidence.json

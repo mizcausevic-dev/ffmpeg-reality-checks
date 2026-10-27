@@ -1,0 +1,10 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+vline_yuv444p  yuv444p  rgb 0:254,0,0  +1:0,0,255  +2:0,0,255  -2:0,0,255  -1:0,0,255 | line chroma U 90 V 240
+vline_yuv422p  yuv422p  rgb 0:150,21,149  +1:104,0,103  +2:0,0,254  -2:0,0,254  -1:0,0,254 | line chroma U 175 V 167
+vline_yuv420p  yuv420p  rgb 0:150,21,149  +1:104,0,103  +2:0,0,254  -2:0,0,254  -1:0,0,254 | line chroma U 175 V 167
+hline_yuv444p  yuv444p  rgb 0:254,0,0  +1:0,0,255  +2:0,0,255  -2:0,0,255  -1:0,0,255 | line chroma U 90 V 240
+hline_yuv422p  yuv422p  rgb 0:253,0,0  +1:0,0,254  +2:0,0,254  -2:0,0,254  -1:0,0,254 | line chroma U 90 V 240
+hline_yuv420p  yuv420p  rgb 0:137,24,169  +1:91,0,123  +2:0,1,255  -2:25,0,218  -1:25,0,218 | line chroma U 178 V 164
+
+Evidence written to /tmp/frc-runs/ff22/evidence.json

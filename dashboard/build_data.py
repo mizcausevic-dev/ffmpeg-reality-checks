@@ -38,6 +38,10 @@ endscreens = json.loads((dash / 'endscreens.json').read_text()) if (dash / 'ends
 
 # Films where the same command gave different results on 6.1.1 and 8.1.2 (found in the tests).
 differs = {
+    'ff05': 'Default mp4 with no frame-rate option: 150 frames (57 repeats) on 6.1.1, all 93 frames kept on 8.1.2.',
+    'ff09': 'libx264 refuses the odd size on both builds; only the exit number differs (187 on Linux 6.1.1, another non-zero code on Windows 8.1.2).',
+    'ff13': '-noautorotate keeps the rotation tag on 6.1.1 and drops it on 8.1.2; the by-hand transpose ends upside down on 6.1.1, upright on 8.1.2.',
+    'ff17': '-colorspace bt709 only writes the label on 6.1.1 (pixels stay BT.601) but also converts on 8.1.2; scale=out_color_matrix=bt709 leaves no tag on 6.1.1 and writes one on 8.1.2.',
     'ff26': 'Black level after -color_range pc: 16 on 6.1.1, 0 on 8.1.2.',
     'ff31': 'Byte count after the hvc1 retag: 2 on 6.1.1, 5 on 8.1.2 (frames unchanged on both).',
     'ff33': '-stream_loop with a short audio track: 355 frames on 6.1.1, 359 on 8.1.2.',
@@ -59,8 +63,8 @@ differs = {
     'ff89': 'libvpx-vp9 given rgba input: 6.1.1 converts to yuva420p by itself, 8.1.2 picks gbrap and refuses it until -pix_fmt yuva420p is named.',
     'ff76': 'format=gray on a bt709 file keeps the file luma on 6.1.1 (red 55) and uses the 601 weights on 8.1.2 (red 76).',
 }
-# Films measured on 6.1.1 only (the first 25 films were not re-run on 8.1.2).
-BOTH_FROM = 26
+# ff01..ff25 were re-run on 8.1.2 on Oct 27 (runs-6.1.1 / runs-8.1.2): 13 identical, 12 differ in numbers; claim-level differences are listed in `differs`.
+BOTH_FROM = 1
 # Films whose build-dependent claims are asserted on 6.1.1 only; 8.1.2 ran the build-independent checks.
 PARTIAL = {'ff51','ff52','ff53','ff54','ff55','ff56','ff57'}
 # Films whose path grid needs file names Windows cannot hold: measured on 6.1.1 only.

@@ -1,0 +1,16 @@
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+
+source       title YY  artist YY  comment YY  location YY  handler YY
+plain        title YY  artist YY  comment YY  location YY  handler YY   encoder tag: Lavf60.16.100
+   ffmpeg -i in.mp4 -c:v libx264 -c:a aac out.mp4
+copy         title YY  artist YY  comment YY  location YY  handler YY   encoder tag: Lavf60.16.100
+   ffmpeg -i in.mp4 -c copy out.mp4
+strip        title --  artist --  comment --  location --  handler --   encoder tag: Lavf60.16.100
+   ffmpeg -i in.mp4 -map_metadata -1 -c:v libx264 -c:a aac out.mp4
+strip_bitexact title --  artist --  comment --  location --  handler --   encoder tag: null
+   ffmpeg -i in.mp4 -map_metadata -1 -fflags +bitexact -c:v libx264 -c:a aac out.mp4
+strip_copy   title --  artist --  comment --  location --  handler --   encoder tag: Lavf60.16.100
+   ffmpeg -i in.mp4 -map_metadata -1 -c copy out.mp4
+
+(each flag: first = ffprobe shows it, second = the bytes are in the file; Y yes, - no)
+Evidence written to /tmp/frc-runs/ff12/evidence.json

@@ -1,0 +1,9 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+You asked for 3 s starting at 7.5 s (first frame 188, 75 frames). Source keyframes at 0, 5, 10, 15 s.
+
+variant                first frame  starts at  frames  seconds  packets in file
+input_seek_copy        188          7.52s      75      3        138
+output_seek_copy       250          10s        13      0.52     13
+input_seek_reencode    188          7.52s      74      2.96     74
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff01\evidence.json

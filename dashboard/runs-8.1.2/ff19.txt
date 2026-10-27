@@ -1,0 +1,20 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+same_stereo    astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+same_ac1       astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+same_left      astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+same_sum       astats: peak   -1.94 dB rms   -4.95 dB | samples: peak   -1.94 dB rms   -4.95 dB
+anti_stereo    astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+anti_ac1       astats: peak -Infinity dB rms -Infinity dB | samples: peak -Infinity dB rms -Infinity dB
+anti_left      astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+anti_sum       astats: peak -Infinity dB rms -Infinity dB | samples: peak -Infinity dB rms -Infinity dB
+leftonly_stereo astats: peak   -7.96 dB rms  -13.98 dB | samples: peak   -7.96 dB rms  -13.98 dB
+leftonly_ac1   astats: peak  -13.98 dB rms  -16.99 dB | samples: peak  -13.98 dB rms  -16.99 dB
+leftonly_left  astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+leftonly_sum   astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+diff_stereo    astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+diff_ac1       astats: peak   -8.38 dB rms  -13.98 dB | samples: peak   -8.38 dB rms  -13.98 dB
+diff_left      astats: peak   -7.96 dB rms  -10.97 dB | samples: peak   -7.96 dB rms  -10.97 dB
+diff_sum       astats: peak   -2.36 dB rms   -7.96 dB | samples: peak   -2.36 dB rms   -7.96 dB
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff19\evidence.json

@@ -1,0 +1,16 @@
+ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+
+x264_crf0: ffmpeg -i in -c:v libx264 -crf 0 out.mkv
+   stored as yuv444p (High 4:4:4 Predictive), 214435 bytes
+   back in RGB: 0/25 frames identical, psnr 54.637678; identical in its own format (yuv444p): 25/25
+x264_crf0_420: ffmpeg -i in -c:v libx264 -crf 0 -pix_fmt yuv420p out.mkv
+   stored as yuv420p (High 4:4:4 Predictive), 140612 bytes
+   back in RGB: 0/25 frames identical, psnr 22.835308; identical in its own format (yuv420p): 25/25
+x264rgb_crf0: ffmpeg -i in -c:v libx264rgb -crf 0 out.mkv
+   stored as gbrp (High 4:4:4 Predictive), 205490 bytes
+   back in RGB: 25/25 frames identical, psnr inf; identical in its own format (gbrp): 25/25
+ffv1: ffmpeg -i in -c:v ffv1 out.mkv
+   stored as bgr0, 295604 bytes
+   back in RGB: 25/25 frames identical, psnr inf; identical in its own format (bgr0): 25/25
+
+Evidence written to C:\Users\chaus\AppData\Local\Temp\frc-runs\ff11\evidence.json
