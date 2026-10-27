@@ -1,0 +1,86 @@
+{
+  "n": 83,
+  "slug": "ffmpeg-silencedetect-n-and-d",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does silence detect find one gap, not five?",
+  "fullTitle": "FFmpeg silencedetect Finds 1 of 5 Gaps: What n and d Really Do",
+  "kicker": "Episode 83",
+  "thumb": {
+    "number": "1 of 5",
+    "label": "GAPS FOUND BY DEFAULT",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "duration",
+    "t": 4.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You run silence detect with its defaults on a clip with five gaps. It reports one. Is the filter broken? A synthetic tone, five gaps of known length and level, on f f m peg six point one point one.",
+      "captions": [
+        "silencedetect: 5 gaps, 1 reported.",
+        "Is the filter broken?"
+      ],
+      "sim": null
+    },
+    {
+      "id": "clip",
+      "chapter": "The clip, two readers",
+      "narration": "Gap A is two and a half seconds of digital zero, B half a second. C, D and E are one second of noise, peaking at minus forty nine, fifty four and sixty six d b. Reader one is what f f m peg prints. Reader two is the raw samples.",
+      "captions": [
+        "A, B: digital zero. C, D, E: noise.",
+        "Control: no gap, none reported."
+      ]
+    },
+    {
+      "id": "duration",
+      "chapter": "The default d",
+      "narration": "The default d is two seconds, so only gap A counts. With d equals one, A and E. With d equals zero point five, A, B and E: a gap exactly as long as d counts. At zero point five oh oh one, B is gone.",
+      "captions": [
+        "Default d=2: only A, 2.5 s.",
+        "d=0.5 keeps B. d=0.5001 drops it."
+      ]
+    },
+    {
+      "id": "level",
+      "chapter": "The level n",
+      "narration": "Now n. It is compared with every sample, not an average. At minus sixty d b: A, B, E. At minus fifty, D joins. C stays out: its r m s is minus fifty four, its loudest sample minus forty nine. Only minus forty takes it.",
+      "captions": [
+        "n=-60dB: A, B, E. n=-50dB: A, B, D, E.",
+        "C: rms -53.9, peak -49.1 dBFS."
+      ]
+    },
+    {
+      "id": "spelling",
+      "chapter": "Spellings and limits",
+      "narration": "Zero point zero zero one is minus sixty d b, identical output. Minus fifty without d b is refused. n equals zero finds nothing, not even digital zero. On sixteen bit audio, one point five finds nothing: the threshold overflows. On float audio, everything is silent.",
+      "captions": [
+        "n=0.001 is n=-60dB. n=-50 is refused.",
+        "n=1.5: 16 bit finds nothing, float finds all."
+      ]
+    },
+    {
+      "id": "exact",
+      "chapter": "How exact",
+      "narration": "Edges are the true ones, to the sample. On sixteen bit audio the level is cut to an integer: thirty one is silent at minus sixty, thirty two is not. Printed times keep six digits. In stereo, both channels must be quiet.",
+      "captions": [
+        "Edges match the raw samples.",
+        "16 bit level cut to an integer: 31 yes, 32 no."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "narration": "Set d to the shortest gap you care about, and n above the peak of the noise, not its average. Not tested: other builds, real recordings, compressed audio.",
+      "captions": [
+        "d = shortest gap. n = above the noise peak.",
+        "Not tested: other builds, real recordings."
+      ],
+      "sim": null
+    }
+  ]
+}
