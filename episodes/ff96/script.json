@@ -1,0 +1,81 @@
+{
+ "n": 96,
+ "slug": "ffmpeg-loudnorm-vs-dynaudnorm",
+ "palette": "lab",
+ "series": "FFmpeg Reality Checks",
+ "title": "Which filter evens out loudness?",
+ "fullTitle": "FFmpeg loudnorm Hits the Loudness Target but Leaves Quiet Parts Over 20 dB Down",
+ "kicker": "Episode 96",
+ "thumb": {
+  "number": "20+ dB",
+  "label": "QUIET PARTS STAY QUIET",
+  "color": "red"
+ },
+ "endCard": {},
+ "hero": {
+  "scene": "gap",
+  "t": 9.0
+ },
+ "scenes": [
+  {
+   "id": "ask",
+   "chapter": "The question",
+   "sim": null,
+   "narration": "A podcast has a quiet interview and a loud intro, and listeners keep reaching for the volume knob. Two filters promise a fix: loudnorm and dynaudnorm. Which one hits a target? Which one evens out quiet and loud?",
+   "captions": [
+    "Quiet interview, loud intro, and a hand on the knob.",
+    "loudnorm or dynaudnorm: which does what?"
+   ]
+  },
+  {
+   "id": "method",
+   "chapter": "Two meters",
+   "sim": null,
+   "narration": "We build a speech like program in Node: eight sections from minus thirty eight to minus twelve decibels, four seconds or sixteen seconds long. Reader one is ebur128. Reader two is a loudness meter we wrote in Node. They agree within a tenth of a unit.",
+   "captions": [
+    "8 sections, -38 to -12 dB, 4 s or 16 s each.",
+    "Reader 1: ebur128. Reader 2: a BS.1770 meter in Node."
+   ]
+  },
+  {
+   "id": "target",
+   "chapter": "The target",
+   "sim": null,
+   "narration": "The target. loudnorm with its defaults aims at minus twenty four and lands at minus twenty three point one. Aimed at minus sixteen, it lands within a quarter unit. dynaudnorm has no target: the same filter ends at minus fifteen point nine on one program and minus fourteen on the other.",
+   "captions": [
+    "loudnorm: -23.1 for a target of -24. -16 lands at -16.0 and -15.8.",
+    "dynaudnorm: -15.9 on one program, -13.9 on the other."
+   ]
+  },
+  {
+   "id": "gap",
+   "chapter": "The gap",
+   "sim": null,
+   "narration": "The gap. After loudnorm the quietest section is still about twenty five units below the loudest, yet the range reads only nine point seven, because three second windows blur four second sections. dynaudnorm with defaults changes little. With a short window, f equals one fifty, g equals five, the gap shrinks to eight point four.",
+   "captions": [
+    "Quietest to loudest section: 28.0 in, 24.9 after loudnorm.",
+    "dynaudnorm f=150:g=5: 8.4. Defaults: 26.3."
+   ]
+  },
+  {
+   "id": "traps",
+   "chapter": "Two traps",
+   "sim": null,
+   "narration": "Two traps. loudnorm in its normal mode writes one hundred ninety two thousand hertz, unless you add aresample. And two pass with linear equals true quietly falls back to dynamic when the range target is too low. Even its own meter read minus sixteen point four six, where both readers say minus seventeen.",
+   "captions": [
+    "Output rate 192000 Hz, 4 times the samples.",
+    "linear=true: the second pass report says linear or dynamic."
+   ]
+  },
+  {
+   "id": "close",
+   "chapter": "What we measured",
+   "sim": null,
+   "narration": "Use loudnorm for a target. Use dynaudnorm with a short window to flatten. And treat the range number with care: on one output the two readers differ by five point six units. Not tested: other builds, real speech, stereo, or video.",
+   "captions": [
+    "loudnorm sets a level. dynaudnorm with a short window flattens.",
+    "Not tested: other builds, real speech, stereo, video."
+   ]
+  }
+ ]
+}
