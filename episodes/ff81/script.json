@@ -1,0 +1,86 @@
+{
+  "n": 81,
+  "slug": "scene-score-select",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "What does select scene really score?",
+  "fullTitle": "ffmpeg Scene Score: a 16-Frame Cross-Fade Scores 1/16 of a Hard Cut",
+  "kicker": "Episode 81",
+  "thumb": {
+    "number": "1/16",
+    "label": "SCORE OF A 16 FRAME FADE",
+    "color": "amber"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "fades",
+    "t": 8.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Select gt scene is the usual way to find cuts. What score does a hard cut get? A cross-fade? A drift? Noise? We feed ffmpeg frames we wrote ourselves, and read every score.",
+      "captions": [
+        "What score does a hard cut get? A fade? Noise?",
+        "Frames we wrote ourselves, every score read."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Frames written byte by byte",
+      "narration": "Raw frames written byte by byte in Node: one hundred sixty by ninety, sixty frames, picture A, then picture B. Cuts, fades, a drift, noise, a flash. Two readers: ffmpeg's printed score, and Node's pixel difference. Control: frame zero scores zero.",
+      "captions": [
+        "60 frames: picture A, then picture B.",
+        "Readers: ffmpeg's score, Node's pixel difference."
+      ]
+    },
+    {
+      "id": "cut",
+      "chapter": "A hard cut",
+      "narration": "A hard cut scores point seven seven three: the mean luma difference of the two frames, divided by a hundred. Node gets the same number from the pixels. From point one to point five, frame thirty is selected, and nothing else.",
+      "captions": [
+        "Hard cut: 0.773 = mean luma difference / 100.",
+        "Thresholds 0.1 to 0.5: frame 30 only."
+      ]
+    },
+    {
+      "id": "formula",
+      "chapter": "Two cuts and a flash",
+      "narration": "But the score is the smaller of two numbers: the difference, and how much it changed since the last frame. A flash scores point seven seven going in. Coming back, the jump is just as big, and it scores zero. Two cuts four frames apart: both caught.",
+      "captions": [
+        "Score = smaller of the difference and its change.",
+        "Flash: 0.773 in, 0 out. Two cuts 4 frames apart: both caught."
+      ]
+    },
+    {
+      "id": "fades",
+      "chapter": "Cross-fades",
+      "narration": "A cross-fade spreads the change over many frames. Its first frame scores the cut divided by the length: two frames, point three nine, four, point one nine, eight, point zero nine seven. At point one, fades of eight frames or more are never selected.",
+      "captions": [
+        "First fade frame = cut score / length of the fade.",
+        "At 0.1, fades of 8 frames or more are never selected."
+      ]
+    },
+    {
+      "id": "noise",
+      "chapter": "Drift, noise, a lossy encode",
+      "narration": "A drift of two levels a frame scores point zero two, once. Noise: the first noisy frame scores point one nine eight, then nearly zero, though noisy frames differ more from each other than from flat. After x two six four, the cut keeps its point seven seven.",
+      "captions": [
+        "Drift: 0.02 once. Noise: 0.198 on the first frame, then near 0.",
+        "After x264: the cut 0.774, the noise 0.164."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Measure the scores before you pick a threshold. Cuts pass. Fades slip through, and the way back from a flash is invisible. Not tested: real footage, other encoders, other builds.",
+      "captions": [
+        "Measure the scores before you pick a threshold.",
+        "Not tested: real footage, other encoders, other builds."
+      ]
+    }
+  ]
+}
