@@ -8,10 +8,19 @@ Reads (all in this repo):
   dashboard/queue.json        the next-episode queue (hand-maintained)
   dashboard/limits.json       upload and quota facts (hand-maintained)
 
-Writes dashboard/out/{films,traffic,queue,limits}.json (row arrays, the shape the dashboard loads).
+Writes dashboard/out/{films,traffic,queue,limits,timeline}.json (row arrays, the shape the dashboard loads).
 Usage: python3 dashboard/build_data.py
 """
-import json, pathlib, re
+import json, pathlib, re, base64, datetime
+from zoneinfo import ZoneInfo
+ET = ZoneInfo('America/New_York')
+
+def et(iso):
+    return datetime.datetime.fromisoformat(iso.replace('Z', '+00:00')).astimezone(ET)
+
+def fmt_et(iso):
+    d = et(iso)
+    return d.strftime('%b ') + str(d.day) + d.strftime(', ') + str(int(d.strftime('%I'))) + d.strftime(':%M %p').lower() + ' ET'
 
 root = pathlib.Path(__file__).resolve().parent.parent
 dash = root / 'dashboard'
@@ -89,6 +98,9 @@ for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
         'endscreen': es.get('status', 'not set'),
         'end_note': es.get('note', ''),
         'video_id': st['videoId'] if st else '',
+        'published_at': st.get('at', '') if st else '',
+        'published': fmt_et(st['at']) if st and st.get('at') else '',
+        'published_kind': ('went public' if st['privacy'] == 'public' else 'uploaded, private') if st and st.get('at') else '',
         'url': ('https://youtu.be/' + st['videoId']) if st else '',
     }
     films.append(row)
@@ -98,7 +110,49 @@ if ana:
     traffic = [{'source': LABEL.get(r['insightTrafficSourceType'], r['insightTrafficSourceType']), 'views': r['views'], 'minutes': r['estimatedMinutesWatched']} for r in sorted(ana['traffic'], key=lambda r: -r['views'])]
 else:
     traffic = snap['channelTraffic']['sources']
-(out / 'films.json').write_text(json.dumps(films, indent=1))
+# Thumbnails: dashboard/thumbs/ffNN.jpg (320 px wide, from episodes/ffNN/thumbnail.png), embedded as data URLs in the film rows.
+for f in films:
+    jp = dash / 'thumbs' / (f['code'] + '.jpg')
+    f['thumb'] = ('data:image/jpeg;base64,' + base64.b64encode(jp.read_bytes()).decode()) if jp.exists() else ''
+(out / 'films.json').write_text(json.dumps(films, separators=(',', ':')))
+
+# Timeline: real YouTube times (publishedAt) grouped into batches, plus what is scheduled and in production.
+done = sorted([(c, v) for c, v in snap['films'].items() if v.get('at')], key=lambda kv: kv[1]['at'])
+batches = []
+for c, v in done:
+    last = batches[-1] if batches else None
+    if last and last['privacy'] == v['privacy'] and (et(v['at']) - et(last['end'])).total_seconds() <= 45 * 60:
+        last['films'].append(c); last['end'] = v['at']
+    else:
+        batches.append({'privacy': v['privacy'], 'start': v['at'], 'end': v['at'], 'films': [c]})
+tl = []
+for i, b in enumerate(batches):
+    a, z = b['films'][0], b['films'][-1]
+    rng = a if a == z else a + ' to ' + z
+    public = b['privacy'] == 'public'
+    tl.append({
+        'order': i, 'state': 'done',
+        'when': fmt_et(b['start']),
+        'title': ('Went public: ' if public else 'Uploaded, private: ') + rng,
+        'detail': str(len(b['films'])) + (' film' if len(b['films']) == 1 else ' films') + ('. Time is the YouTube publish time.' if public else '. Time is the upload time; still private.'),
+        'films': ','.join(b['films']),
+    })
+private_now = [c for c, v in snap['films'].items() if v['privacy'] != 'public']
+n0 = len(tl)
+if private_now:
+    tl.append({'order': n0, 'state': 'scheduled', 'when': 'Oct 27, 3:10 am ET (planned)',
+        'title': 'Go public: ' + private_now[0] + ' to ' + private_now[-1],
+        'detail': 'Approved by Miz on Oct 26. YouTube refused further changes after the daily upload quota ran out on Oct 26; a resume job runs after the reset (midnight Pacific).',
+        'films': ','.join(private_now)})
+building = sorted(f['code'] for f in films if f['status'] == 'in production')
+if building:
+    tl.append({'order': n0 + 1, 'state': 'building', 'when': 'In production',
+        'title': 'Build and test: ' + building[0] + ' to ' + building[-1],
+        'detail': str(len(building)) + ' films in the next batch. Built private only; publishing needs a fresh yes.',
+        'films': ','.join(building)})
+tl.append({'order': n0 + 2, 'state': 'scheduled', 'when': 'Oct 29, 9:00 am ET (reminder)',
+    'title': 'Analytics API and OAuth scope', 'detail': 'Decision needed: extend the YouTube login with the analytics read scope (needs your explicit yes).', 'films': ''})
+(out / 'timeline.json').write_text(json.dumps(tl, indent=1))
 (out / 'traffic.json').write_text(json.dumps(traffic, indent=1))
 (out / 'queue.json').write_text(json.dumps(queue, indent=1))
 (out / 'limits.json').write_text(json.dumps(limits, indent=1))

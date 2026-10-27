@@ -80,6 +80,25 @@
 .rc .pins .txt span { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .rc .pins .txt p { line-height: 1.45; overflow-wrap: anywhere; user-select: all; }
 .rc .over { color: var(--color-warn); }
+.rc img.th { display: block; width: 7rem; max-width: none; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; border: 1px solid var(--color-border-line); background: var(--color-bg); }
+.rc td.tc { width: 7.5rem; padding-right: 0; }
+.rc td.yt { white-space: nowrap; }
+.rc td.pub { white-space: nowrap; }
+.rc td.pub span { display: block; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.rc .tl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.rc .tl li { display: grid; grid-template-columns: 11rem 1fr; gap: var(--cds-gap-md); padding: var(--cds-pad-md) 0; border-top: 1px solid var(--color-border-line); }
+.rc .tl li:first-child { border-top: 0; }
+.rc .tl .when { display: flex; flex-direction: column; gap: var(--cds-gap-xs); align-items: flex-start; font-variant-numeric: tabular-nums; }
+.rc .tl .when b { font-weight: var(--cds-font-weight-medium); }
+.rc .tl .body { min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.rc .tl .body b { font-weight: var(--cds-font-weight-medium); }
+.rc .tl .strip { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--cds-gap-xs); }
+.rc .tl .strip a { display: block; line-height: 0; }
+.rc .tl .strip img { width: 5rem; max-width: none; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 3px; border: 1px solid var(--color-border-line); }
+.rc .tl .strip .code { line-height: 1.2; font-size: var(--cds-font-size-caption); padding: 2px 8px; border: 1px dashed var(--color-border-line); border-radius: 3px; color: var(--color-fg-muted); }
+.rc .chip.done { color: var(--color-ok); }
+.rc .chip.scheduled, .rc .chip.building { color: var(--color-warn); }
+@media (max-width: 560px) { .rc .tl li { grid-template-columns: 1fr; gap: var(--cds-gap-xs); } .rc img.th { width: 5.5rem; } .rc td.tc { width: 6rem; } }
 .rc td.rel { white-space: nowrap; color: var(--color-fg-muted); }
 @media (max-width: 560px) { .rc .pins li { grid-template-columns: 2.5rem 1fr; } .rc .pins li .btn { grid-column: 2; justify-self: start; } }
 </style>
@@ -96,7 +115,7 @@
   </header>
 
   <nav class="nav" id="nav" aria-label="Sections">
-    <a href="#overview">Overview</a><a href="#films">Films</a><a href="#pinned">Pinned comments</a><a href="#endscreens">End screens</a><a href="#diffs">Build differences</a><a href="#channel">Channel</a><a href="#queue">Queue</a>
+    <a href="#overview">Overview</a><a href="#timeline">Timeline</a><a href="#films">Films</a><a href="#pinned">Pinned comments</a><a href="#endscreens">End screens</a><a href="#diffs">Build differences</a><a href="#channel">Channel</a><a href="#queue">Queue</a>
   </nav>
 
   <section class="kpis" id="overview" aria-label="Series totals">
@@ -108,13 +127,19 @@
     <div class="card kpi"><span class="label">Channel views, 2026</span><span class="val" data-source="totals" data-row="0" data-field="chviews">—</span><span class="sub"><span data-source="totals" data-row="0" data-field="chhours">—</span> watch hours, all series</span></div>
   </section>
 
+  <section class="card" id="timeline">
+    <h2>Timeline</h2>
+    <p class="note">What went out and when, from the YouTube publish and upload times (Eastern), then what is scheduled and in production. Click a thumbnail to open the film on YouTube.</p>
+    <ol class="tl" id="tl" data-source="timeline films"></ol>
+  </section>
+
   <section class="card" id="films">
     <h2>Films</h2>
     <p class="note">One row per episode. Each asks one question from a copied command, runs it on a synthetic clip, and reports the measurement. Click a column to sort.</p>
     <div class="tools">
       <input type="search" id="q" placeholder="Search questions, headlines, codes" aria-label="Search films">
       <label>Sort <select id="sortf" aria-label="Sort films">
-        <option value="n:-1">Newest first</option><option value="n:1">Oldest first</option><option value="tests:-1">Most tests</option><option value="seconds:-1">Longest</option><option value="seconds:1">Shortest</option><option value="views:-1">Most views</option><option value="build_difference:-1">Build difference first</option>
+        <option value="n:-1">Newest first</option><option value="published_at:-1">Latest publish time</option><option value="published_at:1">Earliest publish time</option><option value="n:1">Oldest first</option><option value="tests:-1">Most tests</option><option value="seconds:-1">Longest</option><option value="seconds:1">Shortest</option><option value="views:-1">Most views</option><option value="build_difference:-1">Build difference first</option>
       </select></label>
     </div>
     <div class="tools" role="group" aria-label="Filters">
@@ -126,12 +151,15 @@
     <div class="scroll">
       <table id="ftable" data-source="films" data-row-key="code">
         <thead><tr>
+          <th class="plain">Thumbnail</th>
           <th data-field="code" aria-sort="descending"><button type="button" data-k="n">Film</button></th>
           <th data-field="question"><button type="button" data-k="question">Question</button></th>
           <th data-field="stat"><button type="button" data-k="stat">Headline</button></th>
+          <th data-field="url"><button type="button" data-k="video_id">YouTube</button></th>
           <th data-field="seconds" class="num"><button type="button" data-k="seconds">Length</button></th>
           <th data-field="tests" class="num"><button type="button" data-k="tests">Tests</button></th>
           <th data-field="builds"><button type="button" data-k="builds">Builds</button></th>
+          <th data-field="published"><button type="button" data-k="published_at">Published</button></th>
           <th data-field="views" class="num"><button type="button" data-k="views">Views</button></th>
           <th data-field="status"><button type="button" data-k="status">Status</button></th>
         </tr></thead>
@@ -229,7 +257,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var mmss = function (s) { return s == null ? '' : Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
 
-  var asc = { n: 1, question: 1, builds: 1, status: 1, stat: 1 };
+  var asc = { n: 1, question: 1, builds: 1, status: 1, stat: 1, video_id: 1 };
   function syncSort() {
     var sel = $('sortf'), v = state.key + ':' + state.dir;
     var has = Array.prototype.some.call(sel.options, function (o) { return o.value === v; });
@@ -261,6 +289,46 @@
   });
   $('pq').addEventListener('input', function (e) { state.pq = e.target.value.toLowerCase(); drawPins(); });
 
+  function thumbImg(r, cls) {
+    if (!r || !r.thumb) return null;
+    var im = document.createElement('img'); im.className = cls; im.src = r.thumb; im.alt = r.code + ': ' + r.question; im.loading = 'lazy'; im.decoding = 'async';
+    return im;
+  }
+
+  function drawTimeline() {
+    var t = dash.data('timeline'), f = dash.data('films'), ol = $('tl');
+    ol.textContent = '';
+    if (t.status !== 'ok' || f.status !== 'ok') return;
+    var by = {}; f.data.forEach(function (r) { by[r.code] = r; });
+    var rows = t.data.slice().sort(function (a, b) {
+      var ad = a.state === 'done', bd = b.state === 'done';
+      if (ad !== bd) return ad ? 1 : -1;
+      return ad ? b.order - a.order : a.order - b.order;
+    });
+    rows.forEach(function (r) {
+      var li = document.createElement('li'); li.setAttribute('data-key', String(r.order));
+      var w = document.createElement('div'); w.className = 'when';
+      var wb = document.createElement('b'); wb.textContent = r.when; w.appendChild(wb);
+      var chip = document.createElement('span'); chip.className = 'chip ' + r.state; chip.textContent = r.state === 'done' ? 'done' : (r.state === 'building' ? 'building' : 'scheduled'); w.appendChild(chip);
+      li.appendChild(w);
+      var b = document.createElement('div'); b.className = 'body';
+      var tt = document.createElement('b'); tt.textContent = r.title; b.appendChild(tt);
+      var dd = document.createElement('span'); dd.className = 'note'; dd.textContent = r.detail; b.appendChild(dd);
+      var codes = r.films ? String(r.films).split(',') : [];
+      if (codes.length) {
+        var strip = document.createElement('div'); strip.className = 'strip';
+        codes.forEach(function (c) {
+          var fr = by[c]; var im = thumbImg(fr, '');
+          if (fr && fr.url && im) { var a = document.createElement('a'); a.href = fr.url; a.target = '_blank'; a.rel = 'noopener'; a.title = c + ': ' + fr.question; a.appendChild(im); strip.appendChild(a); }
+          else { var sp = document.createElement('span'); sp.className = 'code'; sp.textContent = c; sp.title = fr ? fr.question : c; strip.appendChild(sp); }
+        });
+        b.appendChild(strip);
+      }
+      li.appendChild(b);
+      ol.appendChild(li);
+    });
+  }
+
   function cell(tr, text, cls) { var td = document.createElement('td'); if (cls) td.className = cls; td.textContent = text; tr.appendChild(td); return td; }
 
   function drawFilms() {
@@ -285,14 +353,17 @@
     rows.forEach(function (r) {
       var tr = document.createElement('tr');
       tr.setAttribute('data-key', r.code);
+      var tcell = cell(tr, '', 'tc'); var im = thumbImg(r, 'th'); if (im) { if (r.url) { var ta = document.createElement('a'); ta.href = r.url; ta.target = '_blank'; ta.rel = 'noopener'; ta.setAttribute('aria-label', 'Open ' + r.code + ' on YouTube'); ta.appendChild(im); tcell.appendChild(ta); } else tcell.appendChild(im); }
       var c = document.createElement('td');
       if (r.url) { var a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.code; c.appendChild(a); } else { c.textContent = r.code; }
       tr.appendChild(c);
       cell(tr, r.question, 'q');
       var st = cell(tr, '', 'stat'); var b = document.createElement('b'); b.textContent = r.stat || '\u2014'; st.appendChild(b); var sp = document.createElement('span'); sp.textContent = r.stat_label; st.appendChild(sp);
+      var yc = cell(tr, '', 'yt'); if (r.url) { var ya = document.createElement('a'); ya.href = r.url; ya.target = '_blank'; ya.rel = 'noopener'; ya.textContent = r.url.replace('https://', ''); yc.appendChild(ya); } else yc.textContent = '\u2014';
       cell(tr, mmss(r.seconds), 'num');
       cell(tr, r.tests == null ? '' : fmt(r.tests), 'num');
       var bd = cell(tr, r.builds); if (r.build_difference === 'yes') { var m = document.createElement('span'); m.className = 'diff'; m.textContent = ' (differs)'; bd.appendChild(m); }
+      var pc = cell(tr, r.published || '\u2014', 'pub'); if (r.published_kind) { var pk = document.createElement('span'); pk.textContent = r.published_kind; pc.appendChild(pk); }
       cell(tr, r.views == null ? '' : fmt(r.views), 'num');
       var s = cell(tr, ''); var chip = document.createElement('span'); chip.className = 'chip ' + r.status.replace(' ', '-'); chip.textContent = r.status; s.appendChild(chip);
       tbody.appendChild(tr);
@@ -435,6 +506,7 @@
 
   dash.onData(function () {
     fillTotals();
+    drawTimeline();
     drawFilms();
     drawTests();
     drawPins();
