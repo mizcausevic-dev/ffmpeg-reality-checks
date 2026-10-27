@@ -1,0 +1,86 @@
+{
+  "n": 91,
+  "slug": "ffmpeg-segment-copy-keyframes",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why is a two second segment 3.3 seconds long?",
+  "fullTitle": "FFmpeg -f segment -c copy: -segment_time 2 Gives 2.1, 2.5, 3.3 and 2.1 s on Uneven Keyframes",
+  "kicker": "Episode 91",
+  "thumb": {
+    "number": "3.3 s",
+    "label": "ASKED FOR 2 SECONDS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "lengths",
+    "t": 7.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You ask for two second segments. Dash f segment, dash c copy, dash segment underscore time two. Four files come out, and one is three point three seconds. Synthetic, f f m peg six point one point one.",
+      "captions": [
+        "Asked for 2 s segments.",
+        "Four files, one of 3.3 s."
+      ],
+      "sim": null
+    },
+    {
+      "id": "setup",
+      "chapter": "The clip and three readers",
+      "narration": "A hundred frames, ten a second, each one names itself. Keyframes at one point seven, two point one, four point six, five point eight, seven point nine. Three readers: f f probe per segment, decoded frames joined in Node, the muxer's list.",
+      "captions": [
+        "Keyframes at 1.7, 2.1, 4.6, 5.8, 7.9 s.",
+        "Three readers, one control clip."
+      ]
+    },
+    {
+      "id": "lengths",
+      "chapter": "Real lengths",
+      "narration": "Two seconds gives two point one, two point five, three point three, two point one. Three gives four point six, three point three, two point one. Five gives five point eight, four point two. Each cut waits for the next keyframe. With one every second: two, two, two, two, two.",
+      "captions": [
+        "A cut waits for the next keyframe.",
+        "Keyframe every second: 2.0 s, five times."
+      ]
+    },
+    {
+      "id": "times",
+      "chapter": "Segment times",
+      "narration": "Segment times two, three, five cuts at the first keyframe at or after each time. Three lands on four point six, not three. Four files: two point one, two point five, one point two, four point two.",
+      "captions": [
+        "Asked 3 s, cut at 4.6 s.",
+        "Four files: 2.1, 2.5, 1.2, 4.2 s."
+      ]
+    },
+    {
+      "id": "reset",
+      "chapter": "Reset timestamps",
+      "narration": "Reset timestamps one restarts every segment at zero in m k v and mp four. In t s it restarts at one point four, the muxer's start. Without it a segment keeps its place on the source clock. The list file keeps the source clock; its end column is an end time.",
+      "captions": [
+        "Reset: start 0 in mkv and mp4.",
+        "ts restarts at 1.4 s, not 0."
+      ]
+    },
+    {
+      "id": "join",
+      "chapter": "Joined again",
+      "narration": "Nothing is lost: frames zero to ninety nine, in all twenty seven runs. T s bytes with a reset jump back at every boundary. M k v without a reset, through concat: sixteen point six seconds, a gap of four point seven. With a reset: nine point nine.",
+      "captions": [
+        "27 of 27 runs: frames 0 to 99.",
+        "mkv, no reset, concat: 16.6 s."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "So segments follow keyframes, not the request. Put keyframes where the cuts should be. Reset for separate files. Check every segment. Not tested: other builds, B frames, audio, real footage.",
+      "captions": [
+        "Not tested: other builds, B frames, audio, real footage.",
+        "Segments follow keyframes, not the request."
+      ],
+      "sim": null
+    }
+  ]
+}
