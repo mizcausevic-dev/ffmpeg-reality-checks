@@ -146,11 +146,20 @@ for i, b in enumerate(batches):
     })
 private_now = [c for c, v in snap['films'].items() if v['privacy'] != 'public']
 n0 = len(tl)
-if private_now:
+# Approved by Miz: ff61..ff77 (Oct 26 evening) and ff78 + ff97 (Oct 26, 11 pm ET). Everything else stays private until a fresh yes.
+APPROVED_B = {'ff78', 'ff97'}
+first = [c for c in private_now if 61 <= int(c[2:]) <= 77]
+if first:
     tl.append({'order': n0, 'state': 'scheduled', 'when': 'Oct 27, 3:10 am ET (planned)',
-        'title': 'Go public: ' + private_now[0] + ' to ' + private_now[-1],
+        'title': 'Go public: ' + first[0] + ' to ' + first[-1],
         'detail': 'Approved by Miz on Oct 26. YouTube refused further changes after the daily upload quota ran out on Oct 26; a resume job runs after the reset (midnight Pacific).',
-        'films': ','.join(private_now)})
+        'films': ','.join(first)})
+    n0 += 1
+tl.append({'order': n0, 'state': 'scheduled', 'when': 'Oct 27, after the 3:50 am ET upload rerun (planned)',
+    'title': 'Go public: ff78 and ff97',
+    'detail': 'Approved by Miz on Oct 26, 11 pm ET (two films only). ff78 is already uploaded, private, and needs its thumbnail and playlist entry; ff97 uploads in the rerun first. The rest of ff79 to ff96 stay private until a fresh yes.',
+    'films': 'ff78,ff97'})
+n0 += 1
 building = sorted(f['code'] for f in films if f['status'] == 'in production')
 if building:
     tl.append({'order': n0 + 1, 'state': 'building', 'when': 'In production',
