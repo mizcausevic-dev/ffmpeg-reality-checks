@@ -1,0 +1,86 @@
+{
+  "n": 80,
+  "slug": "gif-to-mp4-delays",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "What does ffmpeg do with GIF frame delays?",
+  "fullTitle": "GIF to MP4: Delay 3 Is 33.33 fps, -r 30 Adds 11% to the Length, fps=30 Drops 2 Frames",
+  "kicker": "Episode 80",
+  "thumb": {
+    "number": "33.33",
+    "label": "FPS FROM A 3 HUNDREDTH GIF",
+    "color": "amber"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "rate",
+    "t": 17.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "A gif stores one delay for every frame, in hundredths of a second. When ffmpeg writes an mp4, what happens to those delays?",
+      "captions": [
+        "A gif stores a delay per frame, in hundredths of a second.",
+        "What happens to the delays in an mp4?"
+      ]
+    },
+    {
+      "id": "story",
+      "chapter": "The story in four panels",
+      "narration": "Four panels. Twenty frames, each held three hundredths: point six seconds. Convert, and the projector runs at thirty three point three three frames a second. Say dash r thirty: it slows, and the clip lasts point six six seven. Say f p s equals thirty: the length stays, two frames vanish.",
+      "captions": [
+        "20 frames at 3 hundredths: 0.6 s.",
+        "-r 30: 0.667 s. fps=30: 0.6 s, two frames gone."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Gifs written byte by byte",
+      "narration": "We write the gifs byte by byte in Node: twenty frames, each numbered in six blocks. Delays two, three, four, six, ten, and a mix. Readers: delay bytes, f f probe, decoded pixels. Control: in the gif itself, every frame lasts exactly its delay.",
+      "captions": [
+        "20 frames, each one numbered in six blocks.",
+        "Readers: delay bytes, ffprobe, decoded pixels."
+      ]
+    },
+    {
+      "id": "const",
+      "chapter": "One delay for every frame",
+      "narration": "One delay for all frames: nothing is lost. The mp4 rate is a hundred divided by the delay. Three gives thirty three point three three, not thirty. Every frame is kept, the length exact.",
+      "captions": [
+        "Rate = 100 / delay. 3 hundredths: 33.33 fps, not 30.",
+        "All 20 frames kept, length exact."
+      ]
+    },
+    {
+      "id": "mix",
+      "chapter": "Different delays in one gif",
+      "narration": "Now two, three, four, six, ten, repeated. The default mp4 is a hundred frames per second with a hundred frames: each frame repeated for its delay. Dash f p s underscore mode passthrough keeps twenty frames with exact times, but the file lasts point nine one seconds. The last delay is gone.",
+      "captions": [
+        "Default: 100 fps, 100 frames, 1.00 s.",
+        "passthrough: 20 frames, 0.91 s. The last delay is gone."
+      ]
+    },
+    {
+      "id": "rate",
+      "chapter": "Forcing a rate",
+      "narration": "Back to three hundredths. Dash r thirty drops nothing, but holds each frame thirty three milliseconds: eleven percent longer. Dash v f f p s equals thirty keeps point six seconds and drops frames five and fifteen. On the mix, both squeeze two, three and four hundredths into thirty three milliseconds.",
+      "captions": [
+        "-r 30: 0.667 s, 11% longer. fps=30: frames 5 and 15 dropped.",
+        "2, 3 and 4 hundredths all become 33.3 ms."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Without a rate flag, the delays survive. Force a rate, and you change the time. A delay of zero is read as ten hundredths. Not tested: browsers, other gif writers, real animations, other builds.",
+      "captions": [
+        "No rate flag: the delays survive. Force a rate: the time changes.",
+        "Not tested: browsers, other writers, real animations."
+      ]
+    }
+  ]
+}
