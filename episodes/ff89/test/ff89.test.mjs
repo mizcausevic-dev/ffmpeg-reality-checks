@@ -81,6 +81,16 @@ t('ProRes HQ (-profile:v 3) drops the alpha without failing: alpha_info 0 in eve
   if (isV6()) assert.equal(r.noAlphaWarning, true);
 });
 
+t('libvpx-vp9 given rgba: 6.1.1 converts to yuva420p by itself; 8.1.2 picks gbrap and refuses it ("not widely supported", exit non zero) until -pix_fmt yuva420p is named', () => {
+  for (const id of ['vp9', 'vp9lossy', 'vp9mp4']) {
+    const r = F(id);
+    assert.equal(r.refusedRgba, !isV6(), `${id}: rgba refused only on 8.1.2`);
+    if (r.refusedRgba) assert.match(r.refusedStderr, /not widely supported/);
+    assert.equal(r.encoded, true, `${id}: encoded (after naming yuva420p where it was refused)`);
+  }
+  assert.equal(F('vp9yuv').refusedRgba, false);
+});
+
 t('VP9 in webm stores the alpha (one BlockAdditional per frame, alpha_mode 1) while ffprobe still says yuv420p; the libvpx-vp9 decoder returns 8 levels within 1; ffmpeg native VP9 decoder returns 1 (255 only) on 6.1.1', () => {
   assert.ok(ev.decoders['libvpx-vp9'], 'libvpx-vp9 decoder missing');
   for (const id of ['vp9', 'vp9lossy']) {

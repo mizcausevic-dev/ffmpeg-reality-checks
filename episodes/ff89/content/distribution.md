@@ -1,6 +1,6 @@
 # FF89 distribution kit: FFmpeg Transparent Video: PNG, FFV1, ProRes 4444 Keep Alpha, H.264 Drops It, VP9 Needs libvpx
 
-All numbers below come from the synthetic fixture in `episodes/ff89/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff89/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 with one difference: libvpx-vp9 refuses rgba input there (it picks gbrap, "not widely supported") until -pix_fmt yuva420p is named, where 6.1.1 converts by itself.
 
 ## YouTube
 
@@ -40,7 +40,7 @@ Chapters
 01:40 What to do
 <!-- chapters:end -->
 
-Limits: one 64x48 card, 8 frames, lossless or near lossless settings, ffmpeg 6.1.1. The native VP9 decoder returning no alpha, the +1 alpha levels, the 14 level color error of 4:2:0 and the ProRes encoder warning are the parts most likely to differ on another build. Not tested: ffmpeg 8.1.2, real footage, lossy alpha edges at real bitrates, browsers, editors, players, other containers.
+Limits: one 64x48 card, 8 frames, lossless or near lossless settings, ffmpeg 6.1.1. The native VP9 decoder returning no alpha, the +1 alpha levels, the 14 level color error of 4:2:0 and the ProRes encoder warning are the parts most likely to differ on another build. Not tested: other builds, real footage, lossy alpha edges at real bitrates, browsers, editors, players, other containers.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

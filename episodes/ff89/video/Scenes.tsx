@@ -314,7 +314,7 @@ const Close: React.FC<SceneProps> = ({t}) => (
     </Svg>
     <Card x={660} y={290} w={1160} h={134} label="Into an opaque format" value="overlay on a color first" sub="then H.264: within 1 of the exact composite" color={C.cyan} o={ep(t, 5.4, 6.2)} vs={44} />
     <Card x={660} y={444} w={1160} h={134} label="Keep alpha" value="PNG · FFV1 · ProRes 4444" sub="QuickTime Animation too; 8 levels back" color={C.green} o={ep(t, 8.4, 9.2)} vs={44} />
-    <Card x={660} y={598} w={1160} h={134} label="For the web" value="VP9 in webm, libvpx-vp9 to read" sub="never -pix_fmt yuv420p; 4:2:0 moves colors up to 14 levels" color={C.amber} o={ep(t, 11.0, 11.8)} vs={44} />
+    <Card x={660} y={598} w={1160} h={134} label="For the web" value="VP9 in webm, libvpx-vp9 to read" sub="8.1.2 needs -pix_fmt yuva420p named; never yuv420p" color={C.amber} o={ep(t, 11.0, 11.8)} vs={44} />
     <Note x={96} y={790} w={1728} align="center" size={28} o={ep(t, 13.6, 14.4)}>Not tested: other builds, real footage, browsers, editors.</Note>
     <Note x={96} y={840} w={1728} align="center" size={28} color={C.mute} o={ep(t, 14.4, 15.2)}>FFmpeg Reality Checks · episode 89 · fixture and tests in the description</Note>
   </>

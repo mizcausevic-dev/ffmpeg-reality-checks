@@ -171,7 +171,14 @@ export function runExperiment(dir) {
     const rec = {id: f.id, label: f.label, ext: f.ext, enc: f.enc, available: encoders.has(f.enc), decodes: {}};
     ev.formats[f.id] = rec; if (!rec.available) continue;
     const file = path.join(dir, `${f.id}.${f.ext}`); rec.file = file;
-    const enc = ff([...inArgs, ...f.args, file], {encoding: 'utf8'});
+    let enc = ff([...inArgs, ...f.args, file], {encoding: 'utf8'});
+    // 8.1.2: libvpx-vp9 asked to encode rgba picks gbrap and refuses it ("not widely supported"); 6.1.1 converts to yuva420p by itself.
+    // Keep the refusal on record, then name the format 6.1.1 chose so the rest of the matrix can be read on both builds.
+    rec.refusedRgba = false;
+    if (enc.status !== 0 && f.enc === 'libvpx-vp9' && /not widely supported/.test((enc.stderr ?? '').toString())) {
+      rec.refusedRgba = true; rec.refusedStderr = (enc.stderr ?? '').toString();
+      enc = ff([...inArgs, ...f.args, '-pix_fmt', 'yuva420p', file], {encoding: 'utf8'});
+    }
     rec.encodeStatus = enc.status; rec.encodeStderr = (enc.stderr ?? '').toString();
     rec.autoSelected = /auto-selecting format '([^']+)'/.exec(rec.encodeStderr)?.[1] ?? null;
     rec.noAlphaWarning = /will not encode alpha/.test(rec.encodeStderr);

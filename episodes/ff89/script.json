@@ -75,8 +75,9 @@
     {
       "id": "close",
       "chapter": "What to do",
-      "narration": "The off by one is the pixel format conversion, with no codec at all. To bake transparency in, overlay on a color first. Keep alpha with PNG, F F V one or Pro Res four four four four. Not tested: other builds, real footage, browsers, editors.",
+      "narration": "The off by one is the pixel format conversion, with no codec at all. To bake transparency in, overlay on a color first. Keep alpha with PNG, F F V one or Pro Res four four four four. For the web, name y u v a four two zero p yourself: on eight point one point two, lib vpx dash vp nine refuses r g b a input. Not tested: other builds, real footage, browsers, editors.",
       "captions": [
+        "On 8.1.2 libvpx-vp9 refuses rgba: name -pix_fmt yuva420p.",
         "Not tested: other builds, real footage, browsers, editors.",
         "Overlay on a color before an opaque format."
       ],
