@@ -1,0 +1,86 @@
+{
+  "n": 88,
+  "slug": "ffmpeg-chromakey-colorkey-similarity",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does chromakey key nothing on a green card?",
+  "fullTitle": "FFmpeg chromakey vs colorkey: Default Similarity Keeps All 6912 Pixels of the Key Color",
+  "kicker": "Episode 88",
+  "thumb": {
+    "number": "0 of 6912",
+    "label": "CHROMAKEY KEYS NOTHING",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "ask",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "Chromakey or colorkey? Similarity point one: point one of what? A card of exactly the key color. Chromakey at its default keys none of its six thousand nine hundred twelve pixels; colorkey, all. Synthetic, f f m peg six point one point one.",
+      "captions": [
+        "Key a card of exactly the key color.",
+        "chromakey: 0 of 6912 keyed. colorkey: all."
+      ],
+      "sim": null
+    },
+    {
+      "id": "setup",
+      "chapter": "Four cards, two readers",
+      "narration": "Four cards, ninety six by seventy two: color blocks, a soft edged disc, a noisy card, the key green alone. A hundred seventy six runs. Reader one: alpha extract. Reader two: the PNG, decoded in Node. They agree in every run.",
+      "captions": [
+        "176 runs, 4 cards, 2 readers.",
+        "Raw alpha and PNG alpha agree in all 176."
+      ]
+    },
+    {
+      "id": "meaning",
+      "chapter": "What similarity measures",
+      "narration": "Colorkey: distance in red, green and blue, over four hundred forty two. Chromakey: U and V only, averaged over nine pixels, ignoring brightness. Add forty to the green: chromakey keys it at point zero three, like the green itself; colorkey needs point two.",
+      "captions": [
+        "colorkey: RGB distance. chromakey: U and V only.",
+        "Green + 40: chromakey 0.03, colorkey 0.2."
+      ]
+    },
+    {
+      "id": "keycolor",
+      "chapter": "The key is not at zero",
+      "narration": "The key itself is not at distance zero. Chromakey converts the key full range; the pixels are limited range. Key: U ninety five, V fifty eight. Card: ninety nine, sixty six. Six levels: over point zero one. With yuv equals one: zero.",
+      "captions": [
+        "Key U,V 95,58. Card U,V 99,66.",
+        "yuv=1 gives distance 0 for all 6 keys."
+      ]
+    },
+    {
+      "id": "edge",
+      "chapter": "The soft edge",
+      "narration": "The soft edge: sixteen hundred twenty eight pixels. Blend zero gives two alpha levels. At point one, colorkey keeps twelve hundred thirty six opaque, five hundred four mostly green. Blend set to the subject's distance, point four eight eight: a hundred twenty seven levels, half a level of error.",
+      "captions": [
+        "Blend 0: 2 levels. Matched blend: 127.",
+        "1236 edge pixels kept, 504 mostly green."
+      ]
+    },
+    {
+      "id": "noise",
+      "chapter": "The noisy card",
+      "narration": "Noise of up to twenty four levels. At the defaults, colorkey leaves fifty six ninety nine of fifty seven twelve background pixels opaque, chromakey all. Colorkey has twenty two clean settings, chromakey none: at point one, sixty nine specks; at point one five, fifty two lime pixels lost.",
+      "captions": [
+        "Defaults leave the noisy card opaque.",
+        "Clean settings: colorkey 22, chromakey 0."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "So: colorkey for a flat known color, blend set to the subject's distance. Chromakey ignores brightness, but needs yuv equals one and a larger similarity. Not tested: other builds, real footage, compression noise.",
+      "captions": [
+        "Not tested: other builds, real footage, compression noise.",
+        "Colorkey for flat color; chromakey for shade."
+      ],
+      "sim": null
+    }
+  ]
+}
