@@ -33,11 +33,11 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:16 The clip and three readers
-00:32 Real lengths
-00:52 Segment times
-01:06 Reset timestamps
-01:26 Joined again
-01:45 What to do
+00:31 Real lengths
+00:51 Segment times
+01:05 Reset timestamps
+01:23 Joined again
+01:42 What to do
 <!-- chapters:end -->
 
 Limits: one 64x48 clip of 100 frames, no B frames, no audio, ffmpeg 6.1.1. The mpegts 1.4 s start, the mkv duration of a segment without a reset (and so the stretched concat clock) and the exact lengths are the parts most likely to differ on another build. Not tested: B frames, audio, real footage, other segment options (segment_frames, segment_atclocktime, segment_time_delta), live segmenting.

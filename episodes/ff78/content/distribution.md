@@ -34,12 +34,12 @@ The 15 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:14 One impulse, one tone
-00:30 Without the Xing tag
-00:48 With the tag: delay 576
-01:05 The arithmetic
-01:21 Copy and cut
-01:39 What to check
+00:13 One impulse, one tone
+00:28 Without the Xing tag
+00:46 With the tag: delay 576
+00:59 The arithmetic
+01:15 Copy and cut
+01:31 What to check
 <!-- chapters:end -->
 
 Limits: one second of mono 44100 Hz sound, an impulse, a tone and a gap-coded impulse train, libmp3lame at 128 kbit/s CBR and q2 VBR written by ffmpeg 6.1.1, decoded by ffmpeg's own decoder. The copy-cut numbers are the build specific part. Not tested: other builds, real players, other encoders, real music, stereo, other sample rates.

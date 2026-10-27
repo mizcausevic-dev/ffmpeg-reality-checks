@@ -26,12 +26,12 @@ The 12 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:14 A fade written byte by byte
-00:30 The default says nothing
-00:48 What pix_th means
-01:12 What pic_th means
-01:26 The edges
-01:42 What to check
+00:12 A fade written byte by byte
+00:27 The default says nothing
+00:43 What pix_th means
+01:04 What pic_th means
+01:18 The edges
+01:32 What to check
 <!-- chapters:end -->
 
 Limits: synthetic gray frames and one fade, 160 x 90, raw yuv420p input, limited range, ffmpeg 6.1.1. The exact times are the build specific part; the tests assert relations on other builds. Not tested: real footage, other encoders, full range (yuvj420p) input, other builds.

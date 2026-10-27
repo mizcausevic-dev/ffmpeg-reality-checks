@@ -30,12 +30,12 @@ The 18 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 The clip, two readers
-00:36 The default d
-00:54 The level n
-01:12 Spellings and limits
-01:30 How exact
-01:47 What to check
+00:17 The clip, two readers
+00:35 The default d
+00:52 The level n
+01:08 Spellings and limits
+01:25 How exact
+01:40 What to check
 <!-- chapters:end -->
 
 Limits: synthetic tones, noise and constants in 16 bit and float WAV, ffmpeg 6.1.1. The 16 bit overflow, the integer cut of the threshold, the strict comparison and the six digit print are behaviors of this build. Not tested: builds other than 6.1.1 and 8.1.2, real recordings, compressed audio, other filters such as silenceremove.

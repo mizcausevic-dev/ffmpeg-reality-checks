@@ -34,12 +34,12 @@ The 13 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 Two readers, two controls
-00:36 Plain format
-00:56 Dither off
-01:13 The other options
-01:26 Known positive
-01:38 What to check
+00:18 Two readers, two controls
+00:33 Plain format
+00:50 Dither off
+01:15 The other options
+01:27 Known positive
+01:37 What to check
 <!-- chapters:end -->
 
 Limits: a synthetic gray ramp, same size conversion (no scaling), ffmpeg 6.1.1. Which dither is applied is behavior of this build. Not tested: builds other than 6.1.1 and 8.1.2, real footage, scaled output, lossy encoding after the conversion, other pixel formats than yuv420p and rgb8.

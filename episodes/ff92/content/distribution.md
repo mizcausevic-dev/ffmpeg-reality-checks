@@ -30,12 +30,12 @@ The 10 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 The clip and four readers
-00:37 Defaults
-00:52 Scenecut off
-01:10 Keyint min
-01:30 The rule
-01:46 What to do
+00:15 The clip and four readers
+00:34 Defaults
+00:48 Scenecut off
+01:08 Keyint min
+01:28 The rule
+01:43 What to do
 <!-- chapters:end -->
 
 Limits: one 160x120 clip of 300 frames, the default x264 preset with B frames and a closed GOP, ffmpeg 6.1.1. The exact keyframe positions, the byte counts and the min-keyint cap are the parts most likely to differ on another x264 build. Not tested: builds other than 6.1.1 and 8.1.2, other presets, B frames off, open GOP, other encoders, real footage.

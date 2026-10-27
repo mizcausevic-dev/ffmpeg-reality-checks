@@ -30,12 +30,12 @@ The 15 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Two readers, one control
+00:15 Two readers, one control
 00:34 The error
-00:53 Scale
-01:16 Pad
+00:54 Scale
+01:18 Pad
 01:29 Length
-01:46 What to do
+01:47 What to do
 <!-- chapters:end -->
 
 Limits: synthetic flat clips, stacking of two inputs, ffmpeg 6.1.1 on Linux (the exit status is the platform value). The scale2ref variable names are the ones of this build. Not tested: builds other than 6.1.1 and 8.1.2, real footage, audio, other pixel formats, xstack, more than two inputs.

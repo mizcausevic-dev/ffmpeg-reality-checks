@@ -34,12 +34,11 @@ The 11 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:19 Two readers, two controls
-00:37 Plain overlay
-00:55 The usual fix
-01:16 Half way
-01:27 Exact, and the edge
-01:44 What to do
+00:18 Two readers, two controls
+00:35 Plain overlay
+00:53 The usual fix
+01:14 Half way
+01:40 What to do
 <!-- chapters:end -->
 
 Limits: a synthetic gray base and a flat colored card, no scaling, no alpha, ffmpeg 6.1.1. The rounding is the behavior of this build. Not tested: builds other than 6.1.1 and 8.1.2, real footage, other pixel formats, scaled or alpha overlays, hardware overlays.

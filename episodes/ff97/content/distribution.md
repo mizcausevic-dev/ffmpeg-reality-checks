@@ -32,11 +32,11 @@ The 13 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:22 The header
-00:39 The players
-00:58 Flags that do not help
-01:18 What works
-01:36 The close
+00:20 The header
+00:36 The players
+00:55 Flags that do not help
+01:13 What works
+01:28 The close
 <!-- chapters:end -->
 
 Limits: one synthetic stereo sine, 1 s, 48000 Hz, pcm_s16le, ffmpeg 6.1.1. The placeholder values, the ds64 zeros, the w64 refusal and the stdin N/A are the parts most likely to differ between builds (the tests assert relations on other builds). Not tested: builds other than 6.1.1 and 8.1.2, files over 4 GiB, real recordings, other players and browsers, other codecs in a wav.

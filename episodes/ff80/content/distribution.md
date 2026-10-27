@@ -33,11 +33,11 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:10 The story in four panels
-00:30 Gifs written byte by byte
-00:47 One delay for every frame
-01:00 Different delays in one gif
-01:21 Forcing a rate
-01:41 What to check
+00:29 Gifs written byte by byte
+00:49 One delay for every frame
+01:02 Different delays in one gif
+01:22 Forcing a rate
+01:42 What to check
 <!-- chapters:end -->
 
 Limits: 48 x 48 two-colour gifs of 20 frames written by Node, converted to h264 yuv420p mp4 by ffmpeg 6.1.1. The default frame rate mode and the passthrough duration are the build specific part; the tests assert relations on other builds. Not tested: browsers, other gif writers, real animations, other builds.

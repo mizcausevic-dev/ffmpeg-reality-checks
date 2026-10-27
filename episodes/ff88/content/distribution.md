@@ -32,12 +32,12 @@ The 17 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Four cards, two readers
-00:34 What similarity measures
-00:50 The key is not at zero
-01:07 The soft edge
-01:26 The noisy card
-01:45 What to do
+00:19 Four cards, two readers
+00:36 What similarity measures
+00:53 The key is not at zero
+01:11 The soft edge
+01:31 The noisy card
+01:50 What to do
 <!-- chapters:end -->
 
 Limits: 96x72 synthetic cards, one noise level (24), one soft edge width (10 pixels), one subject pair (orange, lime), ffmpeg 6.1.1. The default similarity result, the key offset (U,V 95,58 against 99,66), the 22 clean colorkey settings, the 3x3 border behavior (the outer ring of pixels is left out of the chromakey comparison) and the exact edge counts are the parts most likely to differ on another build. Not tested: real footage, compression noise, other key colors and noise levels, hardware filters, the despill filters.

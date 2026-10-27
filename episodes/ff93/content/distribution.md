@@ -34,12 +34,12 @@ The 10 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Control: no B-frames
-00:36 The first dts is negative
-00:53 Where the minus comes from
-01:10 Decoded frames
-01:27 Same bits, three answers
-01:45 What to use
+00:16 Control: no B-frames
+00:31 The first dts is negative
+00:45 Where the minus comes from
+00:59 Decoded frames
+01:15 Same bits, three answers
+01:31 What to use
 <!-- chapters:end -->
 
 Limits: one libx264 clip with a fixed I P B B pattern (2 B-frames), 64x48, mp4 and mkv, ffmpeg 6.1.1. The N/A count in mkv, the pkt_dts values on frames and the dts shift for signed offsets are the parts most likely to differ between builds. Not tested: builds other than 6.1.1 and 8.1.2, real footage, other encoders, more B-frames, B-pyramid, fragmented mp4, mpeg-ts, players.

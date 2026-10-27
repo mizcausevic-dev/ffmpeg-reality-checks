@@ -35,10 +35,10 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:16 Control: one second
-00:36 Odd lengths
-00:56 Twenty samples
-01:19 A hundred pieces
-01:45 What to do
+00:33 Odd lengths
+00:51 Twenty samples
+01:13 A hundred pieces
+01:38 What to do
 <!-- chapters:end -->
 
 Limits: one 200 Hz mono tone, s16 samples, three rate pairs, ffmpeg 6.1.1 with libsoxr. The rounding direction of aresample, the empty output for 20 samples and the exact drift counts are the parts most likely to differ between builds. Not tested: builds other than 6.1.1 and 8.1.2, other resampler options (filter_size, dither, first_pts, async), stereo, float samples, real recordings, other tools.

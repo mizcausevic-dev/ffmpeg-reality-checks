@@ -32,12 +32,12 @@ The 14 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 The story, four panels
-00:34 The card and the readers
-00:47 What keeps it
-01:03 What loses it
-01:22 The one that hides it
-01:40 What to do
+00:16 The story, four panels
+00:31 The card and the readers
+00:45 What keeps it
+01:00 What loses it
+01:18 The one that hides it
+01:34 What to do
 <!-- chapters:end -->
 
 Limits: one 64x48 card, 8 frames, lossless or near lossless settings, ffmpeg 6.1.1. The native VP9 decoder returning no alpha, the +1 alpha levels, the 14 level color error of 4:2:0 and the ProRes encoder warning are the parts most likely to differ on another build. Not tested: other builds, real footage, lossy alpha edges at real bitrates, browsers, editors, players, other containers.

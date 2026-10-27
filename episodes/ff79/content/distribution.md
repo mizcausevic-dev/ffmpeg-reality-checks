@@ -32,12 +32,12 @@ The 12 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:13 One click, three readers
-00:29 The pre-skip bytes
-00:47 Rewrite the field
-01:02 Cutting with stream copy
-01:23 Cutting with a re-encode
-01:36 What to check
+00:12 One click, three readers
+00:28 The pre-skip bytes
+00:45 Rewrite the field
+01:00 Cutting with stream copy
+01:20 Cutting with a re-encode
+01:33 What to check
 <!-- chapters:end -->
 
 Limits: one second of mono 48000 Hz sound, a click and a gap-coded click train, libopus at 64 kbit/s written by ffmpeg 6.1.1, decoded by ffmpeg's own decoder. The copy-cut numbers and the ogg page behaviour are the build specific part. Not tested: other builds, real players, other encoders, stereo, real music.

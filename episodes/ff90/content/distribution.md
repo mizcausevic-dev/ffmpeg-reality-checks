@@ -33,11 +33,10 @@ Chapters
 <!-- chapters:start -->
 00:00 The question
 00:15 The map and the readers
-00:26 No copyts
-00:41 Copyts, before the input
-00:57 Copyts, after the input
-01:20 Which frame is first
-01:40 What to do
+00:39 Copyts, before the input
+00:55 Copyts, after the input
+01:15 Which frame is first
+01:35 What to do
 <!-- chapters:end -->
 
 Limits: one 64x48 clip of 100 frames, no B frames, no audio, ffmpeg 6.1.1. The ts landing frames, the 1.4 s mpegts start and the mp4 copy edit list counts are the parts most likely to differ on another build. Not tested: B frames (negative dts), audio, real footage, other containers.

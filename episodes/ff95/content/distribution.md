@@ -34,12 +34,12 @@ The 16 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:17 Two readers
-00:35 Halfway
-00:50 The names
-01:10 Odd corners
-01:29 The second reader
-01:42 What we measured
+00:16 Two readers
+00:31 Halfway
+00:46 The names
+01:05 Odd corners
+01:22 The second reader
+01:34 What we measured
 <!-- chapters:end -->
 
 Limits: one constant and one 1000 Hz sine, mono f32le at 48000 Hz, a fade of 48000 samples, afade on ffmpeg 6.1.1. The exact gains are the parts most likely to differ between builds (the tests only assert relations and a 0.0001 fit to the formulas on other builds). Not tested: builds other than 6.1.1 and 8.1.2, other fade lengths or sample rates, stereo, s16 input, real music, the dbfs-based filters.

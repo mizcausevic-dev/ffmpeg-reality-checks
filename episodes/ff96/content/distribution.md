@@ -34,11 +34,11 @@ The 15 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:16 Two meters
-00:34 The target
-00:54 The gap
-01:16 Two traps
-01:36 What we measured
+00:14 Two meters
+00:31 The target
+00:50 The gap
+01:10 Two traps
+01:28 What we measured
 <!-- chapters:end -->
 
 Limits: one synthetic tone program in two section lengths, mono f32le at 48000 Hz, loudnorm and dynaudnorm options as listed, ffmpeg 6.1.1. The exact LU values, the 192000 Hz output and the fallback behaviour are the parts most likely to differ between builds (the tests assert relations on other builds). Not tested: builds other than 6.1.1 and 8.1.2, real speech, stereo, other targets and windows, video.

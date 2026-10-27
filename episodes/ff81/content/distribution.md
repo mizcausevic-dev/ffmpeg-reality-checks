@@ -26,12 +26,12 @@ The 12 tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:20 Frames written byte by byte
-00:40 A hard cut
-00:60 Two cuts and a flash
-00:80 Cross-fades
-00:100 Drift, noise, a lossy encode
-00:120 What to check
+00:13 Frames written byte by byte
+00:30 A hard cut
+00:44 Two cuts and a flash
+01:02 Cross-fades
+01:18 Drift, noise, a lossy encode
+01:38 What to check
 <!-- chapters:end -->
 
 Limits: two synthetic pictures, 60 frames of 160 x 90, raw yuv420p input, ffmpeg 6.1.1. The scale of the score (the mean difference over 100) is the build specific part; the tests assert that the score is a constant multiple of the model on other builds. Not tested: real footage, other encoders, other builds.

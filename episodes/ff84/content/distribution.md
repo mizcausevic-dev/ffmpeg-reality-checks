@@ -35,12 +35,12 @@ The tests pass on ffmpeg 6.1.1.
 Chapters
 <!-- chapters:start -->
 00:00 The question
-00:18 Two readers, two controls
-00:39 libmp3lame
+00:19 Two readers, two controls
+00:40 libmp3lame
 00:56 The native aac encoder
-01:11 libopus
-01:28 Channels and dash cutoff
-01:46 What to check
+01:10 libopus
+01:41 Channels and dash cutoff
+01:59 What to check
 <!-- chapters:end -->
 
 Limits: synthetic stepped tones, one 0.25 s tone per frequency, ffmpeg 6.1.1 with libmp3lame, the native aac encoder and libopus. The exact cutoffs are encoder behavior of this build. Not tested: builds other than 6.1.1 and 8.1.2, real music, other sample rates, variable bit rate modes of libmp3lame and aac, libopus below 64 kbit/s.
