@@ -1,0 +1,86 @@
+{
+  "n": 94,
+  "slug": "ffmpeg-resample-sample-counts",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "How many samples does resampling give?",
+  "fullTitle": "FFmpeg Resampling: 100 Pieces Joined Come Out 25 Samples Longer Than the Whole",
+  "kicker": "Episode 94",
+  "thumb": {
+    "number": "+25 samples",
+    "label": "100 PIECES, 0.57 MS LATE",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "join",
+    "t": 9.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Convert forty eight thousand hertz to forty four one hundred. How many samples come out? We resample a tone three ways, count with two readers, then join a hundred pieces. On f f m peg six point one point one.",
+      "captions": [
+        "48000 Hz to 44100 Hz: how many samples come out?",
+        "Counted by two readers, then 100 pieces joined."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Control: one second",
+      "narration": "Control: exactly one second in gives exactly forty four thousand one hundred samples out, from a resample, dash a r, and s o x r. Reader one is the raw bytes, reader two the wav header and f f probe. They agree on every count, and the tone is on time.",
+      "captions": [
+        "Control: 1 s in, 44100 samples out, exactly.",
+        "Readers: raw bytes, wav data chunk, ffprobe. Tone within 2 LSB."
+      ]
+    },
+    {
+      "id": "counts",
+      "chapter": "Odd lengths",
+      "narration": "A thousand samples should give nine eighteen point seven five. The default engine gives nine nineteen. Two thousand forty eight should give eighteen eighty one point six, and it gives eighteen eighty one. S o x r gives eighteen eighty two. Dash a r matches a resample, sample for sample.",
+      "captions": [
+        "1000 in: 919 out (ideal 918.75). 2048 in: 1881 (ideal 1881.6).",
+        "soxr gives 1882. -ar equals aresample, same md5."
+      ]
+    },
+    {
+      "id": "tiny",
+      "chapter": "Twenty samples",
+      "narration": "Twenty samples in, nothing out. The default engine writes an empty file with exit code zero. S o x r writes eighteen.",
+      "captions": [
+        "20 samples in: aresample 0 out, exit code 0.",
+        "soxr: 18 out (ideal 18.375)."
+      ]
+    },
+    {
+      "id": "rate",
+      "chapter": "asetrate is not resampling",
+      "narration": "A set rate does not resample. It keeps every sample and changes the label: one second becomes one point zero eight eight four seconds, and a two hundred hertz tone becomes one eighty three point seven five.",
+      "captions": [
+        "asetrate=44100: 48000 samples stay 48000 samples.",
+        "1.0884 s long, 200 Hz becomes 183.75 Hz."
+      ]
+    },
+    {
+      "id": "join",
+      "chapter": "A hundred pieces",
+      "narration": "Now cut a signal into a hundred pieces of a thousand samples, resample each, and join. Each piece comes out nine nineteen, so the sum is ninety one thousand nine hundred. The whole signal gives ninety one thousand eight hundred seventy five. Twenty five samples extra, and the tone at the end is five hundred sixty one microseconds late. Pieces of forty eight hundred drift by zero.",
+      "captions": [
+        "100 x 919 = 91900. Whole signal: 91875. Drift +25 samples.",
+        "Tone at the end 561 microseconds late. 4800-sample pieces: drift 0."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "sim": null,
+      "narration": "So count what comes out. Resample once, on the whole signal, or cut at sizes that divide evenly. Not tested: other builds, other tools, stereo, real recordings.",
+      "captions": [
+        "Resample the whole signal once, or cut at exact ratios.",
+        "Not tested: other builds, other tools, stereo, real recordings."
+      ]
+    }
+  ]
+}
