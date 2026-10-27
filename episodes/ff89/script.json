@@ -1,0 +1,86 @@
+{
+  "n": 89,
+  "slug": "ffmpeg-transparent-video-alpha",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Which video formats keep transparency?",
+  "fullTitle": "FFmpeg Transparent Video: PNG, FFV1, ProRes 4444 Keep Alpha, H.264 Drops It, VP9 Needs libvpx",
+  "kicker": "Episode 89",
+  "thumb": {
+    "number": "1 of 8",
+    "label": "VP9 ALPHA LEVELS DECODED",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "webm",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You export a clip with a see through background. Does it stay see through? One card of eight alpha levels, thirteen ways to encode it, two ways to read it back. Synthetic, f f m peg six point one point one.",
+      "captions": [
+        "Which formats keep the alpha?",
+        "One card, 8 alpha levels, 13 encodes."
+      ],
+      "sim": null
+    },
+    {
+      "id": "story",
+      "chapter": "The story, four panels",
+      "narration": "Four boxes, one card. Mp four: it comes out solid, the transparent column orange, the color underneath. Web M: the file holds the alpha, the default decode returns it opaque. Pro Res four four four four: see through. Pro Res H Q: solid.",
+      "captions": [
+        "The same card goes into four boxes.",
+        "Two come out solid. One hides its alpha."
+      ]
+    },
+    {
+      "id": "setup",
+      "chapter": "The card and the readers",
+      "narration": "The card: eight alpha columns, four color rows, eight frames. Readers of the picture: raw r g b a, PNG decoded in Node, alpha extract. Readers of the file: ffprobe, and Node reading the bytes.",
+      "captions": [
+        "Picture: raw rgba, PNG in Node, alphaextract.",
+        "File: ffprobe and bytes read in Node."
+      ]
+    },
+    {
+      "id": "keep",
+      "chapter": "What keeps it",
+      "narration": "Kept: PNG, F F V one and QuickTime Animation return all eight levels, exactly. Pro Res four four four four returns eight levels within one, and its frame headers say alpha. With no profile given, it picks the same.",
+      "captions": [
+        "PNG, FFV1, QuickTime Animation: 8 of 8, exact.",
+        "ProRes 4444: 8 of 8, within 1."
+      ]
+    },
+    {
+      "id": "lose",
+      "chapter": "What loses it",
+      "narration": "Lost: H two six four. Asking for y u v a four two zero p gets y u v four two zero p, exit status zero. Pro Res H Q warns and drops it. V P nine in mp four: no alpha, no error. The orange column comes back orange.",
+      "captions": [
+        "H.264, ProRes HQ, VP9 in mp4: 1 level.",
+        "Transparent orange comes back orange."
+      ]
+    },
+    {
+      "id": "webm",
+      "chapter": "The one that hides it",
+      "narration": "V P nine in Web M is the odd one. The file holds eight alpha blocks for eight frames. ffmpeg's own decoder returns one level; lib vpx dash vp nine, eight. Dash pix underscore fmt y u v four two zero p removes the blocks.",
+      "captions": [
+        "In the file: 8 of 8 alpha blocks.",
+        "Native decoder: 1 level. libvpx-vp9: 8."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "The off by one is the pixel format conversion, with no codec at all. To bake transparency in, overlay on a color first. Keep alpha with PNG, F F V one or Pro Res four four four four. Not tested: other builds, real footage, browsers, editors.",
+      "captions": [
+        "Not tested: other builds, real footage, browsers, editors.",
+        "Overlay on a color before an opaque format."
+      ],
+      "sim": null
+    }
+  ]
+}
