@@ -1,0 +1,86 @@
+{
+  "n": 90,
+  "slug": "ffmpeg-copyts-ss-start-time",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why does keeping timestamps cut a clip 1.4 seconds early?",
+  "fullTitle": "FFmpeg -copyts with -ss: a Cut at 3.5 s Starts at Frame 21 When the File Clock Starts at 1.4 s",
+  "kicker": "Episode 90",
+  "thumb": {
+    "number": "frame 21",
+    "label": "ASKED FOR FRAME 35",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "copyts_out",
+    "t": 8.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You cut with dash s s three point five and add dash copyts. What is kept, and which frame comes first? A hundred frames that name themselves. Synthetic, f f m peg six point one point one.",
+      "captions": [
+        "Cut at 3.5 s, keep the timestamps.",
+        "What is kept, and which frame is first?"
+      ],
+      "sim": null
+    },
+    {
+      "id": "setup",
+      "chapter": "The map and the readers",
+      "narration": "Ten frames a second, a keyframe every second. Reader one: ffprobe, start time and packets. Reader two: the decoded pictures, and the decoder's own clock. They agree.",
+      "captions": [
+        "100 frames, each one names itself.",
+        "ffprobe packets and decoded pictures agree."
+      ]
+    },
+    {
+      "id": "default",
+      "chapter": "No copyts",
+      "narration": "Without copyts, the cut restarts the clock: frame thirty five at zero, in mp four and m k v, with the option before or after the input. T s starts at one point four: its muxer adds that.",
+      "captions": [
+        "Frame 35 starts at 0 in mp4 and mkv.",
+        "The ts muxer starts its clock at 1.4 s."
+      ]
+    },
+    {
+      "id": "copyts_in",
+      "chapter": "Copyts, before the input",
+      "narration": "Copyts before the input keeps the source clock: frame thirty five stays at three point five. In t s the muxer adds one point four: frame forty at six point eight, not five point four. Start at zero gives five point four.",
+      "captions": [
+        "mp4, mkv: 3.5 s, the source clock.",
+        "ts: 6.8 s, 1.4 s more than the source."
+      ]
+    },
+    {
+      "id": "copyts_out",
+      "chapter": "Copyts, after the input",
+      "narration": "Copyts after the input: the cut is measured on the file's own clock. A file that starts at one point four seconds is cut one point four seconds early: frame twenty one, not thirty five. Same in an m k v shifted to one point four; not in a t s from zero. Start at zero repairs it.",
+      "captions": [
+        "Starts at 1.4 s: frame 21, not 35.",
+        "A file that starts at 0 is not affected."
+      ]
+    },
+    {
+      "id": "first",
+      "chapter": "Which frame is first",
+      "narration": "Which frame is first? Re-encoded, mp four and m k v land exactly. T s lands on the next keyframe: three point two seconds starts at frame forty. Stream copy in m k v starts at the keyframe before; in mp four an edit list hides it: seventy packets, sixty five frames.",
+      "captions": [
+        "ts: asked frame 32, got frame 40.",
+        "mp4 copy: 70 packets, 65 pictures."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "So: copyts keeps the clock, and ss after the input then counts on that clock. Add start at zero, or subtract the offset. Check the first frame. Not tested: other builds, B frames, audio, real footage.",
+      "captions": [
+        "Not tested: other builds, B frames, audio, real footage.",
+        "Check the first frame, not the timestamps."
+      ],
+      "sim": null
+    }
+  ]
+}
