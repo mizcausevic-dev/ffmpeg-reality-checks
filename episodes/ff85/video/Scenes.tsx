@@ -118,7 +118,7 @@ const Ask: React.FC<SceneProps> = ({t}) => {
       <Layer>
         <Paper x={220} y={310} w={1480} h={330} rot={-0.3} seed={2} o={ep(t, 1.0, 1.8)}>
           <Tx x={30} y={44} s={22} f="mono" w={700} c={C.cyan}>10 bit ramp: one level every 4 pixels</Tx>
-          <Tx x={30} y={78} s={22} f="mono" w={700} c={C.red}>floored to 8 bit: one level every 16 pixels</Tx>
+          <Tx x={30} y={78} s={22} f="mono" w={700} c={C.red}>no dither, 6.1.1: one level every 16 pixels</Tx>
         </Paper>
         <path d={d10} fill="none" stroke={C.cyan} strokeWidth={3.5} />
         <path d={d8} fill="none" stroke={C.red} strokeWidth={6} />
@@ -252,7 +252,7 @@ const None: React.FC<SceneProps> = ({t}) => {
         </Paper>
         <PixelStrip x={285} y={348} rows={DATA.strip.none} p={ep(t, 1.8, 5.0)} />
         <g opacity={ep(t, 5.6, 6.4)}>
-          <Tx x={285} y={434} s={20} f="mono" c={C.red}>every level is value / 4, floored</Tx>
+          <Tx x={285} y={434} s={20} f="mono" c={C.red}>6.1.1: every level is value / 4, floored</Tx>
         </g>
         <Paper x={250} y={520} w={760} h={330} rot={-0.4} seed={6} fill={C.panel} o={ep(t, 6.8, 7.6)}>
           <Tx x={30} y={42} s={24} f="mono" w={700} c={C.red}>default against none</Tx>
@@ -265,9 +265,9 @@ const None: React.FC<SceneProps> = ({t}) => {
         <g opacity={ep(t, 13.0, 14.0)}>
           <Paper x={1060} y={520} w={610} h={330} rot={0.5} seed={7}>
             <Reg x={30} y={106} s={96} w={800} f="display" c={C.text}>{`${n.distinct} values`}</Reg>
-            <Tx x={30} y={146} s={22} f="mono" c={C.dim}>runs of 16, never a 17th level</Tx>
+            <Tx x={30} y={146} s={22} f="mono" c={C.dim}>6.1.1 runs of 16. 8.1.2 rounds: 65 values</Tx>
             <Reg x={30} y={232} s={96} w={800} f="display" c={C.red} plate={C.text}>{`${n.bias.toFixed(3)}`}</Reg>
-            <Tx x={30} y={272} s={22} f="mono" c={C.dim}>mean error: always floored, never up</Tx>
+            <Tx x={30} y={272} s={22} f="mono" c={C.dim}>6.1.1 floored. 8.1.2 rounded: +0.125</Tx>
             <Tx x={30} y={314} s={26} f="mono" w={700} c={C.red}>one byte per band</Tx>
           </Paper>
           <Tape x={1400} y={526} rot={4} w={110} h={32} />
@@ -353,7 +353,7 @@ const Positive: React.FC<SceneProps> = ({t}) => {
 const Close: React.FC<SceneProps> = ({t}) => {
   const rows = [
     {c: C.green, k: 'the default', a: `format=yuv420p dithers: ${DATA.modes.default.distinct} values, runs of ${DATA.modes.default.meanRun.toFixed(1)} px`, b: '2 x 2 cell, every block mean equals value/4'},
-    {c: C.red, k: 'switched off', a: `sws_dither=none: ${DATA.modes.none.distinct} bands of 16 px, mean error ${DATA.modes.none.bias.toFixed(3)}`, b: 'floor of value/4 for every pixel'},
+    {c: C.red, k: 'switched off', a: `sws_dither=none, 6.1.1: ${DATA.modes.none.distinct} bands of 16 px, mean error ${DATA.modes.none.bias.toFixed(3)}`, b: 'floor of value/4; on 8.1.2 it rounds, mean error +0.125'},
     {c: C.amber, k: 'the options', a: 'bayer, ed, a_dither, x_dither, auto, +error_diffusion', b: 'the same bytes as the default on yuv420p'},
     {c: C.cyan, k: 'where they act', a: `rgb8: ${Object.keys(DATA.rgb8).length} spellings, ${DATA.rgb8Classes.length} outputs`, b: 'the readers can see a dither difference'},
     {c: C.green, k: 'no new levels', a: `1024 levels in, ${DATA.full.default.distinct} out: default, none and ed`, b: 'dither mixes two neighbours, it adds none'},

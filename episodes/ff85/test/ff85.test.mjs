@@ -12,6 +12,7 @@ before(() => { if (ok) { dir = fs.mkdtempSync(path.join(os.tmpdir(), 'frc-ff85-'
 test.after(() => { if (dir) fs.rmSync(dir, {recursive: true, force: true}); });
 const t = (name, fn) => test(name, {skip: ok ? false : 'ffmpeg not available'}, fn);
 const isV6 = () => buildOf(ev.ffmpeg) === 'v6';
+const isV8 = () => buildOf(ev.ffmpeg) === 'v8';
 const M = (n) => ev.modes[n];
 const SPELLINGS = ['auto', 'bayer', 'ed', 'a_dither', 'x_dither', 'flag_ed'];
 const frame = (name) => fs.readFileSync(path.join(dir, name));
@@ -66,20 +67,28 @@ t('format=yuv420p does not truncate: on a 10 bit ramp it dithers, the output use
   }
 });
 
-t('sws_dither=none truncates: 64 flat bands of 16 pixels (every output level is floor(value / 4)), a mean error of -0.375 and a 2 x 2 block error of 0.75, worse than the default on both readers (on 6.1.1; on every build the default is no worse than none)', () => {
+t('sws_dither=none gives flat bands of 16 pixels and a 2 x 2 block error above the default's on both readers: on 6.1.1 it truncates (64 values, floor(value / 4), mean error -0.375, block error 0.75), on 8.1.2 it rounds to nearest (65 values, mean error +0.125, block error 0.5)', () => {
   const n = M('none'), d = M('default');
-  assert.ok(d.blockMaxErr <= n.blockMaxErr && d.blockMaxErrFfmpeg <= n.blockMaxErrFfmpeg && d.rms <= n.rms + 1e-9);
+  assert.ok(d.blockMaxErr <= n.blockMaxErr && d.blockMaxErrFfmpeg <= n.blockMaxErrFfmpeg);
+  assert.ok(n.meanRun > d.meanRun * 2.5 && n.maxRun === 16, `${n.meanRun} ${n.maxRun}`);
+  if (isV8()) {   // 8.1.2: no dither means round to nearest, halves up, not floor
+    assert.equal(n.distinct, 65); assert.ok(Math.abs(n.bias - 0.125) < 1e-9, `${n.bias}`); assert.equal(n.maxErr, 0.5); assert.equal(n.blockMaxErr, 0.5); assert.equal(n.blockMaxErrFfmpeg, 0.5);
+    const b = frame('o_none.raw'); for (let r = 0; r < H; r++) for (let x = 0; x < W; x++) assert.equal(b[r * W + x], (LO + (x >> 2) + 2) >> 2, `r${r} x${x}`);
+  }
   if (isV6()) {
+    assert.ok(d.rms <= n.rms + 1e-9);
     assert.equal(n.distinct, 64); assert.equal(n.meanRun, 16); assert.equal(n.maxRun, 16); assert.ok(Math.abs(n.bias + 0.375) < 1e-9); assert.equal(n.blockMaxErr, 0.75); assert.equal(n.blockMaxErrFfmpeg, 0.75);
     const b = frame('o_none.raw'); for (let r = 0; r < H; r++) for (let x = 0; x < W; x++) assert.equal(b[r * W + x], (LO + (x >> 2)) >> 2, `r${r} x${x}`);
     assert.ok(n.distinct < d.distinct && n.meanRun > d.meanRun);
   }
 });
 
-t('the dither cell is 2 x 2: on flat 10 bit tiles worth 100.0, 100.25, 100.5 and 100.75 in 8 bit the default turns 0, 1, 2 and 3 of every 4 pixels up to 101 with one single pattern repeated, and sws_dither=none turns none up (on 6.1.1); on every build the share of pixels turned up never falls as the fraction grows', () => {
+t('the dither cell is 2 x 2: on flat 10 bit tiles worth 100.0, 100.25, 100.5 and 100.75 in 8 bit the default turns 0, 1, 2 and 3 of every 4 pixels up to 101 with one single pattern repeated, and sws_dither=none turns none up on 6.1.1 and all pixels up from 100.5 on 8.1.2; on every build the share of pixels turned up never falls as the fraction grows', () => {
   const d = ev.tiles.default, n = ev.tiles.none;
   for (let i = 1; i < 4; i++) assert.ok(d[i].upOf256 >= d[i - 1].upOf256);
-  for (let i = 0; i < 4; i++) { assert.ok(n[i].upOf256 <= d[i].upOf256); assert.equal(d[i].other, 0); }
+  for (let i = 1; i < 4; i++) assert.ok(n[i].upOf256 >= n[i - 1].upOf256);
+  for (let i = 0; i < 4; i++) { assert.equal(d[i].other, 0); if (!isV8()) assert.ok(n[i].upOf256 <= d[i].upOf256); }
+  if (isV8()) assert.deepEqual(n.map((x) => x.upOf256), [0, 0, 256, 256]);
   if (isV6()) {
     assert.deepEqual(d.map((x) => x.upOf256), [0, 64, 128, 192]); assert.deepEqual(n.map((x) => x.upOf256), [0, 0, 0, 0]);
     for (const x of d) assert.equal(x.cellPatterns, 1);

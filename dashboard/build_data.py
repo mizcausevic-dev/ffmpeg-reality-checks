@@ -53,6 +53,7 @@ differs = {
     'ff78': 'ffprobe prints the duration of a tagged mp3 as 1.0449 s on 6.1.1 and 1.000 s on 8.1.2 (start_time 0.025057 on both).',
     'ff79': 'Rewriting the pre-skip in an mkv moves the click on 6.1.1 but not on 8.1.2 (ogg behaves the same on both); mkv start_time is -0.007 s on 6.1.1 and 0 on 8.1.2.',
     'ff81': 'After libx264 crf 23 the noise first frame scores 0.164 on 6.1.1 and 0.191 on 8.1.2 (raw 0.198 on both); the hard cut and the cross-fade scores are the same on both.',
+    'ff85': 'format=yuv420p dithers identically on both builds (same bytes); sws_dither=none truncates on 6.1.1 (64 values, mean error -0.375) and rounds to nearest on 8.1.2 (65 values, +0.125).',
     'ff84': 'libopus with -vbr off at 64 kbit/s keeps all tones to 20.0 kHz on 6.1.1; on 8.1.2 it drops two tones (15.6 and 15.7 kHz) and passes the rest, so it is a gap, not a lowpass (default VBR is 20.0 on both).',
     'ff89': 'libvpx-vp9 given rgba input: 6.1.1 converts to yuva420p by itself, 8.1.2 picks gbrap and refuses it until -pix_fmt yuva420p is named.',
     'ff76': 'format=gray on a bt709 file keeps the file luma on 6.1.1 (red 55) and uses the 601 weights on 8.1.2 (red 76).',

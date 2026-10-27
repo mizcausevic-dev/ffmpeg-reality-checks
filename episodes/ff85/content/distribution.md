@@ -21,7 +21,7 @@ Readers: (1) Node reads the raw Y plane of each output: distinct values, run len
 
 Plain format=yuv420p does not truncate: 65 distinct values (not 64), a mean run of 5.31 pixels in row 0 (maximum 14), mean error 0.000, and the mean of every 2 x 2 block equals the ideal value/4 exactly. The dither cell is 2 x 2: on tiles worth 100.25, 100.5 and 100.75 one, two and three pixels of every four step up to 101.
 
-sws_dither=none truncates: 64 distinct values, flat bands of exactly 16 pixels, every pixel equal to floor(value / 4), mean error -0.375, 2 x 2 block error 0.75.
+sws_dither=none on 6.1.1 truncates: 64 distinct values, flat bands of exactly 16 pixels, every pixel equal to floor(value / 4), mean error -0.375, 2 x 2 block error 0.75. On 8.1.2 it rounds: 65 distinct values, mean run 15.75 pixels, every pixel is value / 4 rounded to nearest (halves up), mean error +0.125, largest error 0.5, 2 x 2 block error 0.5. The default is byte-identical on both builds (md5 6b3cbff3).
 
 The other options give the same bytes as the default: sws_dither=auto, bayer, ed, a_dither, x_dither and flags=+error_diffusion all produce the same md5 (6b3cbff3). Only none differs.
 
@@ -56,4 +56,4 @@ ffmpeg, ffmpeg tutorial, ffmpeg 10 bit to 8 bit, ffmpeg banding, ffmpeg dither, 
 
 ### Pinned comment (≤ 300 chars)
 
-Synthetic 10 bit ramp to 8 bit. format=yuv420p already dithers (2 x 2 cell): 65 values, 2 x 2 means exact. sws_dither=none: 64 flat bands, mean error -0.375. bayer, ed, a_dither, +error_diffusion: same bytes as default. rgb8: 5 outputs from 8. github.com/mizcausevic-dev/ffmpeg-reality-checks
+Synthetic 10 bit ramp to 8 bit. format=yuv420p already dithers (2 x 2 cell): 65 values, 2 x 2 means exact. sws_dither=none: flat 16 px bands (6.1.1 truncates, 8.1.2 rounds). bayer, ed, a_dither, +error_diffusion: same bytes as default. rgb8: 5 outputs from 8. github.com/mizcausevic-dev/ffmpeg-reality-checks

@@ -50,10 +50,10 @@
     {
       "id": "none",
       "chapter": "Dither off",
-      "narration": "Switch it off with s w s underscore dither equals none, and it truncates. Sixty four flat bands of sixteen pixels. The mean error is minus zero point three seven five, and a two by two block is off by zero point seven five.",
+      "narration": "Switch it off with s w s underscore dither equals none, and the bands go flat. On six point one point one it truncates: sixty four bands of sixteen pixels, mean error minus zero point three seven five. On eight point one point two it rounds: sixty five values, mean error plus zero point one two five. A two by two block is off by half a level or more.",
       "captions": [
-        "sws_dither=none: 64 flat bands of 16 px.",
-        "Mean error -0.375, block error 0.75."
+        "sws_dither=none: flat bands of 16 px.",
+        "Mean error -0.375 (6.1.1), +0.125 (8.1.2)."
       ],
       "sim": null
     },
