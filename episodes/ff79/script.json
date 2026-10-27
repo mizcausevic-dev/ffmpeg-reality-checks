@@ -76,9 +76,10 @@
       "id": "close",
       "chapter": "What to check",
       "sim": null,
-      "narration": "The decoder trims exactly what the header says. After any cut, read the pre-skip and find the click. Not tested: other builds, real players, other encoders, real music.",
+      "narration": "The decoder trims exactly what the header says. After any cut, read the pre-skip and find the click. On eight point one point two, patching the m k v field moves nothing, and the m k v start time reads zero. Ogg behaves as before. Not tested: other builds, real players, other encoders, real music.",
       "captions": [
         "The header decides. Find the click after a cut.",
+        "On 8.1.2 the mkv patch moves nothing.",
         "Not tested: players, other encoders, real music."
       ]
     }

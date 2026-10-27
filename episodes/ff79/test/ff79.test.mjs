@@ -52,7 +52,8 @@ t('reader 2 (the bytes): every encode has an OpusHead of version 1, one channel,
 t('reader 3 (ffprobe) agrees with the bytes: initial_padding is the pre-skip; ogg and .opus start at 0; mkv starts at minus the pre-skip, rounded to a millisecond (-0.007 s on 6.1.1)', () => {
   for (const f of FMTS) { assert.equal(E(f).probe.codec, 'opus', f); assert.equal(E(f).probe.initialPadding, E(f).head.preSkip, f); }
   near(E('ogg').probe.streamStart, 0, 1e-6); near(E('opus').probe.streamStart, 0, 1e-6);
-  near(E('mkv').probe.streamStart, -E('mkv').head.preSkip / SR, 0.001);
+  if (isV6()) near(E('mkv').probe.streamStart, -E('mkv').head.preSkip / SR, 0.001);
+  else assert.ok(E('mkv').probe.streamStart <= 0 && E('mkv').probe.streamStart >= -E('mkv').head.preSkip / SR - 0.001, 'mkv start_time is 0 on 8.1.2 (6.1.1: -0.007)');
   if (isV6()) { assert.equal(E('mkv').probe.streamStart, -0.007); assert.equal(E('ogg').probe.duration, 1.0065); assert.equal(E('mkv').probe.duration, 1.008); }
 });
 
@@ -67,6 +68,7 @@ t('known positive: rewrite only the pre-skip field in the head (ogg with a recom
   const pre = E('ogg').head.preSkip;
   for (const f of ['ogg', 'mkv']) for (const v of [0, 312, 1000]) {
     const r = P(`${f}_${v}`); assert.equal(r.head.preSkip, v, `${f} ${v}: the patch landed`);
+    if (f === 'mkv' && !isV6()) { assert.equal(r.click, E('mkv').click, `mkv ${v}: on 8.1.2 the CodecPrivate pre-skip does not move the click`); continue; }
     assert.equal(r.click, CLICK_AT + pre - v, `${f} ${v}`); assert.equal(r.samples, N + pre - v, `${f} ${v}: length follows too`);
   }
   assert.equal(P('ogg_312').click, E('ogg').click); assert.equal(P('mkv_312').samples, E('mkv').samples);

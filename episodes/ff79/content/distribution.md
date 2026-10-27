@@ -1,6 +1,6 @@
 # FF79 distribution kit: Opus Pre-Skip 312: Rewrite One Header Field, the Click Moves 312 Samples
 
-All numbers below come from the synthetic fixture in `episodes/ff79/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff79/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 with two differences: ffprobe shows the mkv start_time as 0 (6.1.1: -0.007 s), and rewriting the pre-skip in the mkv CodecPrivate no longer moves the click on 8.1.2 (the ogg patch behaves as on 6.1.1).
 
 ## YouTube
 

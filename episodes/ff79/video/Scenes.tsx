@@ -163,7 +163,7 @@ const Patch: React.FC<SceneProps> = ({t, dur}) => {
       {i === 3 && <><Cue text="rewrite it again" />
         <Code lt={lt} y={330} size={80} lines={[[{t: 'pre-skip  '}, {t: '312', c: C.amberDim}, {t: ' -> '}, {t: '1000', c: C.cyanDim}]]} /></>}
       {i === 4 && <><Cue text="pre-skip 1000: the click" /><Punch value="4112" sub="688 early" color={C.cyanDim} size={520} y={190} o={ep(lt, 0, 0.2)} /></>}
-      {i === 5 && <><Cue text="ogg and mkv, same result" />
+      {i === 5 && <><Cue text="ogg and mkv, same result (6.1.1)" />
         <Line y={340} text="pre-skip   click   samples out" size={50} color={C.line} o={ep(lt, 0, 0.3)} />
         <Line y={430} text="0          5112    48312" size={64} color={C.redDim} o={ep(lt, 0.3, 0.6)} />
         <Line y={520} text="312        4800    48000" size={64} color={C.greenDim} o={ep(lt, 0.7, 1.0)} />
@@ -217,18 +217,22 @@ const Reenc: React.FC<SceneProps> = ({t, dur}) => {
 
 /* 7. Close (the last 10 s sit under the end card, so the beats fill the first dur - 10.5 s) */
 const Close: React.FC<SceneProps> = ({t, dur}) => {
-  const starts = even(Math.max(8, dur - 10.5), 4);
+  const starts = even(Math.max(10, dur - 10.5), 5);
   const {i, lt} = beatOf(t, starts);
   return (
     <Dark>
       {i === 0 && <><Cue text="what to do" />
         <Code lt={lt} y={300} size={72} lines={[[{t: '1  read the pre-skip'}], [{t: '2  decode, find the click'}], [{t: '3  compare with the request'}]]} /></>}
       {i === 1 && <><Cue text="expect" /><Punch value="960" sub="samples: one packet, from a copy" color={C.amberDim} size={420} y={200} o={ep(lt, 0, 0.2)} /></>}
-      {i === 2 && <><Cue text="not tested" />
+      {i === 2 && <><Cue text="on 8.1.2" />
+        <Line y={330} text="the mkv patch moves no click" size={56} color={C.bg} o={ep(lt, 0, 0.3)} />
+        <Line y={410} text="mkv start_time reads 0" size={56} color={C.bg} o={ep(lt, 0.4, 0.7)} />
+        <Line y={490} text="ogg: same as 6.1.1" size={56} color={C.bg} o={ep(lt, 0.8, 1.1)} /></>}
+      {i === 3 && <><Cue text="not tested" />
         <Line y={330} text="other builds" size={56} color={C.bg} o={ep(lt, 0, 0.3)} />
         <Line y={410} text="real players · other encoders" size={56} color={C.bg} o={ep(lt, 0.4, 0.7)} />
         <Line y={490} text="real music" size={56} color={C.bg} o={ep(lt, 0.8, 1.1)} /></>}
-      {i >= 3 && <><Cue text="FFmpeg Reality Checks" />
+      {i >= 4 && <><Cue text="FFmpeg Reality Checks" />
         <Line y={420} text="episode 79" size={100} mono={false} color={C.bg} align="center" o={ep(lt, 0, 0.3)} />
         <Line y={620} text="fixture and tests in the description" size={44} color={C.line} align="center" o={ep(lt, 0.4, 0.7)} /></>}
       <Wipe t={t} starts={starts} />
