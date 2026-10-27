@@ -1,6 +1,6 @@
 # FF95 distribution kit: FFmpeg afade: Halfway Through a Fade, 23 Curves Sit Almost 50 dB Apart
 
-All numbers below come from the synthetic fixture in `episodes/ff95/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
+All numbers below come from the synthetic fixture in `episodes/ff95/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs; exact numbers are asserted on 6.1.1 only, relations on 8.1.2).
 
 ## YouTube
 
@@ -42,7 +42,7 @@ Chapters
 01:42 What we measured
 <!-- chapters:end -->
 
-Limits: one constant and one 1000 Hz sine, mono f32le at 48000 Hz, a fade of 48000 samples, afade on ffmpeg 6.1.1. The exact gains are the parts most likely to differ between builds (the tests only assert relations and a 0.0001 fit to the formulas on other builds). Not tested: other builds, other fade lengths or sample rates, stereo, s16 input, real music, the dbfs-based filters.
+Limits: one constant and one 1000 Hz sine, mono f32le at 48000 Hz, a fade of 48000 samples, afade on ffmpeg 6.1.1. The exact gains are the parts most likely to differ between builds (the tests only assert relations and a 0.0001 fit to the formulas on other builds). Not tested: builds other than 6.1.1 and 8.1.2, other fade lengths or sample rates, stereo, s16 input, real music, the dbfs-based filters.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

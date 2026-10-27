@@ -1,6 +1,6 @@
 # FF94 distribution kit: FFmpeg Resampling: 100 Pieces Joined Come Out 25 Samples Longer Than the Whole
 
-All numbers below come from the synthetic fixture in `episodes/ff94/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
+All numbers below come from the synthetic fixture in `episodes/ff94/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs; exact numbers are asserted on 6.1.1 only, relations on 8.1.2).
 
 ## YouTube
 
@@ -41,7 +41,7 @@ Chapters
 01:45 What to do
 <!-- chapters:end -->
 
-Limits: one 200 Hz mono tone, s16 samples, three rate pairs, ffmpeg 6.1.1 with libsoxr. The rounding direction of aresample, the empty output for 20 samples and the exact drift counts are the parts most likely to differ between builds. Not tested: other builds, other resampler options (filter_size, dither, first_pts, async), stereo, float samples, real recordings, other tools.
+Limits: one 200 Hz mono tone, s16 samples, three rate pairs, ffmpeg 6.1.1 with libsoxr. The rounding direction of aresample, the empty output for 20 samples and the exact drift counts are the parts most likely to differ between builds. Not tested: builds other than 6.1.1 and 8.1.2, other resampler options (filter_size, dither, first_pts, async), stereo, float samples, real recordings, other tools.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

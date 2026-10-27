@@ -1,6 +1,6 @@
 # FF85 distribution kit: FFmpeg 10-bit to 8-bit Banding: format=yuv420p Already Dithers, Only sws_dither=none Changes It
 
-All numbers below come from the synthetic fixture in `episodes/ff85/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (other builds are listed under not tested).
+All numbers below come from the synthetic fixture in `episodes/ff85/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs): plain format=yuv420p gives the same bytes, and sws_dither=none rounds instead of truncating (65 values, mean error +0.125).
 
 ## YouTube
 
@@ -42,7 +42,7 @@ Chapters
 01:38 What to check
 <!-- chapters:end -->
 
-Limits: a synthetic gray ramp, same size conversion (no scaling), ffmpeg 6.1.1. Which dither is applied is behavior of this build. Not tested: other builds, real footage, scaled output, lossy encoding after the conversion, other pixel formats than yuv420p and rgb8.
+Limits: a synthetic gray ramp, same size conversion (no scaling), ffmpeg 6.1.1. Which dither is applied is behavior of this build. Not tested: builds other than 6.1.1 and 8.1.2, real footage, scaled output, lossy encoding after the conversion, other pixel formats than yuv420p and rgb8.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

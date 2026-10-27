@@ -1,6 +1,6 @@
 # FF81 distribution kit: ffmpeg Scene Score: a 16-Frame Cross-Fade Scores 1/16 of a Hard Cut
 
-All numbers below come from the synthetic fixture in `episodes/ff81/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff81/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs; exact numbers are asserted on 6.1.1 only, relations on 8.1.2); one difference: after libx264 crf 23 the noise first frame scores 0.191 there, not 0.164.
 
 ## YouTube
 

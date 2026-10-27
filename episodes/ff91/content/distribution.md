@@ -1,6 +1,6 @@
 # FF91 distribution kit: FFmpeg -f segment -c copy: -segment_time 2 Gives 2.1, 2.5, 3.3 and 2.1 s on Uneven Keyframes
 
-All numbers below come from the synthetic fixture in `episodes/ff91/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff91/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2 with the same results (the fixture output matches the 6.1.1 output; the tests pass in 3 of 3 runs).
 
 ## YouTube
 
@@ -40,7 +40,7 @@ Chapters
 01:45 What to do
 <!-- chapters:end -->
 
-Limits: one 64x48 clip of 100 frames, no B frames, no audio, ffmpeg 6.1.1. The mpegts 1.4 s start, the mkv duration of a segment without a reset (and so the stretched concat clock) and the exact lengths are the parts most likely to differ on another build. Not tested: ffmpeg 8.1.2, B frames, audio, real footage, other segment options (segment_frames, segment_atclocktime, segment_time_delta), live segmenting.
+Limits: one 64x48 clip of 100 frames, no B frames, no audio, ffmpeg 6.1.1. The mpegts 1.4 s start, the mkv duration of a segment without a reset (and so the stretched concat clock) and the exact lengths are the parts most likely to differ on another build. Not tested: B frames, audio, real footage, other segment options (segment_frames, segment_atclocktime, segment_time_delta), live segmenting.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

@@ -1,6 +1,6 @@
 # FF83 distribution kit: FFmpeg silencedetect Finds 1 of 5 Gaps: What n and d Really Do
 
-All numbers below come from the synthetic fixture in `episodes/ff83/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (other builds are listed under not tested).
+All numbers below come from the synthetic fixture in `episodes/ff83/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs; exact numbers are asserted on 6.1.1 only, relations on 8.1.2).
 
 ## YouTube
 
@@ -38,7 +38,7 @@ Chapters
 01:47 What to check
 <!-- chapters:end -->
 
-Limits: synthetic tones, noise and constants in 16 bit and float WAV, ffmpeg 6.1.1. The 16 bit overflow, the integer cut of the threshold, the strict comparison and the six digit print are behaviors of this build. Not tested: other builds, real recordings, compressed audio, other filters such as silenceremove.
+Limits: synthetic tones, noise and constants in 16 bit and float WAV, ffmpeg 6.1.1. The 16 bit overflow, the integer cut of the threshold, the strict comparison and the six digit print are behaviors of this build. Not tested: builds other than 6.1.1 and 8.1.2, real recordings, compressed audio, other filters such as silenceremove.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

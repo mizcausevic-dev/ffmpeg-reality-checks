@@ -1,6 +1,6 @@
 # FF97 distribution kit: FFmpeg WAV Through a Pipe Carries Placeholder Sizes, so Players Guess the Length
 
-All numbers below come from the synthetic fixture in `episodes/ff97/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
+All numbers below come from the synthetic fixture in `episodes/ff97/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2 with the same results (the fixture output matches the 6.1.1 output; the tests pass in 3 of 3 runs).
 
 ## YouTube
 
@@ -39,7 +39,7 @@ Chapters
 01:36 The close
 <!-- chapters:end -->
 
-Limits: one synthetic stereo sine, 1 s, 48000 Hz, pcm_s16le, ffmpeg 6.1.1. The placeholder values, the ds64 zeros, the w64 refusal and the stdin N/A are the parts most likely to differ between builds (the tests assert relations on other builds). Not tested: other builds, files over 4 GiB, real recordings, other players and browsers, other codecs in a wav.
+Limits: one synthetic stereo sine, 1 s, 48000 Hz, pcm_s16le, ffmpeg 6.1.1. The placeholder values, the ds64 zeros, the w64 refusal and the stdin N/A are the parts most likely to differ between builds (the tests assert relations on other builds). Not tested: builds other than 6.1.1 and 8.1.2, files over 4 GiB, real recordings, other players and browsers, other codecs in a wav.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

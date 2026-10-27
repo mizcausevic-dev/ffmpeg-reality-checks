@@ -1,6 +1,6 @@
 # FF90 distribution kit: FFmpeg -copyts with -ss: a Cut at 3.5 s Starts at Frame 21 When the File Clock Starts at 1.4 s
 
-All numbers below come from the synthetic fixture in `episodes/ff90/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff90/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs; exact numbers are asserted on 6.1.1 only, relations on 8.1.2).
 
 ## YouTube
 
@@ -40,7 +40,7 @@ Chapters
 01:40 What to do
 <!-- chapters:end -->
 
-Limits: one 64x48 clip of 100 frames, no B frames, no audio, ffmpeg 6.1.1. The ts landing frames, the 1.4 s mpegts start and the mp4 copy edit list counts are the parts most likely to differ on another build. Not tested: ffmpeg 8.1.2, B frames (negative dts), audio, real footage, other containers.
+Limits: one 64x48 clip of 100 frames, no B frames, no audio, ffmpeg 6.1.1. The ts landing frames, the 1.4 s mpegts start and the mp4 copy edit list counts are the parts most likely to differ on another build. Not tested: B frames (negative dts), audio, real footage, other containers.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

@@ -1,6 +1,6 @@
 # FF96 distribution kit: FFmpeg loudnorm Hits the Loudness Target but Leaves Quiet Parts Over 20 dB Down
 
-All numbers below come from the synthetic fixture in `episodes/ff96/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
+All numbers below come from the synthetic fixture in `episodes/ff96/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs) and the fixture prints the same key numbers (192000 Hz output, the linear fallback, the section spread).
 
 ## YouTube
 
@@ -41,7 +41,7 @@ Chapters
 01:36 What we measured
 <!-- chapters:end -->
 
-Limits: one synthetic tone program in two section lengths, mono f32le at 48000 Hz, loudnorm and dynaudnorm options as listed, ffmpeg 6.1.1. The exact LU values, the 192000 Hz output and the fallback behaviour are the parts most likely to differ between builds (the tests assert relations on other builds). Not tested: other builds, real speech, stereo, other targets and windows, video.
+Limits: one synthetic tone program in two section lengths, mono f32le at 48000 Hz, loudnorm and dynaudnorm options as listed, ffmpeg 6.1.1. The exact LU values, the 192000 Hz output and the fallback behaviour are the parts most likely to differ between builds (the tests assert relations on other builds). Not tested: builds other than 6.1.1 and 8.1.2, real speech, stereo, other targets and windows, video.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

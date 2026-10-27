@@ -1,6 +1,6 @@
 # FF86 distribution kit: FFmpeg overlay on yuv420p: Odd x and y Round Down to Even, and the 4:4:4 Fix Smears the Chroma
 
-All numbers below come from the synthetic fixture in `episodes/ff86/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (other builds are listed under not tested).
+All numbers below come from the synthetic fixture in `episodes/ff86/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2 with the same results (the fixture output matches the 6.1.1 output; the tests pass in 3 of 3 runs).
 
 ## YouTube
 
@@ -42,7 +42,7 @@ Chapters
 01:44 What to do
 <!-- chapters:end -->
 
-Limits: a synthetic gray base and a flat colored card, no scaling, no alpha, ffmpeg 6.1.1. The rounding is the behavior of this build. Not tested: other builds, real footage, other pixel formats, scaled or alpha overlays, hardware overlays.
+Limits: a synthetic gray base and a flat colored card, no scaling, no alpha, ffmpeg 6.1.1. The rounding is the behavior of this build. Not tested: builds other than 6.1.1 and 8.1.2, real footage, other pixel formats, scaled or alpha overlays, hardware overlays.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

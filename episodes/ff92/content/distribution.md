@@ -1,6 +1,6 @@
 # FF92 distribution kit: FFmpeg libx264 -g 250 with Hard Cuts: -keyint_min 250 Gives 4 I Frames but 2 Keyframes
 
-All numbers below come from the synthetic fixture in `episodes/ff92/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff92/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2: the keyframe positions are the same and the tests pass (3 of 3 runs); the byte counts differ (84844 and 93838 against 78511 and 85876).
 
 ## YouTube
 
@@ -38,7 +38,7 @@ Chapters
 01:46 What to do
 <!-- chapters:end -->
 
-Limits: one 160x120 clip of 300 frames, the default x264 preset with B frames and a closed GOP, ffmpeg 6.1.1. The exact keyframe positions, the byte counts and the min-keyint cap are the parts most likely to differ on another x264 build. Not tested: other builds, other presets, B frames off, open GOP, other encoders, real footage.
+Limits: one 160x120 clip of 300 frames, the default x264 preset with B frames and a closed GOP, ffmpeg 6.1.1. The exact keyframe positions, the byte counts and the min-keyint cap are the parts most likely to differ on another x264 build. Not tested: builds other than 6.1.1 and 8.1.2, other presets, B frames off, open GOP, other encoders, real footage.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

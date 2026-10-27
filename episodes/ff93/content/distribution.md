@@ -1,6 +1,6 @@
 # FF93 distribution kit: FFmpeg B-frames: the First dts Is -0.08 s in mp4, N/A in mkv, Start Time Is 0
 
-All numbers below come from the synthetic fixture in `episodes/ff93/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
+All numbers below come from the synthetic fixture in `episodes/ff93/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs; exact numbers are asserted on 6.1.1 only, relations on 8.1.2).
 
 ## YouTube
 
@@ -42,7 +42,7 @@ Chapters
 01:45 What to use
 <!-- chapters:end -->
 
-Limits: one libx264 clip with a fixed I P B B pattern (2 B-frames), 64x48, mp4 and mkv, ffmpeg 6.1.1. The N/A count in mkv, the pkt_dts values on frames and the dts shift for signed offsets are the parts most likely to differ between builds. Not tested: other builds, real footage, other encoders, more B-frames, B-pyramid, fragmented mp4, mpeg-ts, players.
+Limits: one libx264 clip with a fixed I P B B pattern (2 B-frames), 64x48, mp4 and mkv, ffmpeg 6.1.1. The N/A count in mkv, the pkt_dts values on frames and the dts shift for signed offsets are the parts most likely to differ between builds. Not tested: builds other than 6.1.1 and 8.1.2, real footage, other encoders, more B-frames, B-pyramid, fragmented mp4, mpeg-ts, players.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

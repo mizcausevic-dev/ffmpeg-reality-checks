@@ -383,5 +383,100 @@
   "tests": 17,
   "pass": 17,
   "fail": 0
+ },
+ "ff78": {
+  "tests": 15,
+  "pass": 15,
+  "fail": 0
+ },
+ "ff79": {
+  "tests": 12,
+  "pass": 12,
+  "fail": 0
+ },
+ "ff80": {
+  "tests": 14,
+  "pass": 14,
+  "fail": 0
+ },
+ "ff81": {
+  "tests": 12,
+  "pass": 12,
+  "fail": 0
+ },
+ "ff82": {
+  "tests": 12,
+  "pass": 12,
+  "fail": 0
+ },
+ "ff83": {
+  "tests": 18,
+  "pass": 18,
+  "fail": 0
+ },
+ "ff84": {
+  "tests": 14,
+  "pass": 14,
+  "fail": 0
+ },
+ "ff85": {
+  "tests": 13,
+  "pass": 13,
+  "fail": 0
+ },
+ "ff86": {
+  "tests": 11,
+  "pass": 11,
+  "fail": 0
+ },
+ "ff88": {
+  "tests": 17,
+  "pass": 17,
+  "fail": 0
+ },
+ "ff89": {
+  "tests": 15,
+  "pass": 15,
+  "fail": 0
+ },
+ "ff90": {
+  "tests": 11,
+  "pass": 11,
+  "fail": 0
+ },
+ "ff91": {
+  "tests": 11,
+  "pass": 11,
+  "fail": 0
+ },
+ "ff92": {
+  "tests": 10,
+  "pass": 10,
+  "fail": 0
+ },
+ "ff93": {
+  "tests": 10,
+  "pass": 10,
+  "fail": 0
+ },
+ "ff94": {
+  "tests": 12,
+  "pass": 12,
+  "fail": 0
+ },
+ "ff95": {
+  "tests": 16,
+  "pass": 16,
+  "fail": 0
+ },
+ "ff96": {
+  "tests": 15,
+  "pass": 15,
+  "fail": 0
+ },
+ "ff97": {
+  "tests": 13,
+  "pass": 13,
+  "fail": 0
  }
 }

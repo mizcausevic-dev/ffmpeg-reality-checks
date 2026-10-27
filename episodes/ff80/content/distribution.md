@@ -1,6 +1,6 @@
 # FF80 distribution kit: GIF to MP4: Delay 3 Is 33.33 fps, -r 30 Adds 11% to the Length, fps=30 Drops 2 Frames
 
-All numbers below come from the synthetic fixture in `episodes/ff80/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff80/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs; exact numbers are asserted on 6.1.1 only, relations on 8.1.2).
 
 ## YouTube
 

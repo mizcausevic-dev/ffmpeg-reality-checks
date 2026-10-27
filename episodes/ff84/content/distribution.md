@@ -1,6 +1,6 @@
 # FF84 distribution kit: FFmpeg Encoder Lowpass: mp3 and aac Lose the Top at 64 kbit/s, libopus Keeps 20 kHz
 
-All numbers below come from the synthetic fixture in `episodes/ff84/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (other builds are listed under not tested).
+All numbers below come from the synthetic fixture in `episodes/ff84/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs) with one difference: libopus with -vbr off at 64 kbit/s drops two tones (15.6 and 15.7 kHz) there.
 
 ## YouTube
 
@@ -43,7 +43,7 @@ Chapters
 01:46 What to check
 <!-- chapters:end -->
 
-Limits: synthetic stepped tones, one 0.25 s tone per frequency, ffmpeg 6.1.1 with libmp3lame, the native aac encoder and libopus. The exact cutoffs are encoder behavior of this build. Not tested: other builds, real music, other sample rates, variable bit rate modes of libmp3lame and aac, libopus below 64 kbit/s.
+Limits: synthetic stepped tones, one 0.25 s tone per frequency, ffmpeg 6.1.1 with libmp3lame, the native aac encoder and libopus. The exact cutoffs are encoder behavior of this build. Not tested: builds other than 6.1.1 and 8.1.2, real music, other sample rates, variable bit rate modes of libmp3lame and aac, libopus below 64 kbit/s.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

@@ -1,6 +1,6 @@
 # FF88 distribution kit: FFmpeg chromakey vs colorkey: Default Similarity Keeps All 6912 Pixels of the Key Color
 
-All numbers below come from the synthetic fixture in `episodes/ff88/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff88/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2, where the tests pass (3 of 3 runs; exact numbers are asserted on 6.1.1 only, relations on 8.1.2).
 
 ## YouTube
 
@@ -40,7 +40,7 @@ Chapters
 01:45 What to do
 <!-- chapters:end -->
 
-Limits: 96x72 synthetic cards, one noise level (24), one soft edge width (10 pixels), one subject pair (orange, lime), ffmpeg 6.1.1. The default similarity result, the key offset (U,V 95,58 against 99,66), the 22 clean colorkey settings, the 3x3 border behavior (the outer ring of pixels is left out of the chromakey comparison) and the exact edge counts are the parts most likely to differ on another build. Not tested: ffmpeg 8.1.2, real footage, compression noise, other key colors and noise levels, hardware filters, the despill filters.
+Limits: 96x72 synthetic cards, one noise level (24), one soft edge width (10 pixels), one subject pair (orange, lime), ffmpeg 6.1.1. The default similarity result, the key offset (U,V 95,58 against 99,66), the 22 clean colorkey settings, the 3x3 border behavior (the outer ring of pixels is left out of the chromakey comparison) and the exact edge counts are the parts most likely to differ on another build. Not tested: real footage, compression noise, other key colors and noise levels, hardware filters, the despill filters.
 
 Fixture, tests and video source: github.com/mizcausevic-dev/ffmpeg-reality-checks
 

@@ -1,6 +1,6 @@
 # FF82 distribution kit: ffmpeg blackdetect: Why the Default Settings Miss a Fade to Black
 
-All numbers below come from the synthetic fixture in `episodes/ff82/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff82/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; also run on 8.1.2 with the same results (the same times, and the same 3.96 s end for a clip that ends in black; the tests pass in 3 of 3 runs).
 
 ## YouTube
 
