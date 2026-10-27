@@ -1,6 +1,6 @@
 # FF95 distribution kit: FFmpeg afade: Halfway Through a Fade, 23 Curves Sit Almost 50 dB Apart
 
-All numbers below come from the synthetic fixture in `episodes/ff95/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff95/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
 
 ## YouTube
 

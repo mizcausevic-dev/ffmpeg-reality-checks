@@ -1,6 +1,6 @@
 # FF96 distribution kit: FFmpeg loudnorm Hits the Loudness Target but Leaves Quiet Parts Over 20 dB Down
 
-All numbers below come from the synthetic fixture in `episodes/ff96/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1 (the 8.1.2 build has not been run on these tests yet).
+All numbers below come from the synthetic fixture in `episodes/ff96/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1.
 
 ## YouTube
 
