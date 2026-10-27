@@ -220,7 +220,7 @@ const Err: React.FC<SceneProps> = ({t, dur}) => {
           lines={[ERRS.v_w.line.split(' does not match ')[0] + ' does not match', ERRS.v_w.line.split(' does not match ')[1]]} />
         <Card x={1000} y={700} w={760} rot={0.5} o={ep(t, A(0.6), A(0.68))} head="hstack" color={C.red} size={24} h={130}
           lines={[ERRS.h_h.line.split(' does not match ')[0] + ' does not match', ERRS.h_h.line.split(' does not match ')[1]]} />
-        <Big x={1400} y={420} value={`${ERRS.v_w.status}`} caption={'exit status\nno file written'} color={C.red} o={ep(t, A(0.66), A(0.74))} size={120} w={330} />
+        <Big x={1400} y={420} value={`${ERRS.v_w.status}`} caption={'exit status, Linux\nno file written'} color={C.red} o={ep(t, A(0.66), A(0.74))} size={120} w={330} />
       </Cam>
     </Desk>
   );

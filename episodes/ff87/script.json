@@ -40,7 +40,7 @@
     {
       "id": "error",
       "chapter": "The error",
-      "narration": "Vstack wants equal widths: input one width one sixty does not match input zero width three twenty. Exit status two thirty four, and no file is written. Hstack wants equal heights, the same way. The other side may differ: heights two forty and ninety stack to three thirty.",
+      "narration": "Vstack wants equal widths: input one width one sixty does not match input zero width three twenty. Exit status two thirty four on Linux, minus twenty two on Windows, and no file is written. Hstack wants equal heights, the same way. The other side may differ: heights two forty and ninety stack to three thirty.",
       "captions": [
         "Input 1 width 160 does not match input 0 width 320.",
         "Same for hstack, on the height."
