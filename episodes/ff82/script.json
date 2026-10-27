@@ -1,0 +1,86 @@
+{
+  "n": 82,
+  "slug": "blackdetect-thresholds",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "What do blackdetect's thresholds really mean?",
+  "fullTitle": "ffmpeg blackdetect: Why the Default Settings Miss a Fade to Black",
+  "kicker": "Episode 82",
+  "thumb": {
+    "number": "NONE",
+    "label": "FOUND WITH DEFAULTS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "pix",
+    "t": 10.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "A fade to black. Where does black detect say the black starts? Three settings decide: pix underscore t h, pic underscore t h, and d. We write a fade with a known ramp.",
+      "captions": [
+        "Where does blackdetect say the black starts?",
+        "A fade with a known ramp, every report read."
+      ]
+    },
+    {
+      "id": "setup",
+      "chapter": "A fade written byte by byte",
+      "narration": "The clip: one hundred twenty five frames, written byte by byte. A second of gray, a two second fade from luma one eighty to sixteen, a second of black, then gray. Readers: black detect's log, and a Node scan of the luma.",
+      "captions": [
+        "Gray 180, a 2 s fade to luma 16, 1 s of black, gray.",
+        "Readers: blackdetect's log, a Node scan of the luma."
+      ]
+    },
+    {
+      "id": "default",
+      "chapter": "The default says nothing",
+      "narration": "With the defaults, black detect prints nothing. The black lasts one point two eight seconds, and d defaults to two. With d at point five: start two point seven two, end four. It prints up to d one point two, not at one point five.",
+      "captions": [
+        "Defaults: no line. The black lasts 1.28 s, d is 2.",
+        "d 0.5: start 2.72, end 4. Printed up to d 1.2, not at 1.5."
+      ]
+    },
+    {
+      "id": "pix",
+      "chapter": "What pix_th means",
+      "narration": "The fade began at one second, so the black starts one point seven two seconds later. A pixel is black at or below sixteen plus two hundred nineteen times pix underscore t h: thirty seven by default, not ten percent of two fifty five. At point two, the start is two point four four. At point five, one point six four.",
+      "captions": [
+        "Black is luma <= 16 + 219 x pix_th: 37 by default.",
+        "pix_th 0.2: start 2.44. pix_th 0.5: start 1.64."
+      ]
+    },
+    {
+      "id": "pic",
+      "chapter": "What pic_th means",
+      "narration": "Pic underscore t h is the share of pixels that must be black, point nine eight by default. Eighty eight black rows of ninety, point nine seven eight, is not black. At point nine seven, it is.",
+      "captions": [
+        "pic_th is the share of black pixels: 0.98 by default.",
+        "88 black rows of 90 = 0.978: not black at 0.98, black at 0.97."
+      ]
+    },
+    {
+      "id": "edges",
+      "chapter": "The edges",
+      "narration": "Flat frames show the edge: luma thirty seven is black, thirty eight is not. If the clip ends inside the black, ffmpeg closes it at the last frame, one frame early. After x two six four, the start did not move.",
+      "captions": [
+        "Luma 37 is black at the default, luma 38 is not.",
+        "Clip ends in black: end 3.96, one frame short. x264: same start."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "So black starts where luma crosses the bound, not where the fade starts. Check d against your black. Not tested: real footage, other encoders, other builds.",
+      "captions": [
+        "Black starts where luma crosses the bound, not where the fade starts.",
+        "Not tested: real footage, other encoders, other builds."
+      ]
+    }
+  ]
+}
