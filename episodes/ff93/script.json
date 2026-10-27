@@ -1,0 +1,86 @@
+{
+  "n": 93,
+  "slug": "ffmpeg-bframes-timestamps",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Which timestamp is it, with B-frames?",
+  "fullTitle": "FFmpeg B-frames: the First dts Is -0.08 s in mp4, N/A in mkv, Start Time Is 0",
+  "kicker": "Episode 93",
+  "thumb": {
+    "number": "-0.08 s",
+    "label": "FIRST DTS, BEFORE TIME ZERO",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "negative",
+    "t": 8.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "B frames give every packet two times: p t s, when to show it, and d t s, when to decode it. Which one does each tool print? Fifty frames, two B frames, four readers. On f f m peg six point one point one.",
+      "captions": [
+        "pts shows it, dts decodes it. Which does each tool print?",
+        "50 frames with 2 B-frames, read 4 ways."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "Control: no B-frames",
+      "narration": "Reader one is f f probe plus the show info filter. Reader two is the container bytes in Node. The control has no B frames: d t s equals p t s on all fifty packets, in m p four and m k v.",
+      "captions": [
+        "Readers: ffprobe, showinfo, container bytes.",
+        "Control, no B-frames: dts = pts on 50 of 50, mp4 and mkv."
+      ]
+    },
+    {
+      "id": "negative",
+      "chapter": "The first dts is negative",
+      "narration": "With two B frames the first packet shows at zero but decodes at minus zero point zero eight, two frames early. P t s runs out of order, d t s rises one frame at a time, and the start time is still zero.",
+      "captions": [
+        "mp4: first pts 0.00 s, first dts -0.08 s.",
+        "dts rises 0.04 s per packet; format start time 0.00 s."
+      ]
+    },
+    {
+      "id": "bytes",
+      "chapter": "Where the minus comes from",
+      "narration": "The file holds no negative number. The m p four stores decode time zero, an offset of ten twenty four ticks, and an edit list of ten twenty four. The demuxer subtracts it. Ignore the edit list and the first d t s is zero.",
+      "captions": [
+        "Stored dts 0, offset 1024, edit list 1024 of 12800 ticks.",
+        "ignore_editlist 1: first dts 0.00 s, first pts 0.08 s."
+      ]
+    },
+    {
+      "id": "frames",
+      "chapter": "Decoded frames",
+      "narration": "Best effort time stamp equals p t s on all fifty frames. But the d t s printed on a frame is not its own packet's: it differs on forty eight of forty eight. Show info prints only the p t s.",
+      "captions": [
+        "best_effort_timestamp = pts on 50 of 50 frames.",
+        "Frame pkt_dts differs from its packet's dts on 48 of 48."
+      ]
+    },
+    {
+      "id": "other",
+      "chapter": "Same bits, three answers",
+      "narration": "M k v stores no d t s, only one presentation time per block. F f probe rebuilds it, and prints N slash A for the first two. Negative c t s offsets in m p four give minus zero point zero four. Same bits, three answers.",
+      "captions": [
+        "First dts: mp4 -0.08 s, mkv N/A, mp4 + negative_cts_offsets -0.04 s.",
+        "pts identical in all three; start time 0.00 s in all three."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to use",
+      "sim": null,
+      "narration": "So trust p t s: it is the same in every file. D t s is how a container wrote the order. Not tested: other builds, real footage, other encoders, fragmented files.",
+      "captions": [
+        "Trust pts. dts is the container's choice.",
+        "Not tested: other builds, real footage, other encoders, fragmented mp4."
+      ]
+    }
+  ]
+}
