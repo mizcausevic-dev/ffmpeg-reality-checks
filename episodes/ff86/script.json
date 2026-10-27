@@ -1,0 +1,91 @@
+{
+  "n": 86,
+  "slug": "ffmpeg-overlay-odd-offset-yuv420p",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where does an odd overlay land?",
+  "fullTitle": "FFmpeg overlay on yuv420p: Odd x and y Round Down to Even, and the 4:4:4 Fix Smears the Chroma",
+  "kicker": "Episode 86",
+  "thumb": {
+    "number": "1 px",
+    "label": "OFF BY ONE AT ODD OFFSETS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "plain",
+    "t": 15.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You overlay a card at x equals one, y equals one, on yuv four two zero p. Does it land there? A gray base, an eight by eight card with its own color, sixteen offsets from zero to three, f f m peg six point one point one.",
+      "captions": [
+        "Overlay a card at x=1, y=1 on yuv420p.",
+        "16 offsets, 0 to 3. Where does it land?"
+      ],
+      "sim": null
+    },
+    {
+      "id": "rig",
+      "chapter": "Two readers, two controls",
+      "narration": "Reader one is Node: the box of the card in the Y, U and V planes, and the center of its color. Reader two is f f m peg: extractplanes profiles and a checksum per frame. Control: even offsets. Known positive: yuv four four four p.",
+      "captions": [
+        "Node box finder and ffmpeg profiles agree.",
+        "Control: even offsets. Known positive: yuv444p."
+      ],
+      "sim": null
+    },
+    {
+      "id": "plain",
+      "chapter": "Plain overlay",
+      "narration": "Plain overlay does not place the card at an odd offset. X equals one gives zero, x equals three gives two, likewise y. Sixteen offsets make only four frames. Luma and chroma move together, so no color leaks. It is up to one pixel off.",
+      "captions": [
+        "Odd x and y round down to even.",
+        "16 offsets, 4 frames, 0 wrong pixels."
+      ],
+      "sim": null
+    },
+    {
+      "id": "fix",
+      "chapter": "The usual fix",
+      "narration": "The usual advice: format equals yuv four four four inside overlay. Now the luma lands exactly, sixteen frames. But the output is yuv four two zero p again, and the chroma comes back smeared: twenty eight to sixty of sixty four card pixels carry the wrong color, and the gray around picks some up.",
+      "captions": [
+        "format=yuv444: luma exact, chroma smeared.",
+        "28 to 60 of 64 card pixels: wrong color."
+      ],
+      "sim": null
+    },
+    {
+      "id": "half",
+      "chapter": "Half way",
+      "narration": "With format equals yuv four two two only x rounds down, y is honored: eight frames. The chroma is smeared too, sixteen to forty eight card pixels wrong.",
+      "captions": [
+        "format=yuv422: y exact, x rounds.",
+        "8 frames, 16 to 48 wrong."
+      ],
+      "sim": null
+    },
+    {
+      "id": "exact",
+      "chapter": "Exact, and the edge",
+      "narration": "Stay in yuv four four four p to the end and every offset is exact in all three planes, in both readers. Negative offsets round down too: x minus one and minus two show six of eight columns, minus three shows four.",
+      "captions": [
+        "yuv444p to the end: all 16 exact.",
+        "x=-1 and -2: 6 columns. x=-3: 4."
+      ],
+      "sim": null
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "In yuv four two zero p an odd offset is rounded down,. Use even offsets, or stay in yuv four four four p until the encode. Not tested: other builds, real footage, other formats.",
+      "captions": [
+        "Use even x and y, or stay in 4:4:4.",
+        "Not tested: other builds, real footage."
+      ],
+      "sim": null
+    }
+  ]
+}
