@@ -1,3 +1,290 @@
 {
- "ff45": {"status": "pilot", "note": "2026-10-26: two video elements (ff23, ff16) in the last 20 s, saved in Studio. The site link cannot be added: Link is disabled until the channel is in the YouTube Partner Program. Takes about 14 steps per film by hand."}
+ "ff45": {
+  "status": "pilot",
+  "note": "2026-10-26: two video elements (ff23, ff16) in the last 20 s, saved in Studio. The site link cannot be added: Link is disabled until the channel is in the YouTube Partner Program. Takes about 14 steps per film by hand."
+ },
+ "ff26": {
+  "status": "done",
+  "note": "Verified: reopened in Studio afterwards and the elements had persisted."
+ },
+ "ff27": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff28": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff29": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff30": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff31": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff32": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff33": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff34": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff35": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff36": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff37": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff38": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff39": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff40": {
+  "status": "done",
+  "note": "Verified: reopened in Studio afterwards and the elements had persisted."
+ },
+ "ff41": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff42": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff43": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff44": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff46": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff47": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff48": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff49": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff50": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff51": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff52": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff53": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff54": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff55": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff56": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff57": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff58": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff59": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff60": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff61": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff62": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff63": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff64": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff65": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff66": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff67": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff68": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff69": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff70": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff71": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff72": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff73": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff74": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff75": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff76": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff77": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff78": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened. First attempt opened Trim & cut by mistake (page not ready), nothing saved; redone correctly."
+ },
+ "ff79": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff80": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff81": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff82": {
+  "status": "done",
+  "note": "Spot check: set by the browser run, not reopened. Search 1078 matched related tile (-6 rows thumbnail, title FFmpeg cropdetect: Why 1078 Rows...)."
+ },
+ "ff83": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff84": {
+  "status": "done",
+  "note": "Spot check: set by the browser run, not reopened. Libmp3lame no match; used MP3, picked second tile (32-182, FFmpeg MP3 Quality 2: 32 to 1...)."
+ },
+ "ff85": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff86": {
+  "status": "done",
+  "note": "Spot check: set by the browser run, not reopened. Search Rounds an Odd matched pad film (wrong); used crop, picked 2nd tile (1 px, crop Rounds an Odd Offset thumbnail)."
+ },
+ "ff87": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff88": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff89": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff90": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff91": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff92": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff93": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff94": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff95": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened."
+ },
+ "ff97": {
+  "status": "done",
+  "note": "Executed: set in Studio by the browser run, not reopened. Special: left changed MP4 film -> ffprobe Durations, right ffprobe film -> Best for viewer; transient same-video warning cleared before save."
+ },
+ "ff96": {
+  "status": "done",
+  "note": "Set before this batch (earlier session); not rechecked here."
+ }
 }

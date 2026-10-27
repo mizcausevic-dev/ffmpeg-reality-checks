@@ -1,5 +1,75 @@
 [
  {
+  "ep": "fl01",
+  "status": "private",
+  "topic": "How does FFmpeg really cut a video?",
+  "why": "Shipped, private. Long film on cutting (signal look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "long"
+ },
+ {
+  "ep": "fl02",
+  "status": "private",
+  "topic": "Where does my audio really start after a join or a cut?",
+  "why": "Shipped, private. Long film on gapless audio (phosphor look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "long"
+ },
+ {
+  "ep": "fl03",
+  "status": "private",
+  "topic": "Why do FFmpeg colors shift?",
+  "why": "Shipped, private. Long film on color shifts (riso look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "long"
+ },
+ {
+  "ep": "fl04",
+  "status": "private",
+  "topic": "Where do my frames and seconds go in FFmpeg?",
+  "why": "Shipped, private. Long film on frame rate and timestamps (swiss look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "long"
+ },
+ {
+  "ep": "fl05",
+  "status": "private",
+  "topic": "Why an FFmpeg file will not play",
+  "why": "Shipped, private. Long film on files that will not play (newsprint look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "long"
+ },
+ {
+  "ep": "fs01",
+  "status": "private",
+  "topic": "Why FFmpeg -c copy cuts the wrong start",
+  "why": "Shipped, private. Short on cutting (signal look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "short"
+ },
+ {
+  "ep": "fs02",
+  "status": "private",
+  "topic": "Why is my joined AAC file full of gaps?",
+  "why": "Shipped, private. Short on gapless audio (phosphor look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "short"
+ },
+ {
+  "ep": "fs03",
+  "status": "private",
+  "topic": "Label or pixels? Why FFmpeg colors shift",
+  "why": "Shipped, private. Short on color shifts (riso look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "short"
+ },
+ {
+  "ep": "fs04",
+  "status": "private",
+  "topic": "Five ways an FFmpeg frame rate change lies",
+  "why": "Shipped, private. Short on frame rate and timestamps (swiss look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "short"
+ },
+ {
+  "ep": "fs05",
+  "status": "private",
+  "topic": "Why an FFmpeg file will not play",
+  "why": "Shipped, private. Short on files that will not play (newsprint look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "kind": "short"
+ },
+ {
   "ep": "ff78",
   "status": "proposed",
   "topic": "MP3 encoder delay: how many samples does the start carry, and does `-c copy` keep it gapless?",

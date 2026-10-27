@@ -777,6 +777,86 @@
    "likes": 0,
    "privacy": "public",
    "at": "2026-10-27T09:06:25Z"
+  },
+  "fl01": {
+   "videoId": "X2D4477oH4M",
+   "seconds": 353,
+   "views": 0,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T18:26:29Z"
+  },
+  "fl02": {
+   "videoId": "C_m6CJFbcI8",
+   "seconds": 334,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T19:33:36Z"
+  },
+  "fl03": {
+   "videoId": "nhOo7O5D72c",
+   "seconds": 358,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T19:35:04Z"
+  },
+  "fl04": {
+   "videoId": "V_bau6Vvg-8",
+   "seconds": 365,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T19:44:36Z"
+  },
+  "fl05": {
+   "videoId": "gGDVcwAx2eg",
+   "seconds": 378,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T19:53:34Z"
+  },
+  "fs01": {
+   "videoId": "i7vRN9a6CJk",
+   "seconds": 158,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T18:30:06Z"
+  },
+  "fs02": {
+   "videoId": "5iZs5Z_iR0U",
+   "seconds": 156,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T18:34:05Z"
+  },
+  "fs03": {
+   "videoId": "Uo-HCsoRCj4",
+   "seconds": 161,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T18:53:23Z"
+  },
+  "fs04": {
+   "videoId": "Sb0MQHwUpe0",
+   "seconds": 168,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T18:58:30Z"
+  },
+  "fs05": {
+   "videoId": "vzZQ533n3k0",
+   "seconds": 166,
+   "views": 1,
+   "likes": 0,
+   "privacy": "private",
+   "at": "2026-10-27T19:12:24Z"
   }
  },
  "channelTraffic": {
@@ -828,5 +908,7 @@
     "views": 1
    }
   ]
- }
+ },
+ "asOfNewFilms": "2026-10-27T16:04:00-04:00",
+ "sourceNewFilms": "YouTube Data API videos.list (snippet, status, contentDetails, statistics), read-only; fl01..fs05 only"
 }

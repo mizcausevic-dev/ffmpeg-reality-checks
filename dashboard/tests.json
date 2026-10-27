@@ -483,5 +483,50 @@
   "tests": 15,
   "pass": 15,
   "fail": 0
+ },
+ "fl01": {
+  "tests": 21,
+  "pass": 21,
+  "fail": 0
+ },
+ "fs01": {
+  "tests": 6,
+  "pass": 6,
+  "fail": 0
+ },
+ "fl02": {
+  "tests": 46,
+  "pass": 46,
+  "fail": 0
+ },
+ "fl03": {
+  "tests": 32,
+  "pass": 32,
+  "fail": 0
+ },
+ "fs03": {
+  "tests": 7,
+  "pass": 7,
+  "fail": 0
+ },
+ "fl04": {
+  "tests": 26,
+  "pass": 26,
+  "fail": 0
+ },
+ "fs04": {
+  "tests": 7,
+  "pass": 7,
+  "fail": 0
+ },
+ "fl05": {
+  "tests": 30,
+  "pass": 30,
+  "fail": 0
+ },
+ "fs05": {
+  "tests": 11,
+  "pass": 11,
+  "fail": 0
  }
 }

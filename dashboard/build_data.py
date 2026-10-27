@@ -2,7 +2,7 @@
 """Build the dashboard datasets for the FFmpeg Reality Checks ledger.
 
 Reads (all in this repo):
-  episodes/ffNN/script.json   title, fullTitle, thumb, narration
+  episodes/ffNN/script.json   title, fullTitle, thumb, narration (also flNN long films and fsNN Shorts)
   dashboard/snapshot.json     YouTube stats snapshot (ids, seconds, views, likes, privacy) and channel traffic
   dashboard/tests.json        test counts per episode, {ffNN: {tests, pass, fail}}, measured by build
   dashboard/queue.json        the next-episode queue (hand-maintained)
@@ -65,14 +65,25 @@ differs = {
 }
 # ff01..ff25 were re-run on 8.1.2 on Oct 27 (runs-6.1.1 / runs-8.1.2): 13 identical, 12 differ in numbers; claim-level differences are listed in `differs`.
 BOTH_FROM = 1
+# Long films (flNN) and Shorts (fsNN): measured on 6.1.1 only so far; 8.1.2 has not been run on them.
+KIND = {'ff': 'film', 'fl': 'long', 'fs': 'short'}
+THEME = {'fl01': 'cutting', 'fs01': 'cutting', 'fl02': 'gapless audio', 'fs02': 'gapless audio', 'fl03': 'color shifts', 'fs03': 'color shifts', 'fl04': 'frame rate and timestamps', 'fs04': 'frame rate and timestamps', 'fl05': 'files that will not play', 'fs05': 'files that will not play'}
+# The combined fl02 + fs02 test run reports one total (46 of 46); it is counted once, under fl02.
+TEST_NOTE = {'fl02': 'Combined run with fs02: 46 of 46.', 'fs02': 'Counted under fl02 (46 of 46 combined).'}
 # Films whose build-dependent claims are asserted on 6.1.1 only; 8.1.2 ran the build-independent checks.
 PARTIAL = {'ff51','ff52','ff53','ff54','ff55','ff56','ff57'}
 # Films whose path grid needs file names Windows cannot hold: measured on 6.1.1 only.
 LINUX_ONLY = {'ff60'}
 
+def order_of(code):
+    # one sort key for all three prefixes: ff by number, then fl, then fs
+    n = int(code[2:])
+    return n if code.startswith('ff') else (1000 if code.startswith('fl') else 1100) + n
+
 films = []
-for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
+for d in sorted([p for p in (root / 'episodes').iterdir() if p.is_dir() and re.fullmatch(r'f[fls]\d\d', p.name)], key=lambda p: order_of(p.name)):
     code = d.name
+    kind = KIND[code[:2]]
     n = int(code[2:])
     sp = d / 'script.json'
     if not sp.exists():
@@ -96,7 +107,13 @@ for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
         'words': words,
         'tests': t.get('tests'),
         'tests_failed': t.get('fail'),
-        'builds': '6.1.1 (8.1.2 partly)' if code in PARTIAL else ('6.1.1 only (tests skip on Windows)' if code in LINUX_ONLY else None) or ('6.1.1 and 8.1.2' if n >= BOTH_FROM else '6.1.1'),
+        'kind': kind,
+        'ord': order_of(code),
+        'palette': s.get('palette', '') if kind != 'film' else '',
+        'theme': THEME.get(code, ''),
+        'test_note': TEST_NOTE.get(code, ''),
+        'on_8': 'no' if kind != 'film' or code in LINUX_ONLY else ('partly' if code in PARTIAL else ('yes' if n >= BOTH_FROM else 'no')),
+        'builds': '6.1.1 (8.1.2 not run yet)' if kind != 'film' else ('6.1.1 (8.1.2 partly)' if code in PARTIAL else ('6.1.1 only (tests skip on Windows)' if code in LINUX_ONLY else None) or ('6.1.1 and 8.1.2' if n >= BOTH_FROM else '6.1.1')),
         'build_difference': 'yes' if code in differs else 'no',
         'build_note': differs.get(code, ''),
         'status': 'public' if st and st['privacy'] == 'public' else ('private' if st else 'in production'),
@@ -107,7 +124,7 @@ for d in sorted((root / 'episodes').glob('ff[0-9][0-9]')):
         'pinned': pinned,
         'pinned_chars': len(pinned),
         'endscreen': es.get('status', 'not set'),
-        'end_note': es.get('note', ''),
+        'end_note': es.get('note', 'Queued for later, by hand (Studio only).' if kind != 'film' else ''),
         'video_id': st['videoId'] if st else '',
         'published_at': st.get('at', '') if st else '',
         'published': fmt_et(st['at']) if st and st.get('at') else '',
@@ -121,21 +138,24 @@ if ana:
     traffic = [{'source': LABEL.get(r['insightTrafficSourceType'], r['insightTrafficSourceType']), 'views': r['views'], 'minutes': r['estimatedMinutesWatched']} for r in sorted(ana['traffic'], key=lambda r: -r['views'])]
 else:
     traffic = snap['channelTraffic']['sources']
-# Thumbnails: dashboard/thumbs/ffNN.jpg (320 px wide, from episodes/ffNN/thumbnail.png), embedded as data URLs in the film rows.
+# Thumbnails: dashboard/thumbs/<code>.jpg (320 px wide, from episodes/<code>/thumbnail.png; Shorts have no thumbnail), embedded as data URLs in the film rows.
 for f in films:
     jp = dash / 'thumbs' / (f['code'] + '.jpg')
     f['thumb'] = ('data:image/jpeg;base64,' + base64.b64encode(jp.read_bytes()).decode()) if jp.exists() else ''
 (out / 'films.json').write_text(json.dumps(films, separators=(',', ':')))
 
-# Timeline: real YouTube times (publishedAt) grouped into batches, plus what is scheduled and in production.
-done = sorted([(c, v) for c, v in snap['films'].items() if v.get('at')], key=lambda kv: kv[1]['at'])
-batches = []
-for c, v in done:
-    last = batches[-1] if batches else None
-    if last and last['privacy'] == v['privacy'] and (et(v['at']) - et(last['end'])).total_seconds() <= 45 * 60:
-        last['films'].append(c); last['end'] = v['at']
-    else:
-        batches.append({'privacy': v['privacy'], 'start': v['at'], 'end': v['at'], 'films': [c]})
+# Timeline: real YouTube times (publishedAt) grouped into batches per prefix (ff, fl, fs), plus what is scheduled and in production.
+def batches_for(prefix):
+    done = sorted([(c, v) for c, v in snap['films'].items() if c.startswith(prefix) and v.get('at')], key=lambda kv: kv[1]['at'])
+    out_b = []
+    for c, v in done:
+        last = out_b[-1] if out_b else None
+        if last and last['privacy'] == v['privacy'] and (et(v['at']) - et(last['end'])).total_seconds() <= 45 * 60:
+            last['films'].append(c); last['end'] = v['at']
+        else:
+            out_b.append({'privacy': v['privacy'], 'start': v['at'], 'end': v['at'], 'films': [c]})
+    return out_b
+batches = sorted([b for pre in ('ff', 'fl', 'fs') for b in batches_for(pre)], key=lambda b: b['start'])
 tl = []
 for i, b in enumerate(batches):
     a, z = b['films'][0], b['films'][-1]
@@ -149,31 +169,52 @@ for i, b in enumerate(batches):
         'detail': str(len(b['films'])) + (' film' if len(b['films']) == 1 else ' films') + ('. Time is the YouTube publish time.' if public else '. Time is the upload time; still private.'),
         'films': ','.join(b['films']),
     })
-private_now = [c for c, v in snap['films'].items() if v['privacy'] != 'public']
+# Status lines from Miz's replies and the repo (Oct 27). Times are the message and commit times.
 n0 = len(tl)
+tl.append({'order': n0, 'state': 'done', 'when': 'Oct 27, 3:58 pm ET', 'title': 'Pilot look approved: fl01 to fl05, fs01 to fs05',
+    'detail': 'Miz approved the new look (palettes signal, phosphor, riso, swiss, newsprint). The fs02 tag and the EP 102 / EP 105 thumbnail corner labels are left as they are.', 'films': ''})
+tl.append({'order': n0 + 1, 'state': 'done', 'when': 'Oct 27, 3:59 pm ET', 'title': 'Series repo pushed: 18b2f08',
+    'detail': 'Source for the ten new films (scripts, scenes, fixtures, tests, kits). Narration audio, rendered video, thumbnails and captions stay local and are not in the repo.', 'films': ''})
+n0 += 2
+private_now = [c for c, v in snap['films'].items() if v['privacy'] != 'public']
+private_ff = [c for c in private_now if c.startswith('ff')]
 # Approved by Miz: ff61..ff77 (Oct 26 evening) and ff78 + ff97 (Oct 26, 11 pm ET). Everything else stays private until a fresh yes.
-APPROVED_B = {'ff78', 'ff97'}
-first = [c for c in private_now if 61 <= int(c[2:]) <= 77]
+first = [c for c in private_ff if 61 <= int(c[2:]) <= 77]
 if first:
     tl.append({'order': n0, 'state': 'scheduled', 'when': 'Oct 27, 3:10 am ET (planned)',
         'title': 'Go public: ' + first[0] + ' to ' + first[-1],
         'detail': 'Approved by Miz on Oct 26. YouTube refused further changes after the daily upload quota ran out on Oct 26; a resume job runs after the reset (midnight Pacific).',
         'films': ','.join(first)})
     n0 += 1
-held = [c for c in private_now if int(c[2:]) >= 78]
+held = [c for c in private_ff if int(c[2:]) >= 78]
 if held:
     tl.append({'order': n0, 'state': 'scheduled', 'when': 'Waiting for your yes',
         'title': 'Held private: ' + held[0] + ' to ' + held[-1],
         'detail': str(len(held)) + ' films uploaded private with thumbnails and playlist entries. Miz approved ff78 and ff97 only (Oct 26, 11 pm ET); the rest need a fresh yes.',
         'films': ','.join(held)})
-n0 += 1
+    n0 += 1
+new_private = sorted(c for c in private_now if c[:2] in ('fl', 'fs'))
+if new_private:
+    tl.append({'order': n0, 'state': 'scheduled', 'when': 'Waiting for your yes',
+        'title': 'Held private: ' + new_private[0] + ' to ' + new_private[-1],
+        'detail': str(len(new_private)) + ' films (5 long, 5 Shorts) uploaded private into the playlist FFmpeg Reality Checks: Long Films and Shorts. Publishing needs a fresh yes (--publish --confirm-public).',
+        'films': ','.join(new_private)})
+    n0 += 1
+tl.append({'order': n0, 'state': 'scheduled', 'when': 'Queued for later, by hand',
+    'title': 'Pinned comments for fl01 to fs05', 'detail': 'YouTube has no API to pin a comment. The ten texts are in the Pinned comments section below; paste and pin them in Studio.', 'films': ''})
+tl.append({'order': n0 + 1, 'state': 'scheduled', 'when': 'Queued for later, by hand',
+    'title': 'End screens: the ten new films, then ff01 to ff25', 'detail': 'Studio only. The 70 end screens on ff26 to ff97 are listed in the End screens section.', 'films': ''})
+tl.append({'order': n0 + 2, 'state': 'scheduled', 'when': 'Open',
+    'title': 'Engine commit 8aaa9e5 is not pushed to the engine remote', 'detail': 'The long-film and Shorts support, palettes and thumbnail system v2 exist on the PC and in the working copy only. 8.1.2 tests for the ten new films have not been run.', 'films': ''})
+n0 += 3
 building = sorted(f['code'] for f in films if f['status'] == 'in production')
 if building:
-    tl.append({'order': n0 + 1, 'state': 'building', 'when': 'In production',
+    tl.append({'order': n0, 'state': 'building', 'when': 'In production',
         'title': 'Build and test: ' + building[0] + ' to ' + building[-1],
         'detail': str(len(building)) + ' films in the next batch. Built private only; publishing needs a fresh yes.',
         'films': ','.join(building)})
-tl.append({'order': n0 + 2, 'state': 'scheduled', 'when': 'Oct 29, 9:00 am ET (reminder)',
+    n0 += 1
+tl.append({'order': n0, 'state': 'scheduled', 'when': 'Oct 29, 9:00 am ET (reminder)',
     'title': 'Analytics API and OAuth scope', 'detail': 'Decision needed: extend the YouTube login with the analytics read scope (needs your explicit yes).', 'films': ''})
 (out / 'timeline.json').write_text(json.dumps(tl, indent=1))
 (out / 'traffic.json').write_text(json.dumps(traffic, indent=1))
