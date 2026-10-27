@@ -1,0 +1,141 @@
+{
+  "n": 3,
+  "slug": "ffmpeg-why-colors-shift-short",
+  "palette": "riso",
+  "series": "FFmpeg Reality Checks",
+  "title": "Label or pixels? Why FFmpeg colors shift",
+  "fullTitle": "FFmpeg Colors Shift: Is It the Label or the Pixels?",
+  "kicker": "Short 03",
+  "thumb": {
+    "number": "same pixels",
+    "label": "ONLY THE LABEL MOVED",
+    "color": "amber"
+  },
+  "endCard": {
+    "seconds": 4,
+    "line": "The full film is on the channel"
+  },
+  "hero": {
+    "scene": "verdict",
+    "t": 3.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Pure green is two fifty five. One plain FFmpeg command later, a player shows two fifteen. Is the file wrong, or only its label? Two readers, synthetic clips.",
+      "captions": [
+        "Pure green: 255 becomes 215.",
+        "The label, or the pixels?"
+      ]
+    },
+    {
+      "id": "rig",
+      "chapter": "Two readers",
+      "sim": null,
+      "narration": "Reader one, f f probe, prints the label. Reader two decodes the file and reads the pixels. Each first sees a case where the effect is real. Ffmpeg six point one point one.",
+      "captions": [
+        "Reader 1: the label.",
+        "Reader 2: the pixels.",
+        "ffmpeg 6.1.1."
+      ]
+    },
+    {
+      "id": "matrix",
+      "chapter": "Matrix",
+      "sim": null,
+      "narration": "The plain command writes no matrix tag, and the pixels are BT six oh one. Read as BT seven oh nine, green falls from two fifty five to two fifteen. Now dash colorspace bt seven oh nine alone: tagged, but the pixels are still six oh one. Off by forty.",
+      "captions": [
+        "Plain: no tag, BT.601 pixels.",
+        "Read as BT.709: green 255 to 215.",
+        "-colorspace bt709 alone: error 40."
+      ]
+    },
+    {
+      "id": "range",
+      "chapter": "Range",
+      "sim": null,
+      "narration": "Range works the same way. The default puts black at luma sixteen and white at two thirty five. Add dash color range p c: identical bytes on six point one, but the tag says full. A player that follows the tag shows black as sixteen.",
+      "captions": [
+        "Default: black Y 16, white Y 235.",
+        "-color_range pc: same bytes.",
+        "Tag says full: black shows 16."
+      ]
+    },
+    {
+      "id": "hdr",
+      "chapter": "Transfer",
+      "sim": null,
+      "narration": "HDR to SDR. A plain dash pix fmt puts a hundred nit white at one twenty seven, not two thirty five. Force the colorspace filter with i all, and the pixels are the same, but the tags now say bt seven oh nine.",
+      "captions": [
+        "100 nit white lands at Y 127.",
+        "iall=bt2020: same pixels, new tags."
+      ]
+    },
+    {
+      "id": "verdict",
+      "chapter": "Three labels",
+      "sim": null,
+      "narration": "Three commands, one pattern. Each rewrote a label over identical pixels. A wrong label can be fixed with a tag. Pixels lost cannot be.",
+      "captions": [
+        "3 commands changed only the label.",
+        "A wrong label: fixable."
+      ]
+    },
+    {
+      "id": "chroma",
+      "chapter": "Lost pixels",
+      "sim": null,
+      "narration": "Lost pixels look different. A red line, one pixel wide, through y u v four two zero becomes one fifty, twenty one, one forty nine. Purple. Brightness stays near eighty one. No tag brings the color back.",
+      "captions": [
+        "yuv420p: red line becomes 150, 21, 149.",
+        "Y stays near 81. No tag brings it back."
+      ]
+    },
+    {
+      "id": "bands",
+      "chapter": "A false alarm",
+      "sim": null,
+      "narration": "One false alarm. Ten bit to eight bit does not band. Plain format y u v four two zero p already dithers: sixty five values, not sixty four. Only s w s dither none truncates. Six other spellings give one checksum.",
+      "captions": [
+        "format=yuv420p: 65 values, not 64.",
+        "Only sws_dither=none truncates.",
+        "6 other spellings: 1 checksum."
+      ]
+    },
+    {
+      "id": "gray",
+      "chapter": "Gray",
+      "sim": null,
+      "narration": "For black and white, format equals gray follows the file. On a BT seven oh nine file it gives green one eighty three. The six oh one mixer gives one forty nine: thirty four levels off.",
+      "captions": [
+        "BT.709 file: format=gray gives 183.",
+        "601 mixer: 149. 34 levels off."
+      ]
+    },
+    {
+      "id": "recipe",
+      "chapter": "The command",
+      "sim": null,
+      "narration": "So use this: scale with out color matrix equals bt seven oh nine and out range equals t v, format y u v four two zero p, and all three tags. On a fresh card, f f probe says bt seven oh nine. Decoded, worst error one. Black sixteen, white two thirty five. The plain command is off by forty.",
+      "captions": [
+        "ffprobe: bt709, tv.",
+        "Decoded: worst error 1.",
+        "Black 16, white 235.",
+        "Plain command: error 40."
+      ]
+    },
+    {
+      "id": "notest",
+      "chapter": "Not tested",
+      "sim": null,
+      "narration": "Check the label and the pixels together. Not tested: real footage, real players, H L G, other encoders. Test, source films and long cut: in the description.",
+      "captions": [
+        "Check the label and the pixels.",
+        "Not tested: footage, players, HLG."
+      ]
+    }
+  ],
+  "kind": "short"
+}

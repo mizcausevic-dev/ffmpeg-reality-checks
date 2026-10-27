@@ -1,0 +1,170 @@
+{
+  "n": 105,
+  "slug": "ffmpeg-file-will-not-play-checks",
+  "palette": "newsprint",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why an FFmpeg file will not play",
+  "fullTitle": "Why an FFmpeg MP4 Will Not Play: pix_fmt, Odd Size, faststart, hvc1",
+  "kicker": "Deep dive 05",
+  "thumb": {
+    "number": "927,238 B",
+    "label": "BYTES SENT, INDEX LAST",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "order",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "One command. PNG frames in, MP4 out, and ffmpeg exits with status zero. No warning. But the file has three things hiding in it. The pixels are four four four. The size is five ninety three by three thirty three, which is odd. And the index is the last box. We read each with two readers. We ran no player.",
+      "captions": [
+        "Exit status 0. No warning.",
+        "4:4:4, 593x333, index last.",
+        "Two readers. No player."
+      ]
+    },
+    {
+      "id": "rig",
+      "chapter": "How we check",
+      "narration": "Everything is synthetic, on ffmpeg six point one point one: twenty five PNG frames of a test pattern, one thousand by five sixty two, in RGB. The naive command scales to height three thirty three and encodes with lib x two six four. Reader one is ffprobe. Reader two reads the file's own bytes. Every claim has a control, so each reader is shown to see both answers.",
+      "captions": [
+        "25 synthetic PNG frames, 1000x562.",
+        "Reader 1: ffprobe. Reader 2: the bytes."
+      ]
+    },
+    {
+      "id": "pixfmt",
+      "chapter": "First: the pixel format",
+      "narration": "PNG is RGB, so every pixel keeps its own color. With no pixel format flag, lib x two six four keeps all of it. ffprobe says profile High four four four Predictive, pixel format Y U V four four four P. A source that is already four two zero stays four two zero, so the surprise belongs to RGB input.",
+      "captions": [
+        "RGB in: High 4:4:4 Predictive, yuv444p.",
+        "Control: yuv420p in, yuv420p out."
+      ]
+    },
+    {
+      "id": "fix420",
+      "chapter": "The fix, and its price",
+      "narration": "The ffmpeg wiki says some players only support four two zero for H two six four. We tested no player. Add dash pix underscore fmt, Y U V four two zero P, and ffprobe says profile High. It has a price: against the original frames, four four four scores thirty seven point oh four decibels, four two zero thirty five point four.",
+      "captions": [
+        "-pix_fmt yuv420p: profile High.",
+        "PSNR 37.04 dB vs 35.4 dB."
+      ]
+    },
+    {
+      "id": "crash",
+      "chapter": "Second: the size",
+      "narration": "A nineteen twenty by ten eighty clip, scaled to height seven twenty, gives twelve eighty by seven twenty, and it encodes. Now one thousand by five sixty two, with scale equals minus one, colon, three thirty three. The width is five ninety three. Both odd. lib x two six four refuses: width not divisible by two. The exit code is not zero, and nothing is written.",
+      "captions": [
+        "1920x1080 to 1280x720: encodes.",
+        "1000x562 to 593x333: refused."
+      ]
+    },
+    {
+      "id": "either",
+      "chapter": "Either number breaks it",
+      "narration": "Either number is enough. Six forty by three sixty, scaled to height two forty, gives width four twenty seven, and the message names the width. Minus two makes the width even, but three thirty three is still odd, so the message names the height. Minus two, colon, three thirty four gives five ninety four by three thirty four. Exit zero, ten frames.",
+      "captions": [
+        "scale=-1:240 on 640x360: width 427.",
+        "scale=-2:334: 594x334, exit 0."
+      ]
+    },
+    {
+      "id": "hidden",
+      "chapter": "Why our first command passed",
+      "narration": "So why did our first command not crash? With four four four chroma, the same five ninety three by three thirty three frame encodes fine. The pixel format was hiding the size. Add dash pix underscore fmt, Y U V four two zero P, to the naive command and it fails, nothing written. Fix one problem and you meet the next.",
+      "captions": [
+        "4:4:4 hid the odd size.",
+        "Add -pix_fmt yuv420p: refused."
+      ]
+    },
+    {
+      "id": "order",
+      "chapter": "Third: the index",
+      "narration": "An MP4 is a list of boxes. The plain file goes ftyp, free, mdat, moov. The moov box is the index, and it comes last, at byte nine hundred seventeen thousand five hundred fifty nine of nine hundred twenty seven thousand two hundred thirty eight. With dash movflags plus faststart: ftyp, moov, free, mdat. Same two hundred fifty frames. Two readers agree.",
+      "captions": [
+        "Plain: ftyp, free, mdat, moov.",
+        "Faststart: ftyp, moov, free, mdat."
+      ]
+    },
+    {
+      "id": "client",
+      "chapter": "What the index costs",
+      "narration": "A local server serves both files and ffprobe reads them. A client that cannot seek must start at the front. For the plain file, the server sent every byte: nine hundred twenty seven thousand two hundred thirty eight. For the faststart file, under a quarter of it. A client that can use byte ranges jumps to the end: three requests, not one. No browser tested.",
+      "captions": [
+        "Cannot seek: all 927,238 bytes.",
+        "Faststart: under a quarter."
+      ]
+    },
+    {
+      "id": "hevc",
+      "chapter": "Fourth: the HEVC label",
+      "narration": "For H E V C, the label. Encode with lib x two six five and ffmpeg writes the sample entry h e v one. Both readers agree. So does a copy from Matroska to MP4. Apple players are said to want h v c one. We tested none. We measured what ffmpeg writes.",
+      "captions": [
+        "libx265 in MP4 writes hev1.",
+        "No Apple player tested."
+      ]
+    },
+    {
+      "id": "retag",
+      "chapter": "Retag, do not re-encode",
+      "narration": "Now dash c copy, dash tag colon v, h v c one. Both readers say h v c one. The packets, the raw samples and the decoded frames hash the same: zero of fifty frames change. Every byte that differs is inside the sample entry. On ffmpeg six point one point one that is two bytes, the code itself.",
+      "captions": [
+        "-c copy -tag:v hvc1: both readers say hvc1.",
+        "0 of 50 frames change."
+      ]
+    },
+    {
+      "id": "label",
+      "chapter": "A label, not a check",
+      "narration": "The tag is a label, not a check. Parameter sets inside the first sample stay there under h v c one: the retag does not look. The other problems apply to H E V C too. RGB input gives profile Rext, pixel format G B R P, and h e v one. Lib x two six five also refuses an odd, four two zero frame.",
+      "captions": [
+        "RGB in, libx265: Rext, gbrp, hev1.",
+        "Odd 4:2:0: refused again."
+      ]
+    },
+    {
+      "id": "recipe264",
+      "chapter": "Which command: H.264",
+      "narration": "So which command? For H two six four, pick an even height: scale equals minus two, colon, three thirty four. Add dash pix underscore fmt, Y U V four two zero P, and dash movflags plus faststart. On fresh frames both readers say profile High, four two zero, five ninety four by three thirty four, index first. The naive command fails all three.",
+      "captions": [
+        "scale=-2:334 -pix_fmt yuv420p -movflags +faststart",
+        "High, yuv420p, 594x334, moov first."
+      ]
+    },
+    {
+      "id": "recipe265",
+      "chapter": "Which command: HEVC",
+      "narration": "For H E V C, add dash tag colon v, h v c one. Same frames: profile Main, four two zero, five ninety four by three thirty four, h v c one, index first. The naive H E V C command gave Rext, G B R P, h e v one, index last. Each flag fixes only its own problem: faststart alone leaves four four four and the odd size.",
+      "captions": [
+        "Add -tag:v hvc1 for HEVC.",
+        "Main, yuv420p, hvc1, moov first."
+      ]
+    },
+    {
+      "id": "sheet",
+      "chapter": "The cheat sheet",
+      "narration": "The cheat sheet. First, ffprobe the profile and pixel format: four two zero. Second, width and height both even. Third, moov before mdat. Fourth, for H E V C, the tag h v c one. Each is a read of the file, before you send it.",
+      "captions": [
+        "1. Profile and pix_fmt: yuv420p.",
+        "2. Even width and height.",
+        "3. moov before mdat.",
+        "4. HEVC tag: hvc1."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "Not tested",
+      "narration": "Not tested: any player, Safari, QuickTime or a browser. Other encoders, hardware encoders, fragmented MP4, HLS, real footage, other ffmpeg builds. Everything here is synthetic frames, a local server, and the file's own bytes. Whether your player plays them is yours to check.",
+      "captions": [
+        "Not tested: players, browsers, other encoders.",
+        "Synthetic frames. ffmpeg 6.1.1."
+      ]
+    }
+  ],
+  "kind": "long",
+  "tag": "Deep dive 05"
+}

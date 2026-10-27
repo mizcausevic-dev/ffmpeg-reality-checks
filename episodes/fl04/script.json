@@ -1,0 +1,171 @@
+{
+  "n": 104,
+  "id": "fl04",
+  "slug": "ffmpeg-frame-rate-timestamps",
+  "palette": "swiss",
+  "kind": "long",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where do my frames and seconds go in FFmpeg?",
+  "fullTitle": "FFmpeg Frame Rate and Timestamps: Where Do Your Frames Go?",
+  "kicker": "Deep dive 04",
+  "tag": "Deep dive 04",
+  "thumb": {
+    "number": "900 vs 450",
+    "label": "FRAMES VS TIMESTAMPS",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "recipe",
+    "t": 12.0
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "chapter": "The numbers",
+      "sim": null,
+      "narration": "Ninety three frames went in, a hundred fifty came out. Sixty frames played for six seconds instead of two. Ten seconds of sound outlived five seconds of picture. And a speed up that kept all nine hundred frames used only four hundred fifty timestamps. Five small experiments, one question: how many frames, and how many seconds, do I really get?",
+      "captions": [
+        "93 frames in, 150 out.",
+        "900 frames, 450 timestamps."
+      ]
+    },
+    {
+      "id": "method",
+      "chapter": "How we measure",
+      "narration": "Every clip here is synthetic, and every frame carries its own code. Two readers check each result. Reader one is f f probe, reading timestamps and durations. Reader two decodes the file, then counts frames, hashes, and samples. Every chapter has a control that proves the readers can see the effect. All numbers come from ffmpeg six point one point one.",
+      "captions": [
+        "Two readers: ffprobe, and a decode.",
+        "Every result has a control."
+      ]
+    },
+    {
+      "id": "vfr",
+      "chapter": "Variable frame rate",
+      "narration": "First, a phone style clip. Five seconds, ninety three frames, with frames missing at uneven intervals. The base rate says thirty, but the average is eighteen point five. The gaps between frames are thirty three milliseconds, sixty seven, and one long gap of nine hundred thirty three. The clock is uneven.",
+      "captions": [
+        "93 frames over 5 seconds.",
+        "Gaps: 33 ms, 67 ms, 933 ms."
+      ]
+    },
+    {
+      "id": "cfr",
+      "chapter": "Constant frame rate",
+      "narration": "Convert it to MP4 and say nothing about the rate. On ffmpeg six point one point one, you get a hundred fifty frames, fifty seven of them duplicates. On eight point one point two, the same command keeps all ninety three. Dash fps underscore mode passthrough keeps ninety three on both. Dash fps underscore mode cfr, with dash r thirty, gives a hundred fifty. Still ninety three distinct pictures. So say what you want.",
+      "captions": [
+        "Default, 6.1.1: 150 frames, 57 duplicates.",
+        "-fps_mode passthrough: 93 frames."
+      ]
+    },
+    {
+      "id": "rflag",
+      "chapter": "Dash r, before or after",
+      "narration": "Dash r means two things. Take sixty frames at thirty frames a second. After the input, dash r ten drops frames: twenty two frames, two point two seconds. The fps filter is exact: twenty frames, two seconds. Before the input, dash r ten keeps all sixty frames and relabels the clock: six seconds, one third speed. With dash c copy, it does nothing.",
+      "captions": [
+        "-r 10 after -i: 22 frames, 2.2 s.",
+        "-r 10 before -i: 60 frames, 6 s."
+      ]
+    },
+    {
+      "id": "fps1",
+      "chapter": "Which frame fps keeps",
+      "narration": "Now the fps filter. Frame N has gray level N. At twenty five frames a second, fps equals one keeps frames twelve, thirty seven, sixty two. The first thumbnail is at zero point four eight seconds, not zero. Add round equals up for frames zero, twenty five, fifty. And sixty to twenty four frames a second never uses frame zero: it keeps one, three, six, eight, eleven.",
+      "captions": [
+        "fps=1 keeps 12, 37, 62, at 0.48 s.",
+        "round=up keeps 0, 25, 50."
+      ]
+    },
+    {
+      "id": "setpts",
+      "chapter": "Speed up: setpts",
+      "narration": "Speed a ten second clip up two times with set P T S equals zero point five times P T S. The picture now lasts five point zero seven seconds. The audio is still ten seconds, and so is the container. And at the default thirty frames a second, only a hundred fifty two of three hundred frames survive.",
+      "captions": [
+        "Picture 5.07 s. Audio 10.0 s.",
+        "30 fps out: 152 of 300 frames."
+      ]
+    },
+    {
+      "id": "atempo",
+      "chapter": "Fix the sound",
+      "narration": "Add dash a f, a tempo equals two. Now the audio is five seconds, still four hundred forty hertz. A set rate with a resample also gets five seconds, but the pitch jumps to eight hundred eighty hertz. Speeding up both is two filters, not one.",
+      "captions": [
+        "atempo=2: audio 5 s, 440 Hz.",
+        "asetrate: 5 s, but 880 Hz."
+      ]
+    },
+    {
+      "id": "loop",
+      "chapter": "Dash stream loop",
+      "narration": "Now loop a four second clip with dash stream loop two. When picture and audio both last four seconds, it is exact: three hundred sixty frames, twelve seconds. Make the audio three point nine seconds, and the same command, re-encoded, keeps three hundred fifty five frames, eleven point eight three seconds. On eight point one point two it keeps three hundred fifty nine. The loop follows the audio.",
+      "captions": [
+        "Equal lengths: 360 frames, 12 s.",
+        "Audio 3.9 s: 355 frames, 11.83 s."
+      ]
+    },
+    {
+      "id": "loop2",
+      "chapter": "Longer audio, and copy",
+      "narration": "Make the audio four point one seconds instead, and the loop is twelve point three seconds, with a picture hole of zero point one three seconds at each seam. With dash c copy and the short audio, the picture keeps all three hundred sixty frames, but the sound has a hole of zero point one seconds at each seam. Check both lengths before you loop.",
+      "captions": [
+        "Audio 4.1 s: 12.3 s, picture holes.",
+        "-c copy, audio 3.9 s: sound holes."
+      ]
+    },
+    {
+      "id": "together",
+      "chapter": "Put it together",
+      "narration": "Now put it together. Speed a ten second clip up two times, and loop it three times. The obvious command is set P T S equals zero point five times P T S, a tempo equals two, and dash fps underscore mode passthrough. It keeps all nine hundred frames, in order, in fifteen seconds. But there are only four hundred fifty distinct timestamps. Frames share times, on both readers.",
+      "captions": [
+        "passthrough: 900 frames, 15 s.",
+        "Only 450 distinct timestamps."
+      ]
+    },
+    {
+      "id": "recipe",
+      "chapter": "The recipe",
+      "narration": "The fix is to name the output rate. Set P T S equals zero point five times P T S, comma, fps equals sixty, and a tempo equals two. Nine hundred frames, in source order, nine hundred distinct timestamps, gaps of sixteen or seventeen milliseconds. Picture and sound both last fifteen seconds, pitch four hundred forty hertz. Both readers agree.",
+      "captions": [
+        "setpts=0.5*PTS,fps=60 + atempo=2.",
+        "900 frames, 900 timestamps, 15 s."
+      ]
+    },
+    {
+      "id": "controls",
+      "chapter": "Controls",
+      "narration": "The other controls each break one thing. Dash r sixty after the input gives nine hundred one frames, with frame zero shown twice. Without a tempo, thirty seconds of sound sit under fifteen of picture. With no output rate, only four hundred fifty two frames are kept. The readers catch each one.",
+      "captions": [
+        "-r 60: 901 frames, frame 0 twice.",
+        "No atempo: audio 30 s, picture 15 s."
+      ]
+    },
+    {
+      "id": "decide",
+      "chapter": "Which command do I use",
+      "narration": "So which command? To keep every frame and the real clock, use dash fps underscore mode passthrough. For a constant rate, name the rate, and prefer the fps filter: dash r after the input gave twenty two frames where the filter gave twenty. For one thumbnail a second, fps equals one with round equals up. To speed up, change the picture and the sound. To loop, match the audio and the picture lengths first.",
+      "captions": [
+        "Name the rate: the fps filter.",
+        "Speed up: setpts and atempo."
+      ]
+    },
+    {
+      "id": "cheat",
+      "chapter": "Cheat sheet",
+      "sim": null,
+      "narration": "On one screen. Passthrough keeps frames. The fps filter names a rate. Dash r before the input changes the clock. Round equals up picks first frames. Set P T S and a tempo go together. Stream loop follows the audio. Then check frame counts, timestamps, and both lengths.",
+      "captions": [
+        "Check: frames, timestamps, lengths.",
+        "Both readers, plus a control."
+      ]
+    },
+    {
+      "id": "limits",
+      "chapter": "What we did not test",
+      "sim": null,
+      "narration": "Not tested: other builds than six point one point one here, and eight point one point two on the PC for the two films that name it. Also not tested: variable frame rate with a speed up, other containers, real footage, editors and players, other speeds, and chained a tempo.",
+      "captions": [
+        "Not tested: other builds, real footage.",
+        "Not tested: editors and players."
+      ]
+    }
+  ]
+}

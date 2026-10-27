@@ -1,0 +1,167 @@
+{
+  "n": 102,
+  "slug": "gapless-audio-aac-mp3-opus",
+  "palette": "phosphor",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where does my audio really start after a join or a cut?",
+  "fullTitle": "FFmpeg Gapless Audio: AAC Join, MP3 Delay and Opus Pre-skip",
+  "kicker": "Deep dive 02",
+  "thumb": {
+    "number": "2112",
+    "label": "SAMPLES AT THE SEAM, NOT 200",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "seam",
+    "t": 9.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "Two A A C files. Each has a click one hundred samples after its start and one hundred samples before its end. Join them with dash c copy. Across the seam the two clicks should sit two hundred samples apart. They sit two thousand one hundred twelve apart, about forty eight milliseconds of hole. Why?",
+      "captions": [
+        "Join two A A C files with -c copy.",
+        "Clicks 200 apart. Measured: 2,112."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "The rule",
+      "narration": "These three encoders start the sound late and end with padding. The file carries a note saying how much. The decoder removes exactly what the note says, nothing more. M P three keeps it in an Info tag, Opus in its header, A A C in an m p four edit list.",
+      "captions": [
+        "The decoder removes what the note says.",
+        "MP3: tag. Opus: header. AAC: edit list."
+      ]
+    },
+    {
+      "id": "mp3raw",
+      "chapter": "MP3 without the tag",
+      "narration": "M P three first. One impulse sits at sample four thousand four hundred ten, and through P C M, as a control, it stays there. Encode with lame and dash write underscore x i n g zero, which leaves the tag out. The impulse returns at five thousand five hundred fifteen: one thousand one hundred five samples late. Forty six thousand eighty samples come out for forty four thousand one hundred in.",
+      "captions": [
+        "Control: impulse at 4410 through PCM.",
+        "No tag: 5515, 1105 late, 46,080 samples."
+      ]
+    },
+    {
+      "id": "mp3tag",
+      "chapter": "MP3 with the tag",
+      "narration": "Keep the tag, the default, and the impulse is back at four thousand four hundred ten, with exactly forty four thousand one hundred samples. The first frame holds no sound. Its bytes say delay five hundred seventy six, padding one thousand four hundred four. The decoder skips the delay plus five hundred twenty nine, which is one thousand one hundred five, and trims eight hundred seventy five.",
+      "captions": [
+        "Tag: delay 576, padding 1404.",
+        "Skips 576 + 529 = 1105, trims 875."
+      ]
+    },
+    {
+      "id": "opushead",
+      "chapter": "Opus pre-skip",
+      "narration": "Opus keeps its note in the header. The pre skip field says three hundred twelve samples, six point five milliseconds. It is the same in o g g, in m k v, and in dot opus. In all four files a click at sample four thousand eight hundred decodes at four thousand eight hundred, as the control does.",
+      "captions": [
+        "OpusHead pre-skip: 312 samples = 6.5 ms.",
+        "Click at 4800 in ogg, mkv and .opus."
+      ]
+    },
+    {
+      "id": "opuslie",
+      "chapter": "Lie to the decoder",
+      "narration": "Now lie. Rewrite only that field, and fix the page checksum. Pre skip zero: the click lands at five thousand one hundred twelve, three hundred twelve late. Pre skip one thousand: four thousand one hundred twelve, six hundred eighty eight early. The audio bytes are the same. The header decides where the sound starts.",
+      "captions": [
+        "Pre-skip 0: click at 5112, 312 late.",
+        "Pre-skip 1000: 4112, 688 early."
+      ]
+    },
+    {
+      "id": "aacnote",
+      "chapter": "AAC in an mp4",
+      "narration": "A A C in an m p four puts the note in the edit list. The bytes of a two second file hold one edit, two thousand milliseconds long, starting at media time one thousand twenty four. That is the priming. The file decodes to eighty nine thousand eighty eight samples. Ignore the edit list, and it decodes ninety thousand one hundred twelve.",
+      "captions": [
+        "Edit list: 2000 ms from media time 1024.",
+        "Edit list ignored: 90,112 samples, not 89,088."
+      ]
+    },
+    {
+      "id": "editlist",
+      "chapter": "The edit list moves audio",
+      "narration": "The same box moves whole tracks. Input time offset one on the audio, with stream copy, is an empty edit of one thousand milliseconds in an m p four. Offset minus one: the m p four skips the first forty eight thousand samples and decodes one hundred forty four thousand. The m k v keeps all one hundred ninety two thousand.",
+      "captions": [
+        "-itsoffset 1: empty edit of 1000 ms.",
+        "-itsoffset -1: mp4 skips 48,000 samples."
+      ]
+    },
+    {
+      "id": "aacjoin",
+      "chapter": "The copy join",
+      "narration": "Join the two files with dash c copy. The result has one hundred seventy six packets and an edit list of four thousand twenty four milliseconds from zero. The skip is gone. It decodes one hundred eighty thousand two hundred twenty four samples against one hundred seventy six thousand four hundred asked: three thousand eight hundred twenty four extra.",
+      "captions": [
+        "Join: edit list 4024 ms from media time 0.",
+        "180,224 decoded vs 176,400: 3,824 extra."
+      ]
+    },
+    {
+      "id": "seam",
+      "chapter": "The seam",
+      "narration": "Read the clicks. In the copy join the first is at one thousand one hundred twenty four, late by the priming. The seam is two thousand one hundred twelve: two hundred wanted, plus eight hundred eighty eight of padding, plus one thousand twenty four of priming. Decode and re-encode without a trim still leaves one thousand eighty eight.",
+      "captions": [
+        "Copy join: seam 2,112 = 200 + 888 + 1,024.",
+        "Re-encode, no trim: seam 1,088."
+      ]
+    },
+    {
+      "id": "cutmp3",
+      "chapter": "Cutting MP3",
+      "narration": "Cutting has the same trap. Dash s s zero point five with dash c copy on the M P three writes a new tag, delay three thousand five hundred sixty seven. The decoder drops four thousand ninety six, and the cut starts three thousand nine hundred eighty one samples late. A re-encode starts exactly at twenty two thousand fifty.",
+      "captions": [
+        "-ss 0.5 -c copy: new tag, delay 3567.",
+        "3,981 late. Re-encode: exact at 22,050."
+      ]
+    },
+    {
+      "id": "cutopus",
+      "chapter": "Cutting Opus",
+      "narration": "Opus copies land on twenty millisecond packets, nine hundred sixty samples. In m k v, dash s s before the input starts nine hundred sixty early; after the input it is exact. In o g g, after the input, it starts nine hundred sixty late. A re-encode starts exactly at twenty four thousand.",
+      "captions": [
+        "Copy cuts land on 960-sample packets.",
+        "Re-encode: exact at 24,000."
+      ]
+    },
+    {
+      "id": "which",
+      "chapter": "Which command",
+      "narration": "So which command? Joining A A C: not dash c copy. Cut each input to its true length with a trim, join, encode once. Cutting M P three or Opus at an exact sample: re-encode. Gapless playback: keep the tag, never dash write underscore x i n g zero.",
+      "captions": [
+        "Join AAC: trim, concat, encode once.",
+        "Exact cut: re-encode. Keep the tag."
+      ]
+    },
+    {
+      "id": "recipe",
+      "chapter": "The recipe, measured",
+      "narration": "Run the recipe on a fresh pair: a trim of duration two on each input, concat, A A C. The clicks come out at one hundred, eighty eight thousand one hundred, eighty eight thousand three hundred, and one hundred seventy six thousand three hundred. The seam is two hundred, like the control. The bytes agree: an edit list of four thousand milliseconds, one hundred seventy four packets.",
+      "captions": [
+        "Clicks: 100, 88100, 88300, 176300.",
+        "Seam 200. Edit list 4000 ms, 174 packets."
+      ]
+    },
+    {
+      "id": "cheat",
+      "chapter": "Cheat sheet",
+      "narration": "The cheat sheet. M P three: read delay and padding in the Info tag. Opus: read the pre skip in the header. A A C in m p four: read the edit list. After any copy, count the decoded samples and find a known sound. Run a control first.",
+      "captions": [
+        "MP3: tag. Opus: header. AAC: edit list.",
+        "After a copy: count samples, find the click."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "Not tested",
+      "narration": "Not tested: other ffmpeg builds, real players, other encoders, real music, stereo, other sample rates, copy joins of M P three and Opus, and the sound quality of a second A A C encode. Measured on ffmpeg six point one point one, on synthetic clicks.",
+      "captions": [
+        "Not tested: players, real music, other builds.",
+        "Measured on ffmpeg 6.1.1, synthetic clicks."
+      ]
+    }
+  ],
+  "kind": "long",
+  "tag": "Deep dive 02"
+}

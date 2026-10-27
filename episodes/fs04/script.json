@@ -1,0 +1,118 @@
+{
+  "n": 204,
+  "id": "fs04",
+  "slug": "ffmpeg-frame-rate-timestamps-short",
+  "palette": "swiss",
+  "kind": "short",
+  "series": "FFmpeg Reality Checks",
+  "title": "Five ways an FFmpeg frame rate change lies",
+  "fullTitle": "FFmpeg Frame Rate and Timestamps in 3 Minutes: The Fix",
+  "kicker": "Short 04",
+  "tag": "Short 04",
+  "thumb": {
+    "number": "900 vs 450",
+    "label": "FRAMES VS TIMESTAMPS",
+    "color": "red"
+  },
+  "endCard": {
+    "line": "The full film is on the channel"
+  },
+  "hero": {
+    "scene": "together",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "chapter": "The numbers",
+      "sim": null,
+      "narration": "Speed a clip up two times, loop it three times, keep every frame. Nine hundred frames, in order, in fifteen seconds. But only four hundred fifty timestamps. Five traps, one fix. Here is how a frame rate change quietly lies, and the one command that does not.",
+      "captions": [
+        "900 frames, 15 s.",
+        "Only 450 timestamps."
+      ]
+    },
+    {
+      "id": "method",
+      "chapter": "How we measure",
+      "narration": "Every clip is synthetic, and every frame has its own code. Two readers: f f probe for timestamps, and a decode for frames, hashes and samples. Every result has a control. All on ffmpeg six point one point one, with the same numbers as the long film.",
+      "captions": [
+        "Two readers: ffprobe and a decode.",
+        "Every result has a control."
+      ]
+    },
+    {
+      "id": "vfr",
+      "chapter": "Lie one: constant rate",
+      "narration": "A variable frame rate clip: ninety three frames in five seconds, with gaps from thirty three to nine hundred thirty three milliseconds. Convert it with no rate, and you get a hundred fifty frames, fifty seven of them duplicates. Name it: dash fps underscore mode passthrough keeps ninety three.",
+      "captions": [
+        "93 frames in. 150 out, 57 duplicates.",
+        "-fps_mode passthrough: 93."
+      ]
+    },
+    {
+      "id": "rflag",
+      "chapter": "Lie two: dash r",
+      "narration": "Take sixty frames, two seconds. Dash r ten after the input gives twenty two frames, two point two seconds. The fps filter gives exactly twenty. Before the input, dash r ten keeps sixty frames and plays six seconds.",
+      "captions": [
+        "-r 10 after -i: 22 frames, 2.2 s.",
+        "Before -i: 60 frames, 6 s."
+      ]
+    },
+    {
+      "id": "fps1",
+      "chapter": "Lie three: fps equals one",
+      "narration": "It does not take the first frame of each second. At twenty five frames a second it keeps frames twelve, thirty seven, sixty two, and the first is at zero point four eight seconds. Round equals up gives frame zero.",
+      "captions": [
+        "fps=1: frames 12, 37, 62.",
+        "First at 0.48 s, not 0."
+      ]
+    },
+    {
+      "id": "setpts",
+      "chapter": "Lie four: setpts",
+      "narration": "Set P T S equals zero point five times P T S speeds up the picture only. Picture: five point zero seven seconds. Audio: ten seconds. Add a tempo equals two, and the audio is five seconds, still four hundred forty hertz.",
+      "captions": [
+        "Picture 5.07 s. Audio 10.0 s.",
+        "atempo=2: 5 s, 440 Hz."
+      ]
+    },
+    {
+      "id": "loop",
+      "chapter": "Lie five: stream loop",
+      "narration": "Dash stream loop two follows the audio. With four second picture and four second audio you get three hundred sixty frames. With audio three point nine seconds, you get three hundred fifty five frames, eleven point eight three seconds. Check both lengths first.",
+      "captions": [
+        "Equal: 360 frames, 12 s.",
+        "Audio 3.9 s: 355 frames."
+      ]
+    },
+    {
+      "id": "together",
+      "chapter": "Combine them",
+      "narration": "Now combine them: speed up two times, loop three times, passthrough. Nine hundred frames, fifteen seconds, but four hundred fifty distinct timestamps. Both readers see frames sharing times.",
+      "captions": [
+        "passthrough: 900 frames.",
+        "450 distinct timestamps."
+      ]
+    },
+    {
+      "id": "recipe",
+      "chapter": "The recipe",
+      "narration": "The fix: set P T S equals zero point five times P T S, comma, fps equals sixty, and a tempo equals two. Nine hundred frames, nine hundred distinct timestamps, gaps of sixteen or seventeen milliseconds, fifteen seconds of picture and sound, four hundred forty hertz.",
+      "captions": [
+        "setpts=0.5*PTS,fps=60",
+        "900 frames, 900 timestamps."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "Controls: dash r sixty gives nine hundred one frames. No a tempo leaves thirty seconds of sound. No output rate keeps four hundred fifty two frames. Not tested: other builds, real footage, players, editors. Name the rate, and check frames, timestamps and both lengths.",
+      "captions": [
+        "Check frames, timestamps, lengths.",
+        "Not tested: real footage, players."
+      ]
+    }
+  ]
+}

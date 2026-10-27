@@ -1,0 +1,208 @@
+{
+  "n": 3,
+  "slug": "ffmpeg-why-colors-shift",
+  "palette": "riso",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why do FFmpeg colors shift?",
+  "fullTitle": "Why FFmpeg Colors Shift: Wrong Label or Lost Pixels, Six Tests",
+  "kicker": "Deep dive 03",
+  "thumb": {
+    "number": "255 to 215",
+    "label": "GREEN, ONE COMMAND LATER",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "matrix",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Pure green, two fifty five. After one plain FFmpeg command, a player shows it as two fifteen. A thin red line turns purple. A hundred nit white lands at one twenty seven, not two thirty five. One question for all of them: is it the label, or the pixels? We re-run six experiments on synthetic clips, then check one command.",
+      "captions": [
+        "Pure green: 255 becomes 215.",
+        "The label, or the pixels?"
+      ]
+    },
+    {
+      "id": "rig",
+      "chapter": "Two readers, one control",
+      "sim": null,
+      "narration": "The label is what f f probe prints. The pixels are what a decoder gives back. Every claim is read both ways, and every reader first sees a case where the effect is real. All of it ran on ffmpeg six point one point one.",
+      "captions": [
+        "Reader 1: the label (ffprobe).",
+        "Reader 2: the decoded pixels.",
+        "ffmpeg 6.1.1."
+      ]
+    },
+    {
+      "id": "matrix",
+      "chapter": "Matrix: the default",
+      "sim": null,
+      "narration": "First, the matrix. The plain command, dash pix fmt y u v four two zero p, writes no matrix tag, and the pixels are BT six oh one. A reader that assumes BT seven oh nine turns green from two fifty five into two fifteen. Red gains a green channel of twenty three. Gray never moves.",
+      "captions": [
+        "No tag. Pixels are BT.601.",
+        "Read as BT.709: green 255 to 215.",
+        "Red gains G 23. Gray never moves."
+      ]
+    },
+    {
+      "id": "tag",
+      "chapter": "Matrix: the tag",
+      "sim": null,
+      "narration": "Convert with scale out color matrix equals bt seven oh nine, write the tags, and the file reads right, within one level. Read as six oh one, errors reach twenty three. But dash colorspace bt seven oh nine alone writes only a label on six point one. The pixels stay six oh one, and the file is off by forty.",
+      "captions": [
+        "Converted and tagged: error 1.",
+        "Same file read as BT.601: error 23.",
+        "-colorspace bt709 alone: error 40."
+      ]
+    },
+    {
+      "id": "gray",
+      "chapter": "Black and white: stored or seen",
+      "sim": null,
+      "narration": "Now take the color out. Format equals gray stores red as seventy six, green one fifty, blue twenty nine. Hue with s equals zero stores eighty one, one forty five, forty one, in video range. A screen stretches it back to seventy six, one fifty, twenty nine. Same picture, other numbers.",
+      "captions": [
+        "format=gray stores 76, 150, 29.",
+        "hue=s=0 stores 81, 145, 41.",
+        "A screen shows 76, 150, 29."
+      ]
+    },
+    {
+      "id": "weights",
+      "chapter": "Black and white: the weights",
+      "sim": null,
+      "narration": "The color channel mixer follows only its weights. The seven oh nine set gives fifty four, one eighty two, eighteen. Tag the source BT seven oh nine, and on six point one gray follows the file: fifty five, one eighty three. The six oh one mixer stays at one forty nine. Green is thirty four levels off.",
+      "captions": [
+        "Mixer 709 weights: 54, 182, 18.",
+        "BT.709 file: gray 55, 183.",
+        "601 mixer: 149. Green 34 off."
+      ]
+    },
+    {
+      "id": "range",
+      "chapter": "Range: 16 or 0",
+      "sim": null,
+      "narration": "Next, range. The default writes black as luma sixteen and white as two thirty five, with no range tag, and players stretch it. Now dash color range p c. On six point one point one the raw frame is byte for byte the default, black still sixteen, but the tag says full. A player that follows the tag shows gray sixteen.",
+      "captions": [
+        "Default: black Y 16, white Y 235, no tag.",
+        "-color_range pc: same bytes, tag pc.",
+        "A tag-following player shows 16."
+      ]
+    },
+    {
+      "id": "flags",
+      "chapter": "Range: both directions",
+      "sim": null,
+      "narration": "Two controls prove it. Copy the stream and set the full range flag to one on limited bytes: black shows sixteen. Set it to zero on full bytes: eight and two forty seven are crushed to zero and two fifty five. The real fix is dash pix fmt y u v j four two zero p: zero and two fifty five, tagged p c.",
+      "captions": [
+        "Flag 1 on limited bytes: black 16.",
+        "Flag 0 on full bytes: 8 and 247 crushed.",
+        "yuvj420p: Y 0 and 255, tag pc."
+      ]
+    },
+    {
+      "id": "hdr",
+      "chapter": "Transfer: HDR to SDR",
+      "sim": null,
+      "narration": "The third label is the transfer. A ten bit clip, tagged P Q, converted with a plain dash pix fmt. A hundred nit white lands at luma one twenty seven. An S D R white is two thirty five. The fifty nit patch is sixty seven point five codes too dark. Nothing is clipped. The pixels are just in the wrong place.",
+      "captions": [
+        "100 nit white lands at Y 127, not 235.",
+        "50 nit patch: 67.5 codes too dark.",
+        "Tags still say PQ."
+      ]
+    },
+    {
+      "id": "hdrfix",
+      "chapter": "Transfer: the fix and the lie",
+      "sim": null,
+      "narration": "The colorspace filter refuses P Q. Force it with i all equals bt two thousand twenty, and the pixels stay exactly the same, but the tags now say bt seven oh nine. Zscale is exact up to a hundred nits, but two hundred three and above all land on two fifty five. Add tonemap hable, and two hundred three nits sits at one eighty two.",
+      "captions": [
+        "iall=bt2020: same pixels, new tags.",
+        "zscale: 203 nits and up all land on 255.",
+        "+ tonemap=hable: 203 nits at 182."
+      ]
+    },
+    {
+      "id": "chroma",
+      "chapter": "Chroma: lost detail",
+      "sim": null,
+      "narration": "The next two are not labels. A red line, one pixel wide, on blue, encoded with crf zero. In y u v four four four it stays red. In y u v four two zero it becomes one fifty, twenty one, one forty nine: purple. Brightness stays near eighty one. No tag brings the color back.",
+      "captions": [
+        "yuv444p: the line stays red.",
+        "yuv420p: the line is 150, 21, 149.",
+        "Y stays near 81: color lost, not light."
+      ]
+    },
+    {
+      "id": "bands",
+      "chapter": "Bit depth: the false alarm",
+      "sim": null,
+      "narration": "Ten bit to eight bit should band. It does not. Plain format equals y u v four two zero p already dithers: sixty five values, not sixty four. Only s w s dither equals none truncates, into sixty four flat bands of sixteen pixels. Six other spellings give the same checksum. On r g b eight they give five different files, so the readers can see dither.",
+      "captions": [
+        "format=yuv420p: 65 values.",
+        "sws_dither=none: 64 bands of 16 px.",
+        "6 other spellings: 1 checksum."
+      ]
+    },
+    {
+      "id": "verdict",
+      "chapter": "Label or pixels?",
+      "sim": null,
+      "narration": "Sort them by what changed. A label changed and the pixels did not: three times. Dash colorspace, dash color range p c, and the colorspace filter with i all each rewrote a tag over identical pixels. Pixels in the wrong place: the plain HDR conversion and a mismatched mixer. Pixels lost: chroma. And one false alarm, the dither.",
+      "captions": [
+        "3 commands changed only the label.",
+        "Wrong place: HDR, mixer.",
+        "Lost: chroma. False alarm: dither."
+      ]
+    },
+    {
+      "id": "recipe",
+      "chapter": "The command, checked",
+      "sim": null,
+      "narration": "So which command? For a picture going to web video: scale with out color matrix equals bt seven oh nine and out range equals t v, format y u v four two zero p, and all three tags. We ran it on a fresh card of six patches. Reader one, f f probe: bt seven oh nine, t v. Reader two, decoded: worst error one; twenty three, read as six oh one. Raw luma: black sixteen, white two thirty five. The plain command, read as seven oh nine, is off by forty.",
+      "captions": [
+        "ffprobe: bt709, tv.",
+        "Decoded: worst error 1 (as BT.601: 23).",
+        "Raw luma: black 16, white 235.",
+        "Plain command, read as BT.709: error 40."
+      ]
+    },
+    {
+      "id": "cheat",
+      "chapter": "Cheat sheet",
+      "sim": null,
+      "narration": "Dull greens: check the tag and the pixels together. Gray blacks: read the raw luma of black, sixteen or zero. Grey HDR: zscale with a tone map. Purple red text: y u v four four four, or accept the bleed. Black and white: say your weights. Banding: not the converter.",
+      "captions": [
+        "Greens: tag and pixels together.",
+        "Black: raw luma 16 or 0.",
+        "HDR: zscale + tonemap."
+      ]
+    },
+    {
+      "id": "builds",
+      "chapter": "Builds",
+      "sim": null,
+      "narration": "Builds differ. The source films recorded that on eight point one point two, dash colorspace and dash color range p c also convert, and s w s dither none rounds. Same command, other pixels. Run this check on your build.",
+      "captions": [
+        "6.1.1 measured here.",
+        "8.1.2 differs: see the source films.",
+        "Check your build."
+      ]
+    },
+    {
+      "id": "notest",
+      "chapter": "Not tested",
+      "sim": null,
+      "narration": "Not tested: real footage, real players, H L G, Dolby Vision, other encoders, scaled output. The short cut and the six source films are in the description.",
+      "captions": [
+        "Not tested: real footage, players, HLG.",
+        "Not tested: other encoders, scaled output."
+      ]
+    }
+  ],
+  "kind": "long"
+}

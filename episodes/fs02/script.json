@@ -1,0 +1,124 @@
+{
+  "n": 202,
+  "slug": "gapless-audio-aac-join-short",
+  "palette": "phosphor",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why is my joined AAC file full of gaps?",
+  "fullTitle": "FFmpeg AAC Join: 2112 Samples at the Seam, Not 200 (Gapless Audio)",
+  "kicker": "Short 02",
+  "thumb": {
+    "number": "2112",
+    "label": "SAMPLES AT THE SEAM, NOT 200",
+    "color": "red"
+  },
+  "endCard": {
+    "seconds": 4,
+    "line": "The full film is on the channel"
+  },
+  "hero": {
+    "scene": "seam",
+    "t": 5.0
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "chapter": "The seam",
+      "narration": "Two A A C files, each with a click one hundred samples from both ends. Join them with dash c copy. The clicks across the seam should be two hundred samples apart. They are two thousand one hundred twelve apart.",
+      "captions": [
+        "Join two AAC files with -c copy.",
+        "Clicks should be 200 apart: 2,112."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "The rule",
+      "narration": "These three codecs start late and end padded. A note in the file says how much. The decoder removes only that. Three codecs keep the note in three places.",
+      "captions": [
+        "The decoder removes what the note says.",
+        "Three codecs, three places."
+      ]
+    },
+    {
+      "id": "mp3",
+      "chapter": "MP3 tag",
+      "narration": "M P three. Without the tag, dash write underscore x i n g zero, an impulse at sample four thousand four hundred ten returns at five thousand five hundred fifteen: one thousand one hundred five late. The tag says delay five hundred seventy six; the decoder adds five hundred twenty nine.",
+      "captions": [
+        "No tag: impulse at 5515, 1105 late.",
+        "Tag: delay 576, decoder adds 529."
+      ]
+    },
+    {
+      "id": "opus",
+      "chapter": "Opus header",
+      "narration": "Opus. The header says pre skip three hundred twelve. Rewrite only that field to zero, and the click lands three hundred twelve samples late. Set it to one thousand, and it lands six hundred eighty eight early. The header decides.",
+      "captions": [
+        "Pre-skip 312. Set to 0: 312 late.",
+        "Set to 1000: 688 early."
+      ]
+    },
+    {
+      "id": "aac",
+      "chapter": "AAC edit list",
+      "narration": "A A C in an m p four keeps its note in the edit list: two thousand milliseconds from media time one thousand twenty four. Ignore it, and the file decodes ninety thousand one hundred twelve samples, not eighty nine thousand eighty eight.",
+      "captions": [
+        "Edit list: 2000 ms from 1024.",
+        "Ignored: 90,112 samples, not 89,088."
+      ]
+    },
+    {
+      "id": "join",
+      "chapter": "The copy join",
+      "narration": "The copy join writes a new edit list, four thousand twenty four milliseconds from zero. The note is gone. It decodes one hundred eighty thousand two hundred twenty four samples, three thousand eight hundred twenty four more than asked.",
+      "captions": [
+        "Join: 4024 ms from media time 0.",
+        "180,224 decoded: 3,824 extra."
+      ]
+    },
+    {
+      "id": "seam",
+      "chapter": "Where it goes",
+      "narration": "Two hundred wanted, plus eight hundred eighty eight of padding, plus one thousand twenty four of priming: two thousand one hundred twelve. A re-encode without a trim still leaves one thousand eighty eight.",
+      "captions": [
+        "200 + 888 + 1,024 = 2,112.",
+        "Re-encode, no trim: 1,088."
+      ]
+    },
+    {
+      "id": "cut",
+      "chapter": "Cuts too",
+      "narration": "Dash s s zero point five with dash c copy on M P three writes delay three thousand five hundred sixty seven, and the cut starts three thousand nine hundred eighty one samples late. A re-encode starts at twenty two thousand fifty, exact.",
+      "captions": [
+        "-ss 0.5 -c copy: 3,981 late.",
+        "Re-encode: exact at 22,050."
+      ]
+    },
+    {
+      "id": "fix",
+      "chapter": "The recipe",
+      "narration": "The fix for a join: a trim of duration two on each input, then concat, and encode once. The clicks come out at one hundred, eighty eight thousand one hundred, eighty eight thousand three hundred, one hundred seventy six thousand three hundred.",
+      "captions": [
+        "atrim=duration=2, concat, encode once.",
+        "Clicks: 100, 88100, 88300, 176300."
+      ]
+    },
+    {
+      "id": "proof",
+      "chapter": "Two readers",
+      "narration": "The seam is two hundred, like the control. The bytes agree: an edit list of four thousand milliseconds and one hundred seventy four packets. F f probe says four seconds.",
+      "captions": [
+        "Seam 200. Edit list 4000 ms.",
+        "174 packets. ffprobe: 4 s."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "narration": "After any copy, read the note and count the samples. Not tested: other builds, real players, real music, other encoders. Measured on ffmpeg six point one point one.",
+      "captions": [
+        "After a copy: read the note, count samples.",
+        "Not tested: players, real music."
+      ]
+    }
+  ],
+  "kind": "short"
+}

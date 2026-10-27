@@ -1,0 +1,127 @@
+{
+  "n": 1,
+  "slug": "ffmpeg-cutting-short",
+  "palette": "signal",
+  "series": "FFmpeg Reality Checks",
+  "format": "vertical",
+  "title": "Why FFmpeg -c copy cuts the wrong start",
+  "fullTitle": "FFmpeg -c copy: You Asked for 3 Seconds, You Got 0.52",
+  "kicker": "Short 01",
+  "thumb": {
+    "number": "0.52 s",
+    "label": "ASKED FOR 3 S, GOT 0.52 S",
+    "color": "red"
+  },
+  "endCard": {
+    "seconds": 2,
+    "line": "The full film is on the channel"
+  },
+  "hero": {
+    "scene": "copyAfter",
+    "t": 3
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "chapter": "The surprise",
+      "sim": null,
+      "narration": "You ask FFmpeg for three seconds, starting at seven and a half, with dash c copy. You get thirteen frames. Half a second. Where did the rest go?",
+      "captions": [
+        "Asked for 3 s. Got 13 frames.",
+        "0.52 s."
+      ]
+    },
+    {
+      "id": "copyBefore",
+      "chapter": "Copy, seek before the input",
+      "narration": "Same clip, a keyframe every five seconds. Seek before the input: the clip starts at seven point five two seconds, with seventy five frames. Correct. But the file holds one hundred thirty eight packets, and sixty three are hidden pre-roll.",
+      "captions": [
+        "-ss before -i: 7.52 s, 75 frames.",
+        "138 packets. 63 hidden."
+      ]
+    },
+    {
+      "id": "copyAfter",
+      "chapter": "Copy, seek after the input",
+      "narration": "Move the flag after the input. Now the clip starts at ten seconds, the next keyframe, and holds thirteen frames. A copy can only begin on a keyframe. Re-encode, and it starts on frame one eighty eight, with seventy four frames.",
+      "captions": [
+        "-ss after -i: starts at 10 s.",
+        "13 frames. Re-encode: 74."
+      ]
+    },
+    {
+      "id": "order",
+      "chapter": "The flag order",
+      "narration": "The order of flags matters when you re-encode too. Dash s s five before the input, dash t o ten after it: a ten second clip, source five to fifteen. Both before the input: five seconds. Or use dash t for a length.",
+      "captions": [
+        "-ss 5 -i ... -to 10: 10 s.",
+        "-ss 5 -to 10 -i: 5 s."
+      ]
+    },
+    {
+      "id": "gop",
+      "chapter": "Who places keyframes",
+      "narration": "So put keyframes where you cut. Dash g one hundred is only a maximum: keyframes land at zero, three point two, and six point eight, on the scene cuts. Add dash s c underscore threshold zero for a strict grid: zero, four, eight.",
+      "captions": [
+        "-g 100 alone: 0, 3.2, 6.8.",
+        "+ -sc_threshold 0: 0, 4, 8."
+      ]
+    },
+    {
+      "id": "forced",
+      "chapter": "Forced keyframes",
+      "narration": "Or place them yourself, where you will cut. Dash force underscore key underscore frames three point two, six point eight, and they land exactly there.",
+      "captions": [
+        "-force_key_frames 3.2,6.8.",
+        "Exactly where you said."
+      ]
+    },
+    {
+      "id": "recipe",
+      "chapter": "Which command",
+      "narration": "We tested it on a numbered clip. Three seconds from seven and a half is ninety frames, two twenty five to three fourteen. Seek before the input, dash t for the length, re-encode: exactly those. The control, a copy with the seek after the input: fifteen frames from three hundred.",
+      "captions": [
+        "-ss 7.5 -i ... -t 3: 90 frames.",
+        "Control, copy after -i: 15 frames."
+      ]
+    },
+    {
+      "id": "prepared",
+      "chapter": "Instant, and exact",
+      "narration": "A plain copy shows the right ninety frames, but carries a hundred sixty five packets. Force keyframes at seven point five and ten point five, and the copy gives ninety frames and ninety packets.",
+      "captions": [
+        "Plain copy: 165 packets.",
+        "Keyframes at the cut: 90 packets."
+      ]
+    },
+    {
+      "id": "sseof",
+      "chapter": "Cutting from the end",
+      "narration": "From the end, dash s s e o f minus three should give ninety frames. Re-encoded, it does. With copy and a keyframe every hundred frames, you get a hundred frames, three point three three three seconds. Keyframe every ten: exactly ninety.",
+      "captions": [
+        "-sseof -3, re-encode: 90 frames.",
+        "-c copy, -g 100: 100 frames."
+      ]
+    },
+    {
+      "id": "shortest",
+      "chapter": "The other end",
+      "narration": "The end has the same problem. Dash shortest with copy stops the picture at seventy three of a hundred twenty five frames. Dash t three with copy gives seventy seven. Only a re-encode gives seventy five.",
+      "captions": [
+        "-shortest -c copy: 73 frames.",
+        "-t 3 -c copy: 77. Re-encode: 75."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "The rule",
+      "sim": null,
+      "narration": "Exact cut: seek before the input, dash t for the length, re-encode. Instant cut: keyframes at the cut, then copy. Always check the frame count with ffprobe. Measured on ffmpeg six point one point one. Not tested: real footage, players, other encoders.",
+      "captions": [
+        "Exact: re-encode. Instant: keyframes first.",
+        "Measured on ffmpeg 6.1.1. Not tested: real footage."
+      ]
+    }
+  ],
+  "kind": "short"
+}

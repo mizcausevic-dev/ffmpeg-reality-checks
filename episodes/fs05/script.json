@@ -1,0 +1,116 @@
+{
+  "n": 205,
+  "slug": "ffmpeg-file-will-not-play-short",
+  "palette": "newsprint",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why an FFmpeg file will not play",
+  "fullTitle": "FFmpeg MP4 Will Not Play? 4 Checks: pix_fmt, Odd Size, faststart, hvc1",
+  "kicker": "Short 05",
+  "thumb": {
+    "number": "4:4:4",
+    "label": "EXIT 0, STILL BROKEN",
+    "color": "red"
+  },
+  "endCard": {
+    "seconds": 4,
+    "line": "The full film is on the channel"
+  },
+  "hero": {
+    "scene": "pixfmt",
+    "t": 4.0
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "chapter": "The question",
+      "narration": "One command. PNG frames in, MP4 out, and ffmpeg exits with status zero. But the file has three things hiding in it: the pixel format, the size, and the index. We read the file. We ran no player.",
+      "captions": [
+        "Exit status 0. No warning.",
+        "Three things hide in the file."
+      ]
+    },
+    {
+      "id": "pixfmt",
+      "chapter": "Pixel format",
+      "narration": "First, the pixel format. PNG is RGB, so lib x two six four keeps full color for every pixel. ffprobe says profile High four four four Predictive. A source that is already four two zero stays four two zero.",
+      "captions": [
+        "RGB in: High 4:4:4 Predictive.",
+        "Control: yuv420p stays yuv420p."
+      ]
+    },
+    {
+      "id": "fix420",
+      "chapter": "The fix",
+      "narration": "The ffmpeg wiki says some players only support four two zero for H two six four. Add dash pix underscore fmt, Y U V four two zero P, and the profile is High. The price: thirty seven point oh four decibels becomes thirty five point four.",
+      "captions": [
+        "-pix_fmt yuv420p: profile High.",
+        "PSNR 37.04 dB to 35.4 dB."
+      ]
+    },
+    {
+      "id": "crash",
+      "chapter": "Odd size",
+      "narration": "Second, the size. One thousand by five sixty two, with scale equals minus one, colon, three thirty three, gives width five ninety three. Both odd. lib x two six four refuses: width not divisible by two. The exit code is not zero, and nothing is written.",
+      "captions": [
+        "1000x562 to 593x333: refused.",
+        "Nothing written."
+      ]
+    },
+    {
+      "id": "hidden",
+      "chapter": "What hid it",
+      "narration": "So why did our first command not crash? With four four four, the same odd frame encodes fine. The pixel format was hiding the size. Fix the format and the crash appears. Then minus two, colon, three thirty four gives five ninety four by three thirty four.",
+      "captions": [
+        "4:4:4 hid the odd size.",
+        "scale=-2:334: 594x334, exit 0."
+      ]
+    },
+    {
+      "id": "order",
+      "chapter": "Index last",
+      "narration": "Third, the index. The plain file goes ftyp, free, mdat, moov. The moov box is the index, and it comes last: byte nine hundred seventeen thousand five hundred fifty nine of nine hundred twenty seven thousand two hundred thirty eight. Dash movflags plus faststart moves it first.",
+      "captions": [
+        "Plain: ftyp, free, mdat, moov.",
+        "Faststart: moov before mdat."
+      ]
+    },
+    {
+      "id": "client",
+      "chapter": "What it costs",
+      "narration": "What does that cost? A client that cannot seek starts at the front. For the plain file, a local server sent every byte. For the faststart file, under a quarter of it. We tested no browser.",
+      "captions": [
+        "Cannot seek: every byte.",
+        "Faststart: under a quarter."
+      ]
+    },
+    {
+      "id": "hevc",
+      "chapter": "The HEVC label",
+      "narration": "Fourth, for H E V C, the label. lib x two six five writes h e v one. Dash c copy, dash tag colon v, h v c one, changes it, and zero of fifty frames change. It is a label, not a check. No Apple player tested.",
+      "captions": [
+        "libx265 writes hev1.",
+        "-tag:v hvc1: 0 of 50 frames change."
+      ]
+    },
+    {
+      "id": "recipe",
+      "chapter": "The recipe",
+      "narration": "So the recipe: an even height, dash pix underscore fmt, Y U V four two zero P, dash movflags plus faststart, and for H E V C the tag h v c one. On fresh frames, both readers say High, four two zero, index first.",
+      "captions": [
+        "Even height, yuv420p, faststart.",
+        "High, 594x334, moov first."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "Not tested",
+      "narration": "Not tested: any player or browser, other encoders, real footage, other ffmpeg builds. Measured on ffmpeg six point one point one, with synthetic frames. Check your file before you send it.",
+      "captions": [
+        "Not tested: players, browsers.",
+        "Synthetic frames. ffmpeg 6.1.1."
+      ]
+    }
+  ],
+  "kind": "short",
+  "tag": "Short 05"
+}
