@@ -1,0 +1,111 @@
+1
+00:00:00,600 --> 00:00:06,090
+Pure green: 255 becomes 215.
+
+2
+00:00:06,090 --> 00:00:11,590
+The label, or the pixels?
+
+3
+00:00:11,590 --> 00:00:16,260
+Reader 1: the label.
+
+4
+00:00:16,260 --> 00:00:20,930
+Reader 2: the pixels.
+
+5
+00:00:20,930 --> 00:00:23,270
+ffmpeg 6.1.1.
+
+6
+00:00:23,270 --> 00:00:28,590
+Plain: no tag, BT.601 pixels.
+
+7
+00:00:28,590 --> 00:00:36,040
+Read as BT.709: green 255 to 215.
+
+8
+00:00:36,040 --> 00:00:41,360
+-colorspace bt709 alone: error 40.
+
+9
+00:00:41,360 --> 00:00:47,920
+Default: black Y 16, white Y 235.
+
+10
+00:00:47,920 --> 00:00:51,670
+-color_range pc: same bytes.
+
+11
+00:00:51,670 --> 00:00:57,300
+Tag says full: black shows 16.
+
+12
+00:00:57,300 --> 00:01:07,040
+100 nit white lands at Y 127.
+
+13
+00:01:07,040 --> 00:01:13,990
+iall=bt2020: same pixels, new tags.
+
+14
+00:01:13,990 --> 00:01:19,580
+3 commands changed only the label.
+
+15
+00:01:19,580 --> 00:01:23,310
+A wrong label: fixable.
+
+16
+00:01:23,310 --> 00:01:28,600
+yuv420p: red line becomes 150, 21, 149.
+
+17
+00:01:28,600 --> 00:01:35,410
+Y stays near 81. No tag brings it back.
+
+18
+00:01:35,410 --> 00:01:41,520
+format=yuv420p: 65 values, not 64.
+
+19
+00:01:41,520 --> 00:01:45,190
+Only sws_dither=none truncates.
+
+20
+00:01:45,190 --> 00:01:51,300
+6 other spellings: 1 checksum.
+
+21
+00:01:51,300 --> 00:01:57,240
+BT.709 file: format=gray gives 183.
+
+22
+00:01:57,240 --> 00:02:04,360
+601 mixer: 149. 34 levels off.
+
+23
+00:02:04,360 --> 00:02:08,950
+ffprobe: bt709, tv.
+
+24
+00:02:08,950 --> 00:02:15,070
+Decoded: worst error 1.
+
+25
+00:02:15,070 --> 00:02:21,180
+Black 16, white 235.
+
+26
+00:02:21,180 --> 00:02:27,300
+Plain command: error 40.
+
+27
+00:02:27,300 --> 00:02:32,220
+Check the label and the pixels.
+
+28
+00:02:32,220 --> 00:02:36,320
+Not tested: footage, players, HLG.

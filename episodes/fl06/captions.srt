@@ -1,0 +1,143 @@
+1
+00:00:00,600 --> 00:00:07,710
+Same command, same pixels.
+
+2
+00:00:07,710 --> 00:00:21,930
+30324 B on 6.1.1, 26482 B on 8.1.2.
+
+3
+00:00:21,930 --> 00:00:33,690
+Four questions about one PNG command.
+
+4
+00:00:33,690 --> 00:00:43,490
+Ubuntu 6.1.1 and Windows 8.1.2.
+
+5
+00:00:43,490 --> 00:00:53,040
+Reader 1: size and decoded pixels.
+
+6
+00:00:53,040 --> 00:01:04,180
+Reader 2: our parser reads every row.
+
+7
+00:01:04,180 --> 00:01:17,800
+Filter byte 0 to 4, one per row.
+
+8
+00:01:17,800 --> 00:01:26,320
+Smooth rows leave small differences.
+
+9
+00:01:26,320 --> 00:01:34,510
+6.1.1: -pred default none.
+
+10
+00:01:34,510 --> 00:01:42,710
+8.1.2: -pred default paeth.
+
+11
+00:01:42,710 --> 00:01:50,990
+6.1.1: 360 rows, all filter 0.
+
+12
+00:01:50,990 --> 00:02:02,020
+8.1.2: filter 1, then 359 of filter 4.
+
+13
+00:02:02,020 --> 00:02:12,710
+112 files, one set of pixels.
+
+14
+00:02:12,710 --> 00:02:18,050
+Both readers agree.
+
+15
+00:02:18,050 --> 00:02:28,230
+135338 B to 2229 B.
+
+16
+00:02:28,230 --> 00:02:34,340
+98.4 % smaller.
+
+17
+00:02:34,340 --> 00:02:41,910
+Noisy field: 38.8 % smaller.
+
+18
+00:02:41,910 --> 00:02:52,500
+Test pattern 12.7 %, mandelbrot 9.9 %.
+
+19
+00:02:52,500 --> 00:03:02,900
+Flat runs: 51.4 % bigger.
+
+20
+00:03:02,900 --> 00:03:13,300
+Four-color noise: 78.4 % bigger.
+
+21
+00:03:13,300 --> 00:03:21,570
+White noise: 173623 B, every mode.
+
+22
+00:03:21,570 --> 00:03:25,700
+Nothing to predict.
+
+23
+00:03:25,700 --> 00:03:36,650
+-pred mixed: a filter per row.
+
+24
+00:03:36,650 --> 00:03:49,420
+Flat runs: 4461 B, not 6581 B.
+
+25
+00:03:49,420 --> 00:03:58,590
+Level 9 is not always smaller.
+
+26
+00:03:58,590 --> 00:04:13,870
+Noisy field: 101688 B at 6, 109444 B at 9.
+
+27
+00:04:13,870 --> 00:04:25,320
+rgba: 225431 B to 123991 B.
+
+28
+00:04:25,320 --> 00:04:38,670
+16-bit rgb: 260074 B to 124616 B.
+
+29
+00:04:38,670 --> 00:04:53,050
+Filters match: 96 of 96.
+
+30
+00:04:53,050 --> 00:05:07,420
+Bytes match: 0 of 96.
+
+31
+00:05:07,420 --> 00:05:15,940
+Pin -pred, or hash the pixels.
+
+32
+00:05:15,940 --> 00:05:25,870
+Try mixed. For flat art, try none.
+
+33
+00:05:25,870 --> 00:05:33,720
+Default: none to paeth.
+
+34
+00:05:33,720 --> 00:05:41,560
+Pixels same, bytes different.
+
+35
+00:05:41,560 --> 00:05:50,130
+Not tested: real photos, other builds.
+
+36
+00:05:50,130 --> 00:05:57,280
+Synthetic images. 6.1.1 and 8.1.2.

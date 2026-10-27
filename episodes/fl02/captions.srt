@@ -1,0 +1,127 @@
+1
+00:00:00,600 --> 00:00:13,040
+Join two A A C files with -c copy.
+
+2
+00:00:13,040 --> 00:00:19,950
+Clicks 200 apart. Measured: 2,112.
+
+3
+00:00:19,950 --> 00:00:29,130
+The decoder removes what the note says.
+
+4
+00:00:29,130 --> 00:00:38,320
+MP3: tag. Opus: header. AAC: edit list.
+
+5
+00:00:38,320 --> 00:00:49,870
+Control: impulse at 4410 through PCM.
+
+6
+00:00:49,870 --> 00:01:03,350
+No tag: 5515, 1105 late, 46,080 samples.
+
+7
+00:01:03,350 --> 00:01:12,480
+Tag: delay 576, padding 1404.
+
+8
+00:01:12,480 --> 00:01:27,080
+Skips 576 + 529 = 1105, trims 875.
+
+9
+00:01:27,080 --> 00:01:36,920
+OpusHead pre-skip: 312 samples = 6.5 ms.
+
+10
+00:01:36,920 --> 00:01:48,160
+Click at 4800 in ogg, mkv and .opus.
+
+11
+00:01:48,160 --> 00:01:59,200
+Pre-skip 0: click at 5112, 312 late.
+
+12
+00:01:59,200 --> 00:02:07,090
+Pre-skip 1000: 4112, 688 early.
+
+13
+00:02:07,090 --> 00:02:18,340
+Edit list: 2000 ms from media time 1024.
+
+14
+00:02:18,340 --> 00:02:28,180
+Edit list ignored: 90,112 samples, not 89,088.
+
+15
+00:02:28,180 --> 00:02:39,690
+-itsoffset 1: empty edit of 1000 ms.
+
+16
+00:02:39,690 --> 00:02:49,560
+-itsoffset -1: mp4 skips 48,000 samples.
+
+17
+00:02:49,560 --> 00:03:01,970
+Join: edit list 4024 ms from media time 0.
+
+18
+00:03:01,970 --> 00:03:10,240
+180,224 decoded vs 176,400: 3,824 extra.
+
+19
+00:03:10,240 --> 00:03:23,790
+Copy join: seam 2,112 = 200 + 888 + 1,024.
+
+20
+00:03:23,790 --> 00:03:30,570
+Re-encode, no trim: seam 1,088.
+
+21
+00:03:30,570 --> 00:03:41,820
+-ss 0.5 -c copy: new tag, delay 3567.
+
+22
+00:03:41,820 --> 00:03:50,250
+3,981 late. Re-encode: exact at 22,050.
+
+23
+00:03:50,250 --> 00:04:01,970
+Copy cuts land on 960-sample packets.
+
+24
+00:04:01,970 --> 00:04:09,790
+Re-encode: exact at 24,000.
+
+25
+00:04:09,790 --> 00:04:18,080
+Join AAC: trim, concat, encode once.
+
+26
+00:04:18,080 --> 00:04:26,370
+Exact cut: re-encode. Keep the tag.
+
+27
+00:04:26,370 --> 00:04:35,170
+Clicks: 100, 88100, 88300, 176300.
+
+28
+00:04:35,170 --> 00:04:49,250
+Seam 200. Edit list 4000 ms, 174 packets.
+
+29
+00:04:49,250 --> 00:04:57,850
+MP3: tag. Opus: header. AAC: edit list.
+
+30
+00:04:57,850 --> 00:05:07,670
+After a copy: count samples, find the click.
+
+31
+00:05:07,670 --> 00:05:16,170
+Not tested: players, real music, other builds.
+
+32
+00:05:16,170 --> 00:05:23,450
+Measured on ffmpeg 6.1.1, synthetic clicks.

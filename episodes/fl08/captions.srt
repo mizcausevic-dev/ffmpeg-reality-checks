@@ -1,0 +1,143 @@
+1
+00:00:00,600 --> 00:00:14,230
+256 levels. Tagged tv: 220 come out.
+
+2
+00:00:14,230 --> 00:00:23,970
+17 columns black, 21 white.
+
+3
+00:00:23,970 --> 00:00:36,280
+The tag. The pixels. A filter that guesses.
+
+4
+00:00:36,280 --> 00:00:45,510
+Synthetic clips, ffmpeg 6.1.1 and 8.1.2.
+
+5
+00:00:45,510 --> 00:00:54,210
+Raw bytes and signalstats agree.
+
+6
+00:00:54,210 --> 00:01:08,140
+Control: 0 to 255 reads 0 to 255.
+
+7
+00:01:08,140 --> 00:01:22,060
+setparams + -color_range pc: pc.
+
+8
+00:01:22,060 --> 00:01:35,980
+Same bytes under every tag.
+
+9
+00:01:35,980 --> 00:01:47,950
+Same bytes: tv 0..255, pc 16..235.
+
+10
+00:01:47,950 --> 00:02:01,920
+Full ramp tagged tv: 220 of 256.
+
+11
+00:02:01,920 --> 00:02:16,580
+-color_range pc: 6.1.1 relabels.
+
+12
+00:02:16,580 --> 00:02:34,910
+8.1.2 converts: 16..235 becomes 0..255.
+
+13
+00:02:34,910 --> 00:02:46,470
+6.1.1: No such filter, exit 8.
+
+14
+00:02:46,470 --> 00:03:01,880
+8.1.2: the verdict is only in the log.
+
+15
+00:03:01,880 --> 00:03:10,540
+Outside 16..235 proves full range.
+
+16
+00:03:10,540 --> 00:03:26,140
+One sample at 236, in 1 frame of 3.
+
+17
+00:03:26,140 --> 00:03:33,340
+Ramp 0..255: JPEG / full range.
+
+18
+00:03:33,340 --> 00:03:40,550
+Tagged tv or untagged: the same.
+
+19
+00:03:40,550 --> 00:03:47,290
+16..235: undetermined.
+
+20
+00:03:47,290 --> 00:04:00,780
+It never says limited.
+
+21
+00:04:00,780 --> 00:04:05,840
+One sample at 236: full range.
+
+22
+00:04:05,840 --> 00:04:10,910
+One sample at 15: full range.
+
+23
+00:04:10,910 --> 00:04:22,180
+Cb 0..254, luma 16..235.
+
+24
+00:04:22,180 --> 00:04:27,810
+colordetect: undetermined.
+
+25
+00:04:27,810 --> 00:04:40,430
+Tagged pc, bytes 0..255: full.
+
+26
+00:04:40,430 --> 00:04:53,040
+Tagged pc, bytes 56..204: undetermined.
+
+27
+00:04:53,040 --> 00:05:06,260
+Opaque or straight: provable.
+
+28
+00:05:06,260 --> 00:05:12,870
+Premultiplied-looking: undetermined.
+
+29
+00:05:12,870 --> 00:05:22,660
+Same picture: rgba straight.
+
+30
+00:05:22,660 --> 00:05:27,560
+yuva420p: undetermined.
+
+31
+00:05:27,560 --> 00:05:38,490
+Tag: ffprobe. Proof of full: signalstats.
+
+32
+00:05:38,490 --> 00:05:47,600
+Limited can never be proven.
+
+33
+00:05:47,600 --> 00:05:55,500
+ffprobe = tag. signalstats = pixels.
+
+34
+00:05:55,500 --> 00:06:02,080
+colordetect proves full, never limited.
+
+35
+00:06:02,080 --> 00:06:13,950
+Measured on 6.1.1 and 8.1.2, synthetic clips.
+
+36
+00:06:13,950 --> 00:06:25,830
+Not tested: real footage, lossy codecs, players.

@@ -1,0 +1,139 @@
+1
+00:00:00,600 --> 00:00:09,580
+Exit status 0. No warning.
+
+2
+00:00:09,580 --> 00:00:16,770
+4:4:4, 593x333, index last.
+
+3
+00:00:16,770 --> 00:00:23,950
+Two readers. No player.
+
+4
+00:00:23,950 --> 00:00:34,410
+25 synthetic PNG frames, 1000x562.
+
+5
+00:00:34,410 --> 00:00:49,060
+Reader 1: ffprobe. Reader 2: the bytes.
+
+6
+00:00:49,060 --> 00:01:01,350
+RGB in: High 4:4:4 Predictive, yuv444p.
+
+7
+00:01:01,350 --> 00:01:11,600
+Control: yuv420p in, yuv420p out.
+
+8
+00:01:11,600 --> 00:01:21,160
+-pix_fmt yuv420p: profile High.
+
+9
+00:01:21,160 --> 00:01:35,490
+PSNR 37.04 dB vs 35.4 dB.
+
+10
+00:01:35,490 --> 00:01:47,780
+1920x1080 to 1280x720: encodes.
+
+11
+00:01:47,780 --> 00:02:00,060
+1000x562 to 593x333: refused.
+
+12
+00:02:00,060 --> 00:02:14,000
+scale=-1:240 on 640x360: width 427.
+
+13
+00:02:14,000 --> 00:02:25,150
+scale=-2:334: 594x334, exit 0.
+
+14
+00:02:25,150 --> 00:02:37,140
+4:4:4 hid the odd size.
+
+15
+00:02:37,140 --> 00:02:46,730
+Add -pix_fmt yuv420p: refused.
+
+16
+00:02:46,730 --> 00:02:58,690
+Plain: ftyp, free, mdat, moov.
+
+17
+00:02:58,690 --> 00:03:10,650
+Faststart: ftyp, moov, free, mdat.
+
+18
+00:03:10,650 --> 00:03:24,960
+Cannot seek: all 927,238 bytes.
+
+19
+00:03:24,960 --> 00:03:36,400
+Faststart: under a quarter.
+
+20
+00:03:36,400 --> 00:03:47,020
+libx265 in MP4 writes hev1.
+
+21
+00:03:47,020 --> 00:03:55,510
+No Apple player tested.
+
+22
+00:03:55,510 --> 00:04:09,280
+-c copy -tag:v hvc1: both readers say hvc1.
+
+23
+00:04:09,280 --> 00:04:17,890
+0 of 50 frames change.
+
+24
+00:04:17,890 --> 00:04:32,080
+RGB in, libx265: Rext, gbrp, hev1.
+
+25
+00:04:32,080 --> 00:04:41,540
+Odd 4:2:0: refused again.
+
+26
+00:04:41,540 --> 00:04:54,600
+scale=-2:334 -pix_fmt yuv420p -movflags +faststart
+
+27
+00:04:54,600 --> 00:05:07,660
+High, yuv420p, 594x334, moov first.
+
+28
+00:05:07,660 --> 00:05:20,810
+Add -tag:v hvc1 for HEVC.
+
+29
+00:05:20,810 --> 00:05:33,960
+Main, yuv420p, hvc1, moov first.
+
+30
+00:05:33,960 --> 00:05:38,550
+1. Profile and pix_fmt: yuv420p.
+
+31
+00:05:38,550 --> 00:05:43,140
+2. Even width and height.
+
+32
+00:05:43,140 --> 00:05:46,820
+3. moov before mdat.
+
+33
+00:05:46,820 --> 00:05:50,490
+4. HEVC tag: hvc1.
+
+34
+00:05:50,490 --> 00:06:00,280
+Not tested: players, browsers, other encoders.
+
+35
+00:06:00,280 --> 00:06:06,810
+Synthetic frames. ffmpeg 6.1.1.

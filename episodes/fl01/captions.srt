@@ -1,0 +1,143 @@
+1
+00:00:00,600 --> 00:00:12,570
+Asked for 3 s. Got 13 frames, 0.52 s.
+
+2
+00:00:12,570 --> 00:00:20,550
+Where does a cut really start?
+
+3
+00:00:20,550 --> 00:00:27,350
+Five things decide your cut.
+
+4
+00:00:27,350 --> 00:00:38,240
+Each one is measured on a test clip.
+
+5
+00:00:38,240 --> 00:00:46,150
+Reader 1: frame md5 against the source.
+
+6
+00:00:46,150 --> 00:00:56,330
+Reader 2: ffprobe, or the number in the pixels.
+
+7
+00:00:56,330 --> 00:01:06,530
+-ss 5 -to 10 -i: 5 s, 125 frames.
+
+8
+00:01:06,530 --> 00:01:12,190
+Both after -i: the same.
+
+9
+00:01:12,190 --> 00:01:24,270
+-ss 5 -i ... -to 10: 10 s, 250 frames.
+
+10
+00:01:24,270 --> 00:01:31,520
+Source 5 s to 15 s.
+
+11
+00:01:31,520 --> 00:01:42,830
+-ss 5 -i ... -t 5: 5 s, source 5 to 10.
+
+12
+00:01:42,830 --> 00:01:48,490
+So far: re-encoded. Next: -c copy.
+
+13
+00:01:48,490 --> 00:01:57,970
+-ss before -i: 7.52 s, 75 frames.
+
+14
+00:01:57,970 --> 00:02:08,810
+138 packets in the file. 63 are hidden.
+
+15
+00:02:08,810 --> 00:02:19,620
+-ss after -i: starts at 10 s. 13 frames.
+
+16
+00:02:19,620 --> 00:02:25,630
+Re-encode: frame 188, 74 frames.
+
+17
+00:02:25,630 --> 00:02:35,290
+-g 100 alone: 0, 3.2, 6.8.
+
+18
+00:02:35,290 --> 00:02:44,950
+A maximum. Scene cuts add keyframes.
+
+19
+00:02:44,950 --> 00:02:56,270
++ -sc_threshold 0: 0, 4, 8.
+
+20
+00:02:56,270 --> 00:03:01,930
+-force_key_frames 3.2,6.8: exact.
+
+21
+00:03:01,930 --> 00:03:11,520
+-sseof -3, re-encode: 90 frames.
+
+22
+00:03:11,520 --> 00:03:26,870
+-c copy, -g 100: 100 frames, 3.333 s.
+
+23
+00:03:26,870 --> 00:03:36,810
+10 s picture, 12 s sound: 1 s of picture.
+
+24
+00:03:36,810 --> 00:03:44,760
+-sseof -30 on 10 s: all 300 frames.
+
+25
+00:03:44,760 --> 00:04:02,250
+-shortest -c copy: 73 of 125 frames.
+
+26
+00:04:02,250 --> 00:04:09,750
+Re-encode: 75 frames.
+
+27
+00:04:09,750 --> 00:04:18,500
+-t 3 -c copy: 77 frames, 3.08 s.
+
+28
+00:04:18,500 --> 00:04:25,060
+Copy: 73 or 77. Re-encode: 75.
+
+29
+00:04:25,060 --> 00:04:39,480
+-ss 7.5 -i ... -t 3: 90 frames, 225 to 314.
+
+30
+00:04:39,480 --> 00:04:48,650
+Control, -c copy after -i: 15 frames.
+
+31
+00:04:48,650 --> 00:04:56,450
+Plain copy: 165 packets, 75 hidden.
+
+32
+00:04:56,450 --> 00:05:06,860
+Keyframes at the cut: 90 frames, 90 packets.
+
+33
+00:05:06,860 --> 00:05:14,380
+Exact: -ss, -i, -t, re-encode.
+
+34
+00:05:14,380 --> 00:05:26,400
+Instant: keyframes at the cut, then -c copy.
+
+35
+00:05:26,400 --> 00:05:33,530
+Measured on ffmpeg 6.1.1, synthetic clips.
+
+36
+00:05:33,530 --> 00:05:41,840
+Not tested: real footage, players, other encoders.

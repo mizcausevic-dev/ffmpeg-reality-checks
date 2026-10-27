@@ -1,0 +1,199 @@
+1
+00:00:00,600 --> 00:00:11,310
+Pure green: 255 becomes 215.
+
+2
+00:00:11,310 --> 00:00:22,020
+The label, or the pixels?
+
+3
+00:00:22,020 --> 00:00:28,370
+Reader 1: the label (ffprobe).
+
+4
+00:00:28,370 --> 00:00:34,720
+Reader 2: the decoded pixels.
+
+5
+00:00:34,720 --> 00:00:37,260
+ffmpeg 6.1.1.
+
+6
+00:00:37,260 --> 00:00:42,710
+No tag. Pixels are BT.601.
+
+7
+00:00:42,710 --> 00:00:50,350
+Read as BT.709: green 255 to 215.
+
+8
+00:00:50,350 --> 00:00:57,980
+Red gains G 23. Gray never moves.
+
+9
+00:00:57,980 --> 00:01:04,270
+Converted and tagged: error 1.
+
+10
+00:01:04,270 --> 00:01:13,070
+Same file read as BT.601: error 23.
+
+11
+00:01:13,070 --> 00:01:19,360
+-colorspace bt709 alone: error 40.
+
+12
+00:01:19,360 --> 00:01:25,250
+format=gray stores 76, 150, 29.
+
+13
+00:01:25,250 --> 00:01:31,140
+hue=s=0 stores 81, 145, 41.
+
+14
+00:01:31,140 --> 00:01:38,210
+A screen shows 76, 150, 29.
+
+15
+00:01:38,210 --> 00:01:45,140
+Mixer 709 weights: 54, 182, 18.
+
+16
+00:01:45,140 --> 00:01:50,920
+BT.709 file: gray 55, 183.
+
+17
+00:01:50,920 --> 00:01:57,850
+601 mixer: 149. Green 34 off.
+
+18
+00:01:57,850 --> 00:02:08,230
+Default: black Y 16, white Y 235, no tag.
+
+19
+00:02:08,230 --> 00:02:15,150
+-color_range pc: same bytes, tag pc.
+
+20
+00:02:15,150 --> 00:02:20,910
+A tag-following player shows 16.
+
+21
+00:02:20,910 --> 00:02:27,450
+Flag 1 on limited bytes: black 16.
+
+22
+00:02:27,450 --> 00:02:35,860
+Flag 0 on full bytes: 8 and 247 crushed.
+
+23
+00:02:35,860 --> 00:02:42,400
+yuvj420p: Y 0 and 255, tag pc.
+
+24
+00:02:42,400 --> 00:02:52,340
+100 nit white lands at Y 127, not 235.
+
+25
+00:02:52,340 --> 00:03:00,070
+50 nit patch: 67.5 codes too dark.
+
+26
+00:03:00,070 --> 00:03:04,490
+Tags still say PQ.
+
+27
+00:03:04,490 --> 00:03:10,000
+iall=bt2020: same pixels, new tags.
+
+28
+00:03:10,000 --> 00:03:19,900
+zscale: 203 nits and up all land on 255.
+
+29
+00:03:19,900 --> 00:03:26,510
++ tonemap=hable: 203 nits at 182.
+
+30
+00:03:26,510 --> 00:03:31,780
+yuv444p: the line stays red.
+
+31
+00:03:31,780 --> 00:03:39,170
+yuv420p: the line is 150, 21, 149.
+
+32
+00:03:39,170 --> 00:03:47,610
+Y stays near 81: color lost, not light.
+
+33
+00:03:47,610 --> 00:03:52,730
+format=yuv420p: 65 values.
+
+34
+00:03:52,730 --> 00:04:02,960
+sws_dither=none: 64 bands of 16 px.
+
+35
+00:04:02,960 --> 00:04:11,490
+6 other spellings: 1 checksum.
+
+36
+00:04:11,490 --> 00:04:19,760
+3 commands changed only the label.
+
+37
+00:04:19,760 --> 00:04:25,270
+Wrong place: HDR, mixer.
+
+38
+00:04:25,270 --> 00:04:32,160
+Lost: chroma. False alarm: dither.
+
+39
+00:04:32,160 --> 00:04:36,460
+ffprobe: bt709, tv.
+
+40
+00:04:36,460 --> 00:04:46,490
+Decoded: worst error 1 (as BT.601: 23).
+
+41
+00:04:46,490 --> 00:04:55,100
+Raw luma: black 16, white 235.
+
+42
+00:04:55,100 --> 00:05:05,130
+Plain command, read as BT.709: error 40.
+
+43
+00:05:05,130 --> 00:05:10,690
+Greens: tag and pixels together.
+
+44
+00:05:10,690 --> 00:05:17,360
+Black: raw luma 16 or 0.
+
+45
+00:05:17,360 --> 00:05:21,810
+HDR: zscale + tonemap.
+
+46
+00:05:21,810 --> 00:05:25,550
+6.1.1 measured here.
+
+47
+00:05:25,550 --> 00:05:33,010
+8.1.2 differs: see the source films.
+
+48
+00:05:33,010 --> 00:05:36,750
+Check your build.
+
+49
+00:05:36,750 --> 00:05:41,700
+Not tested: real footage, players, HLG.
+
+50
+00:05:41,700 --> 00:05:46,640
+Not tested: other encoders, scaled output.

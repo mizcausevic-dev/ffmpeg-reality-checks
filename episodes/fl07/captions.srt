@@ -1,0 +1,135 @@
+1
+00:00:00,600 --> 00:00:15,400
+-crf 0: lossless in libaom, not in libsvtav1.
+
+2
+00:00:15,400 --> 00:00:26,500
+Measured on ffmpeg 6.1.1 and 8.1.2.
+
+3
+00:00:26,500 --> 00:00:32,800
+Five questions about AV1 encoding.
+
+4
+00:00:32,800 --> 00:00:41,630
+Each answer is measured on two builds.
+
+5
+00:00:41,630 --> 00:00:49,940
+Reader 1: ffprobe and ffmpeg filters.
+
+6
+00:00:49,940 --> 00:01:01,030
+Reader 2: our own byte walk and PSNR.
+
+7
+00:01:01,030 --> 00:01:11,170
+-crf 30: SVT 61 kB, libaom 41 kB (6.1.1).
+
+8
+00:01:11,170 --> 00:01:21,320
+On 8.1.2 SVT is 82 kB, libaom 41 kB.
+
+9
+00:01:21,320 --> 00:01:30,640
+libaom -crf 0 is lossless.
+
+10
+00:01:30,640 --> 00:01:41,830
+SSIM 1, PSNR infinite, frames equal.
+
+11
+00:01:41,830 --> 00:01:57,920
+SVT -crf 0 = no -crf. Its log says CRF 35.
+
+12
+00:01:57,920 --> 00:02:03,770
+Lossy on both builds.
+
+13
+00:02:03,770 --> 00:02:12,200
+-crf 64: out of range, no file.
+
+14
+00:02:12,200 --> 00:02:20,640
+-crf 63 works: 6 kB, SSIM 0.94.
+
+15
+00:02:20,640 --> 00:02:27,910
+-b:v 0 next to -crf: nothing changes.
+
+16
+00:02:27,910 --> 00:02:34,140
+Identical packets, both encoders, both builds.
+
+17
+00:02:34,140 --> 00:02:48,310
+6.1.1, SVT 1.7: the bitrate is ignored.
+
+18
+00:02:48,310 --> 00:03:02,490
+8.1.2, SVT 4.1: an error, no file.
+
+19
+00:03:02,490 --> 00:03:11,460
+libaom obeys -b:v next to -crf.
+
+20
+00:03:11,460 --> 00:03:23,410
+Noisy clip: 512 kB down to 223 kB.
+
+21
+00:03:23,410 --> 00:03:35,130
+SVT preset 12 is 55% bigger than 8.
+
+22
+00:03:35,130 --> 00:03:45,390
+And looks worse: SSIM 0.99 vs 0.997.
+
+23
+00:03:45,390 --> 00:03:54,380
+Noise: preset 12 is bigger, no better.
+
+24
+00:03:54,380 --> 00:04:05,930
+6.1.1: 622 vs 730 kB. 8.1.2: 708 vs 747.
+
+25
+00:04:05,930 --> 00:04:16,020
+SVT: keyframes at 0, 161, 322.
+
+26
+00:04:16,020 --> 00:04:29,480
+libaom: frame 0 only. -g 25: 16 each.
+
+27
+00:04:29,480 --> 00:04:40,080
+Frame 300: SVT runs 140 frames.
+
+28
+00:04:40,080 --> 00:04:50,680
+libaom 301. With -g 25: 1.
+
+29
+00:04:50,680 --> 00:04:59,750
+-g 25 costs libaom 18% (6.1.1), 19% (8.1.2).
+
+30
+00:04:59,750 --> 00:05:07,680
+SVT: 1% on 6.1.1, 5% on 8.1.2.
+
+31
+00:05:07,680 --> 00:05:17,800
+Check -crf 0, -b:v, preset, -g.
+
+32
+00:05:17,800 --> 00:05:24,550
+Measure, do not assume.
+
+33
+00:05:24,550 --> 00:05:34,670
+Measured on ffmpeg 6.1.1 and 8.1.2.
+
+34
+00:05:34,670 --> 00:05:46,490
+Not tested: real footage, players, other builds.

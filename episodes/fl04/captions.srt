@@ -1,0 +1,127 @@
+1
+00:00:00,600 --> 00:00:12,520
+93 frames in, 150 out.
+
+2
+00:00:12,520 --> 00:00:22,060
+900 frames, 450 timestamps.
+
+3
+00:00:22,060 --> 00:00:34,300
+Two readers: ffprobe, and a decode.
+
+4
+00:00:34,300 --> 00:00:44,500
+Every result has a control.
+
+5
+00:00:44,500 --> 00:00:52,430
+93 frames over 5 seconds.
+
+6
+00:00:52,430 --> 00:01:03,540
+Gaps: 33 ms, 67 ms, 933 ms.
+
+7
+00:01:03,540 --> 00:01:19,570
+Default, 6.1.1: 150 frames, 57 duplicates.
+
+8
+00:01:19,570 --> 00:01:30,250
+-fps_mode passthrough: 93 frames.
+
+9
+00:01:30,250 --> 00:01:42,380
+-r 10 after -i: 22 frames, 2.2 s.
+
+10
+00:01:42,380 --> 00:01:54,520
+-r 10 before -i: 60 frames, 6 s.
+
+11
+00:01:54,520 --> 00:02:08,220
+fps=1 keeps 12, 37, 62, at 0.48 s.
+
+12
+00:02:08,220 --> 00:02:16,790
+round=up keeps 0, 25, 50.
+
+13
+00:02:16,790 --> 00:02:27,360
+Picture 5.07 s. Audio 10.0 s.
+
+14
+00:02:27,360 --> 00:02:39,690
+30 fps out: 152 of 300 frames.
+
+15
+00:02:39,690 --> 00:02:48,100
+atempo=2: audio 5 s, 440 Hz.
+
+16
+00:02:48,100 --> 00:02:56,510
+asetrate: 5 s, but 880 Hz.
+
+17
+00:02:56,510 --> 00:03:07,990
+Equal lengths: 360 frames, 12 s.
+
+18
+00:03:07,990 --> 00:03:21,380
+Audio 3.9 s: 355 frames, 11.83 s.
+
+19
+00:03:21,380 --> 00:03:33,260
+Audio 4.1 s: 12.3 s, picture holes.
+
+20
+00:03:33,260 --> 00:03:45,150
+-c copy, audio 3.9 s: sound holes.
+
+21
+00:03:45,150 --> 00:03:59,730
+passthrough: 900 frames, 15 s.
+
+22
+00:03:59,730 --> 00:04:11,390
+Only 450 distinct timestamps.
+
+23
+00:04:11,390 --> 00:04:18,360
+setpts=0.5*PTS,fps=60 + atempo=2.
+
+24
+00:04:18,360 --> 00:04:32,290
+900 frames, 900 timestamps, 15 s.
+
+25
+00:04:32,290 --> 00:04:41,410
+-r 60: 901 frames, frame 0 twice.
+
+26
+00:04:41,410 --> 00:04:51,830
+No atempo: audio 30 s, picture 15 s.
+
+27
+00:04:51,830 --> 00:05:06,190
+Name the rate: the fps filter.
+
+28
+00:05:06,190 --> 00:05:18,150
+Speed up: setpts and atempo.
+
+29
+00:05:18,150 --> 00:05:26,350
+Check: frames, timestamps, lengths.
+
+30
+00:05:26,350 --> 00:05:36,590
+Both readers, plus a control.
+
+31
+00:05:36,590 --> 00:05:46,220
+Not tested: other builds, real footage.
+
+32
+00:05:46,220 --> 00:05:54,250
+Not tested: editors and players.

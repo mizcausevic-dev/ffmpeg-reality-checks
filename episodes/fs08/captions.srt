@@ -1,0 +1,83 @@
+1
+00:00:00,600 --> 00:00:11,160
+256 levels. 220 come out.
+
+2
+00:00:11,160 --> 00:00:19,610
+17 black, 21 white.
+
+3
+00:00:19,610 --> 00:00:29,350
+Same bytes under every tag.
+
+4
+00:00:29,350 --> 00:00:37,150
+ffprobe reports the label.
+
+5
+00:00:37,150 --> 00:00:44,660
+Tagged tv: 0..255.
+
+6
+00:00:44,660 --> 00:00:52,160
+Tagged pc: 16..235.
+
+7
+00:00:52,160 --> 00:00:58,090
+6.1.1: relabel only.
+
+8
+00:00:58,090 --> 00:01:05,990
+8.1.2: converts the pixels.
+
+9
+00:01:05,990 --> 00:01:15,140
+6.1.1: No such filter, exit 8.
+
+10
+00:01:15,140 --> 00:01:24,290
+One sample at 236 proves full.
+
+11
+00:01:24,290 --> 00:01:33,770
+Ramp 0..255: JPEG / full range.
+
+12
+00:01:33,770 --> 00:01:39,020
+16..235: undetermined.
+
+13
+00:01:39,020 --> 00:01:49,520
+It never says limited.
+
+14
+00:01:49,520 --> 00:01:55,130
+Cb 0..254, luma 16..235.
+
+15
+00:01:55,130 --> 00:01:57,940
+colordetect: undetermined.
+
+16
+00:01:57,940 --> 00:02:10,770
+Tagged pc, bytes 56..204.
+
+17
+00:02:10,770 --> 00:02:13,980
+Undetermined.
+
+18
+00:02:13,980 --> 00:02:20,550
+Opaque, straight: provable.
+
+19
+00:02:20,550 --> 00:02:24,930
+Premultiplied-looking: undetermined.
+
+20
+00:02:24,930 --> 00:02:33,630
+The label is not the pixels.
+
+21
+00:02:33,630 --> 00:02:40,890
+Not tested: real footage, players.

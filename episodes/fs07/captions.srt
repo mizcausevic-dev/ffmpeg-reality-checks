@@ -1,0 +1,79 @@
+1
+00:00:00,600 --> 00:00:14,270
+-crf 0: lossless in one AV1 encoder.
+
+2
+00:00:14,270 --> 00:00:22,080
+Not in the other.
+
+3
+00:00:22,080 --> 00:00:30,340
+libaom -crf 0: SSIM 1, PSNR infinite.
+
+4
+00:00:30,340 --> 00:00:36,240
+Decoded frames equal the source.
+
+5
+00:00:36,240 --> 00:00:45,570
+SVT -crf 0 = no -crf. Log: CRF 35.
+
+6
+00:00:45,570 --> 00:00:50,750
+SSIM 0.9885 on 8.1.2. Lossy.
+
+7
+00:00:50,750 --> 00:01:00,240
+-crf 30: SVT 61 kB, then 82 kB.
+
+8
+00:01:00,240 --> 00:01:07,350
+libaom 41 kB on both builds.
+
+9
+00:01:07,350 --> 00:01:16,440
+-b:v 0 next to -crf: nothing changes.
+
+10
+00:01:16,440 --> 00:01:21,630
+Both encoders, both builds.
+
+11
+00:01:21,630 --> 00:01:30,820
+libaom obeys -b:v: 512 kB to 223 kB.
+
+12
+00:01:30,820 --> 00:01:38,860
+SVT: ignored on 6.1.1, error on 8.1.2.
+
+13
+00:01:38,860 --> 00:01:44,550
+SVT preset 12: 55% bigger than 8.
+
+14
+00:01:44,550 --> 00:01:49,420
+And worse: SSIM 0.99 vs 0.997.
+
+15
+00:01:49,420 --> 00:01:55,370
+SVT: keyframes at 0, 161, 322.
+
+16
+00:01:55,370 --> 00:02:02,320
+libaom: 0 only. -g 25: 16 each.
+
+17
+00:02:02,320 --> 00:02:11,800
+Frame 300: SVT 140, libaom 301.
+
+18
+00:02:11,800 --> 00:02:19,700
+With -g 25: 1 frame.
+
+19
+00:02:19,700 --> 00:02:27,150
+Measured on ffmpeg 6.1.1 and 8.1.2.
+
+20
+00:02:27,150 --> 00:02:33,360
+Not tested: real footage, players.
