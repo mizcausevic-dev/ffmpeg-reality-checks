@@ -48,7 +48,7 @@
     {
       "id": "off",
       "chapter": "Scenecut off",
-      "narration": "Dash s c threshold zero, and dash x two six four params scenecut zero: the same file, every packet the same size. Keyframes at zero and two fifty. No keyframe at the cuts, one in the middle of a scene, and the file is nine percent bigger.",
+      "narration": "Dash s c threshold zero, and dash x two six four params scenecut zero: the same file, every packet the same size. Keyframes at zero and two fifty. No keyframe at the cuts, one in the middle of a scene, and the file is nine percent bigger on six point one point one, ten point six on eight point one point two.",
       "captions": [
         "Same file, two spellings.",
         "Keyframes at 0 and 250, not at the cuts."

@@ -151,7 +151,7 @@ const Default: React.FC<SceneProps> = ({t, dur}) => {
         <Line y={430} text="next one due: 460" size={72} color={C.amberDim} o={ep(lt, 0.6, 0.9)} />
         <Line y={530} text="clip ends: 299" size={72} color={C.line} o={ep(lt, 1.2, 1.5)} /></>}
       {i === 3 && <><Cue text="the readers" /><Punch value="4 of 4" sub="agree on every frame" color={C.greenDim} size={330} y={230} o={ep(lt, 0, 0.2)} /></>}
-      {i === 4 && <><Cue text="the whole file" /><Punch value="78511" sub="bytes" color={C.bg} size={380} y={230} o={ep(lt, 0, 0.2)} /></>}
+      {i === 4 && <><Cue text="the whole file" /><Punch value="78511" sub="bytes on 6.1.1" color={C.bg} size={380} y={230} o={ep(lt, 0, 0.2)} /></>}
       <Wipe t={t} starts={starts} />
     </Dark>
   );
@@ -172,7 +172,7 @@ const Off: React.FC<SceneProps> = ({t, dur}) => {
       {i === 4 && <><Cue text="at the cuts" />
         <Line y={330} text="60   130   210" size={110} color={C.redDim} align="center" o={ep(lt, 0, 0.3)} />
         <Line y={520} text="no keyframe" size={110} mono={false} color={C.bg} align="center" o={ep(lt, 0.7, 1.0)} /></>}
-      {i === 5 && <><Cue text="the cost" /><Punch value="+9%" sub="85876 bytes, against 78511" color={C.redDim} size={440} y={190} o={ep(lt, 0, 0.2)} /></>}
+      {i === 5 && <><Cue text="the cost, 8.1.2: +10.6%" /><Punch value="+9%" sub="6.1.1: 85876 against 78511" color={C.redDim} size={440} y={190} o={ep(lt, 0, 0.2)} /></>}
       {i === 6 && <><Cue text="frame 250" />
         <Line y={360} text="a keyframe" size={100} mono={false} color={C.bg} align="center" o={ep(lt, 0, 0.3)} />
         <Line y={500} text="in the middle of a scene" size={100} mono={false} color={C.amberDim} align="center" o={ep(lt, 0.6, 0.9)} /></>}

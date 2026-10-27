@@ -80,6 +80,7 @@ t('the rule, from the -keyint_min sweep (25, 60, 61, 126, 250): an I frame at a 
 t('what scenecut costs, 6.1.1 exact: with the cuts coded without a keyframe the file is larger (85876 bytes against 78511); the three types of a default encode are 4 I, 77 P and 219 B', () => {
   const d = cell('cuts|default'), s = cell('cuts|sc0');
   if (isV6()) { assert.equal(d.total, 78511); assert.equal(s.total, 85876); assert.ok(s.total > d.total); assert.deepEqual(d.types, {I: 4, B: 219, P: 77}); }
+  if (buildOf(ev.ffmpeg) === 'v8') { assert.equal(d.total, 84844); assert.equal(s.total, 93838); assert.ok(s.total > d.total); assert.deepEqual(d.types, {I: 4, B: 219, P: 77}); }
   assert.equal(d.types.I + (d.types.P ?? 0) + (d.types.B ?? 0), N);
 });
 
