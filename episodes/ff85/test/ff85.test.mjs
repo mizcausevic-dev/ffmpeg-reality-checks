@@ -67,7 +67,7 @@ t('format=yuv420p does not truncate: on a 10 bit ramp it dithers, the output use
   }
 });
 
-t('sws_dither=none gives flat bands of 16 pixels and a 2 x 2 block error above the default's on both readers: on 6.1.1 it truncates (64 values, floor(value / 4), mean error -0.375, block error 0.75), on 8.1.2 it rounds to nearest (65 values, mean error +0.125, block error 0.5)', () => {
+t('sws_dither=none gives flat bands of 16 pixels and a 2 x 2 block error above the default on both readers: on 6.1.1 it truncates (64 values, floor(value / 4), mean error -0.375, block error 0.75), on 8.1.2 it rounds to nearest (65 values, mean error +0.125, block error 0.5)', () => {
   const n = M('none'), d = M('default');
   assert.ok(d.blockMaxErr <= n.blockMaxErr && d.blockMaxErrFfmpeg <= n.blockMaxErrFfmpeg);
   assert.ok(n.meanRun > d.meanRun * 2.5 && n.maxRun === 16, `${n.meanRun} ${n.maxRun}`);
