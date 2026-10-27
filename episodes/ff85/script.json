@@ -1,0 +1,91 @@
+{
+  "n": 85,
+  "slug": "ffmpeg-10-bit-to-8-bit-dither",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Does the gradient band?",
+  "fullTitle": "FFmpeg 10-bit to 8-bit Banding: format=yuv420p Already Dithers, Only sws_dither=none Changes It",
+  "kicker": "Episode 85",
+  "thumb": {
+    "number": "64 bands",
+    "label": "WHEN THE DITHER IS OFF",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "none",
+    "t": 9.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You convert ten bit video to eight bit, and a gradient may turn into steps. Does the converter dither, and do the dither options help? A ramp of two hundred fifty six ten bit levels, four pixels each, f f m peg six point one point one.",
+      "captions": [
+        "Does a 10 bit gradient band at 8 bit?",
+        "256 ten bit levels, 4 pixels each."
+      ],
+      "sim": null
+    },
+    {
+      "id": "rig",
+      "chapter": "Two readers, two controls",
+      "narration": "Reader one is Node, reading the raw eight bit plane. Reader two is f f m peg: a checksum of each output and the mean of every two by two block. Control: ten bit to ten bit changes nothing. Known positive: rgb eight, later.",
+      "captions": [
+        "Node plane reader, ffmpeg md5 and block means.",
+        "Control: 10 bit to 10 bit, 0 pixels differ."
+      ],
+      "sim": null
+    },
+    {
+      "id": "default",
+      "chapter": "Plain format",
+      "narration": "Plain format equals yuv four two zero p is not truncation. Sixty five values, not sixty four, with runs of five point three pixels. A two by two dither cell steps one pixel in four up, then two, then three, so every block averages the ten bit value exactly.",
+      "captions": [
+        "format=yuv420p: 65 values, 5.3 px runs.",
+        "Every 2 x 2 block mean equals the ideal."
+      ],
+      "sim": null
+    },
+    {
+      "id": "none",
+      "chapter": "Dither off",
+      "narration": "Switch it off with s w s underscore dither equals none, and it truncates. Sixty four flat bands of sixteen pixels. The mean error is minus zero point three seven five, and a two by two block is off by zero point seven five.",
+      "captions": [
+        "sws_dither=none: 64 flat bands of 16 px.",
+        "Mean error -0.375, block error 0.75."
+      ],
+      "sim": null
+    },
+    {
+      "id": "same",
+      "chapter": "The other options",
+      "narration": "The other options: bayer, ed, a dither, x dither, auto, and flags equals plus error diffusion. Seven spellings, one checksum. Only none changes the output. For yuv four two zero p, error diffusion changes nothing.",
+      "captions": [
+        "7 spellings, 1 output.",
+        "Only sws_dither=none differs."
+      ],
+      "sim": null
+    },
+    {
+      "id": "positive",
+      "chapter": "Known positive",
+      "narration": "Are the readers blind to dither? The same eight spellings with rgb eight output give five different outputs. The options work, just not for yuv four two zero p.",
+      "captions": [
+        "rgb8: 8 spellings, 5 outputs.",
+        "Both readers see the difference."
+      ],
+      "sim": null
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "narration": "No option adds levels: a ramp of one thousand twenty four levels ends with two hundred fifty six in every spelling. Banding after conversion comes from the source or the encoder, not from a missing flag. Not tested: other builds, real footage, scaled output, x two six four.",
+      "captions": [
+        "No flag adds levels: 1024 in, 256 out.",
+        "Not tested: other builds, real footage."
+      ],
+      "sim": null
+    }
+  ]
+}
