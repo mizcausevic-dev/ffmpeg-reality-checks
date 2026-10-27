@@ -1,0 +1,86 @@
+{
+  "n": 84,
+  "slug": "ffmpeg-encoder-lowpass-cutoff",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where does the top of the spectrum go?",
+  "fullTitle": "FFmpeg Encoder Lowpass: mp3 and aac Lose the Top at 64 kbit/s, libopus Keeps 20 kHz",
+  "kicker": "Episode 84",
+  "thumb": {
+    "number": "20 kHz",
+    "label": "OPUS AT EVERY BIT RATE",
+    "color": "green"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "mp3",
+    "t": 9.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You encode at sixty four, ninety six, one twenty eight kilobits a second. How much of the top of the spectrum is gone? A staircase of one hundred fifty one tones, three encoders, two readers, f f m peg six point one point one.",
+      "captions": [
+        "Where does the top of the spectrum go?",
+        "151 tones, 3 encoders, 2 readers."
+      ],
+      "sim": null
+    },
+    {
+      "id": "rig",
+      "chapter": "Two readers, two controls",
+      "narration": "Tones from one to twenty three point nine kilohertz. Reader one is Node, measuring each decoded tone at its own frequency. Reader two is f f m peg, reading the R M S of each tone. Control: no encoder, every tone returns. Known positive: libopus with cutoff twelve thousand ends at eleven point nine.",
+      "captions": [
+        "Control, no encoder: all 151 tones pass.",
+        "Known positive: -cutoff 12000 ends at 11.9 kHz."
+      ]
+    },
+    {
+      "id": "mp3",
+      "chapter": "libmp3lame",
+      "narration": "libmp3lame, stereo, constant bit rate. Sixty four: eleven point two kilohertz. Ninety six: fifteen. One twenty eight: sixteen point five. One ninety two: eighteen point seven. Two fifty six: nineteen point five. A cliff: two hundred hertz higher, at least thirty one decibels down.",
+      "captions": [
+        "64 to 256 kbit/s: 11.2 to 19.5 kHz.",
+        "A cliff, not a slope."
+      ]
+    },
+    {
+      "id": "aac",
+      "chapter": "The native aac encoder",
+      "narration": "Native aac: twelve, fifteen point seven, seventeen point two, nineteen point five, twenty one point seven. At one twenty eight it keeps seven hundred hertz more than mp3. At two fifty six, two point two kilohertz more.",
+      "captions": [
+        "aac: 12.0 to 21.7 kHz.",
+        "At 128 kbit/s: aac 17.2, mp3 16.5 kHz."
+      ]
+    },
+    {
+      "id": "opus",
+      "chapter": "libopus",
+      "narration": "libopus does not move. Sixty four to two fifty six: twenty kilohertz every time, also at constant bit rate sixty four. On these tones, variable bit rate spent one hundred nine point five at the sixty four label. The header holds no cutoff.",
+      "captions": [
+        "libopus: 20.0 kHz at every bit rate.",
+        "OpusHead has no cutoff field."
+      ]
+    },
+    {
+      "id": "channels",
+      "chapter": "Channels and dash cutoff",
+      "narration": "Channels matter. For aac, mono at half the bit rate ends exactly where stereo at double does, five pairs of five. For mp3, one pair of five: stereo one twenty eight and mono sixty four. Dash cutoff twenty thousand: mp3 nineteen point five, aac twenty point two.",
+      "captions": [
+        "aac: mono k = stereo 2k, 5 of 5. mp3: 1 of 5.",
+        "-cutoff 20000: mp3 19.5, aac 20.2 kHz."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "narration": "To keep the top, raise the bit rate, add dash cutoff, or use opus. Not tested: other builds, real music, other sample rates, variable bit rate modes.",
+      "captions": [
+        "Higher bit rate, -cutoff, or libopus.",
+        "Not tested: other builds, real music."
+      ],
+      "sim": null
+    }
+  ]
+}
