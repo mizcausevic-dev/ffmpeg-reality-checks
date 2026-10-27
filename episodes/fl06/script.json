@@ -1,0 +1,185 @@
+{
+ "n": 106,
+ "slug": "ffmpeg-png-predictor-default-checks",
+ "palette": "newsprint",
+ "series": "FFmpeg Reality Checks",
+ "title": "Why FFmpeg 8 PNG files differ",
+ "fullTitle": "FFmpeg 8 PNG Size Changed: -pred Default none to paeth, Same Pixels",
+ "kicker": "Deep dive 06",
+ "thumb": {
+  "number": "+78 %",
+  "label": "SAME COMMAND, BIGGER PNG",
+  "color": "red"
+ },
+ "endCard": {},
+ "hero": {
+  "scene": "flat",
+  "t": 6.0
+ },
+ "scenes": [
+  {
+   "id": "hook",
+   "chapter": "The question",
+   "narration": "Same command. Same picture. Two ffmpeg builds. On six point one point one, a test image is thirty thousand three hundred twenty four bytes. On eight point one point two, it is twenty six thousand four hundred eighty two. Every pixel is identical. And on flat colors, the new file is bigger, by fifty one point four percent. This film finds out why.",
+   "captions": [
+    "Same command, same pixels.",
+    "30324 B on 6.1.1, 26482 B on 8.1.2."
+   ]
+  },
+  {
+   "id": "ask",
+   "chapter": "Four questions",
+   "narration": "One command writes a PNG. Four questions. What does the encoder do by default? Does the picture change? Does every image get smaller? And what do I type so my files stay put after an upgrade? We measured two builds: six point one point one, an Ubuntu build, and eight point one point two, the Windows full build.",
+   "captions": [
+    "Four questions about one PNG command.",
+    "Ubuntu 6.1.1 and Windows 8.1.2."
+   ]
+  },
+  {
+   "id": "readers",
+   "chapter": "Two readers and a control",
+   "narration": "Every image is synthetic. Reader one is the file size, plus the pixels as ffmpeg itself decodes them. Reader two is our own PNG parser. It inflates the file and reads the filter byte at the start of every row. The control is a PNG we build with chosen filter bytes. The parser must read them back exactly, and it does.",
+   "captions": [
+    "Reader 1: size and decoded pixels.",
+    "Reader 2: our parser reads every row."
+   ]
+  },
+  {
+   "id": "filters",
+   "chapter": "What a PNG filter is",
+   "narration": "A PNG row is not stored raw. It first gets a filter, one byte per row. Zero stores the row as it is. One subtracts the pixel on the left. Two, the pixel above. Three, the average. Four, paeth, which picks the closest of left, above and diagonal. Then zlib squeezes the differences. Smooth rows leave small numbers, and small numbers squeeze well.",
+   "captions": [
+    "Filter byte 0 to 4, one per row.",
+    "Smooth rows leave small differences."
+   ]
+  },
+  {
+   "id": "help",
+   "chapter": "The default, by the help text",
+   "narration": "Ask each build. Dash h encoder equals png. On six point one point one, the pred option says default none. On eight point one point two, it says default paeth. That one word is the first cause. The same command now picks a different filter.",
+   "captions": [
+    "6.1.1: -pred default none.",
+    "8.1.2: -pred default paeth."
+   ]
+  },
+  {
+   "id": "rows",
+   "chapter": "The default, by the file",
+   "narration": "Do not trust a help text. Read the file. The test image has three hundred sixty rows. On six point one point one, all three hundred sixty carry filter zero. On eight point one point two, row zero carries filter one, and the other three hundred fifty nine carry filter four. All sixteen images show the same split.",
+   "captions": [
+    "6.1.1: 360 rows, all filter 0.",
+    "8.1.2: filter 1, then 359 of filter 4."
+   ]
+  },
+  {
+   "id": "pixels",
+   "chapter": "The picture",
+   "narration": "Now the picture. We decoded every file with ffmpeg and with our own code, and hashed the pixels. All one hundred twelve files, from both builds, give the same pixels as the source. PNG is lossless. The filter changes the file, never the picture.",
+   "captions": [
+    "112 files, one set of pixels.",
+    "Both readers agree."
+   ]
+  },
+  {
+   "id": "gradient",
+   "chapter": "Smooth content",
+   "narration": "Where does it help? A smooth gradient. On six point one point one, with no filter, one hundred thirty five thousand three hundred thirty eight bytes. On eight point one point two, two thousand two hundred twenty nine. That is ninety eight point four percent smaller, from the same command.",
+   "captions": [
+    "135338 B to 2229 B.",
+    "98.4 % smaller."
+   ]
+  },
+  {
+   "id": "photo",
+   "chapter": "Photo-like content",
+   "narration": "Photo-like content gains less. A noisy color field goes from one hundred sixty six thousand two hundred twenty bytes to one hundred one thousand six hundred eighty eight, thirty eight point eight percent smaller. The ffmpeg test pattern gains twelve point seven percent. The mandelbrot, nine point nine.",
+   "captions": [
+    "Noisy field: 38.8 % smaller.",
+    "Test pattern 12.7 %, mandelbrot 9.9 %."
+   ]
+  },
+  {
+   "id": "flat",
+   "chapter": "Flat content",
+   "narration": "But not everything. Flat color runs go from four thousand three hundred forty six to six thousand five hundred eighty one bytes, fifty one point four percent bigger. Four color noise goes from twenty four thousand eighty one to forty two thousand nine hundred fifty six, seventy eight point four percent bigger. Upgrading can make some PNGs bigger.",
+   "captions": [
+    "Flat runs: 51.4 % bigger.",
+    "Four-color noise: 78.4 % bigger."
+   ]
+  },
+  {
+   "id": "noise",
+   "chapter": "Nothing to predict",
+   "narration": "And some cannot change. White noise is one hundred seventy three thousand six hundred twenty three bytes on both builds, in every one of the six modes. There is nothing to predict, so there is nothing to save.",
+   "captions": [
+    "White noise: 173623 B, every mode.",
+    "Nothing to predict."
+   ]
+  },
+  {
+   "id": "mixed",
+   "chapter": "Mixed",
+   "narration": "Dash p r e d mixed chooses a filter for each row. On the test pattern it uses four filters, and on eight point one point two it is twenty six thousand two hundred three bytes, the smallest of the six. On flat runs it gives four thousand four hundred sixty one, against six thousand five hundred eighty one for the new default. One exception: a sixteen bit gradient.",
+   "captions": [
+    "-pred mixed: a filter per row.",
+    "Flat runs: 4461 B, not 6581 B."
+   ]
+  },
+  {
+   "id": "level",
+   "chapter": "Compression level",
+   "narration": "The compression level is a second knob, and it is not a rescue. On six point one point one, level nine with no filter still writes one hundred thirty five thousand three hundred thirty eight bytes. On eight point one point two, the noisy field is one hundred one thousand six hundred eighty eight at level six, and bigger at level nine: one hundred nine thousand four hundred forty four.",
+   "captions": [
+    "Level 9 is not always smaller.",
+    "Noisy field: 101688 B at 6, 109444 B at 9."
+   ]
+  },
+  {
+   "id": "formats",
+   "chapter": "Other pixel formats",
+   "narration": "Other pixel formats follow the same pattern. A noisy r g b a image goes from two hundred twenty five thousand four hundred thirty one bytes to one hundred twenty three thousand nine hundred ninety one. Sixteen bit r g b, from two hundred sixty thousand seventy four to one hundred twenty four thousand six hundred sixteen. Grey, from forty three thousand eight hundred seventy nine to thirty thousand ninety seven.",
+   "captions": [
+    "rgba: 225431 B to 123991 B.",
+    "16-bit rgb: 260074 B to 124616 B."
+   ]
+  },
+  {
+   "id": "upgrade",
+   "chapter": "Cause two: the bytes",
+   "narration": "That is cause one. Cause two is quieter. We wrote ninety six files with an explicit dash p r e d on both builds. The filter choices match in all ninety six. The bytes match in none. Even dash p r e d none on the test image is thirty thousand three hundred twenty four bytes on one build and thirty one thousand four hundred sixty one on the other. We did not find which part of the build writes the difference.",
+   "captions": [
+    "Filters match: 96 of 96.",
+    "Bytes match: 0 of 96."
+   ]
+  },
+  {
+   "id": "decide",
+   "chapter": "What to type",
+   "narration": "So what do you type? If you compare or cache file hashes, set dash p r e d yourself, and keep the build the same. Better, hash the decoded pixels: raw video, dash f m d five. If you do not know your images, try mixed, and measure. For flat content, try none.",
+   "captions": [
+    "Pin -pred, or hash the pixels.",
+    "Try mixed. For flat art, try none."
+   ]
+  },
+  {
+   "id": "sheet",
+   "chapter": "Cheat sheet",
+   "narration": "The cheat sheet. One: the default moved from none to paeth. Two: the picture is identical. Three: smooth images shrink, flat images can grow. Four: an explicit dash p r e d keeps the filter, not the bytes. Five: hash the pixels, not the file.",
+   "captions": [
+    "Default: none to paeth.",
+    "Pixels same, bytes different."
+   ]
+  },
+  {
+   "id": "close",
+   "chapter": "Not tested",
+   "narration": "Not tested: other builds, real photographs, indexed color, interlaced files, other PNG tools, and which library writes the bytes. Measured on ffmpeg six point one point one and eight point one point two, with synthetic images. Check your own files before you trust a size.",
+   "captions": [
+    "Not tested: real photos, other builds.",
+    "Synthetic images. 6.1.1 and 8.1.2."
+   ]
+  }
+ ],
+ "kind": "long",
+ "tag": "Deep dive 06"
+}

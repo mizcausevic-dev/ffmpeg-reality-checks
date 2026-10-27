@@ -1,0 +1,124 @@
+{
+ "n": 8,
+ "palette": "riso",
+ "series": "FFmpeg Reality Checks",
+ "slug": "ffmpeg-colordetect-short",
+ "format": "vertical",
+ "title": "Can FFmpeg colordetect tell the color range?",
+ "fullTitle": "FFmpeg colordetect: It Can Prove Full Range, Never Limited",
+ "kicker": "Short 08",
+ "thumb": {
+  "number": "220 of 256",
+  "label": "TAGGED TV: 256 BECOME 220",
+  "color": "red"
+ },
+ "endCard": {
+  "seconds": 2,
+  "line": "The full film is on the channel"
+ },
+ "hero": {
+  "scene": "hook",
+  "t": 3
+ },
+ "scenes": [
+  {
+   "id": "hook",
+   "chapter": "The surprise",
+   "narration": "A gray ramp has two hundred fifty six levels. Tag it tv, convert it to RGB, and only two hundred twenty survive. Seventeen columns turn black. Twenty one turn white. The pixels did not change. Only the label did. FFmpeg eight can now read the pixels and check the label. Can it?",
+   "captions": [
+    "256 levels. 220 come out.",
+    "17 black, 21 white."
+   ]
+  },
+  {
+   "id": "tag",
+   "chapter": "The tag",
+   "narration": "First, the label. On six point one point one, the sixteen to two thirty five ramp is identical under tv, under pc, and with no tag. A file can say tv and hold zero to two fifty five. ffprobe only reports the label.",
+   "captions": [
+    "Same bytes under every tag.",
+    "ffprobe reports the label."
+   ]
+  },
+  {
+   "id": "consequence",
+   "chapter": "What the tag changes",
+   "narration": "But the tag changes what you see. On six point one point one, tagged tv, that ramp stretches to zero to two fifty five. Tagged pc, it stays sixteen to two thirty five. An untagged file is shown as tv, on both builds.",
+   "captions": [
+    "Tagged tv: 0..255.",
+    "Tagged pc: 16..235."
+   ]
+  },
+  {
+   "id": "option",
+   "chapter": "A build difference",
+   "narration": "Beware the output option dash color underscore range pc. On six point one point one it only relabels. On eight point one point two it converts: sixteen to two thirty five becomes zero to two fifty five.",
+   "captions": [
+    "6.1.1: relabel only.",
+    "8.1.2: converts the pixels."
+   ]
+  },
+  {
+   "id": "missing",
+   "chapter": "No filter on 6.1.1",
+   "narration": "Six point one point one has no colordetect: no such filter, exit code eight. There, use signalstats. If Y min is below sixteen, or Y max above two thirty five, the file is full range. One sample is enough: a single two thirty six in one frame of three.",
+   "captions": [
+    "6.1.1: No such filter, exit 8.",
+    "One sample at 236 proves full."
+   ]
+  },
+  {
+   "id": "full",
+   "chapter": "colordetect: full",
+   "narration": "On eight point one point two, colordetect reads the zero to two fifty five ramp: JPEG full range. Tagged tv, or not tagged at all.",
+   "captions": [
+    "Ramp 0..255: JPEG / full range."
+   ]
+  },
+  {
+   "id": "limited",
+   "chapter": "colordetect: limited",
+   "narration": "The sixteen to two thirty five ramp: undetermined. Never limited, on any clip. A ramp with only sixteen and two thirty five: undetermined too. Inside the limited range proves nothing, because a full range file can hold the same pixels.",
+   "captions": [
+    "16..235: undetermined.",
+    "It never says limited."
+   ]
+  },
+  {
+   "id": "luma",
+   "chapter": "Luma only",
+   "narration": "One more limit. Colordetect looks at luma only. Push Cb across zero to two fifty four, with luma inside the limits, and it still says undetermined.",
+   "captions": [
+    "Cb 0..254, luma 16..235.",
+    "colordetect: undetermined."
+   ]
+  },
+  {
+   "id": "notecho",
+   "chapter": "Pixels, not the label",
+   "narration": "Does it echo the tag? No. A sixty four to one ninety one ramp, converted by dash color underscore range pc to fifty six to two hundred four, is tagged pc, and still reads undetermined. It reads pixels, not the label.",
+   "captions": [
+    "Tagged pc, bytes 56..204.",
+    "Undetermined."
+   ]
+  },
+  {
+   "id": "alpha",
+   "chapter": "Alpha mode",
+   "narration": "Alpha works the same way. Opaque red: opaque. Red with alpha one twenty eight: straight. Premultiplied looking pixels stay undetermined. One bad pixel in one of three frames flips it to straight.",
+   "captions": [
+    "Opaque, straight: provable.",
+    "Premultiplied-looking: undetermined."
+   ]
+  },
+  {
+   "id": "close",
+   "chapter": "The rule",
+   "narration": "So the rule. ffprobe tells you the label. Signalstats, or colordetect on eight, can prove full range. Nothing can prove limited. Measured on six point one point one and eight point one point two. Not tested: real footage, lossy codecs, players.",
+   "captions": [
+    "The label is not the pixels.",
+    "Not tested: real footage, players."
+   ]
+  }
+ ],
+ "kind": "short"
+}

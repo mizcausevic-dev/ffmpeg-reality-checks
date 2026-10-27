@@ -1,0 +1,116 @@
+{
+ "n": 206,
+ "slug": "ffmpeg-png-predictor-default-short",
+ "palette": "newsprint",
+ "series": "FFmpeg Reality Checks",
+ "title": "Why FFmpeg 8 PNG files differ",
+ "fullTitle": "FFmpeg 8 Made Some PNGs 78% Bigger: the -pred Default Changed",
+ "kicker": "Short 06",
+ "thumb": {
+  "number": "-98 %",
+  "label": "SAME PIXELS, NEW FILE SIZE",
+  "color": "red"
+ },
+ "endCard": {
+  "seconds": 4,
+  "line": "The full film is on the channel"
+ },
+ "hero": {
+  "scene": "gradient",
+  "t": 4.0
+ },
+ "scenes": [
+  {
+   "id": "hook",
+   "chapter": "The question",
+   "narration": "Same ffmpeg command. Same picture. Two builds. On six point one point one, a test image is thirty thousand three hundred twenty four bytes. On eight point one point two, twenty six thousand four hundred eighty two. Not one pixel changed. So what did?",
+   "captions": [
+    "Same command, same pixels.",
+    "30324 B vs 26482 B."
+   ]
+  },
+  {
+   "id": "pixels",
+   "chapter": "The picture",
+   "narration": "First, the picture. We decoded all one hundred twelve files from both builds, with ffmpeg and with our own code. Every one gives the same pixels as the source. PNG is lossless, so the pixels cannot change. Only the file can.",
+   "captions": [
+    "112 files, same pixels.",
+    "PNG is lossless."
+   ]
+  },
+  {
+   "id": "help",
+   "chapter": "The default",
+   "narration": "Ask each build with dash h encoder equals png. Six point one point one, the Ubuntu build: pred, default none. Eight point one point two, the Windows full build: pred, default paeth. A PNG filter is one byte at the start of every row. The default moved.",
+   "captions": [
+    "6.1.1: default none.",
+    "8.1.2: default paeth."
+   ]
+  },
+  {
+   "id": "rows",
+   "chapter": "The rows",
+   "narration": "We read that byte in every row. Six point one point one: three hundred sixty rows, all filter zero. Eight point one point two: row zero is filter one, then three hundred fifty nine rows of filter four. All sixteen images show the same split.",
+   "captions": [
+    "6.1.1: all 360 rows filter 0.",
+    "8.1.2: filter 1, then 359 of 4."
+   ]
+  },
+  {
+   "id": "gradient",
+   "chapter": "Smooth content",
+   "narration": "On a smooth gradient it pays. One hundred thirty five thousand three hundred thirty eight bytes becomes two thousand two hundred twenty nine. Ninety eight point four percent smaller, from the same command.",
+   "captions": [
+    "135338 B to 2229 B.",
+    "98.4 % smaller."
+   ]
+  },
+  {
+   "id": "photo",
+   "chapter": "Photo-like content",
+   "narration": "A noisy color field goes from one hundred sixty six thousand two hundred twenty bytes to one hundred one thousand six hundred eighty eight. Thirty eight point eight percent smaller.",
+   "captions": [
+    "166220 B to 101688 B.",
+    "38.8 % smaller."
+   ]
+  },
+  {
+   "id": "flat",
+   "chapter": "Flat content",
+   "narration": "But flat color runs go the other way. Four thousand three hundred forty six becomes six thousand five hundred eighty one: fifty one point four percent bigger. Four color noise is seventy eight point four percent bigger. Upgrading can make a PNG bigger.",
+   "captions": [
+    "Flat runs: 51.4 % bigger.",
+    "Four-color noise: 78.4 % bigger."
+   ]
+  },
+  {
+   "id": "upgrade",
+   "chapter": "The hash moves",
+   "narration": "And the hash moves. We wrote ninety six files with an explicit dash p r e d. The filters match in all ninety six. The bytes match in none. Even dash p r e d none is thirty thousand three hundred twenty four bytes on one build, thirty one thousand four hundred sixty one on the other.",
+   "captions": [
+    "Filters match: 96 of 96.",
+    "Bytes match: 0 of 96."
+   ]
+  },
+  {
+   "id": "decide",
+   "chapter": "What to type",
+   "narration": "So pin it. Type dash p r e d yourself, and try mixed. Measure your own images, because flat ones may prefer none. And for a cache key, hash the decoded pixels, raw video with dash f m d five, not the file.",
+   "captions": [
+    "Pin -pred. Try mixed.",
+    "Hash the pixels, not the file."
+   ]
+  },
+  {
+   "id": "close",
+   "chapter": "Not tested",
+   "narration": "Not tested: other builds, real photographs, indexed color, other PNG tools, or which library writes the bytes. Measured with synthetic images on ffmpeg six point one point one and eight point one point two. Check your own files.",
+   "captions": [
+    "Not tested: real photos.",
+    "Synthetic images, two builds."
+   ]
+  }
+ ],
+ "kind": "short",
+ "tag": "Short 06"
+}

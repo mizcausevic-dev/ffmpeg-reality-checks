@@ -1,0 +1,1225 @@
+{
+  "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+  "build": "v6",
+  "platform": "linux",
+  "sources": {
+    "clean": {
+      "size": "320x180",
+      "fps": 25,
+      "frames": 50,
+      "uniqueFrames": 50,
+      "rawMd5": "587503cd32535b51b724686375b53735",
+      "filter": "testsrc2=s=320x180:r=25:d=2,format=yuv420p"
+    },
+    "noisy": {
+      "size": "320x180",
+      "fps": 25,
+      "frames": 50,
+      "uniqueFrames": 50,
+      "rawMd5": "d34e70d5c5fbb006e47f8ab21ab15bb1",
+      "filter": "testsrc2=s=320x180:r=25:d=2,format=yuv420p,geq=lum='clip(lum(X,Y)+(mod(abs(sin(X*12.9898+Y*78.233+N*37.719))*43758.5453,1)-0.5)*40,0,255)':cb='cb(X,Y)':cr='cr(X,Y)'"
+    },
+    "long": {
+      "size": "160x90",
+      "fps": 25,
+      "frames": 400,
+      "uniqueFrames": 400,
+      "rawMd5": "f3004f7ce1c80ee702204163bdb32f35",
+      "filter": "testsrc2=s=160x90:r=25:d=16,format=yuv420p"
+    }
+  },
+  "cases": {
+    "svt_clean_p4_crf30": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 4 -crf 30 out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 4
+      },
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 45764,
+      "packetMd5": "13ebc82d2782a48837f7d4a03cfdf860",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 44850,
+      "bytesObu": 44850,
+      "decodedMd5": "349f9c9771d4a8827e2ee57020e2bf54",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 47.896967,
+      "ffmpegPsnrY": 48.774103,
+      "ffmpegSsimAll": 0.997582,
+      "ffmpegSsimY": 0.9974,
+      "nodePsnrAvg": 47.896967064872825,
+      "nodePsnrY": 48.7741025814628,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 2.6
+    },
+    "svt_clean_p8_crf30": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 8 -crf 30 out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 61302,
+      "packetMd5": "27fbf812e7f5a113309a2b4ea1c9513a",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 60388,
+      "bytesObu": 60388,
+      "decodedMd5": "cdff479cf99b282fed98b66d974a2f89",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 46.603851,
+      "ffmpegPsnrY": 47.797496,
+      "ffmpegSsimAll": 0.996664,
+      "ffmpegSsimY": 0.996561,
+      "nodePsnrAvg": 46.60385056140938,
+      "nodePsnrY": 47.79749606633362,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1.4
+    },
+    "svt_clean_p12_crf30": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 12 -crf 30 out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 12
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 95105,
+      "packetMd5": "3ae784d4318e9802f0f387a2c03bb4fa",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 94190,
+      "bytesObu": 94190,
+      "decodedMd5": "73a6e7f132cea960ff84e11e8c52c628",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 42.541674,
+      "ffmpegPsnrY": 44.232542,
+      "ffmpegSsimAll": 0.990435,
+      "ffmpegSsimY": 0.991044,
+      "nodePsnrAvg": 42.541673603597886,
+      "nodePsnrY": 44.23254227261214,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1
+    },
+    "svt_clean_p8_crf0": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 8 -crf 0 out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 35,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 49746,
+      "packetMd5": "e1eeb51ac4f44c8e3d207bd485790212",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 48832,
+      "bytesObu": 48832,
+      "decodedMd5": "394b8cefb7785b62f5e30a0c4441f601",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 43.944208,
+      "ffmpegPsnrY": 45.25174,
+      "ffmpegSsimAll": 0.994629,
+      "ffmpegSsimY": 0.994585,
+      "nodePsnrAvg": 43.944207970296354,
+      "nodePsnrY": 45.251740186146286,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1.6
+    },
+    "svt_clean_p8_nocrf": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 8 out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 35,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 49746,
+      "packetMd5": "e1eeb51ac4f44c8e3d207bd485790212",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 48832,
+      "bytesObu": 48832,
+      "decodedMd5": "394b8cefb7785b62f5e30a0c4441f601",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 43.944208,
+      "ffmpegPsnrY": 45.25174,
+      "ffmpegSsimAll": 0.994629,
+      "ffmpegSsimY": 0.994585,
+      "nodePsnrAvg": 43.944207970296354,
+      "nodePsnrY": 45.251740186146286,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1.8
+    },
+    "svt_clean_p8_crf63": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 8 -crf 63 out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 63,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 6154,
+      "packetMd5": "f124ca371dd59ff733c0811f68377585",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 5260,
+      "bytesObu": 5260,
+      "decodedMd5": "950bd3408bf7b5f2d4892854fc7258ec",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 30.759183,
+      "ffmpegPsnrY": 32.570003,
+      "ffmpegSsimAll": 0.942841,
+      "ffmpegSsimY": 0.948617,
+      "nodePsnrAvg": 30.759183039032006,
+      "nodePsnrY": 32.570002709571476,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1.3
+    },
+    "svt_clean_p8_crf64": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 8 -crf 64 out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 222,
+      "svt": {
+        "version": null,
+        "brcMode": null,
+        "rateFactor": null,
+        "gop": null,
+        "preset": null
+      },
+      "failed": true,
+      "error": "[libsvtav1 @ 0x555d19301740] Value 64.000000 for parameter 'crf' out of range [0 - 63] | [libsvtav1 @ 0x555d19301740] Error setting option crf to value 64. | [vost#0:0/libsvtav1 @ 0x555d19306640] Error while opening encoder - maybe incorrect parameters such as bit_rate, rate, width or height.",
+      "fileWritten": false
+    },
+    "svt_clean_p8_crf30_b0": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 8 -crf 30 -b:v 0 out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 61302,
+      "packetMd5": "27fbf812e7f5a113309a2b4ea1c9513a",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 60388,
+      "bytesObu": 60388,
+      "decodedMd5": "cdff479cf99b282fed98b66d974a2f89",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 46.603851,
+      "ffmpegPsnrY": 47.797496,
+      "ffmpegSsimAll": 0.996664,
+      "ffmpegSsimY": 0.996561,
+      "nodePsnrAvg": 46.60385056140938,
+      "nodePsnrY": 47.79749606633362,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1.7
+    },
+    "svt_clean_p8_crf30_b500k": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 8 -crf 30 -b:v 500k out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 61302,
+      "packetMd5": "27fbf812e7f5a113309a2b4ea1c9513a",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 60388,
+      "bytesObu": 60388,
+      "decodedMd5": "cdff479cf99b282fed98b66d974a2f89",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 46.603851,
+      "ffmpegPsnrY": 47.797496,
+      "ffmpegSsimAll": 0.996664,
+      "ffmpegSsimY": 0.996561,
+      "nodePsnrAvg": 46.60385056140938,
+      "nodePsnrY": 47.79749606633362,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1.8
+    },
+    "svt_clean_p8_b500k": {
+      "command": "ffmpeg -i clean.mkv -c:v libsvtav1 -preset 8 -b:v 500k out.mkv",
+      "lib": "svt",
+      "src": "clean",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": null,
+        "rateFactor": null,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": false,
+      "ranTwice": true,
+      "fileBytes": 103507,
+      "packetMd5": "d7310883af3d69e5fa86c1c2885c4ee5",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 102593,
+      "bytesObu": 102593,
+      "decodedMd5": "fa4d7a480ca1b4c9ad8d874946c5a64e",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 53.647896,
+      "ffmpegPsnrY": 54.800279,
+      "ffmpegSsimAll": 0.999122,
+      "ffmpegSsimY": 0.99909,
+      "nodePsnrAvg": 53.64789601432065,
+      "nodePsnrY": 54.80027926293697,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1.8
+    },
+    "aom_clean_u8_crf30": {
+      "command": "ffmpeg -i clean.mkv -c:v libaom-av1 -cpu-used 8 -crf 30 out.mkv",
+      "lib": "aom",
+      "src": "clean",
+      "exit": 0,
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 41459,
+      "packetMd5": "d285a135dbcf40c769b50d4fb21b19f6",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 40066,
+      "bytesObu": 40066,
+      "decodedMd5": "414ea88eda90e476c639090b6e148bdd",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 47.055661,
+      "ffmpegPsnrY": 47.456157,
+      "ffmpegSsimAll": 0.997132,
+      "ffmpegSsimY": 0.99669,
+      "nodePsnrAvg": 47.055660770345966,
+      "nodePsnrY": 47.45615699597251,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 7.4
+    },
+    "aom_clean_u8_crf30_b0": {
+      "command": "ffmpeg -i clean.mkv -c:v libaom-av1 -cpu-used 8 -crf 30 -b:v 0 out.mkv",
+      "lib": "aom",
+      "src": "clean",
+      "exit": 0,
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 41459,
+      "packetMd5": "d285a135dbcf40c769b50d4fb21b19f6",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 40066,
+      "bytesObu": 40066,
+      "decodedMd5": "414ea88eda90e476c639090b6e148bdd",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 47.055661,
+      "ffmpegPsnrY": 47.456157,
+      "ffmpegSsimAll": 0.997132,
+      "ffmpegSsimY": 0.99669,
+      "nodePsnrAvg": 47.055660770345966,
+      "nodePsnrY": 47.45615699597251,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 3.5
+    },
+    "aom_clean_u8_crf30_b500k": {
+      "command": "ffmpeg -i clean.mkv -c:v libaom-av1 -cpu-used 8 -crf 30 -b:v 500k out.mkv",
+      "lib": "aom",
+      "src": "clean",
+      "exit": 0,
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 45503,
+      "packetMd5": "f057adb6ffd71594ecd95263b0d8ae15",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 44110,
+      "bytesObu": 44110,
+      "decodedMd5": "b413b5733801ebe98935a249269dc3d2",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 47.703852,
+      "ffmpegPsnrY": 48.089419,
+      "ffmpegSsimAll": 0.997476,
+      "ffmpegSsimY": 0.997114,
+      "nodePsnrAvg": 47.70385193676158,
+      "nodePsnrY": 48.089419225900095,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 3.4
+    },
+    "aom_clean_u8_b500k": {
+      "command": "ffmpeg -i clean.mkv -c:v libaom-av1 -cpu-used 8 -b:v 500k out.mkv",
+      "lib": "aom",
+      "src": "clean",
+      "exit": 0,
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 80933,
+      "packetMd5": "f805ef7ae0325270db68f482b2eefea5",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 79540,
+      "bytesObu": 79540,
+      "decodedMd5": "ac373176fa7ce542295c4b725a49db32",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 56.253325,
+      "ffmpegPsnrY": 56.820334,
+      "ffmpegSsimAll": 0.999535,
+      "ffmpegSsimY": 0.999467,
+      "nodePsnrAvg": 56.25332525184821,
+      "nodePsnrY": 56.82033407255476,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 2.9
+    },
+    "aom_clean_u8_crf0": {
+      "command": "ffmpeg -i clean.mkv -c:v libaom-av1 -cpu-used 8 -crf 0 out.mkv",
+      "lib": "aom",
+      "src": "clean",
+      "exit": 0,
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 236102,
+      "packetMd5": "0db9ea54457d7184dae08a37d68252dd",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 234706,
+      "bytesObu": 234706,
+      "decodedMd5": "587503cd32535b51b724686375b53735",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": null,
+      "ffmpegPsnrY": null,
+      "ffmpegSsimAll": 1,
+      "ffmpegSsimY": 1,
+      "nodePsnrAvg": null,
+      "nodePsnrY": null,
+      "lossless": true,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 3.9
+    },
+    "aom_clean_u8_lossless": {
+      "command": "ffmpeg -i clean.mkv -c:v libaom-av1 -cpu-used 8 -crf 0 -aom-params lossless=1 out.mkv",
+      "lib": "aom",
+      "src": "clean",
+      "exit": 0,
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 236102,
+      "packetMd5": "0db9ea54457d7184dae08a37d68252dd",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 234706,
+      "bytesObu": 234706,
+      "decodedMd5": "587503cd32535b51b724686375b53735",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": null,
+      "ffmpegPsnrY": null,
+      "ffmpegSsimAll": 1,
+      "ffmpegSsimY": 1,
+      "nodePsnrAvg": null,
+      "nodePsnrY": null,
+      "lossless": true,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 2
+    },
+    "aom_clean_u8_crf64": {
+      "command": "ffmpeg -i clean.mkv -c:v libaom-av1 -cpu-used 8 -crf 64 out.mkv",
+      "lib": "aom",
+      "src": "clean",
+      "exit": 222,
+      "failed": true,
+      "error": "[libaom-av1 encoder @ 0x560e04444740] Value 64.000000 for parameter 'crf' out of range [-1 - 63] | [libaom-av1 encoder @ 0x560e04444740] Error setting option crf to value 64. | [vost#0:0/libaom-av1 @ 0x560e04449640] Error while opening encoder - maybe incorrect parameters such as bit_rate, rate, wid",
+      "fileWritten": false
+    },
+    "svt_noisy_p8_crf30": {
+      "command": "ffmpeg -i noisy.mkv -c:v libsvtav1 -preset 8 -crf 30 out.mkv",
+      "lib": "svt",
+      "src": "noisy",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 621923,
+      "packetMd5": "b73574f0af69f98cc3f179516af0324b",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 620997,
+      "bytesObu": 620997,
+      "decodedMd5": "c4f23edaddc5625716930bb64c1e5809",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 35.215411,
+      "ffmpegPsnrY": 33.818848,
+      "ffmpegSsimAll": 0.950602,
+      "ffmpegSsimY": 0.929839,
+      "nodePsnrAvg": 35.21541067534677,
+      "nodePsnrY": 33.818848290394655,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 4.8
+    },
+    "svt_noisy_p12_crf30": {
+      "command": "ffmpeg -i noisy.mkv -c:v libsvtav1 -preset 12 -crf 30 out.mkv",
+      "lib": "svt",
+      "src": "noisy",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 12
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 729503,
+      "packetMd5": "bc6508a22bb4bd6a28da9780f29f77a9",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 728576,
+      "bytesObu": 728576,
+      "decodedMd5": "1302862bdd9437ac213a602505e81cfd",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 35.173164,
+      "ffmpegPsnrY": 34.118557,
+      "ffmpegSsimAll": 0.950679,
+      "ffmpegSsimY": 0.937459,
+      "nodePsnrAvg": 35.17316401948755,
+      "nodePsnrY": 34.11855677451917,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 1.7
+    },
+    "svt_noisy_p8_crf30_b500k": {
+      "command": "ffmpeg -i noisy.mkv -c:v libsvtav1 -preset 8 -crf 30 -b:v 500k out.mkv",
+      "lib": "svt",
+      "src": "noisy",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 8
+      },
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 621923,
+      "packetMd5": "b73574f0af69f98cc3f179516af0324b",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 620997,
+      "bytesObu": 620997,
+      "decodedMd5": "c4f23edaddc5625716930bb64c1e5809",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 35.215411,
+      "ffmpegPsnrY": 33.818848,
+      "ffmpegSsimAll": 0.950602,
+      "ffmpegSsimY": 0.929839,
+      "nodePsnrAvg": 35.21541067534677,
+      "nodePsnrY": 33.818848290394655,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 2.7
+    },
+    "aom_noisy_u8_crf30": {
+      "command": "ffmpeg -i noisy.mkv -c:v libaom-av1 -cpu-used 8 -crf 30 out.mkv",
+      "lib": "aom",
+      "src": "noisy",
+      "exit": 0,
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 515938,
+      "packetMd5": "b9ce5fd845a879ac57d6c980b167e6cd",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 514533,
+      "bytesObu": 514533,
+      "decodedMd5": "cca4104c3d359258f5a2d1d5704bfb55",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 33.900415,
+      "ffmpegPsnrY": 32.402136,
+      "ffmpegSsimAll": 0.926783,
+      "ffmpegSsimY": 0.893792,
+      "nodePsnrAvg": 33.90041474838453,
+      "nodePsnrY": 32.40213605155101,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 4.5
+    },
+    "aom_noisy_u8_crf30_b500k": {
+      "command": "ffmpeg -i noisy.mkv -c:v libaom-av1 -cpu-used 8 -crf 30 -b:v 500k out.mkv",
+      "lib": "aom",
+      "src": "noisy",
+      "exit": 0,
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 201811,
+      "packetMd5": "d84680b727d51278a23ecc2e986fc64e",
+      "packets": 50,
+      "packetsObu": 50,
+      "bytesProbe": 200415,
+      "bytesObu": 200415,
+      "decodedMd5": "a85fecbde60000fe5c6860d0e3b2c800",
+      "decodedFrames": 50,
+      "ffmpegPsnrAvg": 29.326479,
+      "ffmpegPsnrY": 27.715378,
+      "ffmpegSsimAll": 0.728606,
+      "ffmpegSsimY": 0.598327,
+      "nodePsnrAvg": 29.32647861422069,
+      "nodePsnrY": 27.715377849882564,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 3.7
+    }
+  },
+  "long": {
+    "svt_long_default": {
+      "command": "ffmpeg -i long.mkv -c:v libsvtav1 -preset 12 -crf 30 out.mkv",
+      "lib": "svt",
+      "src": "long",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 161,
+        "preset": 12
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 424215,
+      "packetMd5": "a4f6806b246e21f566fa9b3c05f5508f",
+      "packets": 400,
+      "packetsObu": 400,
+      "bytesProbe": 420921,
+      "bytesObu": 420921,
+      "decodedMd5": "87113696222f2a02ecb0a7a94f571df7",
+      "decodedFrames": 400,
+      "ffmpegPsnrAvg": 38.941239,
+      "ffmpegPsnrY": 41.045078,
+      "ffmpegSsimAll": 0.985222,
+      "ffmpegSsimY": 0.984431,
+      "nodePsnrAvg": 38.94123910024642,
+      "nodePsnrY": 41.04507760966996,
+      "lossless": false,
+      "keyframes": [
+        0,
+        161,
+        322
+      ],
+      "keyframesObu": [
+        0,
+        161,
+        322
+      ],
+      "seqHeaderTus": [
+        0,
+        161,
+        322
+      ],
+      "seconds": 2.4,
+      "keyframeSeconds": [
+        0,
+        6.44,
+        12.88
+      ],
+      "ptsMatchIndex": true,
+      "seek": {
+        "target": 300,
+        "landProbe": 161,
+        "landObu": 161,
+        "framesToDecodeProbe": 140,
+        "framesToDecodeObu": 140,
+        "seekMd5Match": true,
+        "seekIsNotNeighbour": true
+      }
+    },
+    "aom_long_default": {
+      "command": "ffmpeg -i long.mkv -c:v libaom-av1 -cpu-used 8 -crf 30 out.mkv",
+      "lib": "aom",
+      "src": "long",
+      "exit": 0,
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 145674,
+      "packetMd5": "907e5fc1f77b23eb74f1054761dedfa8",
+      "packets": 400,
+      "packetsObu": 400,
+      "bytesProbe": 141956,
+      "bytesObu": 141956,
+      "decodedMd5": "2ebebd6c383b9191d5a97fd15931252d",
+      "decodedFrames": 400,
+      "ffmpegPsnrAvg": 44.752122,
+      "ffmpegPsnrY": 45.816883,
+      "ffmpegSsimAll": 0.996513,
+      "ffmpegSsimY": 0.996061,
+      "nodePsnrAvg": 44.75212165131855,
+      "nodePsnrY": 45.81688255345887,
+      "lossless": false,
+      "keyframes": [
+        0
+      ],
+      "keyframesObu": [
+        0
+      ],
+      "seqHeaderTus": [
+        0
+      ],
+      "seconds": 8.8,
+      "keyframeSeconds": [
+        0
+      ],
+      "ptsMatchIndex": true,
+      "seek": {
+        "target": 300,
+        "landProbe": 0,
+        "landObu": 0,
+        "framesToDecodeProbe": 301,
+        "framesToDecodeObu": 301,
+        "seekMd5Match": true,
+        "seekIsNotNeighbour": true
+      }
+    },
+    "svt_long_g25": {
+      "command": "ffmpeg -i long.mkv -c:v libsvtav1 -preset 12 -crf 30 -g 25 out.mkv",
+      "lib": "svt",
+      "src": "long",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 25,
+        "preset": 12
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 428652,
+      "packetMd5": "cb3e1bdae082d2bae38525a4eff34700",
+      "packets": 400,
+      "packetsObu": 400,
+      "bytesProbe": 424919,
+      "bytesObu": 424919,
+      "decodedMd5": "1c1713d77ffcad1bc0b6be8f82283b4d",
+      "decodedFrames": 400,
+      "ffmpegPsnrAvg": 38.975821,
+      "ffmpegPsnrY": 41.06219,
+      "ffmpegSsimAll": 0.985378,
+      "ffmpegSsimY": 0.984607,
+      "nodePsnrAvg": 38.97582100587063,
+      "nodePsnrY": 41.06218960281304,
+      "lossless": false,
+      "keyframes": [
+        0,
+        25,
+        50,
+        75,
+        100,
+        125,
+        150,
+        175,
+        200,
+        225,
+        250,
+        275,
+        300,
+        325,
+        350,
+        375
+      ],
+      "keyframesObu": [
+        0,
+        25,
+        50,
+        75,
+        100,
+        125,
+        150,
+        175,
+        200,
+        225,
+        250,
+        275,
+        300,
+        325,
+        350,
+        375
+      ],
+      "seqHeaderTus": [
+        0,
+        25,
+        50,
+        75,
+        100,
+        125,
+        150,
+        175,
+        200,
+        225,
+        250,
+        275,
+        300,
+        325,
+        350,
+        375
+      ],
+      "seconds": 2.3,
+      "keyframeSeconds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "ptsMatchIndex": true,
+      "seek": {
+        "target": 300,
+        "landProbe": 300,
+        "landObu": 300,
+        "framesToDecodeProbe": 1,
+        "framesToDecodeObu": 1,
+        "seekMd5Match": true,
+        "seekIsNotNeighbour": true
+      }
+    },
+    "aom_long_g25": {
+      "command": "ffmpeg -i long.mkv -c:v libaom-av1 -cpu-used 8 -crf 30 -g 25 out.mkv",
+      "lib": "aom",
+      "src": "long",
+      "exit": 0,
+      "failed": false,
+      "deterministic": null,
+      "ranTwice": false,
+      "fileBytes": 172376,
+      "packetMd5": "d097ec64229517bf3d6476fb16e0643f",
+      "packets": 400,
+      "packetsObu": 400,
+      "bytesProbe": 168120,
+      "bytesObu": 168120,
+      "decodedMd5": "527d17ff660c1e64e10abdd242d51fa4",
+      "decodedFrames": 400,
+      "ffmpegPsnrAvg": 44.988539,
+      "ffmpegPsnrY": 46.117723,
+      "ffmpegSsimAll": 0.99658,
+      "ffmpegSsimY": 0.996119,
+      "nodePsnrAvg": 44.988538903363334,
+      "nodePsnrY": 46.117723485162585,
+      "lossless": false,
+      "keyframes": [
+        0,
+        25,
+        50,
+        75,
+        100,
+        125,
+        150,
+        175,
+        200,
+        225,
+        250,
+        275,
+        300,
+        325,
+        350,
+        375
+      ],
+      "keyframesObu": [
+        0,
+        25,
+        50,
+        75,
+        100,
+        125,
+        150,
+        175,
+        200,
+        225,
+        250,
+        275,
+        300,
+        325,
+        350,
+        375
+      ],
+      "seqHeaderTus": [
+        0,
+        25,
+        50,
+        75,
+        100,
+        125,
+        150,
+        175,
+        200,
+        225,
+        250,
+        275,
+        300,
+        325,
+        350,
+        375
+      ],
+      "seconds": 10.1,
+      "keyframeSeconds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "ptsMatchIndex": true,
+      "seek": {
+        "target": 300,
+        "landProbe": 300,
+        "landObu": 300,
+        "framesToDecodeProbe": 1,
+        "framesToDecodeObu": 1,
+        "seekMd5Match": true,
+        "seekIsNotNeighbour": true
+      }
+    },
+    "svt_long_g100": {
+      "command": "ffmpeg -i long.mkv -c:v libsvtav1 -preset 12 -crf 30 -g 100 out.mkv",
+      "lib": "svt",
+      "src": "long",
+      "exit": 0,
+      "svt": {
+        "version": "1.7.0",
+        "brcMode": "CRF",
+        "rateFactor": 30,
+        "gop": 100,
+        "preset": 12
+      },
+      "failed": false,
+      "deterministic": true,
+      "ranTwice": true,
+      "fileBytes": 420816,
+      "packetMd5": "273fcc5b7d5cd77a7e3047679c5a1d9d",
+      "packets": 400,
+      "packetsObu": 400,
+      "bytesProbe": 417518,
+      "bytesObu": 417518,
+      "decodedMd5": "3353271a4500478896905d4a786cfe1f",
+      "decodedFrames": 400,
+      "ffmpegPsnrAvg": 39.025775,
+      "ffmpegPsnrY": 41.103435,
+      "ffmpegSsimAll": 0.98544,
+      "ffmpegSsimY": 0.98461,
+      "nodePsnrAvg": 39.02577456321899,
+      "nodePsnrY": 41.10343477108248,
+      "lossless": false,
+      "keyframes": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "keyframesObu": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "seqHeaderTus": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "seconds": 2.5,
+      "keyframeSeconds": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "ptsMatchIndex": true,
+      "seek": {
+        "target": 300,
+        "landProbe": 300,
+        "landObu": 300,
+        "framesToDecodeProbe": 1,
+        "framesToDecodeObu": 1,
+        "seekMd5Match": true,
+        "seekIsNotNeighbour": true
+      }
+    }
+  },
+  "libs": {
+    "svtav1": "1.7.0",
+    "aom": "v3.8.2"
+  },
+  "seconds": 85.1
+}

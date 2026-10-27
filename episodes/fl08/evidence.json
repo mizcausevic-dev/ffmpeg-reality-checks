@@ -1,0 +1,2162 @@
+{
+  "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+  "build": "v6",
+  "libs": {
+    "libavutil": "58. 29.100 / 58. 29.100",
+    "libavcodec": "60. 31.102 / 60. 31.102",
+    "libavformat": "60. 16.100 / 60. 16.100",
+    "libavdevice": "60.  3.100 / 60.  3.100",
+    "libavfilter": "9. 12.100 /  9. 12.100",
+    "libswscale": "7.  5.100 /  7.  5.100",
+    "libswresample": "4. 12.100 /  4. 12.100",
+    "libpostproc": "57.  3.100 / 57.  3.100"
+  },
+  "colordetect": {
+    "exists": false,
+    "probe": {
+      "status": 8,
+      "noSuchFilter": true,
+      "message": [
+        "[AVFilterGraph @ 0x5653eb3d1840] No such filter: 'colordetect'",
+        "[vost#0:0/wrapped_avframe @ 0x5653eb3d2d40] Error initializing a simple filtergraph",
+        "Error opening output files: Filter not found"
+      ]
+    }
+  },
+  "range": {
+    "frames": 3,
+    "size": "256x16",
+    "cases": {
+      "full_none": {
+        "content": "full",
+        "tag": "none",
+        "via": "label",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "5ba631ea8b545038d9578d198f5ba2afe421ebcd390e3cd01026fd8c8833fe4a",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": null,
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        }
+      },
+      "full_tv": {
+        "content": "full",
+        "tag": "tv",
+        "via": "label",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "c94805265b190647fab5b91c7837c8a5ce84f156c983c6fca2a4d95821074e46",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        }
+      },
+      "full_pc": {
+        "content": "full",
+        "tag": "pc",
+        "via": "label",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "4a224f9dfe186a2c92232507ac4fb4ededd1def0e39b89553c543453ac3182b8",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 256,
+          "columnsAtZero": 1,
+          "columnsAt255": 1
+        }
+      },
+      "limited_none": {
+        "content": "limited",
+        "tag": "none",
+        "via": "label",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "9a360555ae290420b24f56704c00b2301836129532704159fd1e2949e8f0847a",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": null,
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        }
+      },
+      "limited_tv": {
+        "content": "limited",
+        "tag": "tv",
+        "via": "label",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "3d7eafe2e30ffaba78c2665ac9e92282b5252a4e570d3254f2c189d258bbd245",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        }
+      },
+      "limited_pc": {
+        "content": "limited",
+        "tag": "pc",
+        "via": "label",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "233ee0c5072c1c809b8ee7bc3ae85bdfec5c8963ba2a9aadf13e3196ac89a915",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 16,
+          "max": 235,
+          "distinct": 220,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "mid_none": {
+        "content": "mid",
+        "tag": "none",
+        "via": "label",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "985bc751ba1d8fe1adbec3b9e73f9e0271a64c80d9968cf9ead4d188d168b1cb",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": null,
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 55,
+          "max": 203,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "mid_tv": {
+        "content": "mid",
+        "tag": "tv",
+        "via": "label",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "71cf2c8682d760b917298ed81286e701684db9c173a30b1df4c54458669ff91d",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 55,
+          "max": 203,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "mid_pc": {
+        "content": "mid",
+        "tag": "pc",
+        "via": "label",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "bcae4f1351afd0a9bf8ce2a3463b8fe5fe359810da60f6384a38da4b74923907",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 64,
+          "max": 191,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "hi1_tv": {
+        "content": "hi1",
+        "tag": "tv",
+        "via": "label",
+        "note": "limited ramp, ONE pixel of the LAST frame at 236",
+        "sourceSha": "8162ef9eb479d11855917e20cab04e2a0816568d8515ac6f97dcf3a48b36ed43",
+        "fileSha": "bed86a8700adaef1a7f3d3e9cdeab87cd11be1ef21a37692bda480193bb9b7a5",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 236,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              236
+            ]
+          ],
+          "sha": "8162ef9eb479d11855917e20cab04e2a0816568d8515ac6f97dcf3a48b36ed43"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 236,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              236
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        }
+      },
+      "lo1_tv": {
+        "content": "lo1",
+        "tag": "tv",
+        "via": "label",
+        "note": "limited ramp, ONE pixel of the FIRST frame at 15",
+        "sourceSha": "2fde0f06546e22b765bc5d49082f321a893d385bf161c30e1c60dfab3f554ea1",
+        "fileSha": "5ef3b1886467c698bc04536cf2fe1fd830947b5c1a823e6c20e490139e996d54",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 15,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              15,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "2fde0f06546e22b765bc5d49082f321a893d385bf161c30e1c60dfab3f554ea1"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 15,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              15,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        }
+      },
+      "cbfull_tv": {
+        "content": "cbfull",
+        "tag": "tv",
+        "via": "label",
+        "note": "limited luma ramp, Cb ramp 0..254 (chroma outside 16..240)",
+        "sourceSha": "30e8a9db21834fee4bfa0fef1ae08097d228d7fbbd6d4981492b31d8da000a1a",
+        "fileSha": "3bc8229956c65b5d485b4f9c49e84b0874646188e8232e533329f76dd0823b36",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 0,
+          "umax": 254,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "30e8a9db21834fee4bfa0fef1ae08097d228d7fbbd6d4981492b31d8da000a1a"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 0,
+          "umax": 254,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": true,
+          "verdict": "full",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 50,
+          "max": 205,
+          "distinct": 150,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "edge_tv": {
+        "content": "edge",
+        "tag": "tv",
+        "via": "label",
+        "note": "limited ramp, exactly 16 and 235 only (two flat halves)",
+        "sourceSha": "ceeb95f022315ab407741715037ca7e94bdc0522b392a037f4c2f054389b9e6e",
+        "fileSha": "94b226f4f89200c7c08cd55acf2b7394db3174146f26c1b9b40f3393182cbfd1",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ceeb95f022315ab407741715037ca7e94bdc0522b392a037f4c2f054389b9e6e"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 2,
+          "columnsAtZero": 128,
+          "columnsAt255": 128
+        }
+      },
+      "full_tv_opt": {
+        "content": "full",
+        "tag": "tv",
+        "via": "option",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "c94805265b190647fab5b91c7837c8a5ce84f156c983c6fca2a4d95821074e46",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        }
+      },
+      "full_pc_opt": {
+        "content": "full",
+        "tag": "pc",
+        "via": "option",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "4a224f9dfe186a2c92232507ac4fb4ededd1def0e39b89553c543453ac3182b8",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 256,
+          "columnsAtZero": 1,
+          "columnsAt255": 1
+        }
+      },
+      "limited_tv_opt": {
+        "content": "limited",
+        "tag": "tv",
+        "via": "option",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "3d7eafe2e30ffaba78c2665ac9e92282b5252a4e570d3254f2c189d258bbd245",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        }
+      },
+      "limited_pc_opt": {
+        "content": "limited",
+        "tag": "pc",
+        "via": "option",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "233ee0c5072c1c809b8ee7bc3ae85bdfec5c8963ba2a9aadf13e3196ac89a915",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 16,
+          "max": 235,
+          "distinct": 220,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "mid_tv_opt": {
+        "content": "mid",
+        "tag": "tv",
+        "via": "option",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "71cf2c8682d760b917298ed81286e701684db9c173a30b1df4c54458669ff91d",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 55,
+          "max": 203,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "mid_pc_opt": {
+        "content": "mid",
+        "tag": "pc",
+        "via": "option",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "bcae4f1351afd0a9bf8ce2a3463b8fe5fe359810da60f6384a38da4b74923907",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 64,
+          "max": 191,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "full_tv_vf": {
+        "content": "full",
+        "tag": "tv",
+        "via": "vf",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "c94805265b190647fab5b91c7837c8a5ce84f156c983c6fca2a4d95821074e46",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        }
+      },
+      "full_pc_vf": {
+        "content": "full",
+        "tag": "pc",
+        "via": "vf",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "4a224f9dfe186a2c92232507ac4fb4ededd1def0e39b89553c543453ac3182b8",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 256,
+          "columnsAtZero": 1,
+          "columnsAt255": 1
+        }
+      },
+      "limited_tv_vf": {
+        "content": "limited",
+        "tag": "tv",
+        "via": "vf",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "3d7eafe2e30ffaba78c2665ac9e92282b5252a4e570d3254f2c189d258bbd245",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        }
+      },
+      "limited_pc_vf": {
+        "content": "limited",
+        "tag": "pc",
+        "via": "vf",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "233ee0c5072c1c809b8ee7bc3ae85bdfec5c8963ba2a9aadf13e3196ac89a915",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 16,
+          "max": 235,
+          "distinct": 220,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "mid_tv_vf": {
+        "content": "mid",
+        "tag": "tv",
+        "via": "vf",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "71cf2c8682d760b917298ed81286e701684db9c173a30b1df4c54458669ff91d",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 55,
+          "max": 203,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      },
+      "mid_pc_vf": {
+        "content": "mid",
+        "tag": "pc",
+        "via": "vf",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "bcae4f1351afd0a9bf8ce2a3463b8fe5fe359810da60f6384a38da4b74923907",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 64,
+          "max": 191,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        }
+      }
+    }
+  },
+  "alpha": {
+    "frames": 3,
+    "size": "64x16",
+    "cases": {
+      "opaque_red": {
+        "note": "red, alpha 255",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 255,
+          "maxA": 255,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "opaque"
+        },
+        "alphaSignalstats": {
+          "ymin": 255,
+          "ymax": 255,
+          "frames": 3
+        },
+        "first": [
+          255,
+          0,
+          0,
+          255
+        ]
+      },
+      "straight_half_red": {
+        "note": "red 255, alpha 128 (r above a)",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 128,
+          "maxA": 128,
+          "straightEvidence": 3072,
+          "firstEvidenceFrame": 0,
+          "maxOver": 127,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 128,
+          "ymax": 128,
+          "frames": 3
+        },
+        "first": [
+          255,
+          0,
+          0,
+          128
+        ]
+      },
+      "premult_half_red": {
+        "note": "half red premultiplied: r 128, alpha 128 (r equals a)",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 128,
+          "maxA": 128,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "undetermined"
+        },
+        "alphaSignalstats": {
+          "ymin": 128,
+          "ymax": 128,
+          "frames": 3
+        },
+        "first": [
+          128,
+          0,
+          0,
+          128
+        ]
+      },
+      "dark_half": {
+        "note": "r 64, alpha 128 (every channel below alpha)",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 128,
+          "maxA": 128,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "undetermined"
+        },
+        "alphaSignalstats": {
+          "ymin": 128,
+          "ymax": 128,
+          "frames": 3
+        },
+        "first": [
+          64,
+          0,
+          0,
+          128
+        ]
+      },
+      "boundary_127": {
+        "note": "r 128, alpha 127 (one above a): the shape of 0x800000@0.5",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 127,
+          "maxA": 127,
+          "straightEvidence": 3072,
+          "firstEvidenceFrame": 0,
+          "maxOver": 1,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 127,
+          "ymax": 127,
+          "frames": 3
+        },
+        "first": [
+          128,
+          0,
+          0,
+          127
+        ]
+      },
+      "transparent": {
+        "note": "all zero, alpha 0",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 0,
+          "maxA": 0,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "undetermined"
+        },
+        "alphaSignalstats": {
+          "ymin": 0,
+          "ymax": 0,
+          "frames": 3
+        },
+        "first": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ramp_straight": {
+        "note": "alpha ramp 0..255, rgb 255",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 0,
+          "maxA": 255,
+          "straightEvidence": 3024,
+          "firstEvidenceFrame": 0,
+          "maxOver": 255,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 0,
+          "ymax": 255,
+          "frames": 3
+        },
+        "first": [
+          255,
+          255,
+          255,
+          0
+        ]
+      },
+      "ramp_premult": {
+        "note": "alpha ramp 0..255, rgb = alpha / 2 (always below alpha)",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 0,
+          "maxA": 255,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "undetermined"
+        },
+        "alphaSignalstats": {
+          "ymin": 0,
+          "ymax": 255,
+          "frames": 3
+        },
+        "first": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "one_bad_pixel": {
+        "note": "half red premultiplied everywhere, ONE pixel of the LAST frame with r 255",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 128,
+          "maxA": 128,
+          "straightEvidence": 1,
+          "firstEvidenceFrame": 2,
+          "maxOver": 127,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 128,
+          "ymax": 128,
+          "frames": 3
+        },
+        "first": [
+          128,
+          0,
+          0,
+          128
+        ]
+      },
+      "lavfi_red_half": {
+        "note": "color=c=red@0.5",
+        "source": "lavfi",
+        "src": "color=c=red@0.5:s=64x16:r=3:d=1,format=rgba",
+        "raw": {
+          "pixels": 3072,
+          "minA": 127,
+          "maxA": 127,
+          "straightEvidence": 3072,
+          "firstEvidenceFrame": 0,
+          "maxOver": 128,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 127,
+          "ymax": 127,
+          "frames": 3
+        },
+        "first": [
+          255,
+          0,
+          0,
+          127
+        ]
+      },
+      "lavfi_red": {
+        "note": "color=c=red",
+        "source": "lavfi",
+        "src": "color=c=red:s=64x16:r=3:d=1,format=rgba",
+        "raw": {
+          "pixels": 3072,
+          "minA": 255,
+          "maxA": 255,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "opaque"
+        },
+        "alphaSignalstats": {
+          "ymin": 255,
+          "ymax": 255,
+          "frames": 3
+        },
+        "first": [
+          255,
+          0,
+          0,
+          255
+        ]
+      },
+      "lavfi_800000_half": {
+        "note": "color=c=0x800000@0.5",
+        "source": "lavfi",
+        "src": "color=c=0x800000@0.5:s=64x16:r=3:d=1,format=rgba",
+        "raw": {
+          "pixels": 3072,
+          "minA": 127,
+          "maxA": 127,
+          "straightEvidence": 3072,
+          "firstEvidenceFrame": 0,
+          "maxOver": 1,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 127,
+          "ymax": 127,
+          "frames": 3
+        },
+        "first": [
+          128,
+          0,
+          0,
+          127
+        ]
+      }
+    },
+    "fileTags": {
+      "pix_fmt": [
+        "bgra",
+        "bgra"
+      ],
+      "alphaKeys": [
+        [],
+        []
+      ],
+      "tags": [
+        {
+          "ENCODER": "Lavc ffv1",
+          "DURATION": "00:00:01.000000000"
+        },
+        {
+          "ENCODER": "Lavc ffv1",
+          "DURATION": "00:00:01.000000000"
+        }
+      ],
+      "identicalStreamMetadata": true,
+      "identicalTwice": true
+    },
+    "overlay": {
+      "layer": [
+        128,
+        0,
+        0,
+        128
+      ],
+      "background": [
+        128,
+        128,
+        128
+      ],
+      "straight": [
+        128,
+        64,
+        64
+      ],
+      "premultiplied": [
+        192,
+        64,
+        64
+      ],
+      "redDifference": 64
+    }
+  },
+  "control": {
+    "fullRamp": {
+      "raw": "0..255",
+      "stats": "0..255"
+    },
+    "limitedRamp": {
+      "raw": "16..235",
+      "stats": "16..235"
+    },
+    "opaque": 255
+  },
+  "deterministic": true
+}

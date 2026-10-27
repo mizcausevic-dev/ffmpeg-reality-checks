@@ -1,0 +1,5046 @@
+{
+  "ffmpeg": "ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "build": "v8",
+  "libs": {
+    "libavutil": "60. 26.102 / 60. 26.102",
+    "libavcodec": "62. 28.102 / 62. 28.102",
+    "libavformat": "62. 12.102 / 62. 12.102",
+    "libavdevice": "62.  3.102 / 62.  3.102",
+    "libavfilter": "11. 14.102 / 11. 14.102",
+    "libswscale": "9.  5.102 /  9.  5.102",
+    "libswresample": "6.  3.102 /  6.  3.102"
+  },
+  "colordetect": {
+    "exists": true,
+    "probe": {
+      "status": 0,
+      "noSuchFilter": false,
+      "message": [
+        "[Parsed_colordetect_0 @ 000001c4a28a2580] Detected color properties:",
+        "[Parsed_colordetect_0 @ 000001c4a28a2580]   Color range: undetermined",
+        "[Parsed_colordetect_0 @ 000001c4a28a2580]   Alpha mode: none"
+      ]
+    },
+    "help": [
+      "Filter colordetect",
+      "Detect video color properties.",
+      "slice threading supported",
+      "Inputs:",
+      "#0: default (video)",
+      "Outputs:",
+      "#0: default (video)",
+      "colordetect AVOptions:",
+      "mode              <flags>      ..FV....... Image properties to detect (default color_range+alpha_mode+all)",
+      "color_range                  ..FV....... Detect (YUV) color range",
+      "alpha_mode                   ..FV....... Detect alpha mode",
+      "all                          ..FV....... Detect all supported properties",
+      "Exiting with exit code 0"
+    ],
+    "hasModeOption": true,
+    "props": {
+      "fullTv": {
+        "metadataLines": [],
+        "metadataHasColordetectKey": false,
+        "showinfoFirst": [
+          "n:   0 pts:      0 pts_time:0       duration:    333 duration_time:0.333   fmt:yuv420p cl:unspecified sar:0/1 s:256x16 i:P iskey:1 type:I checksum:FD48F8A5 plane_checksum:[50AEF869 3C0F001E 3C0F001E] mean:[128 128 128] stdev:[73.9 0.0 0.0]"
+        ],
+        "showinfoMentionsRangeOrAlpha": [
+          "color_range:tv color_space:unknown color_primaries:unknown color_trc:unknown"
+        ]
+      },
+      "limitedTv": {
+        "metadataLines": [],
+        "metadataHasColordetectKey": false,
+        "showinfoFirst": [
+          "n:   0 pts:      0 pts_time:0       duration:    333 duration_time:0.333   fmt:yuv420p cl:unspecified sar:0/1 s:256x16 i:P iskey:1 type:I checksum:CEC4D1E5 plane_checksum:[3454D1A9 3C0F001E 3C0F001E] mean:[125 128 128] stdev:[63.5 0.0 0.0]"
+        ],
+        "showinfoMentionsRangeOrAlpha": [
+          "color_range:tv color_space:unknown color_primaries:unknown color_trc:unknown"
+        ]
+      },
+      "written": {
+        "ok": true,
+        "streamColorRange": "tv",
+        "streamAlphaKeys": [],
+        "frameKeysMatching": [
+          "color_range=\"tv\""
+        ],
+        "frameSideData": null
+      }
+    }
+  },
+  "range": {
+    "frames": 3,
+    "size": "256x16",
+    "cases": {
+      "full_none": {
+        "content": "full",
+        "tag": "none",
+        "via": "label",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "413f410b1206068b579a9fce3dfbda0a66a42d45770513cf5eb5bb93fdd94696",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000154d6f322c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000154d6f322c0]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 00000154d6f322c0]   Alpha mode: none",
+              "[out#0/null @ 00000154d4a67c80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 335x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000012d7cb2b080] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000012d7cb2b080]   Color range: JPEG / full range",
+              "[out#0/null @ 0000012d7a445ac0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 335x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001d0d76eeac0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001d0d76eeac0]   Alpha mode: none",
+              "[out#0/null @ 000001d0d50775c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 300x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000207af568580] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000207af568580]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 00000207af568580]   Alpha mode: none",
+              "[out#0/null @ 00000207acf49640] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 333x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "full_tv": {
+        "content": "full",
+        "tag": "tv",
+        "via": "label",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "413f410b1206068b579a9fce3dfbda0a66a42d45770513cf5eb5bb93fdd94696",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000025416132180] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000025416132180]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000025416132180]   Alpha mode: none",
+              "[out#0/null @ 0000025413b348c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 338x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001e4fa883ac0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001e4fa883ac0]   Color range: JPEG / full range",
+              "[out#0/null @ 000001e4f83f8b80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 338x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001eada69c900] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001eada69c900]   Alpha mode: none",
+              "[out#0/null @ 000001ead7fd7940] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 334x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001d57d99a4c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001d57d99a4c0]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001d57d99a4c0]   Alpha mode: none",
+              "[out#0/null @ 000001d57b388400] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 302x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "full_pc": {
+        "content": "full",
+        "tag": "pc",
+        "via": "label",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "7fe06950584fc9f9e9caae55eb6303f8ca3e86ac0b5bc123647275124c472251",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 256,
+          "columnsAtZero": 1,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002264ffad100] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002264ffad100]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000002264ffad100]   Alpha mode: none",
+              "[out#0/null @ 000002264d9a68c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 330x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000294aa56eec0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000294aa56eec0]   Color range: JPEG / full range",
+              "[out#0/null @ 00000294a8044ac0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 340x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000027c68e62f80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000027c68e62f80]   Alpha mode: none",
+              "[out#0/null @ 0000027c6698b940] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 355x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000023dfa468080] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000023dfa468080]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000023dfa468080]   Alpha mode: none",
+              "[out#0/null @ 0000023df7e47e40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 332x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "limited_none": {
+        "content": "limited",
+        "tag": "none",
+        "via": "label",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "736f20f318c1a23a92b6fe707ca7c96f3dc9a0b839236c22fb9e2a9decc6058b",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002c9b2716100] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002c9b2716100]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000002c9b2716100]   Alpha mode: none",
+              "[out#0/null @ 000002c9b0157080] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 331x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000021416b2a240] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000021416b2a240]   Color range: undetermined",
+              "[out#0/null @ 0000021414527240] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 277x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001c0224109c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001c0224109c0]   Alpha mode: none",
+              "[out#0/null @ 000001c01fdb92c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 344x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000026616470900] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000026616470900]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000026616470900]   Alpha mode: none",
+              "[out#0/null @ 0000026613e095c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 331x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "limited_tv": {
+        "content": "limited",
+        "tag": "tv",
+        "via": "label",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "736f20f318c1a23a92b6fe707ca7c96f3dc9a0b839236c22fb9e2a9decc6058b",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000020d372533c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000020d372533c0]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000020d372533c0]   Alpha mode: none",
+              "[out#0/null @ 0000020d34c05000] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 339x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001b29b33a280] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001b29b33a280]   Color range: undetermined",
+              "[out#0/null @ 000001b298c86880] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 294x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000251b6860600] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000251b6860600]   Alpha mode: none",
+              "[out#0/null @ 00000251b4285680] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 310x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002752d041100] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002752d041100]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000002752d041100]   Alpha mode: none",
+              "[out#0/null @ 000002752aa358c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 311x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "limited_pc": {
+        "content": "limited",
+        "tag": "pc",
+        "via": "label",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "52b58d9a61c773f461a560629b9b7d0a5e035e71a5db80f845e34d352ecfcc6d",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 16,
+          "max": 235,
+          "distinct": 220,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002534e0a1f00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002534e0a1f00]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000002534e0a1f00]   Alpha mode: none",
+              "[out#0/null @ 000002534bb34f80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 331x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000273c40b6240] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000273c40b6240]   Color range: undetermined",
+              "[out#0/null @ 00000273c1ad5580] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 271x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000180b299bec0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000180b299bec0]   Alpha mode: none",
+              "[out#0/null @ 00000180b049a300] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 337x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002891a3fd680] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002891a3fd680]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000002891a3fd680]   Alpha mode: none",
+              "[out#0/null @ 0000028917ed6700] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 190x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "mid_none": {
+        "content": "mid",
+        "tag": "none",
+        "via": "label",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "8d18b9e7a02aef72e4adf6f1c86235a01e4fffeda802fe30d67e20efdce67c2c",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 55,
+          "max": 203,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000028a44c20280] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000028a44c20280]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000028a44c20280]   Alpha mode: none",
+              "[out#0/null @ 0000028a42594200] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 322x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000019529df99c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000019529df99c0]   Color range: undetermined",
+              "[out#0/null @ 0000019527877180] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 335x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000024d7af410c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000024d7af410c0]   Alpha mode: none",
+              "[out#0/null @ 0000024d788e6c00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 311x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001803e9da700] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001803e9da700]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001803e9da700]   Alpha mode: none",
+              "[out#0/null @ 000001803c446100] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 242x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "mid_tv": {
+        "content": "mid",
+        "tag": "tv",
+        "via": "label",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "8d18b9e7a02aef72e4adf6f1c86235a01e4fffeda802fe30d67e20efdce67c2c",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 55,
+          "max": 203,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000028716d29980] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000028716d29980]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000028716d29980]   Alpha mode: none",
+              "[out#0/null @ 0000028714735f80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 253x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000022204bf2740] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000022204bf2740]   Color range: undetermined",
+              "[out#0/null @ 0000022202647e00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 279x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002137200dcc0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002137200dcc0]   Alpha mode: none",
+              "[out#0/null @ 000002136f9d47c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 306x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000020df5f69940] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000020df5f69940]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000020df5f69940]   Alpha mode: none",
+              "[out#0/null @ 0000020df39f6e00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 265x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "mid_pc": {
+        "content": "mid",
+        "tag": "pc",
+        "via": "label",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "e5028e0c49766c1d67833bb2ceaaf6caba5ddfcbd41bddfc77cc71b93e787545",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 64,
+          "max": 191,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000025ad86a1f80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000025ad86a1f80]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000025ad86a1f80]   Alpha mode: none",
+              "[out#0/null @ 0000025ad6096a80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 313x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000024425f0a400] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000024425f0a400]   Color range: undetermined",
+              "[out#0/null @ 00000244237e8ac0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 305x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000213e844d700] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000213e844d700]   Alpha mode: none",
+              "[out#0/null @ 00000213e5cf79c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 317x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001e7c0a718c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001e7c0a718c0]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001e7c0a718c0]   Alpha mode: none",
+              "[out#0/null @ 000001e7be3a4cc0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 319x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "hi1_tv": {
+        "content": "hi1",
+        "tag": "tv",
+        "via": "label",
+        "note": "limited ramp, ONE pixel of the LAST frame at 236",
+        "sourceSha": "8162ef9eb479d11855917e20cab04e2a0816568d8515ac6f97dcf3a48b36ed43",
+        "fileSha": "278754a569960ee5f3972c9c4773520dfbaae179784cef15ab424df50aec3544",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 236,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              236
+            ]
+          ],
+          "sha": "8162ef9eb479d11855917e20cab04e2a0816568d8515ac6f97dcf3a48b36ed43"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 236,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              236
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000028b83ad7840] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000028b83ad7840]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000028b83ad7840]   Alpha mode: none",
+              "[out#0/null @ 0000028b81566700] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 307x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001b35025be00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001b35025be00]   Color range: JPEG / full range",
+              "[out#0/null @ 000001b34dcd5e40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 344x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000212a8a02240] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000212a8a02240]   Alpha mode: none",
+              "[out#0/null @ 00000212a63c9300] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 344x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000251ac726980] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000251ac726980]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 00000251ac726980]   Alpha mode: none",
+              "[out#0/null @ 00000251aa134ec0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 305x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "lo1_tv": {
+        "content": "lo1",
+        "tag": "tv",
+        "via": "label",
+        "note": "limited ramp, ONE pixel of the FIRST frame at 15",
+        "sourceSha": "2fde0f06546e22b765bc5d49082f321a893d385bf161c30e1c60dfab3f554ea1",
+        "fileSha": "73edf7d6c53343236c7c581a359daeab1050e22987ae31de685bc8ea1e03c41b",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 15,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              15,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "2fde0f06546e22b765bc5d49082f321a893d385bf161c30e1c60dfab3f554ea1"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 15,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              15,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001843508d540] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001843508d540]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001843508d540]   Alpha mode: none",
+              "[out#0/null @ 0000018432ac8640] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 307x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001b74d55c480] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001b74d55c480]   Color range: JPEG / full range",
+              "[out#0/null @ 000001b74af14bc0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 323x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001b343498fc0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001b343498fc0]   Alpha mode: none",
+              "[out#0/null @ 000001b340e54540] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 274x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002065ae8b240] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002065ae8b240]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000002065ae8b240]   Alpha mode: none",
+              "[out#0/null @ 0000020658874c40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 310x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "cbfull_tv": {
+        "content": "cbfull",
+        "tag": "tv",
+        "via": "label",
+        "note": "limited luma ramp, Cb ramp 0..254 (chroma outside 16..240)",
+        "sourceSha": "30e8a9db21834fee4bfa0fef1ae08097d228d7fbbd6d4981492b31d8da000a1a",
+        "fileSha": "4db98bba7fa4f4b2a8d238f6b9ea8533a7c558e68df9a09d81d0359675d228c8",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 0,
+          "umax": 254,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "30e8a9db21834fee4bfa0fef1ae08097d228d7fbbd6d4981492b31d8da000a1a"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 0,
+          "umax": 254,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": true,
+          "verdict": "full",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 50,
+          "max": 205,
+          "distinct": 150,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002266194e8c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002266194e8c0]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000002266194e8c0]   Alpha mode: none",
+              "[out#0/null @ 000002265f394480] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 320x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002b5c6a688c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002b5c6a688c0]   Color range: undetermined",
+              "[out#0/null @ 000002b5c44f92c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 337x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002a3bf52b0c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002a3bf52b0c0]   Alpha mode: none",
+              "[out#0/null @ 000002a3bcf76600] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 318x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002239a194d40] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002239a194d40]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000002239a194d40]   Alpha mode: none",
+              "[out#0/null @ 0000022397ab5300] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 319x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "edge_tv": {
+        "content": "edge",
+        "tag": "tv",
+        "via": "label",
+        "note": "limited ramp, exactly 16 and 235 only (two flat halves)",
+        "sourceSha": "ceeb95f022315ab407741715037ca7e94bdc0522b392a037f4c2f054389b9e6e",
+        "fileSha": "d50fc4d543af80da9e616008eb1a379bf87bd60033f68e1a8bbf9f0c0cedb412",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ceeb95f022315ab407741715037ca7e94bdc0522b392a037f4c2f054389b9e6e"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 2,
+          "columnsAtZero": 128,
+          "columnsAt255": 128
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001e012dd22c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001e012dd22c0]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001e012dd22c0]   Alpha mode: none",
+              "[out#0/null @ 000001e0107b3a80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 374x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002865d207680] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002865d207680]   Color range: undetermined",
+              "[out#0/null @ 000002865abc7f00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 355x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000194521494c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000194521494c0]   Alpha mode: none",
+              "[out#0/null @ 000001944fa36300] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 340x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001e103056200] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001e103056200]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001e103056200]   Alpha mode: none",
+              "[out#0/null @ 000001e100aa7700] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 276x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "full_tv_opt": {
+        "content": "full",
+        "tag": "tv",
+        "via": "option",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "413f410b1206068b579a9fce3dfbda0a66a42d45770513cf5eb5bb93fdd94696",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001d30f16a140] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001d30f16a140]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001d30f16a140]   Alpha mode: none",
+              "[out#0/null @ 000001d30cc062c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 327x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002025639a380] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002025639a380]   Color range: JPEG / full range",
+              "[out#0/null @ 0000020253dd7440] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 301x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001ae299b0740] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001ae299b0740]   Alpha mode: none",
+              "[out#0/null @ 000001ae272f5c40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 331x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001630f249880] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001630f249880]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001630f249880]   Alpha mode: none",
+              "[out#0/null @ 000001630cc26d40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 310x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "full_pc_opt": {
+        "content": "full",
+        "tag": "pc",
+        "via": "option",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "c3fc1044e9eb7b90d86326d01d1a938e291d5f540e336d656e2776ebca5adaf8",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "df8548aff4f8e0ea473aa08be112e4b74b50f334abe20fc37e0d55695dc794c5"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000019f287e7100] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000019f287e7100]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000019f287e7100]   Alpha mode: none",
+              "[out#0/null @ 0000019f261349c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 311x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000023450be5e00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000023450be5e00]   Color range: JPEG / full range",
+              "[out#0/null @ 000002344e618cc0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 280x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001c594d23540] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001c594d23540]   Alpha mode: none",
+              "[out#0/null @ 000001c592736c00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 331x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000021d63cadb40] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000021d63cadb40]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000021d63cadb40]   Alpha mode: none",
+              "[out#0/null @ 0000021d6160bd00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 319x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "limited_tv_opt": {
+        "content": "limited",
+        "tag": "tv",
+        "via": "option",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "736f20f318c1a23a92b6fe707ca7c96f3dc9a0b839236c22fb9e2a9decc6058b",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000168609ef180] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000168609ef180]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 00000168609ef180]   Alpha mode: none",
+              "[out#0/null @ 000001685e3c77c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 341x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000020332391b00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000020332391b00]   Color range: undetermined",
+              "[out#0/null @ 000002032fd97240] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 315x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000028b11625e00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000028b11625e00]   Alpha mode: none",
+              "[out#0/null @ 0000028b0f0c6000] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 330x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000027c222ff480] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000027c222ff480]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000027c222ff480]   Alpha mode: none",
+              "[out#0/null @ 0000027c1fc13740] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 327x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "limited_pc_opt": {
+        "content": "limited",
+        "tag": "pc",
+        "via": "option",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "8b92e1db4304bba69f068583fa4a8139e921f987ee0da6f93f65a8395fb82135",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "66fca03b1129fa1c6dfddf4a596722de60ff08786716f9293fc7d9706306e0ee"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001d8aa6ed8c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001d8aa6ed8c0]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001d8aa6ed8c0]   Alpha mode: none",
+              "[out#0/null @ 000001d8a8098240] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 267x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000018a46019040] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000018a46019040]   Color range: JPEG / full range",
+              "[out#0/null @ 0000018a43954380] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 344x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001f6477edc40] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001f6477edc40]   Alpha mode: none",
+              "[out#0/null @ 000001f6452b5540] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 318x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000029d2928f780] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000029d2928f780]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000029d2928f780]   Alpha mode: none",
+              "[out#0/null @ 0000029d26cb5600] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 339x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "mid_tv_opt": {
+        "content": "mid",
+        "tag": "tv",
+        "via": "option",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "8d18b9e7a02aef72e4adf6f1c86235a01e4fffeda802fe30d67e20efdce67c2c",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 55,
+          "max": 203,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001bd54cb7c80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001bd54cb7c80]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001bd54cb7c80]   Alpha mode: none",
+              "[out#0/null @ 000001bd52726b00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 304x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002b4734e1680] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002b4734e1680]   Color range: undetermined",
+              "[out#0/null @ 000002b470f45500] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 357x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000015e58350f80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000015e58350f80]   Alpha mode: none",
+              "[out#0/null @ 0000015e55ca8140] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 356x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001c90bcb9700] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001c90bcb9700]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001c90bcb9700]   Alpha mode: none",
+              "[out#0/null @ 000001c9095c4900] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 319x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "mid_pc_opt": {
+        "content": "mid",
+        "tag": "pc",
+        "via": "option",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "6f579dee0faf32555a2171f4976e03eb08a2f0fa5d911160fd203af4e828c9ff",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "pc",
+        "raw": {
+          "frames": 3,
+          "ymin": 56,
+          "ymax": 204,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              56,
+              204
+            ],
+            [
+              56,
+              204
+            ],
+            [
+              56,
+              204
+            ]
+          ],
+          "sha": "4aae1bda7c099c1ab3358dd702144f7662b89803cd4631ecfb77f50549f599b5"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 56,
+          "ymax": 204,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              56,
+              204
+            ],
+            [
+              56,
+              204
+            ],
+            [
+              56,
+              204
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 56,
+          "max": 204,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001e0e2155f40] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001e0e2155f40]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001e0e2155f40]   Alpha mode: none",
+              "[out#0/null @ 000001e0dfb17680] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 281x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001c692d12680] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001c692d12680]   Color range: undetermined",
+              "[out#0/null @ 000001c6907786c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 322x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000222bd487440] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000222bd487440]   Alpha mode: none",
+              "[out#0/null @ 00000222baf945c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 346x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000267d2ff8e80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000267d2ff8e80]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 00000267d2ff8e80]   Alpha mode: none",
+              "[out#0/null @ 00000267d0959240] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 311x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "full_tv_vf": {
+        "content": "full",
+        "tag": "tv",
+        "via": "vf",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "413f410b1206068b579a9fce3dfbda0a66a42d45770513cf5eb5bb93fdd94696",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "sha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 0,
+          "ymax": 255,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": true,
+          "provesFullByChroma": false,
+          "verdict": "full",
+          "lumaOnlyVerdict": "full"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 17,
+          "columnsAt255": 21
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002adda7bf700] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002adda7bf700]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000002adda7bf700]   Alpha mode: none",
+              "[out#0/null @ 000002add7fd5900] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 318x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": null,
+            "range": "full",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002719b1b1940] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002719b1b1940]   Color range: JPEG / full range",
+              "[out#0/null @ 0000027198b95e40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 313x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001f09aefa180] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001f09aefa180]   Alpha mode: none",
+              "[out#0/null @ 000001f0988ac800] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 334x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "none",
+            "range": "full",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000240497b9a00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000240497b9a00]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 00000240497b9a00]   Alpha mode: none",
+              "[out#0/null @ 00000240470a5a40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 317x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "full_pc_vf": {
+        "content": "full",
+        "tag": "pc",
+        "via": "vf",
+        "note": "luma ramp 0..255",
+        "sourceSha": "eb66a24b09fcfd6ca055d8a804aa32f64271fc188b51bce6049759e66ae8c54f",
+        "fileSha": "2050efdd910ee59ad8ffbf22043032bb941e75e3cc542ad7fb68b94953c01f1e",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "df629355e364c7c6dfffe92086d515ecf0493dad7eff09c034519b61eda34a92"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 1,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000223a5a9c380] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000223a5a9c380]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 00000223a5a9c380]   Alpha mode: none",
+              "[out#0/null @ 00000223a3427980] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 342x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001295a43dbc0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001295a43dbc0]   Color range: undetermined",
+              "[out#0/null @ 0000012957d55e00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 337x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002119692b040] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002119692b040]   Alpha mode: none",
+              "[out#0/null @ 0000021194205840] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 328x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001f65abfa680] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001f65abfa680]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001f65abfa680]   Alpha mode: none",
+              "[out#0/null @ 000001f658505e00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 331x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "limited_tv_vf": {
+        "content": "limited",
+        "tag": "tv",
+        "via": "vf",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "736f20f318c1a23a92b6fe707ca7c96f3dc9a0b839236c22fb9e2a9decc6058b",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ],
+          "sha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 16,
+          "ymax": 235,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ],
+            [
+              16,
+              235
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 0,
+          "max": 255,
+          "distinct": 220,
+          "columnsAtZero": 2,
+          "columnsAt255": 1
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001feaf77a000] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001feaf77a000]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001feaf77a000]   Alpha mode: none",
+              "[out#0/null @ 000001fead204180] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 364x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000197dba8b800] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000197dba8b800]   Color range: undetermined",
+              "[out#0/null @ 00000197d949ae80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 354x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000235c300f580] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000235c300f580]   Alpha mode: none",
+              "[out#0/null @ 00000235c0869100] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 301x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000011dec8d0600] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000011dec8d0600]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000011dec8d0600]   Alpha mode: none",
+              "[out#0/null @ 0000011dea225f40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 326x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "limited_pc_vf": {
+        "content": "limited",
+        "tag": "pc",
+        "via": "vf",
+        "note": "luma ramp 16..235",
+        "sourceSha": "ab53e38a51c58f31a49f75514d29cbd369230167a58daf9e3f1e85b8c1863a64",
+        "fileSha": "d8ec56b876bd6711e19d96901c1b16734def06f46919fa2676d4f4c25ed830b1",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 30,
+          "ymax": 218,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              30,
+              218
+            ],
+            [
+              30,
+              218
+            ],
+            [
+              30,
+              218
+            ]
+          ],
+          "sha": "4e157a5e119fa03d75f984d43e764736b16e53a5dc272deb1f216f9a209a5e41"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 30,
+          "ymax": 218,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              30,
+              218
+            ],
+            [
+              30,
+              218
+            ],
+            [
+              30,
+              218
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 16,
+          "max": 235,
+          "distinct": 189,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000022f706dc440] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000022f706dc440]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 0000022f706dc440]   Alpha mode: none",
+              "[out#0/null @ 0000022f6e008300] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 319x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000018382d8a7c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000018382d8a7c0]   Color range: undetermined",
+              "[out#0/null @ 0000018380845340] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 342x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002c671c6a4c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002c671c6a4c0]   Alpha mode: none",
+              "[out#0/null @ 000002c66f6e4a40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 329x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002200ecf8840] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002200ecf8840]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000002200ecf8840]   Alpha mode: none",
+              "[out#0/null @ 000002200c6d70c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 336x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "mid_tv_vf": {
+        "content": "mid",
+        "tag": "tv",
+        "via": "vf",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "8d18b9e7a02aef72e4adf6f1c86235a01e4fffeda802fe30d67e20efdce67c2c",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ],
+          "sha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 64,
+          "ymax": 191,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ],
+            [
+              64,
+              191
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 55,
+          "max": 203,
+          "distinct": 128,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001fe9c5a3000] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001fe9c5a3000]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001fe9c5a3000]   Alpha mode: none",
+              "[out#0/null @ 000001fe99e152c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 326x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001b9af04ae80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001b9af04ae80]   Color range: undetermined",
+              "[out#0/null @ 000001b9aca9c340] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 340x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 0000021bfe080240] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000021bfe080240]   Alpha mode: none",
+              "[out#0/null @ 0000021bfb995f40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 282x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002680abf2900] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002680abf2900]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000002680abf2900]   Alpha mode: none",
+              "[out#0/null @ 0000026808585080] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 351x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "mid_pc_vf": {
+        "content": "mid",
+        "tag": "pc",
+        "via": "vf",
+        "note": "luma ramp 64..191",
+        "sourceSha": "d928f3eefd327f3e35a04ce76fae0a6c5e37b6b12a953dcbb063fd8284b38bf6",
+        "fileSha": "50f2ee2d2e3d147d789635e0bcccab8eda3b127f67c3c8d8161a6d1ed6bf189f",
+        "identicalTwice": true,
+        "pix_fmt": "yuv420p",
+        "probeRange": "tv",
+        "raw": {
+          "frames": 3,
+          "ymin": 71,
+          "ymax": 180,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              71,
+              180
+            ],
+            [
+              71,
+              180
+            ],
+            [
+              71,
+              180
+            ]
+          ],
+          "sha": "86348e32c6ed5cc8e750089d1f215a4193d8c0c6dc57e7ea0c884780276cc036"
+        },
+        "signalstats": {
+          "frames": 3,
+          "ymin": 71,
+          "ymax": 180,
+          "umin": 128,
+          "umax": 128,
+          "vmin": 128,
+          "vmax": 128,
+          "yPerFrame": [
+            [
+              71,
+              180
+            ],
+            [
+              71,
+              180
+            ],
+            [
+              71,
+              180
+            ]
+          ]
+        },
+        "recipe": {
+          "provesFullByLuma": false,
+          "provesFullByChroma": false,
+          "verdict": "undetermined",
+          "lumaOnlyVerdict": "undetermined"
+        },
+        "rgb": {
+          "min": 64,
+          "max": 190,
+          "distinct": 110,
+          "columnsAtZero": 0,
+          "columnsAt255": 0
+        },
+        "colordetect": {
+          "all": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 00000205f60abb40] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000205f60abb40]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 00000205f60abb40]   Alpha mode: none",
+              "[out#0/null @ 00000205f3af7780] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 317x elapsed=0:00:00.00    "
+            ]
+          },
+          "color_range": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": null,
+            "range": "undetermined",
+            "alpha": null,
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000002791f7d7900] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002791f7d7900]   Color range: undetermined",
+              "[out#0/null @ 000002791d195380] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 297x elapsed=0:00:00.00    "
+            ]
+          },
+          "alpha_mode": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "none",
+            "range": null,
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001e76665eb80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001e76665eb80]   Alpha mode: none",
+              "[out#0/null @ 000001e764005480] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 333x elapsed=0:00:00.00    "
+            ]
+          },
+          "default": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "undetermined",
+            "alphaText": "none",
+            "range": "undetermined",
+            "alpha": "other",
+            "block": [
+              "Detected color properties:",
+              "Color range: undetermined",
+              "Alpha mode: none"
+            ],
+            "stderrTail": [
+              "      DURATION        : 00:00:01.000000000",
+              "[Parsed_colordetect_0 @ 000001ba29afd8c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001ba29afd8c0]   Color range: undetermined",
+              "[Parsed_colordetect_0 @ 000001ba29afd8c0]   Alpha mode: none",
+              "[out#0/null @ 000001ba2749ab00] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 320x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      }
+    }
+  },
+  "alpha": {
+    "frames": 3,
+    "size": "64x16",
+    "cases": {
+      "opaque_red": {
+        "note": "red, alpha 255",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 255,
+          "maxA": 255,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "opaque"
+        },
+        "alphaSignalstats": {
+          "ymin": 255,
+          "ymax": 255,
+          "frames": 3
+        },
+        "first": [
+          255,
+          0,
+          0,
+          255
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "opaque",
+            "range": "full",
+            "alpha": "opaque",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: opaque"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 0000014d84acb800] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000014d84acb800]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000014d84acb800]   Alpha mode: opaque",
+              "[out#0/null @ 0000014d84a36680] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 163x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "opaque",
+            "range": null,
+            "alpha": "opaque",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: opaque"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 0000020fde5008c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000020fde5008c0]   Alpha mode: opaque",
+              "[out#0/null @ 0000020fde469a40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 232x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "opaque",
+            "range": null,
+            "alpha": "opaque",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: opaque"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 000001c60cf1b880] Detected color properties:",
+              "[Parsed_colordetect_1 @ 000001c60cf1b880]   Alpha mode: opaque",
+              "[out#0/null @ 000001c60ce87d80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 228x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "straight_half_red": {
+        "note": "red 255, alpha 128 (r above a)",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 128,
+          "maxA": 128,
+          "straightEvidence": 3072,
+          "firstEvidenceFrame": 0,
+          "maxOver": 127,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 128,
+          "ymax": 128,
+          "frames": 3
+        },
+        "first": [
+          255,
+          0,
+          0,
+          128
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "straight",
+            "range": "full",
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 0000020f9733c040] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000020f9733c040]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000020f9733c040]   Alpha mode: straight",
+              "[out#0/null @ 0000020f972a9040] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 199x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "straight",
+            "range": null,
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 0000012f22bf9c40] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000012f22bf9c40]   Alpha mode: straight",
+              "[out#0/null @ 0000012f22b66240] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 228x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 000001784dd8cbc0] Detected color properties:",
+              "[Parsed_colordetect_1 @ 000001784dd8cbc0]   Alpha mode: undetermined",
+              "[out#0/null @ 000001784dcf73c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 231x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "premult_half_red": {
+        "note": "half red premultiplied: r 128, alpha 128 (r equals a)",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 128,
+          "maxA": 128,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "undetermined"
+        },
+        "alphaSignalstats": {
+          "ymin": 128,
+          "ymax": 128,
+          "frames": 3
+        },
+        "first": [
+          128,
+          0,
+          0,
+          128
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "undetermined",
+            "range": "full",
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001fe4e595980] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001fe4e595980]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001fe4e595980]   Alpha mode: undetermined",
+              "[out#0/null @ 000001fe4c6063c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 237x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 0000017ef145fdc0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000017ef145fdc0]   Alpha mode: undetermined",
+              "[out#0/null @ 0000017ef13c7200] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 237x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 0000023ef03ea040] Detected color properties:",
+              "[Parsed_colordetect_1 @ 0000023ef03ea040]   Alpha mode: undetermined",
+              "[out#0/null @ 0000023ef0365640] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 227x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "dark_half": {
+        "note": "r 64, alpha 128 (every channel below alpha)",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 128,
+          "maxA": 128,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "undetermined"
+        },
+        "alphaSignalstats": {
+          "ymin": 128,
+          "ymax": 128,
+          "frames": 3
+        },
+        "first": [
+          64,
+          0,
+          0,
+          128
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "undetermined",
+            "range": "full",
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 00000275a06ef680] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000275a06ef680]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 00000275a06ef680]   Alpha mode: undetermined",
+              "[out#0/null @ 00000275a063a9c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 244x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001874c53b780] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001874c53b780]   Alpha mode: undetermined",
+              "[out#0/null @ 000001874c4a6500] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 209x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 000001f35bcec540] Detected color properties:",
+              "[Parsed_colordetect_1 @ 000001f35bcec540]   Alpha mode: undetermined",
+              "[out#0/null @ 000001f35bc56580] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 206x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "boundary_127": {
+        "note": "r 128, alpha 127 (one above a): the shape of 0x800000@0.5",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 127,
+          "maxA": 127,
+          "straightEvidence": 3072,
+          "firstEvidenceFrame": 0,
+          "maxOver": 1,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 127,
+          "ymax": 127,
+          "frames": 3
+        },
+        "first": [
+          128,
+          0,
+          0,
+          127
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "straight",
+            "range": "full",
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001ade699a380] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001ade699a380]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001ade699a380]   Alpha mode: straight",
+              "[out#0/null @ 000001ade6906f80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 218x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "straight",
+            "range": null,
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 00000228d03bdc80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000228d03bdc80]   Alpha mode: straight",
+              "[out#0/null @ 00000228d0326cc0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 210x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 000002273bba5e80] Detected color properties:",
+              "[Parsed_colordetect_1 @ 000002273bba5e80]   Alpha mode: undetermined",
+              "[out#0/null @ 0000022739bf7140] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 227x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "transparent": {
+        "note": "all zero, alpha 0",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 0,
+          "maxA": 0,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "undetermined"
+        },
+        "alphaSignalstats": {
+          "ymin": 0,
+          "ymax": 0,
+          "frames": 3
+        },
+        "first": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "undetermined",
+            "range": "full",
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 0000022cdbec3a80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000022cdbec3a80]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 0000022cdbec3a80]   Alpha mode: undetermined",
+              "[out#0/null @ 0000022cdbe26280] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 223x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000002f1c7227a00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002f1c7227a00]   Alpha mode: undetermined",
+              "[out#0/null @ 000002f1c7196500] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 217x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 00000298f3983000] Detected color properties:",
+              "[Parsed_colordetect_1 @ 00000298f3983000]   Alpha mode: undetermined",
+              "[out#0/null @ 00000298f38e5f40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 227x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "ramp_straight": {
+        "note": "alpha ramp 0..255, rgb 255",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 0,
+          "maxA": 255,
+          "straightEvidence": 3024,
+          "firstEvidenceFrame": 0,
+          "maxOver": 255,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 0,
+          "ymax": 255,
+          "frames": 3
+        },
+        "first": [
+          255,
+          255,
+          255,
+          0
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "straight",
+            "range": "full",
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001dbeeac8480] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001dbeeac8480]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001dbeeac8480]   Alpha mode: straight",
+              "[out#0/null @ 000001dbeea37cc0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 235x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "straight",
+            "range": null,
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 0000017cea7f9380] Detected color properties:",
+              "[Parsed_colordetect_0 @ 0000017cea7f9380]   Alpha mode: straight",
+              "[out#0/null @ 0000017cea764980] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 222x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "straight",
+            "range": null,
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 0000027d5615a6c0] Detected color properties:",
+              "[Parsed_colordetect_1 @ 0000027d5615a6c0]   Alpha mode: straight",
+              "[out#0/null @ 0000027d560c5280] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 221x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "ramp_premult": {
+        "note": "alpha ramp 0..255, rgb = alpha / 2 (always below alpha)",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 0,
+          "maxA": 255,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "undetermined"
+        },
+        "alphaSignalstats": {
+          "ymin": 0,
+          "ymax": 255,
+          "frames": 3
+        },
+        "first": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "undetermined",
+            "range": "full",
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000002014e69d280] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002014e69d280]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000002014e69d280]   Alpha mode: undetermined",
+              "[out#0/null @ 000002014e607480] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 199x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001f8b814ad40] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001f8b814ad40]   Alpha mode: undetermined",
+              "[out#0/null @ 000001f8b80b5900] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 172x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 000001dc9f8d5d80] Detected color properties:",
+              "[Parsed_colordetect_1 @ 000001dc9f8d5d80]   Alpha mode: undetermined",
+              "[out#0/null @ 000001dc9d927cc0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 209x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "one_bad_pixel": {
+        "note": "half red premultiplied everywhere, ONE pixel of the LAST frame with r 255",
+        "source": "node",
+        "raw": {
+          "pixels": 3072,
+          "minA": 128,
+          "maxA": 128,
+          "straightEvidence": 1,
+          "firstEvidenceFrame": 2,
+          "maxOver": 127,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 128,
+          "ymax": 128,
+          "frames": 3
+        },
+        "first": [
+          128,
+          0,
+          0,
+          128
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "straight",
+            "range": "full",
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001edce0f9300] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001edce0f9300]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001edce0f9300]   Alpha mode: straight",
+              "[out#0/null @ 000001edce064c80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 182x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "straight",
+            "range": null,
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001de6127ed00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001de6127ed00]   Alpha mode: straight",
+              "[out#0/null @ 000001de611e5880] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 200x elapsed=0:00:00.00    "
+            ]
+          },
+          "yuva420p": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "undetermined",
+            "range": null,
+            "alpha": "undetermined",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: undetermined"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_1 @ 000001f22fca5640] Detected color properties:",
+              "[Parsed_colordetect_1 @ 000001f22fca5640]   Alpha mode: undetermined",
+              "[out#0/null @ 000001f22e095300] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 233x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "lavfi_red_half": {
+        "note": "color=c=red@0.5",
+        "source": "lavfi",
+        "src": "color=c=red@0.5:s=64x16:r=3:d=1,format=rgba",
+        "raw": {
+          "pixels": 3072,
+          "minA": 127,
+          "maxA": 127,
+          "straightEvidence": 3072,
+          "firstEvidenceFrame": 0,
+          "maxOver": 128,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 127,
+          "ymax": 127,
+          "frames": 3
+        },
+        "first": [
+          255,
+          0,
+          0,
+          127
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "straight",
+            "range": "full",
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 00000264fff20880] Detected color properties:",
+              "[Parsed_colordetect_0 @ 00000264fff20880]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 00000264fff20880]   Alpha mode: straight",
+              "[out#0/null @ 00000264ffeed4c0] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 224x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "straight",
+            "range": null,
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001e2d298bd80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001e2d298bd80]   Alpha mode: straight",
+              "[out#0/null @ 000001e2d09f3d40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 260x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "lavfi_red": {
+        "note": "color=c=red",
+        "source": "lavfi",
+        "src": "color=c=red:s=64x16:r=3:d=1,format=rgba",
+        "raw": {
+          "pixels": 3072,
+          "minA": 255,
+          "maxA": 255,
+          "straightEvidence": 0,
+          "firstEvidenceFrame": -1,
+          "maxOver": 0,
+          "verdict": "opaque"
+        },
+        "alphaSignalstats": {
+          "ymin": 255,
+          "ymax": 255,
+          "frames": 3
+        },
+        "first": [
+          255,
+          0,
+          0,
+          255
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "opaque",
+            "range": "full",
+            "alpha": "opaque",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: opaque"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001dc340316c0] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001dc340316c0]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001dc340316c0]   Alpha mode: opaque",
+              "[out#0/null @ 000001dc33ff9f40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 221x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "opaque",
+            "range": null,
+            "alpha": "opaque",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: opaque"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001338d54ce80] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001338d54ce80]   Alpha mode: opaque",
+              "[out#0/null @ 000001338b4e8880] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 251x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      },
+      "lavfi_800000_half": {
+        "note": "color=c=0x800000@0.5",
+        "source": "lavfi",
+        "src": "color=c=0x800000@0.5:s=64x16:r=3:d=1,format=rgba",
+        "raw": {
+          "pixels": 3072,
+          "minA": 127,
+          "maxA": 127,
+          "straightEvidence": 3072,
+          "firstEvidenceFrame": 0,
+          "maxOver": 1,
+          "verdict": "straight"
+        },
+        "alphaSignalstats": {
+          "ymin": 127,
+          "ymax": 127,
+          "frames": 3
+        },
+        "first": [
+          128,
+          0,
+          0,
+          127
+        ],
+        "colordetect": {
+          "rgba": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": "JPEG / full range",
+            "alphaText": "straight",
+            "range": "full",
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Color range: JPEG / full range",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000001fe26ad0f00] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000001fe26ad0f00]   Color range: JPEG / full range",
+              "[Parsed_colordetect_0 @ 000001fe26ad0f00]   Alpha mode: straight",
+              "[out#0/null @ 000001fe26a9b600] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 229x elapsed=0:00:00.00    "
+            ]
+          },
+          "alphaOnly": {
+            "status": 0,
+            "blocks": 1,
+            "rangeText": null,
+            "alphaText": "straight",
+            "range": null,
+            "alpha": "straight",
+            "block": [
+              "Detected color properties:",
+              "Alpha mode: straight"
+            ],
+            "stderrTail": [
+              "    Metadata:",
+              "      encoder         : Lavc62.28.102 wrapped_avframe",
+              "[Parsed_colordetect_0 @ 000002784a00a780] Detected color properties:",
+              "[Parsed_colordetect_0 @ 000002784a00a780]   Alpha mode: straight",
+              "[out#0/null @ 0000027848040880] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+              "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 227x elapsed=0:00:00.00    "
+            ]
+          }
+        }
+      }
+    },
+    "fileTags": {
+      "pix_fmt": [
+        "bgra",
+        "bgra"
+      ],
+      "alphaKeys": [
+        [],
+        []
+      ],
+      "tags": [
+        {
+          "ENCODER": "Lavc ffv1",
+          "DURATION": "00:00:01.000000000"
+        },
+        {
+          "ENCODER": "Lavc ffv1",
+          "DURATION": "00:00:01.000000000"
+        }
+      ],
+      "identicalStreamMetadata": true,
+      "identicalTwice": true,
+      "colordetect": {
+        "straight": {
+          "status": 0,
+          "blocks": 1,
+          "rangeText": null,
+          "alphaText": "straight",
+          "range": null,
+          "alpha": "straight",
+          "block": [
+            "Detected color properties:",
+            "Alpha mode: straight"
+          ],
+          "stderrTail": [
+            "      encoder         : Lavc62.28.102 wrapped_avframe",
+            "      DURATION        : 00:00:01.000000000",
+            "[Parsed_colordetect_0 @ 000002a79320e7c0] Detected color properties:",
+            "[Parsed_colordetect_0 @ 000002a79320e7c0]   Alpha mode: straight",
+            "[out#0/null @ 000002a790cb6740] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+            "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 177x elapsed=0:00:00.00    "
+          ]
+        },
+        "premult": {
+          "status": 0,
+          "blocks": 1,
+          "rangeText": null,
+          "alphaText": "undetermined",
+          "range": null,
+          "alpha": "undetermined",
+          "block": [
+            "Detected color properties:",
+            "Alpha mode: undetermined"
+          ],
+          "stderrTail": [
+            "      encoder         : Lavc62.28.102 wrapped_avframe",
+            "      DURATION        : 00:00:01.000000000",
+            "[Parsed_colordetect_0 @ 000001a75e8e9900] Detected color properties:",
+            "[Parsed_colordetect_0 @ 000001a75e8e9900]   Alpha mode: undetermined",
+            "[out#0/null @ 000001a75c4a6e80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown",
+            "frame=    3 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.00 bitrate=N/A speed= 170x elapsed=0:00:00.00    "
+          ]
+        }
+      }
+    },
+    "overlay": {
+      "layer": [
+        128,
+        0,
+        0,
+        128
+      ],
+      "background": [
+        128,
+        128,
+        128
+      ],
+      "straight": [
+        128,
+        64,
+        64
+      ],
+      "premultiplied": [
+        128,
+        64,
+        64
+      ],
+      "redDifference": 0
+    }
+  },
+  "control": {
+    "fullRamp": {
+      "raw": "0..255",
+      "stats": "0..255"
+    },
+    "limitedRamp": {
+      "raw": "16..235",
+      "stats": "16..235"
+    },
+    "opaque": 255
+  },
+  "deterministic": true
+}

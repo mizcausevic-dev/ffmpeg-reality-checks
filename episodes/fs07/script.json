@@ -1,0 +1,126 @@
+{
+  "n": 7,
+  "slug": "ffmpeg-av1-crf-0-short",
+  "palette": "phosphor",
+  "series": "FFmpeg Reality Checks",
+  "format": "vertical",
+  "title": "FFmpeg AV1: -crf 0 is lossless in one encoder only",
+  "fullTitle": "FFmpeg AV1: -crf 0 Is Lossless in libaom, Not in libsvtav1",
+  "kicker": "Short 07",
+  "thumb": {
+    "number": "35",
+    "label": "TYPED CRF 0, GOT CRF 35",
+    "color": "red"
+  },
+  "endCard": {
+    "seconds": 2,
+    "line": "The full film is on the channel"
+  },
+  "hero": {
+    "scene": "svtZero",
+    "t": 3
+  },
+  "kind": "short",
+  "scenes": [
+    {
+      "id": "hook",
+      "chapter": "The surprise",
+      "sim": null,
+      "narration": "You type dash c r f zero for lossless. In lib A O M, you get it. In lib S V T A V one, you do not: the encoder read your zero as not set, and used thirty five. Measured on ffmpeg six point one point one and eight point one point two. Same flag, two encoders.",
+      "captions": [
+        "-crf 0: lossless in one AV1 encoder.",
+        "Not in the other."
+      ]
+    },
+    {
+      "id": "aomZero",
+      "chapter": "crf 0 in libaom",
+      "sim": null,
+      "narration": "lib A O M, dash c r f zero. Two hundred thirty four kilobytes on eight point one point two, five point seven times the dash c r f thirty file. S S I M one. Decoded frames equal the source.",
+      "captions": [
+        "libaom -crf 0: SSIM 1, PSNR infinite.",
+        "Decoded frames equal the source."
+      ]
+    },
+    {
+      "id": "svtZero",
+      "chapter": "crf 0 in libsvtav1",
+      "sim": null,
+      "narration": "lib S V T A V one, dash c r f zero. The same bytes as no dash c r f, and the log says C R F thirty five. Sixty kilobytes, S S I M zero point nine eight eight five. Not lossless, on either build.",
+      "captions": [
+        "SVT -crf 0 = no -crf. Log: CRF 35.",
+        "SSIM 0.9885 on 8.1.2. Lossy."
+      ]
+    },
+    {
+      "id": "scale",
+      "chapter": "The same number",
+      "sim": null,
+      "narration": "The same dash c r f thirty is not the same file. S V T writes sixty one kilobytes on six point one point one, eighty two on eight point one point two. lib A O M writes forty one on both. The number is not a shared scale.",
+      "captions": [
+        "-crf 30: SVT 61 kB, then 82 kB.",
+        "libaom 41 kB on both builds."
+      ]
+    },
+    {
+      "id": "b0",
+      "chapter": "Is b:v 0 needed",
+      "sim": null,
+      "narration": "Does dash c r f need dash b colon v zero? No, it does not. Next to dash c r f thirty it changes nothing in either encoder: identical packets and identical frames, on both builds.",
+      "captions": [
+        "-b:v 0 next to -crf: nothing changes.",
+        "Both encoders, both builds."
+      ]
+    },
+    {
+      "id": "bvSvt",
+      "chapter": "A real bitrate",
+      "sim": null,
+      "narration": "A real bitrate does. Dash b colon v five hundred k, next to dash c r f thirty. lib A O M obeys: five hundred twelve kilobytes down to two hundred twenty three. S V T one point seven ignores it. S V T four point one refuses with an error.",
+      "captions": [
+        "libaom obeys -b:v: 512 kB to 223 kB.",
+        "SVT: ignored on 6.1.1, error on 8.1.2."
+      ]
+    },
+    {
+      "id": "preset",
+      "chapter": "Presets",
+      "sim": null,
+      "narration": "Preset in S V T, ffmpeg six point one point one. Preset four, forty six kilobytes. Eight, sixty one. Twelve, ninety five: fifty five percent bigger than eight, and worse.",
+      "captions": [
+        "SVT preset 12: 55% bigger than 8.",
+        "And worse: SSIM 0.99 vs 0.997."
+      ]
+    },
+    {
+      "id": "keyframes",
+      "chapter": "Default keyframes",
+      "sim": null,
+      "narration": "Keyframes, in four hundred frames. S V T puts them at zero, one sixty one and three twenty two. lib A O M only at zero. Dash g twenty five gives sixteen in both, one a second.",
+      "captions": [
+        "SVT: keyframes at 0, 161, 322.",
+        "libaom: 0 only. -g 25: 16 each."
+      ]
+    },
+    {
+      "id": "seek",
+      "chapter": "Seeking",
+      "sim": null,
+      "narration": "That decides seeking. To reach frame three hundred, S V T runs one hundred forty frames. lib A O M runs three hundred one. With dash g twenty five: one. The price for lib A O M: eighteen percent more bytes on six point one point one.",
+      "captions": [
+        "Frame 300: SVT 140, libaom 301.",
+        "With -g 25: 1 frame."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "The rule",
+      "sim": null,
+      "narration": "The rules. Dash c r f zero is lossless in lib A O M only. Skip dash b colon v zero. Measure your own preset. Set dash g yourself. Check before you ship. Not tested: real footage, players, other builds, other presets.",
+      "captions": [
+        "Measured on ffmpeg 6.1.1 and 8.1.2.",
+        "Not tested: real footage, players."
+      ]
+    }
+  ]
+}
