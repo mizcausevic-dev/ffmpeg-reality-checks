@@ -1,0 +1,91 @@
+{
+ "n": 95,
+ "slug": "ffmpeg-afade-curves",
+ "palette": "lab",
+ "series": "FFmpeg Reality Checks",
+ "title": "Which fade curve is which?",
+ "fullTitle": "FFmpeg afade: Halfway Through a Fade, 23 Curves Sit Almost 50 dB Apart",
+ "kicker": "Episode 95",
+ "thumb": {
+  "number": "50 dB",
+  "label": "SAME FADE, 23 CURVES",
+  "color": "red"
+ },
+ "endCard": {},
+ "hero": {
+  "scene": "mid",
+  "t": 9.0
+ },
+ "scenes": [
+  {
+   "id": "ask",
+   "chapter": "The question",
+   "sim": null,
+   "narration": "The a fade filter has twenty three curves, named like shapes: quarter sine, parabola, exponential. What gain does each give halfway through the same fade? We fade a constant on f f m peg six point one point one and read every sample.",
+   "captions": [
+    "23 curve names. What gain does each give halfway?",
+    "A constant fade-in, read sample by sample."
+   ]
+  },
+  {
+   "id": "method",
+   "chapter": "Two readers",
+   "sim": null,
+   "narration": "The input is a constant one half, so each output sample is the gain times one half. The fade lasts forty eight thousand samples. A second reader sends a one kilohertz sine through the stats filter and measures every block of forty eight hundred samples.",
+   "captions": [
+    "Reader 1: constant 0.5 in, each sample is the gain.",
+    "Reader 2: astats level per 4800-sample block."
+   ]
+  },
+  {
+   "id": "mid",
+   "chapter": "Halfway",
+   "sim": null,
+   "narration": "Halfway, tri gives one half. Quarter sine gives point seven. Log gives point nine four. Exp gives point zero zero three, minus fifty decibels. Same fade, same length, about fifty decibels apart. Seven curves land on exactly one half.",
+   "captions": [
+    "At 50 percent: exp 0.0032 (-50.0 dB), log 0.9398 (-0.5 dB).",
+    "Seven curves give exactly 0.5."
+   ]
+  },
+  {
+   "id": "names",
+   "chapter": "The names",
+   "sim": null,
+   "narration": "The names are not the shapes you would guess. Q u a is a squared. Par, the parabola, is one minus the square root of one minus a: the mirror of i par. Seven curves come in mirror pairs, and q sin two is h sin under another name.",
+   "captions": [
+    "par = 1 - sqrt(1 - a), the inverse of ipar.",
+    "qsin2 and hsin: the same curve, difference 1e-16."
+   ]
+  },
+  {
+   "id": "odd",
+   "chapter": "Odd corners",
+   "sim": null,
+   "narration": "E s i n has a shelf: from forty to sixty percent its gain stays near point two nine. The last sample of par is point nine nine five, not one. Log jumps in at minus twenty four decibels. Exp never reaches silence: it stops at minus one hundred.",
+   "captions": [
+    "esin: 0.2885 at 40 percent, 0.2974 at 60 percent.",
+    "log starts with a step of -23.9 dB. exp ends at -100 dB, not 0."
+   ]
+  },
+  {
+   "id": "loud",
+   "chapter": "The second reader",
+   "sim": null,
+   "narration": "The second reader agrees. In all twenty three curves, the level of every block matches the decoded samples within a thousandth of a decibel. The unfaded control sine reads minus nine point zero three.",
+   "captions": [
+    "230 blocks: astats equals Node within 0.001 dB.",
+    "Control sine: -9.0309 dB in both readers."
+   ]
+  },
+  {
+   "id": "close",
+   "chapter": "What we measured",
+   "sim": null,
+   "narration": "So pick a curve by its number, not its name. At the midpoint the gains run from point zero zero three to point nine four. Not tested: other builds, real footage, fades inside music, other sample formats.",
+   "captions": [
+    "Halfway gains run from 0.0032 to 0.94.",
+    "Not tested: other builds, real footage, other sample formats."
+   ]
+  }
+ ]
+}
