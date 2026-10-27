@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {runExperiment} from './experiment.mjs';
+const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'frc-ff92-'));
+const t0 = Date.now();
+const ev = runExperiment(dir);
+console.log(ev.ffmpeg.split('\n')[0], `(${((Date.now() - t0) / 1000).toFixed(1)} s)`);
+console.log('source cuts:', JSON.stringify(ev.src));
+const show = (k, r) => r.status !== 0 ? console.log(k, 'FAILED', r.err) : console.log(k.padEnd(16), 'K', JSON.stringify(r.kFlags), 'I', JSON.stringify(r.iFrames), 'IDR(bytes)', JSON.stringify(r.idr), 'sliceI(bytes)', JSON.stringify(r.sliceI), 'x264 I', r.x264I, 'keyflag', JSON.stringify(r.keyFrameFlag), 'bytes', r.total, 'atCuts', JSON.stringify(r.atCuts), r.sizesHash, JSON.stringify(r.types));
+for (const [k, r] of Object.entries(ev.cells)) show(k, r);
+console.log('sweep -keyint_min');
+for (const [k, r] of Object.entries(ev.sweep)) show('min ' + k, r);
+const out = path.join(import.meta.dirname, '..', '..', '..', 'out', 'ff92'); fs.mkdirSync(out, {recursive: true});
+fs.writeFileSync(path.join(out, 'evidence.json'), JSON.stringify(ev, null, 1));
+fs.rmSync(dir, {recursive: true, force: true});

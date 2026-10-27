@@ -1,0 +1,86 @@
+{
+  "n": 92,
+  "slug": "libx264-scenecut-keyint-keyframes",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where do the keyframes go when a clip has hard cuts?",
+  "fullTitle": "FFmpeg libx264 -g 250 with Hard Cuts: -keyint_min 250 Gives 4 I Frames but 2 Keyframes",
+  "kicker": "Episode 92",
+  "thumb": {
+    "number": "4 vs 2",
+    "label": "I FRAMES VS KEYFRAMES",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "keyintmin",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "You set dash g two fifty, and the clip has three hard cuts. Where do the keyframes go? Two, you would say: zero and two fifty. Four come out. Synthetic clip, f f m peg six point one point one.",
+      "captions": [
+        "-g 250 on a clip with three hard cuts.",
+        "Two keyframes expected. Four came out."
+      ],
+      "sim": null
+    },
+    {
+      "id": "clip",
+      "chapter": "The clip and four readers",
+      "narration": "Three hundred frames, hard cuts at sixty, one thirty, two ten. Four readers of the same file: f f probe packets, the K flag; f f probe frames, the I type; Node reading the H two six four bytes; and x two six four's own count. A control clip has no cuts.",
+      "captions": [
+        "Hard cuts at frames 60, 130 and 210.",
+        "Four readers, one control clip."
+      ]
+    },
+    {
+      "id": "default",
+      "chapter": "Defaults",
+      "narration": "Defaults: keyframes at zero, sixty, one thirty, two ten. All four readers agree. Two fifty never comes: the last keyframe is at two ten, the next is due at four sixty, and the clip ends at two ninety nine.",
+      "captions": [
+        "Every cut becomes a keyframe.",
+        "No keyframe at 250."
+      ]
+    },
+    {
+      "id": "off",
+      "chapter": "Scenecut off",
+      "narration": "Dash s c threshold zero, and dash x two six four params scenecut zero: the same file, every packet the same size. Keyframes at zero and two fifty. No keyframe at the cuts, one in the middle of a scene, and the file is nine percent bigger.",
+      "captions": [
+        "Same file, two spellings.",
+        "Keyframes at 0 and 250, not at the cuts."
+      ]
+    },
+    {
+      "id": "keyintmin",
+      "chapter": "Keyint min",
+      "narration": "Dash keyint min two fifty looks like the same switch. It is not. The cuts still become I frames: four. But only two are keyframes, zero and one thirty. Sixty and two ten are I frames with no K flag, and no N A L type five: three readers say so.",
+      "captions": [
+        "4 I frames, 2 keyframes.",
+        "60 and 210: I frames, not keyframes."
+      ]
+    },
+    {
+      "id": "rule",
+      "chapter": "The rule",
+      "narration": "The rule: a cut becomes a keyframe only if it is far enough from the last one. Min keyint sixty: yes. Sixty one: no, and the count drops to three. Two fifty acts as one twenty six, the same file.",
+      "captions": [
+        "Cut at 60: keyframe if min-keyint is 60.",
+        "250 gives the same file as 126."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "So dash g is a ceiling, not a schedule. Count K flags, not I frames. Not tested: other builds, other presets, B frames off, real footage.",
+      "captions": [
+        "Not tested: other builds, presets, B frames off, real footage.",
+        "Count K flags, not I frames."
+      ],
+      "sim": null
+    }
+  ]
+}
