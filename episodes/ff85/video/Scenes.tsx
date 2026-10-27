@@ -265,7 +265,7 @@ const None: React.FC<SceneProps> = ({t}) => {
         <g opacity={ep(t, 13.0, 14.0)}>
           <Paper x={1060} y={520} w={610} h={330} rot={0.5} seed={7}>
             <Reg x={30} y={106} s={96} w={800} f="display" c={C.text}>{`${n.distinct} values`}</Reg>
-            <Tx x={30} y={146} s={22} f="mono" c={C.dim}>6.1.1 runs of 16. 8.1.2 rounds: 65 values</Tx>
+            <Tx x={30} y={146} s={22} f="mono" c={C.dim}>6.1.1: runs of 16. 8.1.2: 65 values</Tx>
             <Reg x={30} y={232} s={96} w={800} f="display" c={C.red} plate={C.text}>{`${n.bias.toFixed(3)}`}</Reg>
             <Tx x={30} y={272} s={22} f="mono" c={C.dim}>6.1.1 floored. 8.1.2 rounded: +0.125</Tx>
             <Tx x={30} y={314} s={26} f="mono" w={700} c={C.red}>one byte per band</Tx>

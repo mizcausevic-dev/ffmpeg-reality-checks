@@ -277,7 +277,7 @@ const Opus: React.FC<SceneProps> = ({t}) => {
           <g opacity={ep(t, 3.4, 4.0)}>
             <Tx x={1352} y={382} s={52} c={C.text} f="display" w={800}>{`${kHz(CUT.opus_s64)} kHz`}</Tx>
             <Tx x={1352} y={418} s={21} c={C.dim} f="mono">64, 96, 128, 192, 256</Tx>
-            <Tx x={1352} y={448} s={21} c={C.dim} f="mono">{`-vbr off, 64k, 6.1.1: ${kHz(CUT.opus_cbr64)}`}</Tx>
+            <Tx x={1352} y={448} s={21} c={C.dim} f="mono">{`-vbr off, 6.1.1: ${kHz(CUT.opus_cbr64)}`}</Tx>
             <Tx x={1352} y={474} s={21} c={C.dim} f="mono">8.1.2: gap at 15.6, 15.7</Tx>
           </g>
           <g opacity={ep(t, 5.4, 6.0)}>
