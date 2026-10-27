@@ -1,0 +1,86 @@
+{
+  "n": 78,
+  "slug": "mp3-encoder-delay-1105",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where does my MP3 start after decoding?",
+  "fullTitle": "MP3 Encoder Delay: 1105 Samples Late Without the Xing Tag",
+  "kicker": "Episode 78",
+  "thumb": {
+    "number": "+1105",
+    "label": "SAMPLES LATE, NO XING TAG",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "raw",
+    "t": 11.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "You encode one second of sound to M P three, then decode it. Does it come back where it started? One impulse sits at sample four thousand four hundred ten. We read where it lands.",
+      "captions": [
+        "Encode, decode: does the sound start where it did?",
+        "One impulse at sample 4410."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "One impulse, one tone",
+      "narration": "One second, forty four thousand one hundred samples: one impulse, and a one kilohertz tone from the same sample. Control: through P C M, the impulse stays at four thousand four hundred ten. Readers: decoded samples, file bytes, f f probe.",
+      "captions": [
+        "Control: through PCM, the impulse stays at 4410.",
+        "Readers: decoded samples, file bytes, ffprobe."
+      ]
+    },
+    {
+      "id": "raw",
+      "chapter": "Without the Xing tag",
+      "narration": "Encode with lame, constant or variable bit rate, and add dash write underscore x i n g, zero. The impulse returns at five thousand five hundred fifteen: one thousand one hundred five samples late. So does the tone. Out come forty six thousand eighty samples.",
+      "captions": [
+        "-write_xing 0: impulse at 5515, 1105 samples late.",
+        "46080 samples out for 44100 in."
+      ]
+    },
+    {
+      "id": "tag",
+      "chapter": "With the tag: delay 576",
+      "narration": "Leave the tag on, the default, and the impulse is back at four thousand four hundred ten. The first frame holds no sound: it is an Info frame, or Xing, and its bytes say delay five seventy six, padding fourteen oh four.",
+      "captions": [
+        "The first frame is an Info or Xing tag.",
+        "Delay 576, padding 1404, in three bytes."
+      ]
+    },
+    {
+      "id": "sum",
+      "chapter": "The arithmetic",
+      "narration": "Forty frames of eleven fifty two make forty six thousand eighty samples. The decoder skips the delay plus five twenty nine, one thousand one hundred five, and trims eight hundred seventy five at the end. Forty four thousand one hundred remain.",
+      "captions": [
+        "576 + 529 = 1105 skipped at the start.",
+        "1404 - 529 = 875 trimmed at the end."
+      ]
+    },
+    {
+      "id": "cut",
+      "chapter": "Copy and cut",
+      "narration": "Dash c copy of the whole file changes nothing. But dash s s zero point five with dash c copy writes a new tag, delay three thousand five hundred sixty seven. The cut starts three thousand nine hundred eighty one samples late. A re-encode starts exactly.",
+      "captions": [
+        "-ss 0.5 -c copy: tag delay 3567, 3981 samples late.",
+        "Re-encode: exact. Copy without tag: 115 early."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "A decoder removes only the delay it is told about. Keep the tag for gapless playback; read the delay field when a cut sounds late. Re-encode for an exact start. Not tested: other builds, real players, other encoders, real music.",
+      "captions": [
+        "No tag: 1105 late. Tag: 0.",
+        "Not tested: players, other encoders, real music."
+      ]
+    }
+  ]
+}
