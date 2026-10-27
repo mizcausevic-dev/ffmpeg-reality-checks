@@ -402,5 +402,17 @@
         "ff03"
       ]
     }
-  }
+  },
+  "extraPrefixes": [
+    {
+      "prefix": "fl",
+      "kind": "long"
+    },
+    {
+      "prefix": "fs",
+      "kind": "short"
+    }
+  ],
+  "longPlaylistTitle": "FFmpeg Reality Checks: Long Films and Shorts",
+  "longPlaylistDescription": "Deep dives and vertical Shorts from FFmpeg Reality Checks. Each theme gathers several short films into one longer cut with the same measured numbers: synthetic fixtures, two independent readers, and a list of what was not tested. Fixtures and tests: github.com/mizcausevic-dev/ffmpeg-reality-checks"
 }
