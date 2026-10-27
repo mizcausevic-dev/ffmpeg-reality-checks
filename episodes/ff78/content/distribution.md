@@ -1,6 +1,6 @@
 # FF78 distribution kit: MP3 Encoder Delay: 1105 Samples Late Without the Xing Tag
 
-All numbers below come from the synthetic fixture in `episodes/ff78/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; 8.1.2 pending.
+All numbers below come from the synthetic fixture in `episodes/ff78/fixture/` (experiment.mjs, run.mjs) and its tests, measured on ffmpeg 6.1.1; the tests also pass on 8.1.2 (exact numbers are asserted on 6.1.1 only). One difference seen on 8.1.2: ffprobe prints the duration of a tagged file as 1.000 s, not 1.0449 s.
 
 ## YouTube
 

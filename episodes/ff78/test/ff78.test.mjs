@@ -91,7 +91,8 @@ t('the decoded length always follows the header: samples = audio frames x 1152 m
 t('ffprobe (reader 3): start_time is 0 without the tag and 1105 / 44100 = 0.025057 s with it (6.1.1); the durations differ by the extra padding only', () => {
   for (const k of RAW) near(E(k).probe.startTime, 0, 1e-6, k);
   if (isV6()) { for (const k of TAGGED) near(E(k).probe.startTime, 1105 / SR, 2e-6, k); near(E('imp_cbr_tag').probe.duration, 1.044898, 1e-5); }
-  for (const k of ENC) assert.ok(E(k).probe.duration > 1.0 && E(k).probe.duration < 1.06, k);
+  // 6.1.1 prints the tagged duration with the delay and padding included (1.0449 s); 8.1.2 prints 1.000 s for a tagged file.
+  for (const k of ENC) assert.ok(E(k).probe.duration >= (isV6() || k.endsWith('_raw') ? 1.0 : 0.99) && E(k).probe.duration < 1.06, k);
 });
 
 t('known-positive control: both signals, both modes, show a non-zero shift when the tag is removed, so the readers can see the effect; the shift is identical to the sample for the impulse (peak) and the tone (half-level onset)', () => {
