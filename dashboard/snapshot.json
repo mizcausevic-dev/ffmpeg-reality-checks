@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-27T05:10:00-04:00",
+ "asOf": "2026-10-27T09:43:00-04:00",
  "source": "YouTube Data API videos.list (statistics, contentDetails, status), read-only",
  "films": {
   "ff01": {
@@ -631,144 +631,144 @@
    "seconds": 124,
    "views": 1,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T02:40:01Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:42Z"
   },
   "ff80": {
    "videoId": "iotFY9qDWSQ",
    "seconds": 127,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T07:59:37Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:43Z"
   },
   "ff81": {
    "videoId": "waVwIOnIDmE",
    "seconds": 118,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:02:09Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:44Z"
   },
   "ff82": {
    "videoId": "NcgwUMX5gTw",
    "seconds": 113,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:04:58Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:45Z"
   },
   "ff83": {
    "videoId": "csah6kunzHw",
    "seconds": 122,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:07:59Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:48Z"
   },
   "ff84": {
    "videoId": "TwfVCGLatjo",
    "seconds": 141,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:11:45Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:49Z"
   },
   "ff85": {
    "videoId": "1anXrXzLdkw",
    "seconds": 126,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:18:48Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:51Z"
   },
   "ff86": {
    "videoId": "sBDlU0gl9kQ",
    "seconds": 124,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:22:34Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:52Z"
   },
   "ff87": {
    "videoId": "e4gKCvjGP8k",
    "seconds": 128,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:26:21Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:54Z"
   },
   "ff88": {
    "videoId": "flnItOkaiR8",
    "seconds": 134,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:29:50Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:54Z"
   },
   "ff89": {
    "videoId": "c69UA2K5QtU",
    "seconds": 132,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:33:10Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:56Z"
   },
   "ff90": {
    "videoId": "43iiawsLf40",
    "seconds": 120,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:36:16Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:57Z"
   },
   "ff91": {
    "videoId": "nBB-bUwvTcw",
    "seconds": 124,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:39:35Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:58Z"
   },
   "ff92": {
    "videoId": "6s-1Q3SxkVM",
    "seconds": 122,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:42:37Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:40:59Z"
   },
   "ff93": {
    "videoId": "2M87sRoyuUc",
    "seconds": 112,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:45:25Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:41:00Z"
   },
   "ff94": {
    "videoId": "rAnjJfpnxW4",
    "seconds": 119,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:48:35Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:41:02Z"
   },
   "ff95": {
    "videoId": "8cL2dc7S7tU",
    "seconds": 119,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:55:16Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:41:04Z"
   },
   "ff96": {
    "videoId": "D6DVN3-OIWc",
    "seconds": 115,
    "views": 0,
    "likes": 0,
-   "privacy": "private",
-   "at": "2026-10-27T08:58:35Z"
+   "privacy": "public",
+   "at": "2026-10-27T13:41:05Z"
   },
   "ff97": {
    "videoId": "cBqOBc62YZo",
