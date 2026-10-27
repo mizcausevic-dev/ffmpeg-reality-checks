@@ -57,9 +57,10 @@
     {
       "id": "opus",
       "chapter": "libopus",
-      "narration": "libopus does not move. Sixty four to two fifty six: twenty kilohertz every time, also at constant bit rate sixty four. On these tones, variable bit rate spent one hundred nine point five at the sixty four label. The header holds no cutoff.",
+      "narration": "libopus does not move, at its default. Sixty four to two fifty six: twenty kilohertz every time. On these tones, variable bit rate spent one hundred nine point five at the sixty four label. Force constant bit rate sixty four: on six point one point one it still gives twenty, on eight point one point two fifteen point five. The header holds no cutoff.",
       "captions": [
         "libopus: 20.0 kHz at every bit rate.",
+        "-vbr off at 64: 6.1.1 20.0, 8.1.2 15.5.",
         "OpusHead has no cutoff field."
       ]
     },

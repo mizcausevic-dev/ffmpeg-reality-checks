@@ -52,6 +52,7 @@ differs = {
     'ff73': 'A bare 12:30 in drawtext is refused with an error on 8.1.2; on 6.1.1 it draws a wrong frame and exits 0.',
     'ff78': 'ffprobe prints the duration of a tagged mp3 as 1.0449 s on 6.1.1 and 1.000 s on 8.1.2 (start_time 0.025057 on both).',
     'ff79': 'Rewriting the pre-skip in an mkv moves the click on 6.1.1 but not on 8.1.2 (ogg behaves the same on both); mkv start_time is -0.007 s on 6.1.1 and 0 on 8.1.2.',
+    'ff84': 'libopus with -vbr off at 64 kbit/s ends at 20.0 kHz on 6.1.1 and 15.5 kHz on 8.1.2 (default VBR is 20.0 on both; 8.1.2 also 11.9 at 48 kbit/s and 7.5 at 32, probe only).',
     'ff89': 'libvpx-vp9 given rgba input: 6.1.1 converts to yuva420p by itself, 8.1.2 picks gbrap and refuses it until -pix_fmt yuva420p is named.',
     'ff76': 'format=gray on a bt709 file keeps the file luma on 6.1.1 (red 55) and uses the 601 weights on 8.1.2 (red 76).',
 }

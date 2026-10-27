@@ -13,6 +13,7 @@ test.after(() => { if (dir) fs.rmSync(dir, {recursive: true, force: true}); });
 const t = (name, fn) => test(name, {skip: ok ? false : 'ffmpeg/ffprobe or one of libmp3lame, libopus, aac not available'}, fn);
 const R = (n) => ev.runs[n];
 const isV6 = () => buildOf(ev.ffmpeg) === 'v6';
+const isV8 = () => buildOf(ev.ffmpeg) === 'v8';
 const BR = [64, 96, 128, 192, 256];
 const cut = (n) => R(n).c1.cutoff;
 const incr = (a) => a.every((v, i) => i === 0 || v > a[i - 1]);
@@ -66,11 +67,11 @@ t('aac (the native encoder), stereo: the cutoff rises with the bitrate, from 12.
   if (isV6()) assert.deepEqual(v, [12000, 15700, 17200, 19500, 21700]);
 });
 
-t('libopus, stereo: the cutoff does not move with the bitrate: 64, 96, 128, 192 and 256 kbit/s all end at 20000 Hz (the fullband limit), and so does -vbr off at 64 kbit/s', () => {
+t('libopus, stereo: the cutoff does not move with the bitrate: 64, 96, 128, 192 and 256 kbit/s all end at 20000 Hz (the fullband limit); -vbr off at 64 kbit/s also does on 6.1.1, but ends lower on 8.1.2 (15500 Hz)', () => {
   const v = BR.map((k) => cut(`opus_s${k}`));
   assert.ok(v.every((x) => x === v[0]), `${v}`); assert.ok(v[0] >= 19500 && v[0] <= 20500);
-  assert.equal(cut('opus_cbr64'), v[0]);
-  if (isV6()) assert.equal(v[0], 20000);
+  if (isV6()) { assert.equal(cut('opus_cbr64'), v[0]); assert.equal(v[0], 20000); }
+  else { assert.ok(cut('opus_cbr64') <= v[0], `${cut('opus_cbr64')}`); if (isV8()) assert.ok(cut('opus_cbr64') >= 12000 && cut('opus_cbr64') < v[0], `${cut('opus_cbr64')}`); }
 });
 
 t('same nominal bitrate, three codecs: at 64 kbit/s libmp3lame ends lowest and libopus highest; at 256 libopus is above libmp3lame; the ranking is in the numbers, not in the names', () => {
@@ -112,11 +113,11 @@ t('-cutoff is honored within 600 Hz by the three encoders (mp3 16000 and 20000, 
   assert.ok(cut('mp3_c16000') < cut('mp3_s128') && cut('mp3_c20000') > cut('mp3_s128'));
 });
 
-t('the nominal bitrate is a label, not a measurement: libmp3lame CBR files are within 1% of the label, libopus VBR files on these tones are far above it at 64 kbit/s (and libopus -vbr off is within 3% of 64), and the cutoff is the same either way', () => {
+t('the nominal bitrate is a label, not a measurement: libmp3lame CBR files are within 1% of the label, libopus VBR files on these tones are far above it at 64 kbit/s (and libopus -vbr off is within 3% of 64), and with default VBR the cutoff stays at 20000 whatever the label; with -vbr off it is the same on 6.1.1 and lower on 8.1.2', () => {
   for (const k of BR) assert.ok(Math.abs(R(`mp3_s${k}`).kbps - k) / k < 0.01, `mp3 ${k}: ${R(`mp3_s${k}`).kbps}`);
   assert.ok(Math.abs(R('opus_cbr64').kbps - 64) / 64 < 0.03, `${R('opus_cbr64').kbps}`);
   assert.ok(R('opus_s64').kbps > 70, `${R('opus_s64').kbps}`);
-  assert.equal(cut('opus_cbr64'), cut('opus_s64'));
+  if (isV6()) assert.equal(cut('opus_cbr64'), cut('opus_s64')); else assert.ok(cut('opus_cbr64') <= cut('opus_s64'));
 });
 
 t('every decoded file has the stimulus length (no tone is cut or shifted into the next frame): within 0.05 s of 37.75 s, and 2 channels for stereo and 1 for mono', () => {

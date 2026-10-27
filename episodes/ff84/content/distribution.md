@@ -24,7 +24,7 @@ Controls: with no encoder both readers return all 151 tones, 23.9 kHz. Known pos
 Results, stereo, cutoff in kHz at 64, 96, 128, 192, 256 kbit/s:
 libmp3lame: 11.2, 15.0, 16.5, 18.7, 19.5 (a cliff: the next 100 Hz step is at least 31 dB down).
 aac: 12.0, 15.7, 17.2, 19.5, 21.7.
-libopus: 20.0 at every bit rate, also with vbr off at 64 kbit/s. The OpusHead header holds the channel count and the 48000 Hz input rate, no cutoff. Opus is variable bit rate by default: the 64k label spent 109.5 kbit/s on these tones.
+libopus: 20.0 at every bit rate with the default variable bit rate. With -vbr off at 64 kbit/s it is 20.0 on 6.1.1 and 15.5 on 8.1.2. The OpusHead header holds the channel count and the 48000 Hz input rate, no cutoff. Opus is variable bit rate by default: the 64k label spent 109.5 kbit/s on these tones.
 
 Mono: with aac, mono at k/2 ends exactly where stereo at k does, 5 pairs of 5 (mono 32 to 128: 12.0, 15.7, 17.2, 19.5, 21.7). With libmp3lame only 1 of 5 pairs is equal (128 stereo and 64 mono, 16.5); mono 96 ends at 20.2 against 18.7 for stereo 192.
 
