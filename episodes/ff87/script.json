@@ -1,0 +1,91 @@
+{
+  "n": 87,
+  "slug": "ffmpeg-vstack-different-sizes",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Why won't vstack stack these two?",
+  "fullTitle": "FFmpeg vstack and hstack with Different Sizes: the Exact Error, Fixes, and What shortest=1 Does",
+  "kicker": "Episode 87",
+  "thumb": {
+    "number": "160 vs 320",
+    "label": "STACK WIDTHS MUST MATCH",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "error",
+    "t": 9.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "narration": "Two videos, one above the other. You write vstack, and f f m peg stops. What does it say, what fixes it, and what does shortest equals one do to the length? F f m peg six point one point one.",
+      "captions": [
+        "vstack on two clips of different sizes.",
+        "The error, the fixes, and shortest=1."
+      ],
+      "sim": null
+    },
+    {
+      "id": "rig",
+      "chapter": "Two readers, one control",
+      "narration": "Clip A is three twenty by two forty, clip B one sixty by ninety, each with a white marker forty pixels square. Reader one is f f probe and crop detect, reader two is Node on the decoded pixels. Control: matching clips stack fine.",
+      "captions": [
+        "A 320 x 240, B 160 x 90, a 40 px marker each.",
+        "Control: matching sizes stack fine."
+      ],
+      "sim": null
+    },
+    {
+      "id": "error",
+      "chapter": "The error",
+      "narration": "Vstack wants equal widths: input one width one sixty does not match input zero width three twenty. Exit status two thirty four, and no file is written. Hstack wants equal heights, the same way. The other side may differ: heights two forty and ninety stack to three thirty.",
+      "captions": [
+        "Input 1 width 160 does not match input 0 width 320.",
+        "Same for hstack, on the height."
+      ],
+      "sim": null
+    },
+    {
+      "id": "scale",
+      "chapter": "Scale",
+      "narration": "Fix one: scale B to width three twenty, height automatic. It becomes three twenty by one eighty, the marker stays square, eighty pixels. Scale two ref gives the same frames, but main underscore w is the input being scaled, so it fails again. Stretching B to three twenty by two forty makes the marker eighty wide, one hundred six tall.",
+      "captions": [
+        "scale=320:-2: marker 80 x 80.",
+        "Stretch to 320x240: marker 80 x 106."
+      ],
+      "sim": null
+    },
+    {
+      "id": "pad",
+      "chapter": "Pad",
+      "narration": "Pad leaves B alone: the marker keeps forty pixels, with fourteen thousand four hundred black pixels around. Or fit B in the same cell and pad: eighty pixels, nineteen thousand two hundred black.",
+      "captions": [
+        "pad: marker stays 40 x 40, 14400 black.",
+        "Fit and pad: 80 x 80, 19200 black."
+      ],
+      "sim": null
+    },
+    {
+      "id": "short",
+      "chapter": "Length",
+      "narration": "Now length. A lasts two seconds, B three. The stack runs seventy five frames, and A is held on its last frame for twenty five. Shortest equals one gives fifty frames, two seconds, the same first fifty. The option dash shortest changes nothing.",
+      "captions": [
+        "Default: 75 frames. A held for 25.",
+        "shortest=1: 50 frames, 2 s."
+      ],
+      "sim": null
+    },
+    {
+      "id": "close",
+      "chapter": "What to do",
+      "narration": "So match the widths for vstack and the heights for hstack, and choose: scale, stretch or pad. Not tested: other builds, real footage, audio, other pixel formats.",
+      "captions": [
+        "Match widths (vstack) or heights (hstack).",
+        "Not tested: other builds, real footage."
+      ],
+      "sim": null
+    }
+  ]
+}
