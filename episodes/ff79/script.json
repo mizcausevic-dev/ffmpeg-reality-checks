@@ -1,0 +1,86 @@
+{
+  "n": 79,
+  "slug": "opus-pre-skip-click",
+  "palette": "lab",
+  "series": "FFmpeg Reality Checks",
+  "title": "Where does the first Opus click land?",
+  "fullTitle": "Opus Pre-Skip 312: Rewrite One Header Field, the Click Moves 312 Samples",
+  "kicker": "Episode 79",
+  "thumb": {
+    "number": "312",
+    "label": "SAMPLES OF OPUS PRE-SKIP",
+    "color": "red"
+  },
+  "endCard": {},
+  "hero": {
+    "scene": "patch",
+    "t": 6.0
+  },
+  "scenes": [
+    {
+      "id": "ask",
+      "chapter": "The question",
+      "sim": null,
+      "narration": "Opus files carry a pre-skip: three hundred twelve samples in this encode. What does the decoder do with it? One click, at sample forty eight hundred. Where does it come back?",
+      "captions": [
+        "Pre-skip 312. Where does the click come back?",
+        "One click at sample 4800."
+      ]
+    },
+    {
+      "id": "source",
+      "chapter": "One click, three readers",
+      "narration": "One second, forty eight thousand samples. Libopus at sixty four kilobits, into o g g, m k v, and dot opus. Control: through P C M, the click stays at forty eight hundred. Readers: decoded samples, file bytes, f f probe.",
+      "captions": [
+        "Control: through PCM, the click stays at 4800.",
+        "Readers: decoded samples, file bytes, ffprobe."
+      ]
+    },
+    {
+      "id": "head",
+      "chapter": "The pre-skip bytes",
+      "narration": "The bytes: Opus Head, then three eight zero one. Little endian: three hundred twelve samples, six point five milliseconds. The m k v repeats it as codec delay. F f probe calls it initial padding. In all four files, the click is at forty eight hundred.",
+      "captions": [
+        "OpusHead pre-skip: 38 01 = 312 samples = 6.5 ms.",
+        "All four files: click at 4800."
+      ]
+    },
+    {
+      "id": "patch",
+      "chapter": "Rewrite the field",
+      "narration": "Now lie. Rewrite only that field, and fix the page checksum. Pre-skip zero: the click lands at fifty one twelve, three hundred twelve late. Pre-skip one thousand: forty one twelve, six hundred eighty eight early. The header decides.",
+      "captions": [
+        "Pre-skip 0: click at 5112, 312 late.",
+        "Pre-skip 1000: click at 4112, 688 early."
+      ]
+    },
+    {
+      "id": "copy",
+      "chapter": "Cutting with stream copy",
+      "narration": "Cut with dash s s zero point five and dash c copy. M k v, before the input: nine hundred sixty samples early. After it: exact. O g g after the input: nine hundred sixty late. Copies land on twenty millisecond packets. O g g with default pages, before the input: nothing is cut.",
+      "captions": [
+        "-ss 0.5 -c copy: 960 early, exact, or 960 late.",
+        "Default ogg pages, -ss before -i: nothing cut."
+      ]
+    },
+    {
+      "id": "reenc",
+      "chapter": "Cutting with a re-encode",
+      "narration": "Re-encode instead, with dash s s or dash a f a trim: the first click lands at twenty four thousand, exact. But a trim leaves six hundred forty eight extra samples at the end.",
+      "captions": [
+        "Re-encode: first click at 24000, exact.",
+        "atrim: 648 extra samples at the end."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "What to check",
+      "sim": null,
+      "narration": "The decoder trims exactly what the header says. After any cut, read the pre-skip and find the click. Not tested: other builds, real players, other encoders, real music.",
+      "captions": [
+        "The header decides. Find the click after a cut.",
+        "Not tested: players, other encoders, real music."
+      ]
+    }
+  ]
+}
