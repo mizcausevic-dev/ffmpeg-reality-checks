@@ -1,0 +1,75 @@
+{
+ "n": 97,
+ "slug": "ffmpeg-wav-through-a-pipe",
+ "palette": "lab",
+ "series": "FFmpeg Reality Checks",
+ "title": "What does a piped WAV say about its length?",
+ "fullTitle": "FFmpeg WAV Through a Pipe Carries Placeholder Sizes, so Players Guess the Length",
+ "kicker": "Episode 97",
+ "thumb": {
+  "number": "UNKNOWN",
+  "label": "LENGTH OF A PIPED WAV",
+  "color": "red"
+ },
+ "endCard": {},
+ "hero": {
+  "scene": "players",
+  "t": 9.0
+ },
+ "scenes": [
+  {
+   "id": "ask",
+   "chapter": "The question",
+   "narration": "Pipe ffmpeg into Node with dash f wav, and save what arrives. Is that the same file as writing to disk? One second of sound, a hundred ninety two thousand bytes, captured both ways and read by ffprobe and by our own bytes reader. On f f m peg six point one point one.",
+   "captions": [
+    "Same sound, two paths: a file, and a pipe.",
+    "192000 bytes of audio, read 2 ways."
+   ]
+  },
+  {
+   "id": "header",
+   "chapter": "The header",
+   "narration": "The header is seventy eight bytes, and two fields matter: the RIFF size and the data size. In a file, ffmpeg seeks back and writes them. Through a pipe it cannot: both stay all ones, and the audio is byte for byte the same.",
+   "captions": [
+    "File: 0x2ee46 and 0x2ee00. Pipe: 0xffffffff twice.",
+    "Only 8 of 192078 bytes differ."
+   ]
+  },
+  {
+   "id": "players",
+   "chapter": "The players",
+   "narration": "A player that trusts the size divides it by the byte rate. File: one second. Pipe: six point two hours. ffprobe on the saved file still says one second, from the file size. Append another second, and it says two. ffmpeg decodes everything. From stdin, ffprobe prints N A.",
+   "captions": [
+    "A size trusting player: 1 s for the file, 22369.6 s for the pipe.",
+    "ffprobe: 1.0 s from the file size, N/A from stdin."
+   ]
+  },
+  {
+   "id": "broken",
+   "chapter": "Flags that do not help",
+   "narration": "Three flags that do not fix it. Dash write bext adds a six hundred ten byte chunk, and the sizes stay all ones. Dash rf64 always writes a ds64 chunk of zeros, and ffmpeg decodes zero bytes. And dash f w sixty four writes a size ffmpeg refuses to open.",
+   "captions": [
+    "bext: 610 more bytes, same placeholders.",
+    "rf64 into a pipe: ds64 is zero, 0 of 192000 bytes decode."
+   ]
+  },
+  {
+   "id": "fixes",
+   "chapter": "What works",
+   "narration": "Three fixes that work. Patch eight bytes in Node once the last byte arrives, and the capture equals the file. Or pipe raw, and write a forty four byte header yourself when the length is known. Or give ffmpeg a file, and let it seek.",
+   "captions": [
+    "Patch 2 size fields: identical to the file, byte for byte.",
+    "Raw plus a 44 byte header: true sizes, same audio."
+   ]
+  },
+  {
+   "id": "close",
+   "chapter": "The close",
+   "narration": "A piped wav does not know its length, and says so with all ones. Patch it, or write the header yourself. Not tested: other builds, files over four gigabytes, real recordings, other players.",
+   "captions": [
+    "A piped WAV has placeholder sizes, not a length.",
+    "Not tested: other builds, 4 GiB files, real recordings."
+   ]
+  }
+ ]
+}
