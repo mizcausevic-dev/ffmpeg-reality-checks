@@ -528,5 +528,37 @@
   "tests": 11,
   "pass": 11,
   "fail": 0
+ },
+ "fl06": {
+  "tests": 52,
+  "pass": 52,
+  "fail": 0,
+  "skipped": 5
+ },
+ "fs06": {
+  "tests": 10,
+  "pass": 10,
+  "fail": 0
+ },
+ "fl07": {
+  "tests": 22,
+  "pass": 22,
+  "fail": 0
+ },
+ "fs07": {
+  "tests": 5,
+  "pass": 5,
+  "fail": 0
+ },
+ "fl08": {
+  "tests": 21,
+  "pass": 21,
+  "fail": 0,
+  "skipped": 9
+ },
+ "fs08": {
+  "tests": 8,
+  "pass": 8,
+  "fail": 0
  }
 }

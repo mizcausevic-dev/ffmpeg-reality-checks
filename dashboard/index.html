@@ -117,7 +117,7 @@
   </header>
 
   <nav class="nav" id="nav" aria-label="Sections">
-    <a href="#overview">Overview</a><a href="#timeline">Timeline</a><a href="#films">Films</a><a href="#pinned">Pinned comments</a><a href="#endscreens">End screens</a><a href="#diffs">Build differences</a><a href="#channel">Channel</a><a href="#queue">Queue</a>
+    <a href="#overview">Overview</a><a href="#timeline">Timeline</a><a href="#films">Films</a><a href="#pinned">Pinned comments</a><a href="#endscreens">End screens</a><a href="#diffs">Build differences</a><a href="#channel">Channel</a><a href="#series">More series</a><a href="#queue">Queue</a>
   </nav>
 
   <section class="kpis" id="overview" aria-label="Series totals">
@@ -216,6 +216,17 @@
     </div>
   </section>
 
+  <section class="card" id="series">
+    <h2>More series</h2>
+    <p class="note">Two newer series from the same film engine. <span data-source="otherTotals" data-row="0" data-field="total">—</span> films so far: <span data-source="otherTotals" data-row="0" data-field="public">—</span> public, <span data-source="otherTotals" data-row="0" data-field="private">—</span> private, <span data-source="otherTotals" data-row="0" data-field="tests">—</span> tests passing, <span data-source="otherTotals" data-row="0" data-field="failing">—</span> failing. Each is a local demo on invented or synthetic data with the code and tests in its own repo. Private films are not yet released.</p>
+    <div class="scroll">
+      <table id="otable" data-source="otherfilms" data-row-key="code">
+        <thead><tr><th class="plain" data-field="code">Film</th><th class="plain" data-field="series">Series</th><th class="plain" data-field="kind">Format</th><th class="plain" data-field="question">Question</th><th class="plain" data-field="status">Status</th><th class="plain" data-field="length">Length</th><th class="plain" data-field="tests">Tests</th><th class="plain" data-field="published">When</th><th class="plain" data-field="url">Link</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
   <section class="card" id="queue">
     <h2>Queue and proposed next films</h2>
     <p class="note">Topics come from the series' pattern (a copied command, one measurable surprise). There is no keyword-demand data behind the order.</p>
@@ -249,6 +260,22 @@
         likes: sum('likes'),
         chviews: (traffic || []).reduce(function (a, t) { return a + (Number(t.views) || 0); }, 0),
         chhours: Math.round((traffic || []).reduce(function (a, t) { return a + (Number(t.minutes) || 0); }, 0) / 6) / 10
+      }];
+    }
+  });
+
+  dash.calc('otherTotals', {
+    inputs: ['otherfilms'],
+    title: 'Other series totals',
+    description: 'Counts over the Future of Web and Agent Trust Checks films.',
+    fn: function (otherfilms) {
+      var sum = function (k) { return otherfilms.reduce(function (a, f) { return a + (Number(f[k]) || 0); }, 0); };
+      return [{
+        total: otherfilms.length,
+        public: otherfilms.filter(function (f) { return f.status === 'public'; }).length,
+        private: otherfilms.filter(function (f) { return f.status === 'private'; }).length,
+        tests: sum('tests') - sum('tests_failed'),
+        failing: sum('tests_failed')
       }];
     }
   });
@@ -444,6 +471,23 @@
     });
   }
 
+  function drawOther() {
+    var d = dash.data('otherfilms'), tb = document.querySelector('#otable tbody');
+    tb.textContent = '';
+    if (d.status !== 'ok') return;
+    d.data.slice().sort(function (a, b) { return a.ord - b.ord; }).forEach(function (r) {
+      var tr = document.createElement('tr'); tr.setAttribute('data-key', r.code);
+      ['code', 'series', 'kind', 'question', 'status', 'length', 'tests', 'published', 'url'].forEach(function (c) {
+        var td = document.createElement('td');
+        if (c === 'status') { var s = document.createElement('span'); s.className = 'chip ' + r.status; s.textContent = r.status; td.appendChild(s); }
+        else if (c === 'url' && r.url) { var a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.url; td.appendChild(a); }
+        else td.textContent = r[c] == null ? '' : r[c];
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+  }
+
   function copyText(text, btn) {
     var done = function () { var t = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = t; }, 1400); };
     var fallback = function () {
@@ -517,6 +561,7 @@
     drawEnd();
     drawDiffs();
     drawTraffic();
+    drawOther();
     drawSimple('limits', 'ltable', ['item', 'value', 'note'], null);
     drawSimple('queue', 'qtable', ['ep', 'status', 'topic', 'why'], 'status');
   });

@@ -1,0 +1,42 @@
+{
+ "wl01": {
+  "tests": 41,
+  "pass": 41,
+  "fail": 0
+ },
+ "ws01": {
+  "tests": 11,
+  "pass": 11,
+  "fail": 0
+ },
+ "wl02": {
+  "tests": 33,
+  "pass": 33,
+  "fail": 0
+ },
+ "ws02": {
+  "tests": 8,
+  "pass": 8,
+  "fail": 0
+ },
+ "wl03": {
+  "tests": 40,
+  "pass": 40,
+  "fail": 0
+ },
+ "ws03": {
+  "tests": 11,
+  "pass": 11,
+  "fail": 0
+ },
+ "al01": {
+  "tests": 38,
+  "pass": 38,
+  "fail": 0
+ },
+ "as01": {
+  "tests": 13,
+  "pass": 13,
+  "fail": 0
+ }
+}

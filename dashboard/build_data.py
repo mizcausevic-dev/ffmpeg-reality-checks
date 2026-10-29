@@ -67,9 +67,19 @@ differs = {
 BOTH_FROM = 1
 # Long films (flNN) and Shorts (fsNN): measured on 6.1.1 only so far; 8.1.2 has not been run on them.
 KIND = {'ff': 'film', 'fl': 'long', 'fs': 'short'}
-THEME = {'fl01': 'cutting', 'fs01': 'cutting', 'fl02': 'gapless audio', 'fs02': 'gapless audio', 'fl03': 'color shifts', 'fs03': 'color shifts', 'fl04': 'frame rate and timestamps', 'fs04': 'frame rate and timestamps', 'fl05': 'files that will not play', 'fs05': 'files that will not play'}
+THEME = {'fl01': 'cutting', 'fs01': 'cutting', 'fl02': 'gapless audio', 'fs02': 'gapless audio', 'fl03': 'color shifts', 'fs03': 'color shifts', 'fl04': 'frame rate and timestamps', 'fs04': 'frame rate and timestamps', 'fl05': 'files that will not play', 'fs05': 'files that will not play', 'fl06': 'PNG default predictor', 'fs06': 'PNG default predictor', 'fl07': 'AV1 encoders', 'fs07': 'AV1 encoders', 'fl08': 'colordetect', 'fs08': 'colordetect'}
 # The combined fl02 + fs02 test run reports one total (46 of 46); it is counted once, under fl02.
 TEST_NOTE = {'fl02': 'Combined run with fs02: 46 of 46.', 'fs02': 'Counted under fl02 (46 of 46 combined).'}
+# fl06 to fs08 were measured on both builds (6.1.1 in the container, 8.1.2 on the PC); the Shorts import their long film's fixture.
+NEW_BOTH = {'fl06','fs06','fl07','fs07','fl08','fs08'}
+differs.update({
+    'fl06': 'The decoded pixels are identical on both builds (112 files), but the png default filter moved (-pred none on 6.1.1, paeth on 8.1.2), and even with -pred pinned the bytes differ across builds (0 of 96 files the same).',
+    'fs06': 'Same measurement as fl06: the picture is identical on both builds; the default png filter moved and the bytes differ.',
+    'fl07': '-b:v 500k next to -crf 30 with libsvtav1 is ignored on 6.1.1 (the crf 30 file, byte for byte) and an error on 8.1.2 (no file); the crf 30 file is 61302 B on 6.1.1 and 82283 B on 8.1.2.',
+    'fs07': 'Same measurement as fl07: -b:v next to -crf is ignored on 6.1.1 and an error on 8.1.2.',
+    'fl08': 'colordetect is an ffmpeg 8 filter and does not exist in 6.1.1. A premultiplied-looking pixel over gray 128 composites differently by build (cause unexplained); that check was dropped from the film.',
+    'fs08': 'Same measurement as fl08: colordetect exists on 8.1.2 only.',
+})
 # Films whose build-dependent claims are asserted on 6.1.1 only; 8.1.2 ran the build-independent checks.
 PARTIAL = {'ff51','ff52','ff53','ff54','ff55','ff56','ff57'}
 # Films whose path grid needs file names Windows cannot hold: measured on 6.1.1 only.
@@ -111,9 +121,9 @@ for d in sorted([p for p in (root / 'episodes').iterdir() if p.is_dir() and re.f
         'ord': order_of(code),
         'palette': s.get('palette', '') if kind != 'film' else '',
         'theme': THEME.get(code, ''),
-        'test_note': TEST_NOTE.get(code, ''),
-        'on_8': 'no' if kind != 'film' or code in LINUX_ONLY else ('partly' if code in PARTIAL else ('yes' if n >= BOTH_FROM else 'no')),
-        'builds': '6.1.1 (8.1.2 not run yet)' if kind != 'film' else ('6.1.1 (8.1.2 partly)' if code in PARTIAL else ('6.1.1 only (tests skip on Windows)' if code in LINUX_ONLY else None) or ('6.1.1 and 8.1.2' if n >= BOTH_FROM else '6.1.1')),
+        'test_note': TEST_NOTE.get(code, '') or (str(t['skipped']) + ' more checks are skipped on 6.1.1: they assert exact numbers measured on 8.1.2 (or a filter 6.1.1 lacks).' if t.get('skipped') else ''),
+        'on_8': 'yes' if code in NEW_BOTH else 'no' if kind != 'film' or code in LINUX_ONLY else ('partly' if code in PARTIAL else ('yes' if n >= BOTH_FROM else 'no')),
+        'builds': ('6.1.1 and 8.1.2' if code in NEW_BOTH else '6.1.1 (8.1.2 not run yet)') if kind != 'film' else ('6.1.1 (8.1.2 partly)' if code in PARTIAL else ('6.1.1 only (tests skip on Windows)' if code in LINUX_ONLY else None) or ('6.1.1 and 8.1.2' if n >= BOTH_FROM else '6.1.1')),
         'build_difference': 'yes' if code in differs else 'no',
         'build_note': differs.get(code, ''),
         'status': 'public' if st and st['privacy'] == 'public' else ('private' if st else 'in production'),
@@ -158,6 +168,7 @@ def batches_for(prefix):
 batches = sorted([b for pre in ('ff', 'fl', 'fs') for b in batches_for(pre)], key=lambda b: b['start'])
 tl = []
 for i, b in enumerate(batches):
+    b['films'] = sorted(b['films'], key=lambda c: order_of(c))
     a, z = b['films'][0], b['films'][-1]
     contiguous = all(int(b['films'][i+1][2:]) - int(b['films'][i][2:]) == 1 for i in range(len(b['films']) - 1))
     rng = a if a == z else (a + ' to ' + z if contiguous else ' and '.join(b['films']) if len(b['films']) == 2 else ', '.join(b['films']))
@@ -197,15 +208,15 @@ new_private = sorted(c for c in private_now if c[:2] in ('fl', 'fs'))
 if new_private:
     tl.append({'order': n0, 'state': 'scheduled', 'when': 'Waiting for your yes',
         'title': 'Held private: ' + new_private[0] + ' to ' + new_private[-1],
-        'detail': str(len(new_private)) + ' films (5 long, 5 Shorts) uploaded private into the playlist FFmpeg Reality Checks: Long Films and Shorts. Publishing needs a fresh yes (--publish --confirm-public).',
+        'detail': str(len(new_private)) + ' films uploaded private into the playlist FFmpeg Reality Checks: Long Films and Shorts. Publishing needs a fresh yes (--publish --confirm-public).',
         'films': ','.join(new_private)})
     n0 += 1
 tl.append({'order': n0, 'state': 'scheduled', 'when': 'Queued for later, by hand',
-    'title': 'Pinned comments for fl01 to fs05', 'detail': 'YouTube has no API to pin a comment. The ten texts are in the Pinned comments section below; paste and pin them in Studio.', 'films': ''})
+    'title': 'Pinned comments for fl01 to fs08', 'detail': 'YouTube has no API to pin a comment. The sixteen texts are in the Pinned comments section below; paste and pin them in Studio.', 'films': ''})
 tl.append({'order': n0 + 1, 'state': 'scheduled', 'when': 'Queued for later, by hand',
-    'title': 'End screens: the ten new films, then ff01 to ff25', 'detail': 'Studio only. The 70 end screens on ff26 to ff97 are listed in the End screens section.', 'films': ''})
+    'title': 'End screens: the sixteen new films, then ff01 to ff25', 'detail': 'Studio only. The 70 end screens on ff26 to ff97 are listed in the End screens section.', 'films': ''})
 tl.append({'order': n0 + 2, 'state': 'scheduled', 'when': 'Open',
-    'title': 'Engine commit 8aaa9e5 is not pushed to the engine remote', 'detail': 'The long-film and Shorts support, palettes and thumbnail system v2 exist on the PC and in the working copy only. 8.1.2 tests for the ten new films have not been run.', 'films': ''})
+    'title': 'Engine commits 8aaa9e5 and 6a81fdc are not pushed to the engine remote', 'detail': 'The long-film and Shorts support, palettes, thumbnail system v2 and the end-card title option exist in the working copy only.', 'films': ''})
 n0 += 3
 building = sorted(f['code'] for f in films if f['status'] == 'in production')
 if building:
@@ -214,6 +225,62 @@ if building:
         'detail': str(len(building)) + ' films in the next batch. Built private only; publishing needs a fresh yes.',
         'films': ','.join(building)})
     n0 += 1
+# Other series (Future of Web, Agent Trust Checks): rows come from their own repos next to this one.
+OTHER = [('wl', 'ws', 'Future of Web: Emerging Tech Explained', 'future-of-web'), ('al', 'as', 'Agent Trust Checks', 'agent-trust-checks')]
+snap_o = json.loads((dash / 'snapshot_other.json').read_text()) if (dash / 'snapshot_other.json').exists() else {}
+tests_o = json.loads((dash / 'tests_other.json').read_text()) if (dash / 'tests_other.json').exists() else {}
+others = []
+for lp, sp_, sname, repo in OTHER:
+    rd = root.parent / repo
+    if not (rd / 'episodes').exists():
+        continue
+    for d in sorted(p_ for p_ in (rd / 'episodes').iterdir() if p_.is_dir() and re.fullmatch(r'(' + lp + '|' + sp_ + r')\d\d', p_.name)):
+        code = d.name
+        s = json.loads((d / 'script.json').read_text())
+        st = snap_o.get(code)
+        dist = d / 'content' / 'distribution.md'
+        pm = re.search(r'### Pinned comment[^\n]*\n+(.+?)(?:\n\n|\n#|\Z)', dist.read_text(), re.S) if dist.exists() else None
+        jp = dash / 'thumbs' / (code + '.jpg')
+        t_ = tests_o.get(code, {})
+        others.append({
+            'code': code, 'series': sname, 'kind': 'long' if code.startswith(lp) else 'short',
+            'ord': (0 if lp == 'wl' else 100) + (0 if code.startswith(lp) else 50) + int(code[2:]),
+            'question': s['title'], 'video_title': s['fullTitle'], 'palette': s.get('palette', ''),
+            'scenes': len(s.get('scenes', [])), 'words': sum(len(sc.get('narration', '').split()) for sc in s.get('scenes', [])),
+            'tests': t_.get('tests'), 'tests_failed': t_.get('fail'),
+            'status': ('public' if st['privacy'] == 'public' else 'private') if st else 'in production',
+            'seconds': st['seconds'] if st else None, 'views': st['views'] if st else None, 'likes': st['likes'] if st else None,
+            'length': (str(st['seconds'] // 60) + ':' + str(st['seconds'] % 60).zfill(2)) if st else '',
+            'published': fmt_et(st['at']) if st else '',
+            'published_kind': ('went public' if st['privacy'] == 'public' else 'uploaded, private') if st else '',
+            'video_id': st['videoId'] if st else '', 'url': ('https://youtu.be/' + st['videoId']) if st else '',
+            'pinned': pm.group(1).strip() if pm else '', 'repo': 'github.com/mizcausevic-dev/' + repo,
+            'thumb': ('data:image/jpeg;base64,' + base64.b64encode(jp.read_bytes()).decode()) if jp.exists() else '',
+        })
+(out / 'otherfilms.json').write_text(json.dumps(others, separators=(',', ':')))
+extra = []
+for lp, sp_, sname, repo in OTHER:
+    for priv in ('public', 'private'):
+        grp = sorted([(c, v) for c, v in snap_o.items() if c[:2] in (lp, sp_) and v['privacy'] == priv], key=lambda kv: kv[1]['at'])
+        cur = None
+        for c, v in grp:
+            if cur and (et(v['at']) - et(cur['end'])).total_seconds() <= 45 * 60:
+                cur['codes'].append(c); cur['end'] = v['at']
+            else:
+                cur = {'start': v['at'], 'end': v['at'], 'codes': [c], 'series': sname, 'priv': priv}; extra.append(cur)
+extra.sort(key=lambda b: b['start'])
+first_sched = next((i for i, b in enumerate(tl) if b['state'] != 'done'), len(tl))
+tl[first_sched:first_sched] = [{'order': 0, 'state': 'done', 'when': fmt_et(b['start']),
+    'title': ('Went public: ' if b['priv'] == 'public' else 'Uploaded, private: ') + b['series'] + ' ' + ', '.join(sorted(b['codes'])),
+    'detail': str(len(b['codes'])) + (' film' if len(b['codes']) == 1 else ' films') + ('. Time is the YouTube publish time.' if b['priv'] == 'public' else '. Time is the upload time; still private.'), 'films': ''} for b in extra]
+# done items in time order (the when text is Eastern, 'Oct 27, 5:41 pm ET')
+def _when(b):
+    return datetime.datetime.strptime('2026 ' + b['when'].replace(' ET', '').replace(',', ''), '%Y %b %d %I:%M %p')
+_done = sorted([b for b in tl if b['state'] == 'done'], key=_when)
+tl[:] = _done + [b for b in tl if b['state'] != 'done']
+for i, b in enumerate(tl):
+    b['order'] = i
+n0 = len(tl)
 tl.append({'order': n0, 'state': 'scheduled', 'when': 'Oct 29, 9:00 am ET (reminder)',
     'title': 'Analytics API and OAuth scope', 'detail': 'Decision needed: extend the YouTube login with the analytics read scope (needs your explicit yes).', 'films': ''})
 (out / 'timeline.json').write_text(json.dumps(tl, indent=1))

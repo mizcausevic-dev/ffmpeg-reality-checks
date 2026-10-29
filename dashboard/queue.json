@@ -1,212 +1,156 @@
 [
  {
   "ep": "fl01",
-  "status": "private",
+  "status": "public",
   "topic": "How does FFmpeg really cut a video?",
-  "why": "Shipped, private. Long film on cutting (signal look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Long film on cutting (signal look). Went public Oct 27, 5:42 pm ET.",
   "kind": "long"
  },
  {
   "ep": "fl02",
-  "status": "private",
+  "status": "public",
   "topic": "Where does my audio really start after a join or a cut?",
-  "why": "Shipped, private. Long film on gapless audio (phosphor look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Long film on gapless audio (phosphor look). Went public Oct 27, 5:42 pm ET.",
   "kind": "long"
  },
  {
   "ep": "fl03",
-  "status": "private",
+  "status": "public",
   "topic": "Why do FFmpeg colors shift?",
-  "why": "Shipped, private. Long film on color shifts (riso look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Long film on color shifts (riso look). Went public Oct 27, 5:42 pm ET.",
   "kind": "long"
  },
  {
   "ep": "fl04",
-  "status": "private",
+  "status": "public",
   "topic": "Where do my frames and seconds go in FFmpeg?",
-  "why": "Shipped, private. Long film on frame rate and timestamps (swiss look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Long film on frame rate and timestamps (swiss look). Went public Oct 27, 5:41 pm ET.",
   "kind": "long"
  },
  {
   "ep": "fl05",
-  "status": "private",
+  "status": "public",
   "topic": "Why an FFmpeg file will not play",
-  "why": "Shipped, private. Long film on files that will not play (newsprint look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Long film on files that will not play (newsprint look). Went public Oct 27, 5:41 pm ET.",
+  "kind": "long"
+ },
+ {
+  "ep": "fl06",
+  "status": "public",
+  "topic": "Why FFmpeg 8 PNG files differ",
+  "why": "Public. Long film on PNG default predictor (newsprint look). Went public Oct 27, 5:41 pm ET.",
+  "kind": "long"
+ },
+ {
+  "ep": "fl07",
+  "status": "public",
+  "topic": "What does -crf really do in AV1 encoders?",
+  "why": "Public. Long film on AV1 encoders (phosphor look). Went public Oct 28, 11:07 am ET.",
+  "kind": "long"
+ },
+ {
+  "ep": "fl08",
+  "status": "public",
+  "topic": "What can FFmpeg colordetect really prove?",
+  "why": "Public. Long film on colordetect (riso look). Went public Oct 28, 11:07 am ET.",
   "kind": "long"
  },
  {
   "ep": "fs01",
-  "status": "private",
+  "status": "public",
   "topic": "Why FFmpeg -c copy cuts the wrong start",
-  "why": "Shipped, private. Short on cutting (signal look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Short on cutting (signal look). Went public Oct 27, 5:43 pm ET.",
   "kind": "short"
  },
  {
   "ep": "fs02",
-  "status": "private",
+  "status": "public",
   "topic": "Why is my joined AAC file full of gaps?",
-  "why": "Shipped, private. Short on gapless audio (phosphor look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Short on gapless audio (phosphor look). Went public Oct 27, 5:43 pm ET.",
   "kind": "short"
  },
  {
   "ep": "fs03",
-  "status": "private",
+  "status": "public",
   "topic": "Label or pixels? Why FFmpeg colors shift",
-  "why": "Shipped, private. Short on color shifts (riso look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Short on color shifts (riso look). Went public Oct 27, 5:43 pm ET.",
   "kind": "short"
  },
  {
   "ep": "fs04",
-  "status": "private",
+  "status": "public",
   "topic": "Five ways an FFmpeg frame rate change lies",
-  "why": "Shipped, private. Short on frame rate and timestamps (swiss look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Short on frame rate and timestamps (swiss look). Went public Oct 27, 5:42 pm ET.",
   "kind": "short"
  },
  {
   "ep": "fs05",
-  "status": "private",
+  "status": "public",
   "topic": "Why an FFmpeg file will not play",
-  "why": "Shipped, private. Short on files that will not play (newsprint look). Uploaded Oct 27; publishing needs a fresh yes.",
+  "why": "Public. Short on files that will not play (newsprint look). Went public Oct 27, 5:42 pm ET.",
   "kind": "short"
  },
  {
-  "ep": "ff78",
-  "status": "proposed",
-  "topic": "MP3 encoder delay: how many samples does the start carry, and does `-c copy` keep it gapless?",
-  "why": "Every MP3 starts with silence from the encoder and a decoder delay. Trims, joins and loops land late unless the delay is known. Style: Technical mini-documentary, specimen plate of the first frames with the Xing and LAME header bytes circled.",
-  "kind": "two builds"
+  "ep": "fs06",
+  "status": "public",
+  "topic": "Why FFmpeg 8 PNG files differ",
+  "why": "Public. Short on PNG default predictor (newsprint look). Went public Oct 27, 5:42 pm ET.",
+  "kind": "short"
  },
  {
-  "ep": "ff79",
-  "status": "proposed",
-  "topic": "Opus pre-skip: does the file start 312 samples late, and what does `-ss` do to it?",
-  "why": "The Ogg header asks the decoder to drop samples before the audio. Players and `-c copy` cuts treat it differently. Style: Fireship fast code, one counter, hard cuts.",
-  "kind": "build-stable"
+  "ep": "fs07",
+  "status": "public",
+  "topic": "FFmpeg AV1: -crf 0 is lossless in one encoder only",
+  "why": "Public. Short on AV1 encoders (phosphor look). Went public Oct 28, 12:00 am ET.",
+  "kind": "short"
  },
  {
-  "ep": "ff80",
-  "status": "proposed",
-  "topic": "GIF to MP4: GIF delays are in hundredths of a second, so what frame rate comes out?",
-  "why": "A 3 cs delay is 33.3 fps, not 30. Speed and length shift after conversion. Style: Illustrated scenario, a reel and a clock, then the measured proof.",
-  "kind": "two builds"
+  "ep": "fs08",
+  "status": "public",
+  "topic": "Can FFmpeg colordetect tell the color range?",
+  "why": "Public. Short on colordetect (riso look). Went public Oct 27, 11:06 pm ET.",
+  "kind": "short"
  },
  {
-  "ep": "ff81",
+  "ep": "idea1",
   "status": "proposed",
-  "topic": "`select='gt(scene,0.4)'`: what is a scene score, and what does a cut, a fade and noise score?",
-  "why": "People pick 0.3 or 0.4 by folklore. Measure the score of known cuts, fades and noisy flat frames. Style: Vox flat graphics, bars drawn to scale.",
-  "kind": "build-stable"
+  "topic": "GIF versus animated JPEG XL",
+  "why": "Proposed topic. Not chosen or built.",
+  "kind": "long"
  },
  {
-  "ep": "ff82",
+  "ep": "idea2",
   "status": "proposed",
-  "topic": "`blackdetect`: what do `pix_th` and `pic_th` really mean on a fade to black?",
-  "why": "Two thresholds and a duration decide when black starts. Measure start and end against a known fade. Style: Cinematic screen demo, terminal with the matching lines pinned.",
-  "kind": "build-stable"
+  "topic": "HEVC with alpha",
+  "why": "Proposed topic. Not chosen or built.",
+  "kind": "long"
  },
  {
-  "ep": "ff83",
+  "ep": "idea3",
   "status": "proposed",
-  "topic": "`silencedetect n=-50dB` or `n=0.001`: which units, and how exact are the timestamps?",
-  "why": "Same threshold, two spellings, and a start time that can sit a block late. Test tones with gaps of known length. Style: Fireship fast code.",
-  "kind": "build-stable"
+  "topic": ".ts to .mp4 remux",
+  "why": "Proposed topic. Not chosen or built.",
+  "kind": "long"
  },
  {
-  "ep": "ff84",
+  "ep": "idea4",
   "status": "proposed",
-  "topic": "Where does the spectrum end: AAC, MP3 and Opus lowpass at each bitrate",
-  "why": "Encoders cut the top of the spectrum by bitrate. Sweep a tone and read where it disappears. Style: Technical mini-documentary, spectrum plates.",
-  "kind": "two builds"
+  "topic": "Raw .h264 playback speed",
+  "why": "Proposed topic. Not chosen or built.",
+  "kind": "long"
  },
  {
-  "ep": "ff85",
+  "ep": "idea5",
   "status": "proposed",
-  "topic": "10 bit to 8 bit: why does a smooth gradient band, and does dither fix it?",
-  "why": "`format=yuv420p` truncates or rounds; scaler dither changes the steps. Count distinct levels on a ramp. Style: Editorial collage, torn strips of the ramp.",
-  "kind": "two builds"
+  "topic": "Enhanced FLV multitrack",
+  "why": "Proposed topic. Not chosen or built.",
+  "kind": "long"
  },
  {
-  "ep": "ff86",
+  "ep": "idea6",
   "status": "proposed",
-  "topic": "`overlay` at an odd x or y in yuv420p: where does the picture really land?",
-  "why": "Chroma is half resolution, so an odd offset can shift color by a pixel. Marker card, read both planes. Style: Physical 3D cutaway, luma and chroma slabs.",
-  "kind": "two builds"
- },
- {
-  "ep": "ff87",
-  "status": "proposed",
-  "topic": "`vstack` and `hstack` with different sizes: what error, and what do `scale2ref` and `shortest` change?",
-  "why": "The filter refuses mismatched widths; the fixes change length and size in ways nobody checks. Style: Johnny Harris desk-and-map, cards pinned on a board.",
-  "kind": "two builds"
- },
- {
-  "ep": "ff88",
-  "status": "proposed",
-  "topic": "`chromakey` or `colorkey`: what does similarity mean, and how many edge pixels survive?",
-  "why": "Both take similarity and blend with different color spaces. Known green card with a soft edge, count alpha levels. Style: Vox flat graphics.",
-  "kind": "build-stable"
- },
- {
-  "ep": "ff89",
-  "status": "proposed",
-  "topic": "Transparent video: which formats keep alpha, and what does `yuv420p` do to it?",
-  "why": "PNG to MP4 flattens to black; ProRes 4444, VP9 and PNG keep alpha. Decode and read alpha. Style: Illustrated scenario, checkerboard and a cutout.",
-  "kind": "two builds"
- },
- {
-  "ep": "ff90",
-  "status": "proposed",
-  "topic": "`-copyts` with `-ss`: what start time does the output keep?",
-  "why": "The flag keeps source timestamps, and the output starts late or negative. Compare start_time on mp4, mkv and ts. Style: Johnny Harris desk-and-map, string between timestamps.",
-  "kind": "two builds"
- },
- {
-  "ep": "ff91",
-  "status": "proposed",
-  "topic": "`-f segment -c copy`: why are my segments not the length I asked for?",
-  "why": "Copy can only cut on keyframes, and `reset_timestamps` changes what players show. Measure each segment. Style: Cinematic screen demo, file tree filling up.",
-  "kind": "two builds"
- },
- {
-  "ep": "ff92",
-  "status": "proposed",
-  "topic": "Does `-g 250` still add keyframes on hard cuts, and what does `-sc_threshold 0` change?",
-  "why": "Scene cut detection inserts extra keyframes. Count I-frames on a clip with known cuts. Style: Fireship fast code.",
-  "kind": "build-stable"
- },
- {
-  "ep": "ff93",
-  "status": "proposed",
-  "topic": "`pts`, `dts` and `best_effort_timestamp`: which one is the time of this frame?",
-  "why": "With B-frames the three differ. Read all of them for a known clip and show which tool prints which. Style: Technical mini-documentary, exploded timeline.",
-  "kind": "two builds"
- },
- {
-  "ep": "ff94",
-  "status": "proposed",
-  "topic": "Resampling 48 kHz to 44.1 kHz: exact sample count, and does the length change?",
-  "why": "`aresample` rounds the output length by a few samples, which adds up in joins. Known tone, count samples. Style: Vox flat graphics.",
-  "kind": "two builds"
- },
- {
-  "ep": "ff95",
-  "status": "proposed",
-  "topic": "`afade` curves: how loud is the middle of a fade for tri, qsin, exp and log?",
-  "why": "The curve names say nothing about how loud the midpoint is. Measure gain at 0, 25, 50, 75 and 100 percent. Style: Editorial collage, cut-out curves.",
-  "kind": "build-stable"
- },
- {
-  "ep": "ff96",
-  "status": "proposed",
-  "topic": "`dynaudnorm` or `loudnorm`: which one changes the loudness range, and by how much?",
-  "why": "Both are sold as normalizers; one levels, one targets. Measure integrated loudness and range on a synthetic program. Style: Illustrated scenario, a speaker and a dial.",
-  "kind": "two builds"
- },
- {
-  "ep": "ff97",
-  "status": "proposed",
-  "topic": "WAV piped out of ffmpeg: why does the header say the file is 4 GB, or 0 bytes?",
-  "why": "A pipe cannot seek back to fix the header. Read the RIFF and data sizes and what players make of them. Style: Technical mini-documentary, hex plate.",
-  "kind": "two builds"
+  "topic": "Evergreen backups",
+  "why": "Proposed topic. Not chosen or built.",
+  "kind": "long"
  }
 ]
